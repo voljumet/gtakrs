@@ -48,10 +48,10 @@ RM = "/Users/alex/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/alex/dat220g19h/GTA KRS/gtakrs"
+CMAKE_SOURCE_DIR = /Users/alex/dat220g19h/ProsjektResearch/GTAKRS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug/CMakeFiles" "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,179 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named gtakrs
+# Target rules for targets named GTAKRS
 
 # Build rule for target.
-gtakrs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtakrs
-.PHONY : gtakrs
+GTAKRS: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GTAKRS
+.PHONY : GTAKRS
 
 # fast build rule for target.
-gtakrs/fast:
-	$(MAKE) -f CMakeFiles/gtakrs.dir/build.make CMakeFiles/gtakrs.dir/build
-.PHONY : gtakrs/fast
+GTAKRS/fast:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/build
+.PHONY : GTAKRS/fast
+
+AssetManager.o: AssetManager.cpp.o
+
+.PHONY : AssetManager.o
+
+# target to build an object file
+AssetManager.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/AssetManager.cpp.o
+.PHONY : AssetManager.cpp.o
+
+AssetManager.i: AssetManager.cpp.i
+
+.PHONY : AssetManager.i
+
+# target to preprocess a source file
+AssetManager.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/AssetManager.cpp.i
+.PHONY : AssetManager.cpp.i
+
+AssetManager.s: AssetManager.cpp.s
+
+.PHONY : AssetManager.s
+
+# target to generate assembly for a file
+AssetManager.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/AssetManager.cpp.s
+.PHONY : AssetManager.cpp.s
+
+Game.o: Game.cpp.o
+
+.PHONY : Game.o
+
+# target to build an object file
+Game.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Game.cpp.o
+.PHONY : Game.cpp.o
+
+Game.i: Game.cpp.i
+
+.PHONY : Game.i
+
+# target to preprocess a source file
+Game.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Game.cpp.i
+.PHONY : Game.cpp.i
+
+Game.s: Game.cpp.s
+
+.PHONY : Game.s
+
+# target to generate assembly for a file
+Game.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Game.cpp.s
+.PHONY : Game.cpp.s
+
+InputManager.o: InputManager.cpp.o
+
+.PHONY : InputManager.o
+
+# target to build an object file
+InputManager.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/InputManager.cpp.o
+.PHONY : InputManager.cpp.o
+
+InputManager.i: InputManager.cpp.i
+
+.PHONY : InputManager.i
+
+# target to preprocess a source file
+InputManager.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/InputManager.cpp.i
+.PHONY : InputManager.cpp.i
+
+InputManager.s: InputManager.cpp.s
+
+.PHONY : InputManager.s
+
+# target to generate assembly for a file
+InputManager.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/InputManager.cpp.s
+.PHONY : InputManager.cpp.s
+
+MainMenuState.o: MainMenuState.cpp.o
+
+.PHONY : MainMenuState.o
+
+# target to build an object file
+MainMenuState.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o
+.PHONY : MainMenuState.cpp.o
+
+MainMenuState.i: MainMenuState.cpp.i
+
+.PHONY : MainMenuState.i
+
+# target to preprocess a source file
+MainMenuState.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/MainMenuState.cpp.i
+.PHONY : MainMenuState.cpp.i
+
+MainMenuState.s: MainMenuState.cpp.s
+
+.PHONY : MainMenuState.s
+
+# target to generate assembly for a file
+MainMenuState.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/MainMenuState.cpp.s
+.PHONY : MainMenuState.cpp.s
+
+SplashState.o: SplashState.cpp.o
+
+.PHONY : SplashState.o
+
+# target to build an object file
+SplashState.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/SplashState.cpp.o
+.PHONY : SplashState.cpp.o
+
+SplashState.i: SplashState.cpp.i
+
+.PHONY : SplashState.i
+
+# target to preprocess a source file
+SplashState.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/SplashState.cpp.i
+.PHONY : SplashState.cpp.i
+
+SplashState.s: SplashState.cpp.s
+
+.PHONY : SplashState.s
+
+# target to generate assembly for a file
+SplashState.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/SplashState.cpp.s
+.PHONY : SplashState.cpp.s
+
+StateMachine.o: StateMachine.cpp.o
+
+.PHONY : StateMachine.o
+
+# target to build an object file
+StateMachine.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/StateMachine.cpp.o
+.PHONY : StateMachine.cpp.o
+
+StateMachine.i: StateMachine.cpp.i
+
+.PHONY : StateMachine.i
+
+# target to preprocess a source file
+StateMachine.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/StateMachine.cpp.i
+.PHONY : StateMachine.cpp.i
+
+StateMachine.s: StateMachine.cpp.s
+
+.PHONY : StateMachine.s
+
+# target to generate assembly for a file
+StateMachine.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/StateMachine.cpp.s
+.PHONY : StateMachine.cpp.s
 
 main.o: main.cpp.o
 
@@ -129,7 +291,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/gtakrs.dir/build.make CMakeFiles/gtakrs.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +300,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/gtakrs.dir/build.make CMakeFiles/gtakrs.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,7 +309,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/gtakrs.dir/build.make CMakeFiles/gtakrs.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -158,7 +320,25 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... gtakrs"
+	@echo "... GTAKRS"
+	@echo "... AssetManager.o"
+	@echo "... AssetManager.i"
+	@echo "... AssetManager.s"
+	@echo "... Game.o"
+	@echo "... Game.i"
+	@echo "... Game.s"
+	@echo "... InputManager.o"
+	@echo "... InputManager.i"
+	@echo "... InputManager.s"
+	@echo "... MainMenuState.o"
+	@echo "... MainMenuState.i"
+	@echo "... MainMenuState.s"
+	@echo "... SplashState.o"
+	@echo "... SplashState.i"
+	@echo "... SplashState.s"
+	@echo "... StateMachine.o"
+	@echo "... StateMachine.i"
+	@echo "... StateMachine.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

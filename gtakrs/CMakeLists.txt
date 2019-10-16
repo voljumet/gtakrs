@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
-project(gtakrs)
+project(GTAKRS)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(gtakrs main.cpp)
+add_executable(GTAKRS main.cpp State.h StateMachine.cpp StateMachine.h AssetManager.cpp AssetManager.h InputManager.cpp InputManager.h Game.cpp Game.h DEFINITIONS.h SplashState.cpp SplashState.h MainMenuState.cpp MainMenuState.h)
+
+target_link_libraries (GTAKRS sfml-graphics sfml-window sfml-system)

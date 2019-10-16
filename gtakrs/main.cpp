@@ -1,6 +1,10 @@
 #include <iostream>
+#include "Game.h"
+#include "DEFINITIONS.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+
+    GTA::Game(SCREEN_WIDTH, SCREEN_HEIGHT, "GTA KRS");
+
+    return  EXIT_SUCCESS;
 }

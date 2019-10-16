@@ -1,10 +1,16 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/gtakrs.dir/main.cpp.o"
-  "gtakrs.pdb"
-  "gtakrs"
+  "CMakeFiles/GTAKRS.dir/main.cpp.o"
+  "CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
+  "CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
+  "CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
+  "CMakeFiles/GTAKRS.dir/Game.cpp.o"
+  "CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
+  "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
+  "GTAKRS.pdb"
+  "GTAKRS"
 )
 
 # Per-language clean rules from dependency scanning.
 foreach(lang CXX)
-  include(CMakeFiles/gtakrs.dir/cmake_clean_${lang}.cmake OPTIONAL)
+  include(CMakeFiles/GTAKRS.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="SFML_Tutorial"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SFML_Tutorial">
+				<Option output="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/SFML_Tutorial" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 SFML_Tutorial"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SFML_Tutorial/fast">
+				<Option output="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/SFML_Tutorial" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 SFML_Tutorial/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/DEFINITIONS.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/State.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.h">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/main.cpp">
+			<Option target="SFML_Tutorial"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
