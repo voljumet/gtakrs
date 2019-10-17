@@ -7,13 +7,13 @@
 namespace GTA{
     class SplashState : public  State{
     public:
-        SplashState(GameDataRef data);
+        explicit SplashState(GameDataRef data);
 
-        void Init();
+        void Init() override;
 
-        void HandleInput();
-        void Update(float dt);
-        void Draw( float dt);
+        void HandleInput() override;
+        void Update(float dt) override;
+        void Draw( float dt) override;
 
     private:
         GameDataRef _data;

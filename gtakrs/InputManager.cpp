@@ -5,7 +5,7 @@
 /// her bør også piltaster plasseres for å kontrollere karakteren
 
 namespace GTA{
-    bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window){
+    bool InputManager::IsSpriteClicked(const sf::Sprite& object, sf::Mouse::Button button, sf::RenderWindow &window){       /// Mouse clicked ....
         if (sf::Mouse::isButtonPressed(button)){
             sf::IntRect tempRect(object.getPosition().x, object.getPosition().y, object.getGlobalBounds().width, object.getGlobalBounds().height);
 
@@ -16,7 +16,7 @@ namespace GTA{
         return false;
     }
 
-    sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window){
+    sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window){      /// Get mouse position
         return sf::Mouse::getPosition(window);
     }
 }

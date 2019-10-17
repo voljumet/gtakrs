@@ -8,8 +8,9 @@
 namespace GTA{
     class WorldState : public  State{
     public:
-        double x = (SCREEN_HEIGHT/2);
-        double y = (SCREEN_WIDTH/2);
+        double oldx = 0, x = (SCREEN_WIDTH/2);
+        double oldy = 0, y = (SCREEN_HEIGHT/2);
+
         explicit WorldState(GameDataRef data);
 
         void Init() override;

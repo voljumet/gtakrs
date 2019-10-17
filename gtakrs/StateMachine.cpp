@@ -1,9 +1,9 @@
 #include "StateMachine.h"
 
-/// Statemachine...
+/// Statemachine Settings!!
 
 namespace GTA{
-    void StateMachine::AddState(GTA::StateRef newState, bool isReplacing) {
+    void StateMachine::AddState(GTA::StateRef newState, bool isReplacing) {     /// Config for AddState when creating a new stateClass
         this->_isAdding = true;
         this->_isReplacing = isReplacing;
 
@@ -11,11 +11,11 @@ namespace GTA{
 
     }
 
-    void StateMachine::RemoveState() {
+    void StateMachine::RemoveState() {      /// Config for RemoveState when creating a new stateClass
         this->_isRemoving = true;
     }
 
-    void StateMachine::ProcessStateChanges() {
+    void StateMachine::ProcessStateChanges() {          /// Config for statechange
         if(this->_isRemoving && !this->_states.empty()){
             this->_states.pop();
 
@@ -33,7 +33,7 @@ namespace GTA{
             this->_isAdding = false;
         }
     }
-    StateRef &StateMachine::GetActiveState() {
+    StateRef &StateMachine::GetActiveState() {         /// Config for Getting last active state
         return this->_states.top();
     }
 }

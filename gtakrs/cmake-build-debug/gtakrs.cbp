@@ -5,41 +5,41 @@
 		<Option title="GTAKRS"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\SFML\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option working_dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option working_dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option working_dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="GTAKRS">
-				<Option output="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/GTAKRS" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option output="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/GTAKRS" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -53,15 +53,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 GTAKRS"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 GTAKRS"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="GTAKRS/fast">
-				<Option output="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/GTAKRS" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug"/>
+				<Option output="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/GTAKRS" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -75,60 +75,81 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 GTAKRS/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 GTAKRS/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/alex/dat220g19h/GTA\ KRS/GTAKRS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/DEFINITIONS.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/InputManager.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/InputManager.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/State.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.h">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/main.cpp">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/CMakeLists.txt">
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.h">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/main.cpp">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/../../../../../usr/local/lib/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/../../../../../usr/local/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/../../../../../usr/local/lib/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/../../../../../usr/local/lib/cmake/SFML/SFMLSharedTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/../../../../../usr/local/lib/cmake/SFML/SFMLSharedTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\SFML\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

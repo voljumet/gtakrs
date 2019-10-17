@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/Game.cpp.o"
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
-  "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/main.cpp" "/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/main.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/Game.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/InputManager.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/WorldState.cpp.o"
+  "/Users/alex/dat220g19h/GTA KRS/GTAKRS/main.cpp" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/GTAKRS.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

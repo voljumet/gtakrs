@@ -9,8 +9,8 @@ namespace GTA{
 
     class StateMachine{
     public:
-        StateMachine(){}
-        ~StateMachine(){}
+        StateMachine()= default;
+        ~StateMachine()= default;
 
         void AddState(StateRef newState, bool isReplacing = true );
         void RemoveState();
@@ -23,8 +23,8 @@ namespace GTA{
         std::stack<StateRef> _states;
         StateRef _newState;
 
-        bool _isRemoving;
-        bool _isAdding;
-        bool _isReplacing;
+        bool _isRemoving{};
+        bool _isAdding{};
+        bool _isReplacing{};
     };
 }

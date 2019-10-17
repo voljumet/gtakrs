@@ -48,10 +48,10 @@ RM = "/Users/alex/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alex/dat220g19h/ProsjektResearch/GTAKRS
+CMAKE_SOURCE_DIR = "/Users/alex/dat220g19h/GTA KRS/GTAKRS"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alex/dat220g19h/ProsjektResearch/GTAKRS/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -285,6 +285,33 @@ StateMachine.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/StateMachine.cpp.s
 .PHONY : StateMachine.cpp.s
 
+WorldState.o: WorldState.cpp.o
+
+.PHONY : WorldState.o
+
+# target to build an object file
+WorldState.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/WorldState.cpp.o
+.PHONY : WorldState.cpp.o
+
+WorldState.i: WorldState.cpp.i
+
+.PHONY : WorldState.i
+
+# target to preprocess a source file
+WorldState.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/WorldState.cpp.i
+.PHONY : WorldState.cpp.i
+
+WorldState.s: WorldState.cpp.s
+
+.PHONY : WorldState.s
+
+# target to generate assembly for a file
+WorldState.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/WorldState.cpp.s
+.PHONY : WorldState.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -339,6 +366,9 @@ help:
 	@echo "... StateMachine.o"
 	@echo "... StateMachine.i"
 	@echo "... StateMachine.s"
+	@echo "... WorldState.o"
+	@echo "... WorldState.i"
+	@echo "... WorldState.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -6,25 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.cpp
-AssetManager.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.h
-
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.h
 map
 -
 SFML/Graphics.hpp
 -
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/DEFINITIONS.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.cpp
-Game.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h
-SplashState.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.h
-
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.h
 memory
 -
 string
@@ -32,75 +22,93 @@ string
 SFML/Graphics.hpp
 -
 StateMachine.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h
 AssetManager.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/AssetManager.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.h
 InputManager.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/InputManager.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.cpp
-InputManager.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.h
-
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/InputManager.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/InputManager.h
 SFML/Graphics.hpp
 -
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.cpp
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.cpp
 sstream
 -
 MainMenuState.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h
 DEFINITIONS.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/DEFINITIONS.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
+WorldState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.h
 iostream
 -
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h
 SFML/Graphics.hpp
 -
 State.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/State.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
 Game.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.cpp
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.cpp
 sstream
 -
+utility
+-
 SplashState.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.h
 DEFINITIONS.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/DEFINITIONS.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
 MainMenuState.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/MainMenuState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/SplashState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.h
 SFML/Graphics.hpp
 -
 State.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/State.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
 Game.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/State.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.cpp
-StateMachine.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.h
-
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/StateMachine.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h
 memory
 -
 stack
 -
 State.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/State.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
 
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/main.cpp
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.cpp
+utility
+-
+iostream
+-
+WorldState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.h
+DEFINITIONS.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
+MainMenuState.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h
+
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.h
+SFML/Graphics.hpp
+-
+State.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
+Game.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.h
+DEFINITIONS.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
+
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/main.cpp
 iostream
 -
 Game.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/Game.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/Game.h
 DEFINITIONS.h
-/Users/alex/dat220g19h/ProsjektResearch/GTAKRS/DEFINITIONS.h
+/Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
 

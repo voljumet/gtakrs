@@ -19,7 +19,7 @@ namespace GTA{
 
     class Game{
     public:
-        Game(int width, int height, std::string title);
+        Game(int width, int height, const std::string& title);
 
     private:
         const float dt = 1.0f / 60.0f;      ///<----------- FPS
