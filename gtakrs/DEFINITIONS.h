@@ -17,7 +17,10 @@
 #define MAIN_MENU_LOAD_BUTTON "Resources/res/Buttons-02.png"
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Buttons-03.png"
 
-#define PLAYER_UP_1 "Resources/res/person_still_up.png"
+#define PLAYER "Resources/res/Walk.png"
+
+
+
 #define PLAYER_UP_2 "Resources/res/person_walk_up_1.png"
 #define PLAYER_UP_3 "Resources/res/person_walk_up_2.png"
 

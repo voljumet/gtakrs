@@ -14,96 +14,89 @@ namespace GTA{
         _background.setTexture(this->_data->assets.GetTexture("Map Background"));      /// Set Texture
         this->_background.setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2));
 
+        this->_data->assets.LoadTexture("Player", PLAYER);   /// Load Texture
+        _player.setTexture(this->_data->assets.GetTexture("Player"));      /// Set Texture
+
         /// Load Textures --------------------------------------------
-
-        this->_data->assets.LoadTexture("Player_up", PLAYER_UP_1);
-        this->_data->assets.LoadTexture("Player_up_1", PLAYER_UP_2);
-        this->_data->assets.LoadTexture("Player_up_2", PLAYER_UP_3);
-
-        this->_data->assets.LoadTexture("Player_down", PLAYER_DOWN_1);
-        this->_data->assets.LoadTexture("Player_down_1", PLAYER_DOWN_2);
-        this->_data->assets.LoadTexture("Player_down_2", PLAYER_DOWN_3);
-
-        this->_data->assets.LoadTexture("Player_left", PLAYER_LEFT_1);
-        this->_data->assets.LoadTexture("Player_left_1", PLAYER_LEFT_2);
-        this->_data->assets.LoadTexture("Player_left_2", PLAYER_LEFT_3);
-
-        this->_data->assets.LoadTexture("Player_right", PLAYER_RIGHT_1);
-        this->_data->assets.LoadTexture("Player_right_1", PLAYER_RIGHT_2);
-        this->_data->assets.LoadTexture("Player_right_2", PLAYER_RIGHT_3);
-
-
-        _player.setTexture(this->_data->assets.GetTexture("Player_left"));      /// Set Texture
-        this->_player.setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2));
-
+    this->_data->window.setFramerateLimit(60);
+        this->_player .setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
+        this->_player.setTextureRect(sf::IntRect(0, 0, 110, 120));
+        this->_player.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_player.setOrigin(50.f, 50.f);
     }
 
 
     void WorldState::HandleInput() {
         sf::Event event{};
 
-
-        while(this->_data->window.pollEvent(event)) {
-            if (sf::Event::Closed == event.type) { this->_data->window.close(); }     /// Handle if window is exited
-
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                oldy = 0; /// reset y-dir walking animation
-
-                if(oldx == 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_right"));
-                } else if(oldx < 4 && oldx > 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_right_1"));
-                } else if(oldx > 4) {
-                    _player.setTexture(this->_data->assets.GetTexture("Player_right_2"));
-                } if(oldx >= 8){oldx = 0;}
-
-                oldx++;
-                this->_background.setPosition(x-=10,y);
+        //////////////////////////////////
+        const sf::Vector2f forwardVec(0.f, -WalkCounter); //normal vec pointing forward
+            while (this->_data->window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed
+                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+                    this->_data->window.close();
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                oldy = 0;   /// reset y-dir walking animation
-                if(oldx == 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_left"));
-                } else if(oldx < 4 && oldx > 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_left_1"));
-                } else if(oldx > 4) {
-                    _player.setTexture(this->_data->assets.GetTexture("Player_left_2"));
-                } if(oldx >= 8){oldx = 0;}
+            //------------------------
+           // float dt = Game::_clock.restart().asSeconds();
+           float  dt = 0.01f;
+        this->_data->window.clear();
+            //set speed and direction from keyboard input
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                this->_player.rotate(-rotateAmount * dt);
 
-                oldx++;
-                this->_background.setPosition(x+=10,y);
+
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                this->_player.rotate(rotateAmount * dt);
+
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            {
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+
+                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 120));
+                if (currentSpeed < maxSpeed) {
+                    currentSpeed = 300;
+                }
+
+                sf::Transform t;
+                t.rotate(this->_player.getRotation());
+                movementVec = t.transformPoint(-forwardVec);
+                //this->_background.setPosition(x,y+=10);
+            } else {
+                currentSpeed = 0.f;
+                this->_player.setTextureRect(sf::IntRect(0, 0, 110, 120));
+
+                //CAR deceleration
+                //currentSpeed -= deceleration * dt;
+                //if(currentSpeed < 0.f) currentSpeed = 0.f;
+            }
+            SpriteSpeed++;
+            if (SpriteSpeed == 5) {
+                WalkCounter++;
+                SpriteSpeed = 0;
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                oldx = 0;   /// reset x-dir walking animation
-                if(oldy == 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_up"));
-                } else if(oldy < 4 && oldy > 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_up_1"));
-                } else if(oldy > 4) {
-                    _player.setTexture(this->_data->assets.GetTexture("Player_up_2"));
-                } if(oldy >= 8){oldy = 0;}
+            if (WalkCounter == 6)
+                WalkCounter = 0;
 
-                oldy++;
-                this->_background.setPosition(x,y+=10);
-            }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                oldx = 0;   /// reset x-dir walking animation
-                if(oldy == 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_down"));
-                } else if(oldy < 4 && oldy > 0){
-                    _player.setTexture(this->_data->assets.GetTexture("Player_down_1"));
-                } else if(oldy > 4) {
-                    _player.setTexture(this->_data->assets.GetTexture("Player_down_2"));
-                } if(oldy >= 8){oldy = 0;}
 
-                oldy++;
-                this->_background.setPosition(x,y-=10);
-            }
-        }
+            //finally, move car
+        //this->_player.move(movementVec * currentSpeed * dt);
+        this->_background.move(movementVec*currentSpeed*dt);
+
+
+            //-------draw-------------
+          //  Game::_clock.restart();
+
+
+       // this->_data->window.clear(sf::Color::White);
+        this->_data->window.draw(this->_player); //Right
+       //this->_data->window.display();
+
+
+
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
