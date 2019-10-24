@@ -109,12 +109,6 @@
 		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h">
 			<Option target="GTAKRS"/>
 		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.cpp">
-			<Option target="GTAKRS"/>
-		</Unit>
-		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.h">
-			<Option target="GTAKRS"/>
-		</Unit>
 		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/SplashState.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
@@ -128,6 +122,12 @@
 			<Option target="GTAKRS"/>
 		</Unit>
 		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.cpp">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.h">
 			<Option target="GTAKRS"/>
 		</Unit>
 		<Unit filename="/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.cpp">

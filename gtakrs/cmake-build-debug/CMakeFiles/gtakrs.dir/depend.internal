@@ -24,11 +24,8 @@ CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h
+ /Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.h
-CMakeFiles/GTAKRS.dir/Map.cpp.o
- /Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
- /Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.cpp
- /Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.h
 CMakeFiles/GTAKRS.dir/SplashState.cpp.o
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
@@ -43,6 +40,8 @@ CMakeFiles/GTAKRS.dir/StateMachine.cpp.o
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.cpp
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h
+CMakeFiles/GTAKRS.dir/TileMap.cpp.o
+ /Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.cpp
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/AssetManager.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/DEFINITIONS.h
@@ -51,6 +50,7 @@ CMakeFiles/GTAKRS.dir/WorldState.cpp.o
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/MainMenuState.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/State.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/StateMachine.h
+ /Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.h
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.cpp
  /Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.h
 CMakeFiles/GTAKRS.dir/main.cpp.o

@@ -12,6 +12,10 @@
 #define SPLASH_STATE_SHOW_TIME 1
 
 #define MAP_BACKGROUND_FILEPATH "Resources/res/Background_map2.png"
+#define MAP_TILE_FILEPATH "Resources/res/Tileset_Tileset.png"
+
+#define MAP_FILE "Resources/res/MAP.map"
+#define MAP_FILE2 "Resources/res/MAP2.map"
 
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"

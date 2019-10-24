@@ -231,33 +231,6 @@ MainMenuState.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/MainMenuState.cpp.s
 .PHONY : MainMenuState.cpp.s
 
-Map.o: Map.cpp.o
-
-.PHONY : Map.o
-
-# target to build an object file
-Map.cpp.o:
-	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Map.cpp.o
-.PHONY : Map.cpp.o
-
-Map.i: Map.cpp.i
-
-.PHONY : Map.i
-
-# target to preprocess a source file
-Map.cpp.i:
-	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Map.cpp.i
-.PHONY : Map.cpp.i
-
-Map.s: Map.cpp.s
-
-.PHONY : Map.s
-
-# target to generate assembly for a file
-Map.cpp.s:
-	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Map.cpp.s
-.PHONY : Map.cpp.s
-
 SplashState.o: SplashState.cpp.o
 
 .PHONY : SplashState.o
@@ -311,6 +284,33 @@ StateMachine.s: StateMachine.cpp.s
 StateMachine.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/StateMachine.cpp.s
 .PHONY : StateMachine.cpp.s
+
+TileMap.o: TileMap.cpp.o
+
+.PHONY : TileMap.o
+
+# target to build an object file
+TileMap.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/TileMap.cpp.o
+.PHONY : TileMap.cpp.o
+
+TileMap.i: TileMap.cpp.i
+
+.PHONY : TileMap.i
+
+# target to preprocess a source file
+TileMap.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/TileMap.cpp.i
+.PHONY : TileMap.cpp.i
+
+TileMap.s: TileMap.cpp.s
+
+.PHONY : TileMap.s
+
+# target to generate assembly for a file
+TileMap.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/TileMap.cpp.s
+.PHONY : TileMap.cpp.s
 
 WorldState.o: WorldState.cpp.o
 
@@ -387,15 +387,15 @@ help:
 	@echo "... MainMenuState.o"
 	@echo "... MainMenuState.i"
 	@echo "... MainMenuState.s"
-	@echo "... Map.o"
-	@echo "... Map.i"
-	@echo "... Map.s"
 	@echo "... SplashState.o"
 	@echo "... SplashState.i"
 	@echo "... SplashState.s"
 	@echo "... StateMachine.o"
 	@echo "... StateMachine.i"
 	@echo "... StateMachine.s"
+	@echo "... TileMap.o"
+	@echo "... TileMap.i"
+	@echo "... TileMap.s"
 	@echo "... WorldState.o"
 	@echo "... WorldState.i"
 	@echo "... WorldState.s"

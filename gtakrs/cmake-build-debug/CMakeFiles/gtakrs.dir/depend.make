@@ -23,11 +23,8 @@ CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../MainMenuState.cpp
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../MainMenuState.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../State.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../StateMachine.h
+CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../TileMap.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../WorldState.h
-
-CMakeFiles/GTAKRS.dir/Map.cpp.o: ../DEFINITIONS.h
-CMakeFiles/GTAKRS.dir/Map.cpp.o: ../Map.cpp
-CMakeFiles/GTAKRS.dir/Map.cpp.o: ../Map.h
 
 CMakeFiles/GTAKRS.dir/SplashState.cpp.o: ../AssetManager.h
 CMakeFiles/GTAKRS.dir/SplashState.cpp.o: ../DEFINITIONS.h
@@ -43,6 +40,8 @@ CMakeFiles/GTAKRS.dir/StateMachine.cpp.o: ../State.h
 CMakeFiles/GTAKRS.dir/StateMachine.cpp.o: ../StateMachine.cpp
 CMakeFiles/GTAKRS.dir/StateMachine.cpp.o: ../StateMachine.h
 
+CMakeFiles/GTAKRS.dir/TileMap.cpp.o: ../TileMap.cpp
+
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../AssetManager.h
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../DEFINITIONS.h
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../Game.h
@@ -50,6 +49,7 @@ CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../InputManager.h
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../MainMenuState.h
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../State.h
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../StateMachine.h
+CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../TileMap.h
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../WorldState.cpp
 CMakeFiles/GTAKRS.dir/WorldState.cpp.o: ../WorldState.h
 

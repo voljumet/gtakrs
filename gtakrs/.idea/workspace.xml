@@ -12,71 +12,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments">
-      <change afterPath="$PROJECT_DIR$/MAP.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Map.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TileMap.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TileMap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP2.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DEFINITIONS.h" beforeDir="false" afterPath="$PROJECT_DIR$/DEFINITIONS.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainMenuState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MainMenuState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAP.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WorldState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/WorldState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorldState.h" beforeDir="false" afterPath="$PROJECT_DIR$/WorldState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/AssetManager.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/AssetManager.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/Game.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/Game.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/InputManager.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/InputManager.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/MainMenuState.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/MainMenuState.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/SplashState.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/SplashState.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/StateMachine.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/StateMachine.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/WorldState.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/WorldState.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/Map.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/WorldState.cpp.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/cmake_clean.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.internal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/progress.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons-01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons-02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons-03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/GTAKRS_LOGO.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/GTAKRS_LOGO.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/GTAKRS_LOGO.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Game Title.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Game Title.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Main Menu Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Pause Window.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Splash Background.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Splash Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Walk.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Walk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person.ai" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_still_down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_still_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_still_right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_still_up.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_down_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_down_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_left_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_left_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_right_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_right_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_up_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/person_walk_up_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/TILESET.ai" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/TILESET.ai" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtakrs.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/gtakrs.cbp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,6 +50,20 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FavoritesManager">
@@ -115,6 +92,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cmake-build-debug/Resources/res" />
       <recent name="$PROJECT_DIR$/cmake-build-debug" />
     </key>
   </component>
@@ -165,6 +143,7 @@
       <workItem from="1571606392411" duration="2117000" />
       <workItem from="1571646025599" duration="2100000" />
       <workItem from="1571817093220" duration="8516000" />
+      <workItem from="1571905595205" duration="20756000" />
     </task>
     <servers />
   </component>

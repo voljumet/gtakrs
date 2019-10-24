@@ -161,18 +161,18 @@ CMakeFiles/GTAKRS.dir/WorldState.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GTAKRS.dir/WorldState.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/alex/dat220g19h/GTA KRS/GTAKRS/WorldState.cpp" -o CMakeFiles/GTAKRS.dir/WorldState.cpp.s
 
-CMakeFiles/GTAKRS.dir/Map.cpp.o: CMakeFiles/GTAKRS.dir/flags.make
-CMakeFiles/GTAKRS.dir/Map.cpp.o: ../Map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GTAKRS.dir/Map.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GTAKRS.dir/Map.cpp.o -c "/Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.cpp"
+CMakeFiles/GTAKRS.dir/TileMap.cpp.o: CMakeFiles/GTAKRS.dir/flags.make
+CMakeFiles/GTAKRS.dir/TileMap.cpp.o: ../TileMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GTAKRS.dir/TileMap.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GTAKRS.dir/TileMap.cpp.o -c "/Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.cpp"
 
-CMakeFiles/GTAKRS.dir/Map.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GTAKRS.dir/Map.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.cpp" > CMakeFiles/GTAKRS.dir/Map.cpp.i
+CMakeFiles/GTAKRS.dir/TileMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GTAKRS.dir/TileMap.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.cpp" > CMakeFiles/GTAKRS.dir/TileMap.cpp.i
 
-CMakeFiles/GTAKRS.dir/Map.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GTAKRS.dir/Map.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/alex/dat220g19h/GTA KRS/GTAKRS/Map.cpp" -o CMakeFiles/GTAKRS.dir/Map.cpp.s
+CMakeFiles/GTAKRS.dir/TileMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GTAKRS.dir/TileMap.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/alex/dat220g19h/GTA KRS/GTAKRS/TileMap.cpp" -o CMakeFiles/GTAKRS.dir/TileMap.cpp.s
 
 # Object files for target GTAKRS
 GTAKRS_OBJECTS = \
@@ -184,7 +184,7 @@ GTAKRS_OBJECTS = \
 "CMakeFiles/GTAKRS.dir/SplashState.cpp.o" \
 "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o" \
 "CMakeFiles/GTAKRS.dir/WorldState.cpp.o" \
-"CMakeFiles/GTAKRS.dir/Map.cpp.o"
+"CMakeFiles/GTAKRS.dir/TileMap.cpp.o"
 
 # External object files for target GTAKRS
 GTAKRS_EXTERNAL_OBJECTS =
@@ -197,7 +197,7 @@ GTAKRS: CMakeFiles/GTAKRS.dir/Game.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/SplashState.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/WorldState.cpp.o
-GTAKRS: CMakeFiles/GTAKRS.dir/Map.cpp.o
+GTAKRS: CMakeFiles/GTAKRS.dir/TileMap.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/build.make
 GTAKRS: /usr/local/lib/libsfml-graphics.2.5.1.dylib
 GTAKRS: /usr/local/lib/libsfml-window.2.5.1.dylib
