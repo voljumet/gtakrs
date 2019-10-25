@@ -1,5 +1,0 @@
-"/Users/olegunvaldsen/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.6262.62/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs
--- Found SFML 2.5.1 in /usr/local/lib/cmake/SFML
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug

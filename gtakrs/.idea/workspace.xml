@@ -13,8 +13,82 @@
   <component name="ChangeListManager">
     <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainMenuState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MainMenuState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/AssetManager.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/Game.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/InputManager.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/MainMenuState.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/Mission.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/SplashState.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/StateMachine.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/WorldState.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/fonts/Marker Felt.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/fonts/arial.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Achievements.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Background_map-01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Background_map.ai" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Background_map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons-01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons-02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons-03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Buttons.ai" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/GTAKRS_LOGO.ai" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/GTAKRS_LOGO.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/GTAKRS_LOGO.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Game Title.ai" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Game Title.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Main Menu Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Pause Button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Pause Window.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Resume Button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Retry Button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Sound Off.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Sound On.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Splash Background.ai" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Splash Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Walk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/mission_1/Mission_1.ai" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/mission_1/Mission_1_Building.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/mission_1/Mission_1_Scope.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/mission_1/Mission_1_alive.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/mission_1/Mission_1_dead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/SFML_Tutorial.cbp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtakrs.cbp" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +141,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="GTAKRS" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GTAKRS" TARGET_NAME="GTAKRS" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GTAKRS" RUN_TARGET_NAME="GTAKRS">
+    <configuration name="GTAKRS" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GTAKRS" TARGET_NAME="GTAKRS" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GTAKRS" RUN_TARGET_NAME="GTAKRS">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -101,7 +175,7 @@
       <workItem from="1571817461490" duration="16954000" />
       <workItem from="1571904703358" duration="7003000" />
       <workItem from="1571922473563" duration="1320000" />
-      <workItem from="1571992658382" duration="4742000" />
+      <workItem from="1571992658382" duration="5423000" />
     </task>
     <servers />
   </component>

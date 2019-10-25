@@ -1,3 +1,0 @@
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir
