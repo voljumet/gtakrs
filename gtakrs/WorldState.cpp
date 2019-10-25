@@ -95,6 +95,24 @@ namespace GTA {
 
 
 
+//        for (auto &i : spriteListy) {
+//
+//            if (!Driving) {
+//                if (Collision::PixelPerfectTest(this->_player, *i) && Enter) {
+//                    Driving = true;
+//                    this->_car.setPosition(i->getPosition());
+//                    i->setColor(sf::Color::Transparent);
+//                }
+//            }
+//
+//        }
+        // if (Collision::PixelPerfectTest(this->_car, this->_car2))
+        //   currentSpeed = 0;
+
+
+
+///////////////////////////////////////////////////////////////////////
+//////////////////WALKING Control//////////////////////////////////////
 
         if (!Driving) {
 
