@@ -7,3 +7,6 @@ CMakeScripts
 Makefile
 cmake_install.cmake
 install_manifest.txt
+GTAKRS
+gtakrs.cbp
+SFML_Tutorial.cbp
