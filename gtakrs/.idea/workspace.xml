@@ -11,18 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorldState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/WorldState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorldState.h" beforeDir="false" afterPath="$PROJECT_DIR$/WorldState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/WorldState.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/TILESET.ai" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/TILESET.ai" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Tileset_Tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Tileset_Tileset.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Tileset_Tileset.png.tmp$$" beforeDir="false" />
-    </list>
+    <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +116,7 @@
       <workItem from="1571905595205" duration="21923000" />
       <workItem from="1571944164310" duration="945000" />
       <workItem from="1571949195855" duration="1501000" />
-      <workItem from="1571991658909" duration="1119000" />
+      <workItem from="1571991658909" duration="1451000" />
     </task>
     <servers />
   </component>
