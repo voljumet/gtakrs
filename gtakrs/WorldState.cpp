@@ -1,102 +1,30 @@
 #include <utility>
 #include <iostream>
+#include <vector>
+
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 
-/// Denne klassen er bare for splashstate i starten av spillet
+/// Denne klassen er for WORLD
 
 namespace GTA{
     WorldState::WorldState(GTA::GameDataRef data ): _data(std::move( data )) { }
 
     void WorldState::Init() {
-        this->_data->assets.LoadTexture("Map Background", MAP_BACKGROUND_FILEPATH);   /// Load Texture
-        _background.setTexture(this->_data->assets.GetTexture("Map Background"));      /// Set Texture
-        this->_background.setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2));
 
-        this->_data->assets.LoadTexture("Player", PLAYER);   /// Load Texture
-        _player.setTexture(this->_data->assets.GetTexture("Player"));      /// Set Texture
+        Map(); /// Load Map
 
-        /// Load Textures --------------------------------------------
-    this->_data->window.setFramerateLimit(60);
-        this->_player .setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
-        this->_player.setTextureRect(sf::IntRect(0, 0, 110, 110));
-        this->_player.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
-        this->_player.setOrigin(50.f, 50.f);
+        this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
+        this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
+        this->_player.setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2));                /// Place player
+        this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
+        this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
+        this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
     }
 
-
     void WorldState::HandleInput() {
-        sf::Event event{};
-
-        //////////////////////////////////
-        const sf::Vector2f forwardVec(0.f, -WalkCounter); //normal vec pointing forward
-            while (this->_data->window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed
-                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-                    this->_data->window.close();
-            }
-
-            //------------------------
-           // float dt = Game::_clock.restart().asSeconds();
-           float  dt = 0.01f;
-        this->_data->window.clear();
-            //set speed and direction from keyboard input
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                this->_player.rotate(-rotateAmount * dt);
-
-
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                this->_player.rotate(rotateAmount * dt);
-
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            {
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-
-                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 110));
-                if (currentSpeed < maxSpeed) {
-                    currentSpeed = 300;
-                }
-
-                sf::Transform t;
-                t.rotate(this->_player.getRotation());
-                movementVec = t.transformPoint(-forwardVec);
-                //this->_background.setPosition(x,y+=10);
-            } else {
-                currentSpeed = 0.f;
-                this->_player.setTextureRect(sf::IntRect(0, 0, 110, 110));
-
-                //CAR deceleration
-                //currentSpeed -= deceleration * dt;
-                //if(currentSpeed < 0.f) currentSpeed = 0.f;
-            }
-            SpriteSpeed++;
-            if (SpriteSpeed == 5) {
-                WalkCounter++;
-                SpriteSpeed = 0;
-            }
-
-            if (WalkCounter == 6)
-                WalkCounter = 0;
-
-
-
-            //finally, move car
-        //this->_player.move(movementVec * currentSpeed * dt);
-        this->_background.move(movementVec*currentSpeed*dt);
-
-
-            //-------draw-------------
-          //  Game::_clock.restart();
-
-
-       // this->_data->window.clear(sf::Color::White);
-        this->_data->window.draw(this->_player); //Right
-       //this->_data->window.display();
-
-
-
+        Running();
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -106,12 +34,91 @@ namespace GTA{
     }
 
     void WorldState::Draw(float dt){
-        this->_data->window.clear(sf::Color::White);        /// Draw Color
+        this->_data->window.clear(sf::Color::Black);        /// Clear window with white color
+
+        this->_data->window.draw(this->_map);      /// Draw map/ ground
+        this->_data->window.draw(this->_player);   /// Draw player
+
+        this->_data->window.display();                      /// Display all
+    }
 
 
-        this->_data->window.draw(this->_background);        /// Draw Texture
-        this->_data->window.draw(this->_player);
+    void WorldState::Running() {
+        sf::Event event{};
 
-        this->_data->window.display();      /// Display all
+        float dt = 0.01f;
+        const sf::Vector2f forwardVec(0.f, -WalkSpeed);                 /// Normal vec pointing forward
+
+        while (this->_data->window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+                this->_data->window.close();                                  /// Close window if one of the conditions above is true
+        }
+
+        /// set speed and direction from keyboard input
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { this->_player.rotate(-rotateAmount * dt); }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) { this->_player.rotate(rotateAmount * dt); }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            this->_player.setTextureRect(sf::IntRect(0, WalkCounterBackward * 110, 100, 110));
+            if (currentSpeed < maxSpeed) {
+                currentSpeed = 100;     /// Run speed
+            }
+
+            sf::Transform t;
+            t.rotate(this->_player.getRotation());
+            movementVec = t.transformPoint(forwardVec);
+
+            SpriteSpeedBa++;
+            if (SpriteSpeedBa == 6) {     /// picture change interval (higher number is slower)
+                WalkCounterBackward--;      /// Last picture in movement
+                SpriteSpeedBa = 0;
+            }
+
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+
+            this->_player.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+            if (currentSpeed < maxSpeed) {
+                currentSpeed = 600;        /// Run speed
+            }
+
+            sf::Transform t;
+            t.rotate(this->_player.getRotation());
+            movementVec = t.transformPoint(-forwardVec);
+
+            SpriteSpeed++;
+            if (SpriteSpeed == 8) {     /// picture change interval (higher number is slower)
+                WalkCounterForward++;   /// Next picture in movement
+                SpriteSpeed = 0;
+            }
+
+        } else {
+            currentSpeed = 0.f;
+            this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
+        }
+
+        if (WalkCounterForward == 5)     ///<--- number that decides how many pictures in walk animation
+            WalkCounterForward = 1;      /// Reset
+
+        if (WalkCounterBackward == 1)   ///<--- number that decides how many pictures in walk animation
+        /// NOE GALT MED BILDE NR 4 på bakover --------------------------------------------------------------------------------!!!!!!!!!!!!
+            WalkCounterBackward = 5;    /// Reset
+
+        this->_map.move(movementVec * currentSpeed * dt);    /// Move background when walking
+    }
+
+    void WorldState::Map() {
+
+        file.open(MAP_FILE);
+        for (int & i : MapArray) { file >> i; }
+        file.close();
+
+        /// Load Tileset---- if not loaded, load...
+        if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(
+                70, 70),              /// Tile Size
+                MapArray,              /// Tile Array
+                90,                   /// MAP SIZE WIDTH (number of blocks) 90 is standard
+                1000))               /// MAP SIZE HEIGHT (number of blocks) 1000 is standard
+
+            std::cout << "Error in Map loading!" << std::endl;
     }
 }
