@@ -3,7 +3,7 @@ project(GTAKRS)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(GTAKRS main.cpp State.h StateMachine.cpp StateMachine.h AssetManager.cpp AssetManager.h InputManager.cpp InputManager.h Game.cpp Game.h DEFINITIONS.h SplashState.cpp SplashState.h MainMenuState.cpp MainMenuState.h WorldState.cpp WorldState.h Collider.cpp Collider.h CollitsionTest.cpp CollitsionTest.h )
+add_executable(GTAKRS main.cpp State.h StateMachine.cpp StateMachine.h AssetManager.cpp AssetManager.h InputManager.cpp InputManager.h Game.cpp Game.h DEFINITIONS.h SplashState.cpp SplashState.h MainMenuState.cpp MainMenuState.h WorldState.cpp WorldState.h TileMap.cpp TileMap.h Mission.cpp Mission.h Collider.cpp Collider.h CollitsionTest.cpp CollitsionTest.h)
 
 target_link_libraries (GTAKRS sfml-graphics sfml-window sfml-system)
 find_package(SFML REQUIRED system window graphics network audio)

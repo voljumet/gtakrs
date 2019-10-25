@@ -285,6 +285,33 @@ MainMenuState.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/MainMenuState.cpp.s
 .PHONY : MainMenuState.cpp.s
 
+Mission.o: Mission.cpp.o
+
+.PHONY : Mission.o
+
+# target to build an object file
+Mission.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Mission.cpp.o
+.PHONY : Mission.cpp.o
+
+Mission.i: Mission.cpp.i
+
+.PHONY : Mission.i
+
+# target to preprocess a source file
+Mission.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Mission.cpp.i
+.PHONY : Mission.cpp.i
+
+Mission.s: Mission.cpp.s
+
+.PHONY : Mission.s
+
+# target to generate assembly for a file
+Mission.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Mission.cpp.s
+.PHONY : Mission.cpp.s
+
 SplashState.o: SplashState.cpp.o
 
 .PHONY : SplashState.o
@@ -338,6 +365,33 @@ StateMachine.s: StateMachine.cpp.s
 StateMachine.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/StateMachine.cpp.s
 .PHONY : StateMachine.cpp.s
+
+TileMap.o: TileMap.cpp.o
+
+.PHONY : TileMap.o
+
+# target to build an object file
+TileMap.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/TileMap.cpp.o
+.PHONY : TileMap.cpp.o
+
+TileMap.i: TileMap.cpp.i
+
+.PHONY : TileMap.i
+
+# target to preprocess a source file
+TileMap.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/TileMap.cpp.i
+.PHONY : TileMap.cpp.i
+
+TileMap.s: TileMap.cpp.s
+
+.PHONY : TileMap.s
+
+# target to generate assembly for a file
+TileMap.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/TileMap.cpp.s
+.PHONY : TileMap.cpp.s
 
 WorldState.o: WorldState.cpp.o
 
@@ -420,12 +474,18 @@ help:
 	@echo "... MainMenuState.o"
 	@echo "... MainMenuState.i"
 	@echo "... MainMenuState.s"
+	@echo "... Mission.o"
+	@echo "... Mission.i"
+	@echo "... Mission.s"
 	@echo "... SplashState.o"
 	@echo "... SplashState.i"
 	@echo "... SplashState.s"
 	@echo "... StateMachine.o"
 	@echo "... StateMachine.i"
 	@echo "... StateMachine.s"
+	@echo "... TileMap.o"
+	@echo "... TileMap.i"
+	@echo "... TileMap.s"
 	@echo "... WorldState.o"
 	@echo "... WorldState.i"
 	@echo "... WorldState.s"

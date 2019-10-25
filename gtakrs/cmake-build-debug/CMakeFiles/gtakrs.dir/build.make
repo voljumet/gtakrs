@@ -161,9 +161,35 @@ CMakeFiles/GTAKRS.dir/WorldState.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GTAKRS.dir/WorldState.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.cpp" -o CMakeFiles/GTAKRS.dir/WorldState.cpp.s
 
+CMakeFiles/GTAKRS.dir/TileMap.cpp.o: CMakeFiles/GTAKRS.dir/flags.make
+CMakeFiles/GTAKRS.dir/TileMap.cpp.o: ../TileMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GTAKRS.dir/TileMap.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GTAKRS.dir/TileMap.cpp.o -c "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/TileMap.cpp"
+
+CMakeFiles/GTAKRS.dir/TileMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GTAKRS.dir/TileMap.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/TileMap.cpp" > CMakeFiles/GTAKRS.dir/TileMap.cpp.i
+
+CMakeFiles/GTAKRS.dir/TileMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GTAKRS.dir/TileMap.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/TileMap.cpp" -o CMakeFiles/GTAKRS.dir/TileMap.cpp.s
+
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: CMakeFiles/GTAKRS.dir/flags.make
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../Mission.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/GTAKRS.dir/Mission.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GTAKRS.dir/Mission.cpp.o -c "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Mission.cpp"
+
+CMakeFiles/GTAKRS.dir/Mission.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GTAKRS.dir/Mission.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Mission.cpp" > CMakeFiles/GTAKRS.dir/Mission.cpp.i
+
+CMakeFiles/GTAKRS.dir/Mission.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GTAKRS.dir/Mission.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Mission.cpp" -o CMakeFiles/GTAKRS.dir/Mission.cpp.s
+
 CMakeFiles/GTAKRS.dir/Collider.cpp.o: CMakeFiles/GTAKRS.dir/flags.make
 CMakeFiles/GTAKRS.dir/Collider.cpp.o: ../Collider.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GTAKRS.dir/Collider.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/GTAKRS.dir/Collider.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GTAKRS.dir/Collider.cpp.o -c "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Collider.cpp"
 
 CMakeFiles/GTAKRS.dir/Collider.cpp.i: cmake_force
@@ -176,7 +202,7 @@ CMakeFiles/GTAKRS.dir/Collider.cpp.s: cmake_force
 
 CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o: CMakeFiles/GTAKRS.dir/flags.make
 CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o: ../CollitsionTest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o -c "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.cpp"
 
 CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.i: cmake_force
@@ -197,6 +223,8 @@ GTAKRS_OBJECTS = \
 "CMakeFiles/GTAKRS.dir/SplashState.cpp.o" \
 "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o" \
 "CMakeFiles/GTAKRS.dir/WorldState.cpp.o" \
+"CMakeFiles/GTAKRS.dir/TileMap.cpp.o" \
+"CMakeFiles/GTAKRS.dir/Mission.cpp.o" \
 "CMakeFiles/GTAKRS.dir/Collider.cpp.o" \
 "CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o"
 
@@ -211,6 +239,8 @@ GTAKRS: CMakeFiles/GTAKRS.dir/Game.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/SplashState.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/WorldState.cpp.o
+GTAKRS: CMakeFiles/GTAKRS.dir/TileMap.cpp.o
+GTAKRS: CMakeFiles/GTAKRS.dir/Mission.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/Collider.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o
 GTAKRS: CMakeFiles/GTAKRS.dir/build.make
@@ -218,7 +248,7 @@ GTAKRS: /usr/local/lib/libsfml-graphics.2.5.1.dylib
 GTAKRS: /usr/local/lib/libsfml-window.2.5.1.dylib
 GTAKRS: /usr/local/lib/libsfml-system.2.5.1.dylib
 GTAKRS: CMakeFiles/GTAKRS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable GTAKRS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable GTAKRS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GTAKRS.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

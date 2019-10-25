@@ -1,12 +1,14 @@
 #include <utility>
 #include <iostream>
+
+
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include <algorithm>
 #include "CollitsionTest.h"
 
-/// Denne klassen er bare for splashstate i starten av spillet
+/// Denne klassen er for WORLD
 
 namespace GTA {
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
@@ -14,29 +16,24 @@ namespace GTA {
     }
 
     void WorldState::Init() {
-        this->_data->assets.LoadTexture("Map Background", MAP_BACKGROUND_FILEPATH);   /// Load Texture
-        _background.setTexture(this->_data->assets.GetTexture("Map Background"));      /// Set Texture
-        this->_background.setPosition((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2));
-        this->_data->assets.LoadTexture("Player", PLAYER);   /// Load Texture
-        _player.setTexture(this->_data->assets.GetTexture("Player"));      /// Set Texture
 
+        Map(); /// Load Map
 
         /// Player Texture / Sittings
-        this->_data->window.setFramerateLimit(60);
-        this->_player.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
-        this->_player.setTextureRect(sf::IntRect(0, 0, 110, 110));
-
-        this->_player.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
-        this->_player.setOrigin(50.f, 50.f);
+        this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
+        this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
+        this->_player.setPosition((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2));                /// Place player
+        this->_player.setTextureRect(sf::IntRect(0, 0, 100,
+                                                 110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
+        this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
+        this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
 
 
         /// CAR Texture / Sittings
         this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
         _car.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-
         this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
-
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
 
@@ -45,10 +42,8 @@ namespace GTA {
 
         this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
         _car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-
         this->_car2.setPosition(600, 600);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
-
         this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
         this->_car2.setOrigin(35.f, 50.f);
 
@@ -56,22 +51,16 @@ namespace GTA {
 
         this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
         _car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-
         this->_car3.setPosition(1400, 300);
         this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
-
         this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
         this->_car3.setOrigin(35.f, 50.f);
 
 
+
         ////Add Sprites in to Sprite List
-     spriteListy.push_back(&this->_car2);
-     spriteListy.push_back(&this->_car3);
-
-
-
-
-
+        spriteListy.push_back(&this->_car2);
+        spriteListy.push_back(&this->_car3);
 
     }
 
@@ -109,16 +98,14 @@ namespace GTA {
 
                         switch (event.key.code)
                             case sf::Keyboard::W:
-                                 Enter = true;
+                                Enter = true;
                         break;
 
                     case sf::Event::KeyReleased:
                         switch (event.key.code)
                             case sf::Keyboard::W:
 
-                                  Enter = true;
-
-
+                                Enter = true;
                 }
         }
 
@@ -136,12 +123,8 @@ namespace GTA {
             }
 
         }
-        if (Collision::PixelPerfectTest(this->_car,this->_car2 ) )
-            currentSpeed = 0;
-
-
-
-
+        // if (Collision::PixelPerfectTest(this->_car, this->_car2))
+        //   currentSpeed = 0;
 
 
 
@@ -153,117 +136,118 @@ namespace GTA {
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 this->_player.rotate(-rotateAmount * dt);
-
-
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 this->_player.rotate(rotateAmount * dt);
-
             }
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 110));
+                this->_player.setTextureRect(sf::IntRect(0, WalkCounterBackward * 110, 100, 110));
                 if (currentSpeed < maxSpeed) {
-                    currentSpeed = 300;
+                    currentSpeed = 100;
                 }
                 sf::Transform t;
                 t.rotate(this->_player.getRotation());
                 movementVec = t.transformPoint(forwardVec);
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 110));
-                if (currentSpeed < maxSpeed) {
-                    currentSpeed = 300;
+
+                SpriteSpeedBa++;
+                if (SpriteSpeedBa == 6) {
+                    WalkCounterBackward--;
+                    SpriteSpeedBa = 0;
                 }
-                sf::Transform t;
-                t.rotate(this->_player.getRotation());
-                movementVec = t.transformPoint(-forwardVec);
-            } else {
-                currentSpeed = 0.f;
-                this->_player.setTextureRect(sf::IntRect(0, 0, 110, 110));
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    this->_player.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+                    if (currentSpeed < maxSpeed) {
+                        currentSpeed = 600;
+                    }
+                    sf::Transform t;
+                    t.rotate(this->_player.getRotation());
+                    movementVec = t.transformPoint(-forwardVec);
+                    SpriteSpeed++;
+                    if (SpriteSpeed == 8) {
+                        WalkCounterForward++;
+                        SpriteSpeed = 0;
+                    }
 
-            }
-            SpriteSpeed++;
-            if (SpriteSpeed == 5) {
-                WalkCounter++;
-                SpriteSpeed = 0;
-            }
-
-            if (WalkCounter == 6)
-                WalkCounter = 0;
-            if (currentSpeed == 0) { up = false; }
-
-            // Moving
-
-
-        }
-
-            /////////////////////////////////////////////////////////////////////////
-            //////////////// DRIVING CONTROL /////////////////////////
-        else if (Driving) {
-
-
-            if (up) {
-
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                    this->_car.rotate(-rotateAmount * dt);
-
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                    this->_car.rotate(rotateAmount * dt);
-                }
-
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                up = true;
-                currentSpeed -= deceleration * 2;
-                if (currentSpeed < maxSpeed / 10)
-                    currentSpeed = -maxSpeed / 5;
-                sf::Transform t;
-                t.rotate(this->_car.getRotation());
-                movementVec = t.transformPoint(-forwardVec);
-
-
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                up = true;
-                currentSpeed += acceleration;
-                if (currentSpeed >= maxSpeed) {
-                    currentSpeed = maxSpeed;
-                }
-                sf::Transform t;
-                t.rotate(this->_car.getRotation());
-                movementVec = t.transformPoint(-forwardVec);
-
-            } else {
-                currentSpeed -= deceleration;
-                if (currentSpeed < 10.f) {
+                } else {
                     currentSpeed = 0.f;
-                    up = false;
-
+                    this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
                 }
 
+                if (WalkCounterForward == 5)
+                    WalkCounterForward = 1;
+
+                if (WalkCounterBackward == 1)
+                    WalkCounterBackward = 5;
+
+                if (currentSpeed == 0) { up = false; }
+
+                // Moving
+
+
+        }
+
+
+                /////////////////////////////////////////////////////////////////////////
+                //////////////// DRIVING CONTROL /////////////////////////
+            else if (Driving) {
+
+                if (up) {
+
+                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                        this->_car.rotate(-rotateAmount * dt);
+
+                    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                        this->_car.rotate(rotateAmount * dt);
+                    }
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                    up = true;
+                    currentSpeed -= deceleration * 2;
+                    if (currentSpeed < maxSpeed / 10)
+                        currentSpeed = -maxSpeed / 5;
+                    sf::Transform t;
+                    t.rotate(this->_car.getRotation());
+                    movementVec = t.transformPoint(-forwardVec);
+
+
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    up = true;
+                    currentSpeed += acceleration;
+                    if (currentSpeed >= maxSpeed) {
+                        currentSpeed = maxSpeed;
+                    }
+                    sf::Transform t;
+                    t.rotate(this->_car.getRotation());
+                    movementVec = t.transformPoint(-forwardVec);
+
+                } else {
+                    currentSpeed -= deceleration;
+                    if (currentSpeed < 10.f) {
+                        currentSpeed = 0.f;
+                        up = false;
+                    }
+
+                }
             }
 
-
-        }
-
-
-/////////////////////////////MOVING BACKGROUND AND SPRITES////////////////
-        this->_background.move(movementVec * currentSpeed * dt);
-        for (auto &i : spriteListy) {
-            i->move(movementVec * currentSpeed * dt);
-        }
-
+        this->_map.move(movementVec * currentSpeed * dt);    /// Move background when walking
     }
 
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+        } else {
+            currentSpeed = 0.f;
+            this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
         }
+
     }
 
     void WorldState::Draw(float dt) {
 
-        this->_data->window.clear(sf::Color::White);
 
-        this->_data->window.draw(this->_background);/// Draw Background
+        this->_data->window.clear(sf::Color::Black);        /// Clear window with white color
+        this->_data->window.draw(this->_map);      /// Draw map/ ground
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 
@@ -271,11 +255,25 @@ namespace GTA {
         for (auto &i : spriteListy) {
             this->_data->window.draw(*i);
         }
-
-
         this->_data->window.setView(this->_data->window.getDefaultView());////DEFAULT VIEW
+        this->_data->window.display();
 
-        this->_data->window.display();      /// Display all
     }
 
+
+    void WorldState::Map() {
+
+        file.open(MAP_FILE);
+        for (int &i : MapArray) { file >> i; }
+        file.close();
+
+        /// Load Tileset---- if not loaded, load...
+        if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(
+                70, 70),              /// Tile Size
+                       MapArray,              /// Tile Array
+                       90,                   /// MAP SIZE WIDTH (number of blocks) 90 is standard
+                       1000))               /// MAP SIZE HEIGHT (number of blocks) 1000 is standard
+            std::cout << "Error in Map loading!" << std::endl;
+
+    }
 }

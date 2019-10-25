@@ -7,6 +7,7 @@
 #include "Collider.h"
 #include <vector>
 #include "CollitsionTest.h"
+#include "TileMap.h"
 
 
 namespace GTA{
@@ -14,7 +15,8 @@ namespace GTA{
     public:
 
         const float dt = 0.01f;
-        int WalkCounter = 0, SpriteSpeed = 0;
+        int WalkCounterForward = 0, SpriteSpeed = 0, SpriteSpeedBa = 0;
+        int WalkCounterBackward = 5;
 
         /// Speed / Movement Controller
           float WalkSpeed = 1.f;
@@ -30,22 +32,18 @@ namespace GTA{
         const float deceleration = 25.f;
         const float maxSpeed = 1500.f;
 
-
-
         sf::Vector2f movementVec; ///normal vector based on current direction
 
-
-
-
-
-        double oldx = 0, x = (SCREEN_WIDTH/2);
-        double oldy = 0, y = (SCREEN_HEIGHT/2);
+        /// Loads file for Map
+        std::ifstream file;
 
         explicit WorldState(GameDataRef data);
         void Init() override;
         void HandleInput() override;
         void Update(float dt) override;
         void Draw( float dt) override;
+        void Running();
+        void Map();
 
 
 
@@ -58,6 +56,10 @@ namespace GTA{
         std::vector<sf::Sprite*> spriteListy;
         GameDataRef _data;
         sf::Sprite _background;
+        int MapArray[MAP_SIZE_HEIGHT*MAP_SIZE_WIDTH];
+
+        TileMap _map;
+
         sf::Sprite _player;
         sf::Sprite _car;
         sf::Sprite _car2;

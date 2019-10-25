@@ -119,6 +119,12 @@
 		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h">
 			<Option target="GTAKRS"/>
 		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Mission.cpp">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Mission.h">
+			<Option target="GTAKRS"/>
+		</Unit>
 		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.cpp">
 			<Option target="GTAKRS"/>
 		</Unit>
@@ -132,6 +138,12 @@
 			<Option target="GTAKRS"/>
 		</Unit>
 		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/StateMachine.h">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/TileMap.cpp">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/TileMap.h">
 			<Option target="GTAKRS"/>
 		</Unit>
 		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.cpp">
