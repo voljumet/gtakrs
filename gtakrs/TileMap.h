@@ -9,10 +9,11 @@ namespace GTA {
     public:
         bool load(const std::string &tileset, sf::Vector2u tileSize, const int *tiles, int width, int height) {
 
-            /// load the tileset texture
+            /// load the ground tileset
             if (!m_tileset.loadFromFile(tileset))
                 return false;
 
+            /// A vertex is a point where lines meet
             /// resize the vertex array to fit the level size (Primitive type is enums)
             m_vertices.setPrimitiveType(sf::Quads);
             m_vertices.resize(width * height * 4);

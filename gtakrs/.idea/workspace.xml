@@ -12,35 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments">
-      <change afterPath="$PROJECT_DIR$/TileMap.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TileMap.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP2.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEFINITIONS.h" beforeDir="false" afterPath="$PROJECT_DIR$/DEFINITIONS.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAP.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WorldState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/WorldState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorldState.h" beforeDir="false" afterPath="$PROJECT_DIR$/WorldState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/MainMenuState.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/MainMenuState.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/Map.cpp.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/WorldState.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/gtakrs.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/MAP.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/TILESET.ai" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/TILESET.ai" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/gtakrs.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/gtakrs.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Tileset_Tileset.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Tileset_Tileset.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Resources/res/Tileset_Tileset.png.tmp$$" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +124,10 @@
       <workItem from="1571606392411" duration="2117000" />
       <workItem from="1571646025599" duration="2100000" />
       <workItem from="1571817093220" duration="8516000" />
-      <workItem from="1571905595205" duration="20756000" />
+      <workItem from="1571905595205" duration="21923000" />
+      <workItem from="1571944164310" duration="945000" />
+      <workItem from="1571949195855" duration="1501000" />
+      <workItem from="1571991658909" duration="1119000" />
     </task>
     <servers />
   </component>
