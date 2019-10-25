@@ -4,9 +4,7 @@
 #include "State.h"
 #include "Game.h"
 #include "DEFINITIONS.h"
-#include "Collider.h"
 #include <vector>
-#include "CollitsionTest.h"
 #include "TileMap.h"
 
 

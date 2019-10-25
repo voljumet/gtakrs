@@ -6,7 +6,7 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include <algorithm>
-#include "CollitsionTest.h"
+
 
 /// Denne klassen er for WORLD
 
