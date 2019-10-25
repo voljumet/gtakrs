@@ -26,3 +26,14 @@
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Menus/Buttons-03.png"
 
 #define PLAYER "Resources/res/Walk.png"
+
+///MISSION 1 TEXTURES
+//////////////////////////////////////////////////////////////////////////////////////////
+#define PLAYER "Resources/res/Walk.png"
+#define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
+#define MISSION_1_BUILDING "Resources/res/mission_1/Mission_1_Building.png"
+#define MISSION_1_SPRITE "Resources/res/mission_1/Mission_1_alive.png"
+#define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
+//////////////////////////////////////////////////////////////////////////////////////////
+
+

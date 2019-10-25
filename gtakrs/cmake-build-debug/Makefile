@@ -48,10 +48,10 @@ RM = "/Users/alex/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/alex/dat220g19h/GTA KRS/GTAKRS"
+CMAKE_SOURCE_DIR = "/Users/alex/dat220g19h/GTA KRS/gtakrs"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles" "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug/CMakeFiles" "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/GTAKRS/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/alex/dat220g19h/GTA KRS/gtakrs/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -230,6 +230,33 @@ MainMenuState.s: MainMenuState.cpp.s
 MainMenuState.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/MainMenuState.cpp.s
 .PHONY : MainMenuState.cpp.s
+
+Mission.o: Mission.cpp.o
+
+.PHONY : Mission.o
+
+# target to build an object file
+Mission.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Mission.cpp.o
+.PHONY : Mission.cpp.o
+
+Mission.i: Mission.cpp.i
+
+.PHONY : Mission.i
+
+# target to preprocess a source file
+Mission.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Mission.cpp.i
+.PHONY : Mission.cpp.i
+
+Mission.s: Mission.cpp.s
+
+.PHONY : Mission.s
+
+# target to generate assembly for a file
+Mission.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Mission.cpp.s
+.PHONY : Mission.cpp.s
 
 SplashState.o: SplashState.cpp.o
 
@@ -387,6 +414,9 @@ help:
 	@echo "... MainMenuState.o"
 	@echo "... MainMenuState.i"
 	@echo "... MainMenuState.s"
+	@echo "... Mission.o"
+	@echo "... Mission.i"
+	@echo "... Mission.s"
 	@echo "... SplashState.o"
 	@echo "... SplashState.i"
 	@echo "... SplashState.s"

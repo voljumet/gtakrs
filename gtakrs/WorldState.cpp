@@ -42,6 +42,7 @@ namespace GTA{
         this->_data->window.display();                      /// Display all
     }
 
+
     void WorldState::Running() {
         sf::Event event{};
 

@@ -13,6 +13,7 @@ namespace GTA{
         ///Movement
         int WalkCounterForward = 0, WalkCounterBackward = 5, SpriteSpeed = 0, SpriteSpeedBa = 0;
 
+
         /// Speed Controller
         const float WalkSpeed = 1.f;
         const float rotateAmount = 300.f;

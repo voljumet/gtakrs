@@ -21,10 +21,21 @@ CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../Game.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../InputManager.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../MainMenuState.cpp
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../MainMenuState.h
+CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../Mission.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../State.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../StateMachine.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../TileMap.h
 CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o: ../WorldState.h
+
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../AssetManager.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../DEFINITIONS.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../Game.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../InputManager.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../MainMenuState.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../Mission.cpp
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../Mission.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../State.h
+CMakeFiles/GTAKRS.dir/Mission.cpp.o: ../StateMachine.h
 
 CMakeFiles/GTAKRS.dir/SplashState.cpp.o: ../AssetManager.h
 CMakeFiles/GTAKRS.dir/SplashState.cpp.o: ../DEFINITIONS.h

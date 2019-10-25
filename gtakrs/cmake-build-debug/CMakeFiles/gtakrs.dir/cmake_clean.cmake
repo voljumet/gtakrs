@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
   "CMakeFiles/GTAKRS.dir/WorldState.cpp.o"
   "CMakeFiles/GTAKRS.dir/TileMap.cpp.o"
+  "CMakeFiles/GTAKRS.dir/Mission.cpp.o"
   "GTAKRS.pdb"
   "GTAKRS"
 )
