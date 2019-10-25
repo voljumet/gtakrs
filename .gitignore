@@ -1,4 +1,4 @@
-.idea/
+*.idea/
 *out/
 *.DS_Store
 CMakeCache.txt
@@ -10,4 +10,3 @@ install_manifest.txt
 GTAKRS
 gtakrs.cbp
 SFML_Tutorial.cbp
-
