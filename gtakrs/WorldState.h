@@ -13,7 +13,7 @@ namespace GTA{
         int WalkCounter = 0, SpriteSpeed = 0;
         // Speed Controller
         const  float WalkSpeed = 1.f;
-        const float rotateAmount = 150.f;
+        const float rotateAmount = 300.f;
         float currentSpeed = 0.f;
 
         //consts are units per second as each value is multiplied by frame time

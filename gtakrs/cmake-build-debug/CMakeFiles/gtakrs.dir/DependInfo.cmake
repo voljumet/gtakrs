@@ -4,14 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/AssetManager.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/Game.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/InputManager.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/StateMachine.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/WorldState.cpp.o"
-  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/main.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/main.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/AssetManager.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Game.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/Game.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/InputManager.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/Mission.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/SplashState.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/StateMachine.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/WorldState.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/WorldState.cpp.o"
+  "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/main.cpp" "/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

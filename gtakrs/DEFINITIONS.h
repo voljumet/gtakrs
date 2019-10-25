@@ -17,21 +17,13 @@
 #define MAIN_MENU_LOAD_BUTTON "Resources/res/Buttons-02.png"
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Buttons-03.png"
 
+
+///MISSION 1 TEXTURES
+//////////////////////////////////////////////////////////////////////////////////////////
 #define PLAYER "Resources/res/Walk.png"
+#define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
+#define MISSION_1_BUILDING "Resources/res/mission_1/Mission_1_Building.png"
+#define MISSION_1_SPRITE "Resources/res/mission_1/Mission_1_alive.png"
+#define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
+//////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-#define PLAYER_UP_2 "Resources/res/person_walk_up_1.png"
-#define PLAYER_UP_3 "Resources/res/person_walk_up_2.png"
-
-#define PLAYER_DOWN_1 "Resources/res/person_still_down.png"
-#define PLAYER_DOWN_2 "Resources/res/person_walk_down_1.png"
-#define PLAYER_DOWN_3 "Resources/res/person_walk_down_2.png"
-
-#define PLAYER_LEFT_1 "Resources/res/person_still_left.png"
-#define PLAYER_LEFT_2 "Resources/res/person_walk_left_1.png"
-#define PLAYER_LEFT_3 "Resources/res/person_walk_left_2.png"
-
-#define PLAYER_RIGHT_1 "Resources/res/person_still_right.png"
-#define PLAYER_RIGHT_2 "Resources/res/person_walk_right_1.png"
-#define PLAYER_RIGHT_3 "Resources/res/person_walk_right_2.png"

@@ -1,14 +1,15 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
-  "CMakeFiles/GTAKRS.dir/Game.cpp.o"
-  "CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
-  "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
-  "CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
-  "CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
-  "CMakeFiles/GTAKRS.dir/WorldState.cpp.o"
   "CMakeFiles/GTAKRS.dir/main.cpp.o"
-  "GTAKRS"
+  "CMakeFiles/GTAKRS.dir/StateMachine.cpp.o"
+  "CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
+  "CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
+  "CMakeFiles/GTAKRS.dir/Game.cpp.o"
+  "CMakeFiles/GTAKRS.dir/SplashState.cpp.o"
+  "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
+  "CMakeFiles/GTAKRS.dir/WorldState.cpp.o"
+  "CMakeFiles/GTAKRS.dir/Mission.cpp.o"
   "GTAKRS.pdb"
+  "GTAKRS"
 )
 
 # Per-language clean rules from dependency scanning.

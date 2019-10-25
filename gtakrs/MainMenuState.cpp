@@ -2,6 +2,7 @@
 #include "MainMenuState.h"
 #include "DEFINITIONS.h"
 #include "WorldState.h"
+#include "Mission.h"
 #include <iostream>
 
 /// Denne klassen er MainMenu
@@ -52,7 +53,7 @@ namespace GTA{
 
     void MainMenuState::Update(float dt) {
         if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window)){
-            this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
+            this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
         }
 
         if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window)){

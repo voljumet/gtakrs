@@ -6,21 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/AssetManager.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/AssetManager.h
 map
 -
 SFML/Graphics.hpp
 -
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/DEFINITIONS.h
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.cpp
-Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
-SplashState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Game.h
 memory
 -
 string
@@ -28,95 +22,55 @@ string
 SFML/Graphics.hpp
 -
 StateMachine.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/StateMachine.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/StateMachine.h
 AssetManager.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/AssetManager.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/AssetManager.h
 InputManager.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/InputManager.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/InputManager.h
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/InputManager.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/InputManager.h
 SFML/Graphics.hpp
 -
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.cpp
-sstream
--
-MainMenuState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
-WorldState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.h
-iostream
--
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.h
 SFML/Graphics.hpp
 -
 State.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/State.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
 Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Game.h
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.cpp
-sstream
--
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.cpp
 utility
 -
-SplashState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.h
+iostream
+-
 DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/DEFINITIONS.h
 MainMenuState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.h
+Mission.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.h
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.h
 SFML/Graphics.hpp
 -
 State.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/State.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
 Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Game.h
+DEFINITIONS.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/DEFINITIONS.h
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/State.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/StateMachine.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/StateMachine.h
 memory
 -
 stack
 -
 State.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/State.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.cpp
-utility
--
-iostream
--
-WorldState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
-MainMenuState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.h
-SFML/Graphics.hpp
--
-State.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/State.h
-Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/main.cpp
-iostream
--
-Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
 
 /usr/local/include/SFML/Config.hpp
 TargetConditionals.h

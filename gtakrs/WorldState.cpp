@@ -20,7 +20,7 @@ namespace GTA{
         /// Load Textures --------------------------------------------
     this->_data->window.setFramerateLimit(60);
         this->_player .setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
-        this->_player.setTextureRect(sf::IntRect(0, 0, 110, 120));
+        this->_player.setTextureRect(sf::IntRect(0, 0, 110, 110));
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
         this->_player.setOrigin(50.f, 50.f);
     }
@@ -54,7 +54,7 @@ namespace GTA{
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 120));
+                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 110));
                 if (currentSpeed < maxSpeed) {
                     currentSpeed = 300;
                 }
@@ -65,7 +65,7 @@ namespace GTA{
                 //this->_background.setPosition(x,y+=10);
             } else {
                 currentSpeed = 0.f;
-                this->_player.setTextureRect(sf::IntRect(0, 0, 110, 120));
+                this->_player.setTextureRect(sf::IntRect(0, 0, 110, 110));
 
                 //CAR deceleration
                 //currentSpeed -= deceleration * dt;

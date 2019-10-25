@@ -1,19 +1,5 @@
-"/Users/peshangalo/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.6817.32/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs"
--- The C compiler identification is AppleClang 11.0.0.11000033
--- The CXX compiler identification is AppleClang 11.0.0.11000033
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Detecting C compile features
--- Detecting C compile features - done
--- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
--- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Detecting CXX compile features
--- Detecting CXX compile features - done
+"/Users/olegunvaldsen/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/192.6262.62/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs
 -- Found SFML 2.5.1 in /usr/local/lib/cmake/SFML
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug
+-- Build files have been written to: /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/cmake-build-debug
