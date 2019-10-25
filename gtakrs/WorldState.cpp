@@ -1,117 +1,279 @@
 #include <utility>
 #include <iostream>
+
+
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
+#include <algorithm>
+#include "CollitsionTest.h"
 
-/// Denne klassen er bare for splashstate i starten av spillet
+/// Denne klassen er for WORLD
 
-namespace GTA{
-    WorldState::WorldState(GTA::GameDataRef data ): _data(std::move( data )) { }
+namespace GTA {
+    WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
+
+    }
 
     void WorldState::Init() {
-        this->_data->assets.LoadTexture("Map Background", MAP_BACKGROUND_FILEPATH);   /// Load Texture
-        _background.setTexture(this->_data->assets.GetTexture("Map Background"));      /// Set Texture
-        this->_background.setPosition((SCREEN_WIDTH/2),(SCREEN_HEIGHT/2));
 
-        this->_data->assets.LoadTexture("Player", PLAYER);   /// Load Texture
-        _player.setTexture(this->_data->assets.GetTexture("Player"));      /// Set Texture
+        Map(); /// Load Map
 
-        /// Load Textures --------------------------------------------
-    this->_data->window.setFramerateLimit(60);
-        this->_player .setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
-        this->_player.setTextureRect(sf::IntRect(0, 0, 110, 120));
-        this->_player.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
-        this->_player.setOrigin(50.f, 50.f);
+        /// Player Texture / Sittings
+        this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
+        this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
+        this->_player.setPosition((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2));                /// Place player
+        this->_player.setTextureRect(sf::IntRect(0, 0, 100,
+                                                 110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
+        this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
+        this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
+
+
+        /// CAR Texture / Sittings
+        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
+        _car.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
+        this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
+        this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_car.setOrigin(35.f, 50.f);
+
+
+        ////Car 2 Texture / Sittings
+
+        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
+        _car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_car2.setPosition(600, 600);
+        this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
+        this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_car2.setOrigin(35.f, 50.f);
+
+        //// Car 3 Texture / Sittings
+
+        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
+        _car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_car3.setPosition(1400, 300);
+        this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
+        this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_car3.setOrigin(35.f, 50.f);
+
+
+
+        ////Add Sprites in to Sprite List
+        spriteListy.push_back(&this->_car2);
+        spriteListy.push_back(&this->_car3);
+
     }
 
 
     void WorldState::HandleInput() {
         sf::Event event{};
+        const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
+        while (this->_data->window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed
+                || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
+                    event.type == sf::Event::KeyReleased))
+                this->_data->window.close();
+        }
 
-        //////////////////////////////////
-        const sf::Vector2f forwardVec(0.f, -WalkCounter); //normal vec pointing forward
-            while (this->_data->window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed
-                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-                    this->_data->window.close();
+        /// One click reaction KeyPress ///
+
+        switch (event.type) {
+            case sf::Event::KeyPressed:
+
+                switch (event.key.code)
+                    case sf::Keyboard::Space:
+                        if (!Driving) { Driving = true; }
+                        else if (Driving) { Driving = false; }
+                break;
+
+            case sf::Event::KeyReleased:
+                switch (event.key.code)
+                    case sf::Keyboard::Space:
+                        if (!Driving) { Driving = true; }
+                        else if (Driving) { Driving = false; }
+
+
+                switch (event.type) {
+                    case sf::Event::KeyPressed:
+
+                        switch (event.key.code)
+                            case sf::Keyboard::W:
+                                Enter = true;
+                        break;
+
+                    case sf::Event::KeyReleased:
+                        switch (event.key.code)
+                            case sf::Keyboard::W:
+
+                                Enter = true;
+                }
+        }
+
+
+////////////////////COLISION//////////////////////////////////
+
+        for (auto &i : spriteListy) {
+
+            if (!Driving) {
+                if (Collision::PixelPerfectTest(this->_player, *i) && Enter) {
+                    Driving = true;
+                    this->_car.setPosition(i->getPosition());
+                    i->setColor(sf::Color::Transparent);
+                }
             }
 
-            //------------------------
-           // float dt = Game::_clock.restart().asSeconds();
-           float  dt = 0.01f;
-        this->_data->window.clear();
-            //set speed and direction from keyboard input
+        }
+        // if (Collision::PixelPerfectTest(this->_car, this->_car2))
+        //   currentSpeed = 0;
+
+
+
+///////////////////////////////////////////////////////////////////////
+//////////////////WALKING Control//////////////////////////////////////
+
+        if (!Driving) {
+            Enter = false;
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 this->_player.rotate(-rotateAmount * dt);
-
-
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 this->_player.rotate(rotateAmount * dt);
-
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            {
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-                this->_player.setTextureRect(sf::IntRect(0, WalkCounter * 120, 110, 120));
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                this->_player.setTextureRect(sf::IntRect(0, WalkCounterBackward * 110, 100, 110));
                 if (currentSpeed < maxSpeed) {
-                    currentSpeed = 300;
+                    currentSpeed = 100;
                 }
-
                 sf::Transform t;
                 t.rotate(this->_player.getRotation());
-                movementVec = t.transformPoint(-forwardVec);
-                //this->_background.setPosition(x,y+=10);
-            } else {
-                currentSpeed = 0.f;
-                this->_player.setTextureRect(sf::IntRect(0, 0, 110, 120));
+                movementVec = t.transformPoint(forwardVec);
 
-                //CAR deceleration
-                //currentSpeed -= deceleration * dt;
-                //if(currentSpeed < 0.f) currentSpeed = 0.f;
+                SpriteSpeedBa++;
+                if (SpriteSpeedBa == 6) {
+                    WalkCounterBackward--;
+                    SpriteSpeedBa = 0;
+                }
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    this->_player.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+                    if (currentSpeed < maxSpeed) {
+                        currentSpeed = 600;
+                    }
+                    sf::Transform t;
+                    t.rotate(this->_player.getRotation());
+                    movementVec = t.transformPoint(-forwardVec);
+                    SpriteSpeed++;
+                    if (SpriteSpeed == 8) {
+                        WalkCounterForward++;
+                        SpriteSpeed = 0;
+                    }
+
+                } else {
+                    currentSpeed = 0.f;
+                    this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
+                }
+
+                if (WalkCounterForward == 5)
+                    WalkCounterForward = 1;
+
+                if (WalkCounterBackward == 1)
+                    WalkCounterBackward = 5;
+
+                if (currentSpeed == 0) { up = false; }
+
+                // Moving
+
+
+        }
+
+
+                /////////////////////////////////////////////////////////////////////////
+                //////////////// DRIVING CONTROL /////////////////////////
+            else if (Driving) {
+
+                if (up) {
+
+                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                        this->_car.rotate(-rotateAmount * dt);
+
+                    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                        this->_car.rotate(rotateAmount * dt);
+                    }
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                    up = true;
+                    currentSpeed -= deceleration * 2;
+                    if (currentSpeed < maxSpeed / 10)
+                        currentSpeed = -maxSpeed / 5;
+                    sf::Transform t;
+                    t.rotate(this->_car.getRotation());
+                    movementVec = t.transformPoint(-forwardVec);
+
+
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    up = true;
+                    currentSpeed += acceleration;
+                    if (currentSpeed >= maxSpeed) {
+                        currentSpeed = maxSpeed;
+                    }
+                    sf::Transform t;
+                    t.rotate(this->_car.getRotation());
+                    movementVec = t.transformPoint(-forwardVec);
+
+                } else {
+                    currentSpeed -= deceleration;
+                    if (currentSpeed < 10.f) {
+                        currentSpeed = 0.f;
+                        up = false;
+                    }
+
+                }
             }
-            SpriteSpeed++;
-            if (SpriteSpeed == 5) {
-                WalkCounter++;
-                SpriteSpeed = 0;
-            }
 
-            if (WalkCounter == 6)
-                WalkCounter = 0;
-
-
-
-            //finally, move car
-        //this->_player.move(movementVec * currentSpeed * dt);
-        this->_background.move(movementVec*currentSpeed*dt);
-
-
-            //-------draw-------------
-          //  Game::_clock.restart();
-
-
-       // this->_data->window.clear(sf::Color::White);
-        this->_data->window.draw(this->_player); //Right
-       //this->_data->window.display();
-
-
-
+        this->_map.move(movementVec * currentSpeed * dt);    /// Move background when walking
     }
+
 
     void WorldState::Update(float dt) {         /// New state to replace this state
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+        } else {
+            currentSpeed = 0.f;
+            this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
         }
+
     }
 
-    void WorldState::Draw(float dt){
-        this->_data->window.clear(sf::Color::White);        /// Draw Color
+    void WorldState::Draw(float dt) {
 
 
-        this->_data->window.draw(this->_background);        /// Draw Texture
-        this->_data->window.draw(this->_player);
+        this->_data->window.clear(sf::Color::Black);        /// Clear window with white color
+        this->_data->window.draw(this->_map);      /// Draw map/ ground
+        if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
+        if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 
-        this->_data->window.display();      /// Display all
+        /////DRAW EVERY SPRITE IN THE LIST
+        for (auto &i : spriteListy) {
+            this->_data->window.draw(*i);
+        }
+        this->_data->window.setView(this->_data->window.getDefaultView());////DEFAULT VIEW
+        this->_data->window.display();
+
+    }
+
+
+    void WorldState::Map() {
+
+        file.open(MAP_FILE);
+        for (int &i : MapArray) { file >> i; }
+        file.close();
+
+        /// Load Tileset---- if not loaded, load...
+        if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(
+                70, 70),              /// Tile Size
+                       MapArray,              /// Tile Array
+                       90,                   /// MAP SIZE WIDTH (number of blocks) 90 is standard
+                       1000))               /// MAP SIZE HEIGHT (number of blocks) 1000 is standard
+            std::cout << "Error in Map loading!" << std::endl;
+
     }
 }

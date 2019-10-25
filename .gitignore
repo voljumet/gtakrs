@@ -1,4 +1,12 @@
-.idea/
+*.idea/
 *out/
 *.DS_Store
-*CmakeCache.txt
+SFML_Tutorial.cbp
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+GTAKRS
+gtakrs.cbp
