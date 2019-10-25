@@ -75,8 +75,6 @@ namespace GTA {
                 this->_data->window.close();
         }
 
-        /// One click reaction KeyPress ///
-
         switch (event.type) {
             case sf::Event::KeyPressed:
 
@@ -84,6 +82,7 @@ namespace GTA {
                     case sf::Keyboard::Space:
                         if (!Driving) { Driving = true; }
                         else if (Driving) { Driving = false; }
+
                 break;
 
             case sf::Event::KeyReleased:
@@ -92,154 +91,117 @@ namespace GTA {
                         if (!Driving) { Driving = true; }
                         else if (Driving) { Driving = false; }
 
-
-                switch (event.type) {
-                    case sf::Event::KeyPressed:
-
-                        switch (event.key.code)
-                            case sf::Keyboard::W:
-                                Enter = true;
-                        break;
-
-                    case sf::Event::KeyReleased:
-                        switch (event.key.code)
-                            case sf::Keyboard::W:
-
-                                Enter = true;
-                }
         }
 
 
-////////////////////COLISION//////////////////////////////////
 
-        for (auto &i : spriteListy) {
-
-            if (!Driving) {
-                if (Collision::PixelPerfectTest(this->_player, *i) && Enter) {
-                    Driving = true;
-                    this->_car.setPosition(i->getPosition());
-                    i->setColor(sf::Color::Transparent);
-                }
-            }
-
-        }
-        // if (Collision::PixelPerfectTest(this->_car, this->_car2))
-        //   currentSpeed = 0;
-
-
-
-///////////////////////////////////////////////////////////////////////
-//////////////////WALKING Control//////////////////////////////////////
 
         if (!Driving) {
-            Enter = false;
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 this->_player.rotate(-rotateAmount * dt);
+
+
             } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 this->_player.rotate(rotateAmount * dt);
-            }
 
+            }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                this->_player.setTextureRect(sf::IntRect(0, WalkCounterBackward * 110, 100, 110));
+                this->_player.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
                 if (currentSpeed < maxSpeed) {
-                    currentSpeed = 100;
+                    currentSpeed = 300;
                 }
                 sf::Transform t;
                 t.rotate(this->_player.getRotation());
                 movementVec = t.transformPoint(forwardVec);
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-                SpriteSpeedBa++;
-                if (SpriteSpeedBa == 6) {
-                    WalkCounterBackward--;
-                    SpriteSpeedBa = 0;
+                this->_player.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+                if (currentSpeed < maxSpeed) {
+                    currentSpeed = 300;
                 }
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                    this->_player.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
-                    if (currentSpeed < maxSpeed) {
-                        currentSpeed = 600;
-                    }
-                    sf::Transform t;
-                    t.rotate(this->_player.getRotation());
-                    movementVec = t.transformPoint(-forwardVec);
-                    SpriteSpeed++;
-                    if (SpriteSpeed == 8) {
-                        WalkCounterForward++;
-                        SpriteSpeed = 0;
-                    }
+                sf::Transform t;
+                t.rotate(this->_player.getRotation());
+                movementVec = t.transformPoint(-forwardVec);
+            } else {
+                currentSpeed = 0.f;
+                this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
-                } else {
+            }
+            SpriteSpeed++;
+            if (SpriteSpeed == 8) {
+                WalkCounterForward++;
+                SpriteSpeed = 0;
+            }
+
+            if (WalkCounterForward == 5)
+                WalkCounterForward = 0;
+
+            // Moving
+            this->_map.move(movementVec * currentSpeed * dt);
+
+        }
+
+            /////////////////////////////////////////////////////////////////////////
+            //////////////// DRIVING /////////////////////////
+        else if (Driving) {
+
+
+
+            if (up) {
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                    this->_car.rotate(-rotateAmount * dt);
+
+                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                    this->_car.rotate(rotateAmount * dt);
+                }
+
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                up = true;
+                currentSpeed -= deceleration * 2;
+                if (currentSpeed < maxSpeed / 10)
+                    currentSpeed = -maxSpeed / 5;
+                sf::Transform t;
+                t.rotate(this->_car.getRotation());
+                movementVec = t.transformPoint(-forwardVec);
+
+
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                up = true;
+                currentSpeed += acceleration;
+                if (currentSpeed >= maxSpeed) {
+                    currentSpeed = maxSpeed;
+                }
+                sf::Transform t;
+                t.rotate(this->_car.getRotation());
+                movementVec = t.transformPoint(-forwardVec);
+
+            } else {
+                currentSpeed -= deceleration;
+                if (currentSpeed < 10.f) {
                     currentSpeed = 0.f;
-                    this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
+                    up = false;
+
                 }
 
-                if (WalkCounterForward == 5)
-                    WalkCounterForward = 1;
-
-                if (WalkCounterBackward == 1)
-                    WalkCounterBackward = 5;
-
-                if (currentSpeed == 0) { up = false; }
-
-                // Moving
+            }
+            // Moving Background
+            this->_map.move(movementVec * currentSpeed * dt);
 
 
         }
 
 
-                /////////////////////////////////////////////////////////////////////////
-                //////////////// DRIVING CONTROL /////////////////////////
-            else if (Driving) {
-
-                if (up) {
-
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                        this->_car.rotate(-rotateAmount * dt);
-
-                    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                        this->_car.rotate(rotateAmount * dt);
-                    }
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-                    up = true;
-                    currentSpeed -= deceleration * 2;
-                    if (currentSpeed < maxSpeed / 10)
-                        currentSpeed = -maxSpeed / 5;
-                    sf::Transform t;
-                    t.rotate(this->_car.getRotation());
-                    movementVec = t.transformPoint(-forwardVec);
-
-
-                } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-                    up = true;
-                    currentSpeed += acceleration;
-                    if (currentSpeed >= maxSpeed) {
-                        currentSpeed = maxSpeed;
-                    }
-                    sf::Transform t;
-                    t.rotate(this->_car.getRotation());
-                    movementVec = t.transformPoint(-forwardVec);
-
-                } else {
-                    currentSpeed -= deceleration;
-                    if (currentSpeed < 10.f) {
-                        currentSpeed = 0.f;
-                        up = false;
-                    }
-
-                }
-            }
-
-        this->_map.move(movementVec * currentSpeed * dt);    /// Move background when walking
     }
 
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
-        } else {
-            currentSpeed = 0.f;
-            this->_player.setTextureRect(sf::IntRect(0, 0, 100, 110));
         }
+
 
     }
 
@@ -252,10 +214,12 @@ namespace GTA {
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
+        /*
         for (auto &i : spriteListy) {
             this->_data->window.draw(*i);
         }
-        this->_data->window.setView(this->_data->window.getDefaultView());////DEFAULT VIEW
+         */
+       // this->_data->window.setView(this->_data->window.getDefaultView());////DEFAULT VIEW
         this->_data->window.display();
 
     }
