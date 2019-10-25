@@ -1,9 +1,6 @@
 .idea/
 *out/
 *.DS_Store
-<<<<<<< HEAD
-*CMakeCache.txt
-=======
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
@@ -13,4 +10,4 @@ install_manifest.txt
 GTAKRS
 gtakrs.cbp
 SFML_Tutorial.cbp
->>>>>>> 6005b6038d210c41d026ba87b6461c22683f1d20
+
