@@ -11,7 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments" />
+    <list default="true" id="4c7ebc1b-7120-4398-b75e-20ebba906294" name="Default Changelist" comment="added comments">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainMenuState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MainMenuState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GTAKRS" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +101,7 @@
       <workItem from="1571817461490" duration="16954000" />
       <workItem from="1571904703358" duration="7003000" />
       <workItem from="1571922473563" duration="1320000" />
-      <workItem from="1571992658382" duration="1358000" />
+      <workItem from="1571992658382" duration="4742000" />
     </task>
     <servers />
   </component>

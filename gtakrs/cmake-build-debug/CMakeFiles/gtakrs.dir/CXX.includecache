@@ -32,6 +32,20 @@ InputManager.h
 SFML/Graphics.hpp
 -
 
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.cpp
+sstream
+-
+MainMenuState.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.h
+DEFINITIONS.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/DEFINITIONS.h
+WorldState.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/WorldState.h
+Mission.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.h
+iostream
+-
+
 /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.h
 SFML/Graphics.hpp
 -
@@ -39,18 +53,6 @@ State.h
 /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
 Game.h
 /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Game.h
-
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.cpp
-utility
--
-iostream
--
-DEFINITIONS.h
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/DEFINITIONS.h
-MainMenuState.h
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/MainMenuState.h
-Mission.h
-/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.h
 
 /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Mission.h
 SFML/Graphics.hpp
@@ -71,6 +73,16 @@ stack
 -
 State.h
 /Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
+
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/WorldState.h
+SFML/Graphics.hpp
+-
+State.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/State.h
+Game.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/Game.h
+DEFINITIONS.h
+/Users/olegunvaldsen/dat220g19h/gtakrs/gtakrs/DEFINITIONS.h
 
 /usr/local/include/SFML/Config.hpp
 TargetConditionals.h
