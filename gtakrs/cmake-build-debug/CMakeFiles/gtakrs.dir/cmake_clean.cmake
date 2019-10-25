@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
+  "CMakeFiles/GTAKRS.dir/Collider.cpp.o"
+  "CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o"
   "CMakeFiles/GTAKRS.dir/Game.cpp.o"
   "CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
   "CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"

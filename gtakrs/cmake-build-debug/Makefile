@@ -150,6 +150,60 @@ AssetManager.cpp.s:
 	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/AssetManager.cpp.s
 .PHONY : AssetManager.cpp.s
 
+Collider.o: Collider.cpp.o
+
+.PHONY : Collider.o
+
+# target to build an object file
+Collider.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Collider.cpp.o
+.PHONY : Collider.cpp.o
+
+Collider.i: Collider.cpp.i
+
+.PHONY : Collider.i
+
+# target to preprocess a source file
+Collider.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Collider.cpp.i
+.PHONY : Collider.cpp.i
+
+Collider.s: Collider.cpp.s
+
+.PHONY : Collider.s
+
+# target to generate assembly for a file
+Collider.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/Collider.cpp.s
+.PHONY : Collider.cpp.s
+
+CollitsionTest.o: CollitsionTest.cpp.o
+
+.PHONY : CollitsionTest.o
+
+# target to build an object file
+CollitsionTest.cpp.o:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o
+.PHONY : CollitsionTest.cpp.o
+
+CollitsionTest.i: CollitsionTest.cpp.i
+
+.PHONY : CollitsionTest.i
+
+# target to preprocess a source file
+CollitsionTest.cpp.i:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.i
+.PHONY : CollitsionTest.cpp.i
+
+CollitsionTest.s: CollitsionTest.cpp.s
+
+.PHONY : CollitsionTest.s
+
+# target to generate assembly for a file
+CollitsionTest.cpp.s:
+	$(MAKE) -f CMakeFiles/GTAKRS.dir/build.make CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.s
+.PHONY : CollitsionTest.cpp.s
+
 Game.o: Game.cpp.o
 
 .PHONY : Game.o
@@ -351,6 +405,12 @@ help:
 	@echo "... AssetManager.o"
 	@echo "... AssetManager.i"
 	@echo "... AssetManager.s"
+	@echo "... Collider.o"
+	@echo "... Collider.i"
+	@echo "... Collider.s"
+	@echo "... CollitsionTest.o"
+	@echo "... CollitsionTest.i"
+	@echo "... CollitsionTest.s"
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"

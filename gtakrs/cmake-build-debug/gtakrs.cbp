@@ -86,6 +86,18 @@
 		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/AssetManager.h">
 			<Option target="GTAKRS"/>
 		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Collider.cpp">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Collider.h">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.cpp">
+			<Option target="GTAKRS"/>
+		</Unit>
+		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.h">
+			<Option target="GTAKRS"/>
+		</Unit>
 		<Unit filename="/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h">
 			<Option target="GTAKRS"/>
 		</Unit>

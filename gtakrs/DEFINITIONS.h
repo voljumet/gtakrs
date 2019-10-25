@@ -18,6 +18,8 @@
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Buttons-03.png"
 
 #define PLAYER "Resources/res/Walk.png"
+#define CAR "Resources/res/carBlue.png"
+
 
 
 

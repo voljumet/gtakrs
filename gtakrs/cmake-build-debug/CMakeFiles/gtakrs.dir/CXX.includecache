@@ -12,13 +12,21 @@ map
 SFML/Graphics.hpp
 -
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
+/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Collider.h
+SFML/Graphics.hpp
+-
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.cpp
-Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
-SplashState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.h
+/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.h
+SFML/Graphics.hpp
+-
+algorithm
+-
+iostream
+-
+cmath
+-
+
+/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
 
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
 memory
@@ -38,39 +46,7 @@ InputManager.h
 SFML/Graphics.hpp
 -
 
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.cpp
-sstream
--
-MainMenuState.h
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
-WorldState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.h
-iostream
--
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
-SFML/Graphics.hpp
--
-State.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/State.h
-Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.cpp
-sstream
--
-utility
--
-SplashState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
-MainMenuState.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/SplashState.h
 SFML/Graphics.hpp
 -
 State.h
@@ -99,6 +75,10 @@ DEFINITIONS.h
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
 MainMenuState.h
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.h
+algorithm
+-
+CollitsionTest.h
+/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.h
 
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/WorldState.h
 SFML/Graphics.hpp
@@ -109,14 +89,12 @@ Game.h
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
 DEFINITIONS.h
 /Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
-
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/main.cpp
-iostream
+Collider.h
+/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Collider.h
+vector
 -
-Game.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.h
-DEFINITIONS.h
-/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/DEFINITIONS.h
+CollitsionTest.h
+/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.h
 
 /usr/local/include/SFML/Config.hpp
 TargetConditionals.h

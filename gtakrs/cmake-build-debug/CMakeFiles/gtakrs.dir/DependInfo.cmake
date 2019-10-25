@@ -5,6 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/AssetManager.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/AssetManager.cpp.o"
+  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Collider.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/Collider.cpp.o"
+  "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/CollitsionTest.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/CollitsionTest.cpp.o"
   "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Game.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/Game.cpp.o"
   "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/InputManager.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/InputManager.cpp.o"
   "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/MainMenuState.cpp" "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/cmake-build-debug/CMakeFiles/GTAKRS.dir/MainMenuState.cpp.o"
