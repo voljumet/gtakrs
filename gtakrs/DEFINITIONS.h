@@ -21,7 +21,7 @@
 #define CAR "Resources/res/carBlue.png"
 
 
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash_Background.png"
+#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
 
 #define MAIN_MENU_TITLE_PATH "Resources/res/Menus/Game Title.png"
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Menus/Buttons-01.png"
@@ -35,5 +35,16 @@
 #define MISSION_1_SPRITE "Resources/res/mission_1/Mission_1_alive.png"
 #define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
 //////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+/////AUDIO SAMPLES/////////
+//////////////////////////////////////
+#define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
+#define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"
+#define FOOTSTEP_FILEPATH "Resources/res/Sound/footstep.ogg"
+#define GUNHSOT_FILEPATH "Resources/res/Sound/gunshot.ogg"
 
 

@@ -8,16 +8,32 @@
 #include <algorithm>
 
 
+
+
 /// Denne klassen er for WORLD
 
 namespace GTA {
+
+
+
+
+
+
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
 
     }
 
+
+
     void WorldState::Init() {
 
         Map(); /// Load Map
+        audio.loadall(); //loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
+        std::cout << "audio loaded!";
+
+
+
+
 
         /// Player Texture / Sittings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -67,6 +83,9 @@ namespace GTA {
 
     void WorldState::HandleInput() {
         sf::Event event{};
+
+
+
         const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
         while (this->_data->window.pollEvent(event)) {
             if (event.type == sf::Event::Closed
@@ -80,16 +99,30 @@ namespace GTA {
 
                 switch (event.key.code)
                     case sf::Keyboard::Space:
-                        if (!Driving) { Driving = true; }
-                        else if (Driving) { Driving = false; }
+                        if (!Driving) {
+                            Driving = true;
+                        }
+                        else if (Driving) {
+                            Driving = false;
+                        }
+
+
+
+
+
+
 
                 break;
 
             case sf::Event::KeyReleased:
                 switch (event.key.code)
                     case sf::Keyboard::Space:
-                        if (!Driving) { Driving = true; }
-                        else if (Driving) { Driving = false; }
+                        if (!Driving) { Driving = true;
+                            audio.playcardoor();
+                        }
+                        else if (Driving) { Driving = false;
+                            audio.playcardoor();
+                        }
 
         }
 

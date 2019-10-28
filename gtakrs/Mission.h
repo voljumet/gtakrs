@@ -3,6 +3,7 @@
 #include "State.h"
 #include "Game.h"
 #include "DEFINITIONS.h"
+
 namespace GTA {
 class Mission : public State {
 public:
