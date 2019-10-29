@@ -121,7 +121,7 @@ namespace GTA {
                             audio.playcardoor();
                         }
                         else if (Driving) { Driving = false;
-                            audio.playcardoor();
+                            audio.playsong();
                         }
 
         }
