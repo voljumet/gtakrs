@@ -42,6 +42,8 @@ namespace GTA{
         void Draw( float dt) override;
         void Running();
         void Map();
+        void UpdateView(const float& dt);
+
 
 
 
@@ -54,6 +56,7 @@ namespace GTA{
         std::vector<sf::Sprite*> spriteListy;
         GameDataRef _data;
         sf::Sprite _background;
+        sf::View view;
         int MapArray[MAP_SIZE_HEIGHT*MAP_SIZE_WIDTH];
 
         TileMap _map;
