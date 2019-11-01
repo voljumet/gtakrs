@@ -17,16 +17,9 @@ class check_collision;
 
 namespace GTA {
 
-
-
-
-
-
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
 
     }
-
-
 
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
@@ -36,10 +29,6 @@ namespace GTA {
         Map(); /// Load Map
         audio.loadall(); //loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
         std::cout << "audio loaded!";
-
-
-
-
 
 
         /// Player Texture / Sittings
@@ -64,8 +53,6 @@ namespace GTA {
 
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"),CAR);
 
-
-
         ////Car 2 Texture / Sittings
 
         this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
@@ -85,8 +72,7 @@ namespace GTA {
         this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
         this->_car3.setOrigin(50.f, 90.f);
 
-
-
+        
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
