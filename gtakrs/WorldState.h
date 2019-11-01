@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "DEFINITIONS.h"
 #include "Audio.h"
+#include "Map.h"
 
 #include <vector>
 
@@ -18,7 +19,9 @@ namespace GTA{
     class WorldState : public  State{
     public:
 
-        Audio audio; //i create the object here so that i can use sounds in worldstate.cpp
+        Map map;
+
+        Audio audio; ///i create the object here so that i can use sounds in worldstate.cpp
         const float dt = 0.01f;
         int WalkCounterForward = 0, SpriteSpeed = 0, SpriteSpeedBa = 0;
         int WalkCounterBackward = 5;
@@ -27,7 +30,6 @@ namespace GTA{
           float WalkSpeed = 1.f;
         const float rotateAmount = 150.f;
         float currentSpeed = 0.f;
-
 
         ///Car variables /  Driving variables
         bool Driving = true;
@@ -39,18 +41,12 @@ namespace GTA{
 
         sf::Vector2f movementVec; ///normal vector based on current direction
 
-        /// Loads file for Map
-        std::ifstream file;
-
         explicit WorldState(GameDataRef data);
         void Init() override;
         void HandleInput() override;
         void Update(float dt) override;
         void Draw( float dt) override;
-        void Running();
-        void Map();
         void UpdateView(const float& dt);
-
 
         bool check_collision(const sf::Sprite & other, float push);
         bool CanDriveForward = true;
@@ -60,23 +56,12 @@ namespace GTA{
         Collider GetCollider_car3() { return Collider(_car3);}
         Collider GetCollider_player() { return Collider(_player);}
 
-
-
-
-
-
-
-
     private:
 
         /// Create a new sprite
         std::vector<sf::Sprite*> spriteListy;
         GameDataRef _data;
-        sf::Sprite _background;
         sf::View view;
-        int MapArray[MAP_SIZE_HEIGHT*MAP_SIZE_WIDTH];
-
-        TileMap _map;
 
         sf::Sprite _player;
         sf::Sprite _car;

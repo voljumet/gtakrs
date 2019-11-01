@@ -1,16 +1,12 @@
 #include <utility>
 #include <iostream>
 
-
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include <algorithm>
 #include "collisionTest.h"
 #include "colliderTest.h"
-
-
-
 
 /// Denne klassen er for WORLD
 class check_collision;
@@ -25,8 +21,7 @@ namespace GTA {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
-
-        Map(); /// Load Map
+        map.MapLoad();
         audio.loadall(); //loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
         std::cout << "audio loaded!";
 
@@ -272,7 +267,9 @@ namespace GTA {
         this->UpdateView(dt);
         this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::Black);        /// Clear window with white color
-        this->_data->window.draw(this->_map);      /// Draw map/ ground
+
+        this->_data->window.draw(this->map._map);      /// Draw map/ ground
+
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
         /////DRAW EVERY SPRITE IN THE LIST
@@ -285,23 +282,7 @@ namespace GTA {
 
     }
 
-
-    void WorldState::Map() {
-
-        file.open(MAP_FILE);
-        for (int &i : MapArray) { file >> i; }
-        file.close();
-
-        /// Load Tileset---- if not loaded, load...
-        if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(
-                70, 70),              /// Tile Size
-                       MapArray,              /// Tile Array
-                       90,                   /// MAP SIZE WIDTH (number of blocks) 90 is standard
-                       1000))               /// MAP SIZE HEIGHT (number of blocks) 1000 is standard
-            std::cout << "Error in Map loading!" << std::endl;
-
-    }
-
+/// husk å bruke view
     void WorldState::UpdateView(const float &dt)
     {
         if(Driving){this->view.setCenter(this->_car.getPosition());}
