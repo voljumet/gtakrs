@@ -71,8 +71,6 @@ namespace GTA {
     void WorldState::HandleInput() {
         sf::Event event{};
 
-
-
         const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
         while (this->_data->window.pollEvent(event)) {
             if (event.type == sf::Event::Closed
@@ -87,7 +85,6 @@ namespace GTA {
                 switch (event.key.code)
                     case sf::Keyboard::Space:
                         if (!Driving) {
-
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
                         } else if (Driving) {
@@ -95,14 +92,11 @@ namespace GTA {
                             Driving = false;
                         }
 
-
-
                 break;
 
             case sf::Event::KeyReleased:
                 switch (event.key.code)
                     case sf::Keyboard::Space:
-
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
@@ -115,8 +109,6 @@ namespace GTA {
                         }
 
         }
-
-
 
         if (!Driving) {
 

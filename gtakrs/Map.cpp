@@ -10,7 +10,6 @@ namespace GTA{
         for (int &i : mapArray) { file >> i; }
         file.close();
 
-        /// Load Tileset---- if not loaded, load...
         if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(TILE_SIZE, TILE_SIZE),mapArray, WORLD_SIZE_WIDTH, WORLD_SIZE_HEIGHT)){
             std::cout << "Error in Map loading!" << std::endl;
         }
