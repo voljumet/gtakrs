@@ -21,49 +21,43 @@ namespace GTA {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
+        map.MapLoad();      ///Loads map as background
+        map.MapLocation();  /// Loads maparray as numbers --[x][y]--
 
-        map.MapLoad();
         audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         /// Player Texture / Sittings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_player.setPosition((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2));                /// Place player
-        this->_player.setTextureRect(sf::IntRect(0, 0, 100,
-                                                 110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
+        this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
 
-
         /// CAR Texture / Sittings
-
-        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
-        _car.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
+        this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
-        
-
-        Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"),CAR);
+        Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Sittings
-
         this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
-        _car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car2.setPosition(600, 600);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car2.setOrigin(50.f, 90.f);
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"),CAR);
 
         //// Car 3 Texture / Sittings
 
-        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
-        _car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car3.setPosition(1400, 300);
         this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
+        this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car3.setOrigin(50.f, 90.f);
 
         
@@ -255,7 +249,7 @@ namespace GTA {
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
         }
 
 

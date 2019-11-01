@@ -42,7 +42,6 @@ namespace GTA{
 
             if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
                 std::cout << "Play Game" << std::endl;
-
             }
 
             if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
@@ -57,11 +56,13 @@ namespace GTA{
     }
 
     void MainMenuState::Update(float dt) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) this->_data->window.close();
+
         if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
             this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
         }
 
-        if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window)){
+        if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::L)){
             this->_data->machine.AddState(StateRef(new Mission(_data)), false);          ///Load the last running game state
         }
     }
