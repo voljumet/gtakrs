@@ -12,7 +12,7 @@
 
 class Collider {
 public:
-    Collider(sf::RectangleShape &body);
+    Collider(sf::Sprite &body);
 
     ~Collider();
 
@@ -20,11 +20,11 @@ public:
     void Move (float dx, float dy) const {body.move(dx , dy);}
     bool Check_Collision( const Collider & other, float push);
     sf::Vector2f GetPosition () const { return body.getPosition();}
-    sf::Vector2f GetHalfSize() const { return body.getSize() / 2.0f;}
+    sf::Vector2f GetHalfSize() const { return body.getScale();}
 
 
 private:
-    sf::RectangleShape& body;
+    sf::Sprite& body;
 
 };
 

@@ -6,6 +6,9 @@
 #include "DEFINITIONS.h"
 #include <vector>
 #include "TileMap.h"
+#include "collisionTest.h"
+#include "colliderTest.h"
+class check_collision;
 
 
 namespace GTA{
@@ -45,6 +48,15 @@ namespace GTA{
         void UpdateView(const float& dt);
 
 
+        bool check_collision(const sf::Sprite & other, float push);
+        bool CanDriveForward = true;
+
+        Collider GetCollider_car_2() { return Collider(_car2);}
+        Collider GetCollider_car() { return Collider(_car);}
+        Collider GetCollider_car3() { return Collider(_car3);}
+        Collider GetCollider_player() { return Collider(_player);}
+
+
 
 
 
@@ -52,6 +64,7 @@ namespace GTA{
 
 
     private:
+
         /// Create a new sprite
         std::vector<sf::Sprite*> spriteListy;
         GameDataRef _data;

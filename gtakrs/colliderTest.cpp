@@ -4,6 +4,7 @@
  */
 #include <SFML/Graphics.hpp>
 #include <map>
+#include <iostream>
 #include "colliderTest.h"
 
 namespace Collision
@@ -80,7 +81,13 @@ namespace Collision
 
                         if (Bitmasks.GetPixel(mask1, Object1.getTexture(), (int)(o1v.x)+O1SubRect.left, (int)(o1v.y)+O1SubRect.top) > AlphaLimit &&
                             Bitmasks.GetPixel(mask2, Object2.getTexture(), (int)(o2v.x)+O2SubRect.left, (int)(o2v.y)+O2SubRect.top) > AlphaLimit)
+
+
+
                             return true;
+
+                            float intersectY = (o2v.y)+O1SubRect.top ;
+                        std::cout<<"IntersectX: "<<intersectY <<std::endl;
 
                     }
                 }

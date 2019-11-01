@@ -7,10 +7,11 @@
 #include "MainMenuState.h"
 #include <algorithm>
 #include "collisionTest.h"
+#include "colliderTest.h"
 
 
 /// Denne klassen er for WORLD
-
+class check_collision;
 
 namespace GTA {
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
@@ -36,12 +37,17 @@ namespace GTA {
 
 
         /// CAR Texture / Sittings
+
         this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
         _car.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
+        
+
+        Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"),CAR);
+
 
 
         ////Car 2 Texture / Sittings
@@ -51,7 +57,8 @@ namespace GTA {
         this->_car2.setPosition(600, 600);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
-        this->_car2.setOrigin(35.f, 50.f);
+        this->_car2.setOrigin(50.f, 90.f);
+        Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"),CAR);
 
         //// Car 3 Texture / Sittings
 
@@ -60,7 +67,7 @@ namespace GTA {
         this->_car3.setPosition(1400, 300);
         this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); // absolute scale factor
-        this->_car3.setOrigin(35.f, 50.f);
+        this->_car3.setOrigin(50.f, 90.f);
 
 
 
@@ -88,10 +95,11 @@ namespace GTA {
                     case sf::Keyboard::Space:
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
-                            Driving = true; }
-                        else if (Driving) {
+                            Driving = true;
+                        } else if (Driving) {
                             this->_player.setPosition(this->_car.getPosition());
-                            Driving = false; }
+                            Driving = false;
+                        }
 
                 break;
 
@@ -100,14 +108,13 @@ namespace GTA {
                     case sf::Keyboard::Space:
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
-                            Driving = true; }
-                        else if (Driving) {
+                            Driving = true;
+                        } else if (Driving) {
                             this->_player.setPosition(this->_car.getPosition());
-                            Driving = false; }
+                            Driving = false;
+                        }
 
         }
-
-
 
 
         if (!Driving) {
@@ -157,7 +164,6 @@ namespace GTA {
         else if (Driving) {
 
 
-
             if (up) {
 
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
@@ -169,6 +175,7 @@ namespace GTA {
 
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                CanDriveForward = true;
                 up = true;
                 currentSpeed -= deceleration * 2;
                 if (currentSpeed < maxSpeed / 10)
@@ -184,9 +191,11 @@ namespace GTA {
                 if (currentSpeed >= maxSpeed) {
                     currentSpeed = maxSpeed;
                 }
-                sf::Transform t;
-                t.rotate(this->_car.getRotation());
-                movementVec = t.transformPoint(forwardVec);
+                if (CanDriveForward) {
+                    sf::Transform t;
+                    t.rotate(this->_car.getRotation());
+                    movementVec = t.transformPoint(forwardVec);
+                } else { currentSpeed = 0; }
 
             } else {
                 currentSpeed -= deceleration;
@@ -202,12 +211,10 @@ namespace GTA {
         ////////////////////////////////////
         ///////// Sprite Movement//////////
 
-        if(Driving)
-        {
+        if (Driving) {
             this->_car.move(movementVec * currentSpeed * dt);
 
-        } else if (!Driving)
-        {
+        } else if (!Driving) {
 
             this->_player.move(movementVec * currentSpeed * dt);
         }
@@ -216,10 +223,25 @@ namespace GTA {
         //////////////////////////////////
         ///////// Collision ////////////
 
-        if(this->_car.getGlobalBounds().intersects(this->_car2.getGlobalBounds()) )
+        /* if(this->_car.getGlobalBounds().intersects(this->_car2.getGlobalBounds()) )
+         {
+            CanDriveForward = false;
+
+         }
+         if (this->_car.getGlobalBounds().intersects(this->_car2.getGlobalBounds()) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+         {
+             this->_car2.move(-40,0);
+         }
+ */
+
+       if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
+       if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
+       if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
+/*
+        if(Collision::PixelPerfectTest(this->_player, this->_car2))
         {
-            std::cout<<"Collision"<<std::endl;
-        }
+           this->_car2.move(40,4);
+        }*/
 
     }
 
@@ -271,6 +293,12 @@ namespace GTA {
     {
         if(Driving){this->view.setCenter(this->_car.getPosition());}
         else if (!Driving){this->view.setCenter(this->_player.getPosition());}
+    }
+
+    bool WorldState::check_collision(const sf::Sprite & other, float push)
+    {
+
+        return false;
     }
 }
 
