@@ -3,6 +3,9 @@
 #include "DEFINITIONS.h"
 #include "WorldState.h"
 #include "Mission.h"
+
+
+
 #include <iostream>
 
 /// Denne klassen er MainMenu
@@ -33,11 +36,13 @@ namespace GTA{
     void MainMenuState::HandleInput() {
         sf::Event event{};
 
+
         while (this->_data->window.pollEvent(event)){
             if(sf::Event::Closed == event.type){ this->_data->window.close(); }      /// Handle if window is exited
 
             if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
                 std::cout << "Play Game" << std::endl;
+
             }
 
             if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed

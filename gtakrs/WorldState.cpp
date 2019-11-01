@@ -10,13 +10,23 @@
 #include "colliderTest.h"
 
 
+
+
 /// Denne klassen er for WORLD
 class check_collision;
 
 namespace GTA {
+
+
+
+
+
+
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
 
     }
+
+
 
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
@@ -24,6 +34,12 @@ namespace GTA {
 
 
         Map(); /// Load Map
+        audio.loadall(); //loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
+        std::cout << "audio loaded!";
+
+
+
+
 
 
         /// Player Texture / Sittings
@@ -80,6 +96,9 @@ namespace GTA {
 
     void WorldState::HandleInput() {
         sf::Event event{};
+
+
+
         const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
         while (this->_data->window.pollEvent(event)) {
             if (event.type == sf::Event::Closed
@@ -94,27 +113,35 @@ namespace GTA {
                 switch (event.key.code)
                     case sf::Keyboard::Space:
                         if (!Driving) {
+
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
                         } else if (Driving) {
                             this->_player.setPosition(this->_car.getPosition());
                             Driving = false;
                         }
+
+
 
                 break;
 
             case sf::Event::KeyReleased:
                 switch (event.key.code)
                     case sf::Keyboard::Space:
+
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
+                            audio.playcardoor();
                         } else if (Driving) {
                             this->_player.setPosition(this->_car.getPosition());
                             Driving = false;
+                            audio.playcardoor();
+                            audio.playsong();
                         }
 
         }
+
 
 
         if (!Driving) {

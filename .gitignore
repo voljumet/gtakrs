@@ -9,8 +9,4 @@ cmake_install.cmake
 install_manifest.txt
 GTAKRS
 gtakrs.cbp
-<<<<<<< HEAD
 SFML_Tutorial.cbp
-=======
-SFML_Tutorial.cbp
->>>>>>> 0dc55e8b2514a52b5a464fabd765590810973e3c
