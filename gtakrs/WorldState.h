@@ -11,6 +11,7 @@
 #include "TileMap.h"
 #include "collisionTest.h"
 #include "colliderTest.h"
+#include "Movement.h"
 class check_collision;
 
 
@@ -19,25 +20,10 @@ namespace GTA{
     public:
 
         Audio audio; //i create the object here so that i can use sounds in worldstate.cpp
-        const float dt = 0.01f;
-        int WalkCounterForward = 0, SpriteSpeed = 0, SpriteSpeedBa = 0;
-        int WalkCounterBackward = 5;
-
-        /// Speed / Movement Controller
-          float WalkSpeed = 1.f;
-        const float rotateAmount = 150.f;
-        float currentSpeed = 0.f;
+        Movement movement;
 
 
-        ///Car variables /  Driving variables
         bool Driving = true;
-        bool Enter = false;
-        bool up = false;
-        float acceleration = 25.f;
-        const float deceleration = 25.f;
-        const float maxSpeed = 1500.f;
-
-        sf::Vector2f movementVec; ///normal vector based on current direction
 
         /// Loads file for Map
         std::ifstream file;
@@ -53,7 +39,7 @@ namespace GTA{
 
 
         bool check_collision(const sf::Sprite & other, float push);
-        bool CanDriveForward = true;
+
 
         Collider GetCollider_car_2() { return Collider(_car2);}
         Collider GetCollider_car() { return Collider(_car);}
