@@ -20,11 +20,10 @@ namespace GTA{
     public:
 
         Map map;
-
         Audio audio; ///i create the object here so that i can use sounds in worldstate.cpp
+
         const float dt = 0.01f;
-        int WalkCounterForward = 0, SpriteSpeed = 0, SpriteSpeedBa = 0;
-        int WalkCounterBackward = 5;
+        int WalkCounterForward = 0, SpriteSpeed = 0;
 
         /// Speed / Movement Controller
           float WalkSpeed = 1.f;
@@ -68,11 +67,6 @@ namespace GTA{
         sf::Sprite _car2;
         sf::Sprite _car3;
         sf::RectangleShape _car4;
-        /*
-        Collider GetCollider_car() { return Collider(_car);}
-        Collider GetCollider_player() { return Collider(_player);}
-        Collider GetCollider_background() { return Collider(_background);}
-         */
 
     };
 }

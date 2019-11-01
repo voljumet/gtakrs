@@ -21,10 +21,9 @@ namespace GTA {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
-        map.MapLoad();
-        audio.loadall(); //loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-        std::cout << "audio loaded!";
 
+        map.MapLoad();
+        audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         /// Player Texture / Sittings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
