@@ -4,6 +4,7 @@
 #include "State.h"
 #include "Game.h"
 #include "DEFINITIONS.h"
+#include "Audio.h"
 
 #include <vector>
 
@@ -14,6 +15,7 @@ namespace GTA{
     class WorldState : public  State{
     public:
 
+        Audio audio; //i create the object here so that i can use sounds in worldstate.cpp
         const float dt = 0.01f;
         int WalkCounterForward = 0, SpriteSpeed = 0, SpriteSpeedBa = 0;
         int WalkCounterBackward = 5;

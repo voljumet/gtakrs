@@ -1,7 +1,6 @@
 *.idea/
 *out/
 *.DS_Store
-SFML_Tutorial.cbp
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
@@ -10,3 +9,4 @@ cmake_install.cmake
 install_manifest.txt
 GTAKRS
 gtakrs.cbp
+SFML_Tutorial.cbp
