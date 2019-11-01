@@ -4,9 +4,9 @@
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
+*cmake-build-debug/
 Makefile
 cmake_install.cmake
 install_manifest.txt
-GTAKRS
 gtakrs.cbp
 SFML_Tutorial.cbp
