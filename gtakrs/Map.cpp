@@ -23,13 +23,13 @@ namespace GTA{
             }
         }
         file.close();
-        std::cout << "MapLocation Made!";
+        std::cout << "MapLocation Made!" << std::endl;
     }
 
     void Map::MapLocationPrint() {
         for(int k=0; k < WORLD_SIZE_HEIGHT; k++) {
             for (int l = 0; l < WORLD_SIZE_WIDTH; l++) {
-                std::cout << mapLocationArray[k][l];
+                std::cout << mapLocationArray[k][l] << "|";
             }
             std::cout << std::endl;
         }
