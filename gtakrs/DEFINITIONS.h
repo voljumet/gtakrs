@@ -8,41 +8,38 @@
 #define SCREEN_WIDTH 1800
 #define SCREEN_HEIGHT 1600
 
-#define WORLD_SIZE_WIDTH 90
-#define WORLD_SIZE_HEIGHT 300
+#define WORLD_WIDTH 90
+#define WORLD_HEIGHT 250
 
 #define TILE_SIZE 70
 
 #define SPLASH_STATE_SHOW_TIME 1
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///Map TEXTURES
+///Map
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MAP_TILE_FILEPATH "Resources/res/Tileset_Tileset.png"
 #define MAP_FILE "Resources/res/MAP.map"
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///Sprites TEXTURES
+///Sprites
 //////////////////////////////////////////////////////////////////////////////////////////
 #define PLAYER "Resources/res/Walk.png"
-#define CAR "Resources/res/carBlue.png"
+#define CAR_BLUE "Resources/res/carBlue.png"
 #define CAR_WHITE "Resources/res/carWhite.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///Splaash TEXTURES
+///Main menu
 //////////////////////////////////////////////////////////////////////////////////////////
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
-//////////////////////////////////////////////////////////////////////////////////////////
-
-///Main menu TEXTURES
-//////////////////////////////////////////////////////////////////////////////////////////
-#define MAIN_MENU_TITLE_PATH "Resources/res/Menus/Game Title.png"
+#define MAIN_MENU_LOGO_PATH "Resources/res/Menus/Game Title.png"
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Menus/Buttons-01.png"
 #define MAIN_MENU_LOAD_BUTTON "Resources/res/Menus/Buttons-02.png"
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Menus/Buttons-03.png"
+
+#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///MISSION 1 TEXTURES
+///MISSION 1
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
 #define MISSION_1_BUILDING "Resources/res/mission_1/Mission_1_Building.png"
@@ -50,12 +47,12 @@
 #define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///AUDIO SAMPLES
+///AUDIO
 //////////////////////////////////////////////////////////////////////////////////////////
 #define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
 #define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"
 #define FOOTSTEP_FILEPATH "Resources/res/Sound/footstep.ogg"
 #define GUNHSOT_FILEPATH "Resources/res/Sound/gunshot.ogg"
 #define SONG "Resources/res/Music/DragonForce - Through The Fire And Flames.ogg"
-
+//////////////////////////////////////////////////////////////////////////////////////////
 

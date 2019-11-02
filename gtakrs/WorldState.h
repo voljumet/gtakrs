@@ -12,13 +12,14 @@
 #include "TileMap.h"
 #include "collisionTest.h"
 #include "colliderTest.h"
+#include "Block.h"
+
 class check_collision;
 
 
 namespace GTA{
     class WorldState : public  State{
     public:
-
         Map map;
         Audio audio; ///i create the object here so that i can use sounds in worldstate.cpp
 
@@ -26,7 +27,7 @@ namespace GTA{
         int WalkCounterForward = 0, SpriteSpeed = 0;
 
         /// Speed / Movement Controller
-          float WalkSpeed = 1.f;
+        float WalkSpeed = 1.f;
         const float rotateAmount = 150.f;
         float currentSpeed = 0.f;
 

@@ -1,15 +1,12 @@
 #include <utility>
-#include <iostream>
+#include <algorithm>
 
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
-#include <algorithm>
-#include "collisionTest.h"
 #include "colliderTest.h"
 
 /// Denne klassen er for WORLD
-class check_collision;
 
 namespace GTA {
 
@@ -20,8 +17,9 @@ namespace GTA {
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
         map.MapLoad();               /// Loads map as background
-        map.MapLocation();           /// Loads maparray as numbers --[x][y]--
-        map.MapLocationPrint();
+//        map.MapLocation();           /// Loads maparray as numbers --[x][y]--
+//        map.MapLocationPrint();
+//        block;
 
 
         audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
@@ -44,13 +42,13 @@ namespace GTA {
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Sittings
-        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
+        this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car2.setPosition(600, 600);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car2.setOrigin(50.f, 90.f);
-        Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"),CAR);
+        Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR_BLUE);
 
         //// Car 3 Texture / Sittings
 

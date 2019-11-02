@@ -8,7 +8,7 @@ namespace GTA {
 
     public:
         std::ifstream file;
-        TileMap _map;        ///Makes instance of TileMap class.
+        TileMap _map;
 
         Map();
         void MapLocation();
@@ -17,9 +17,9 @@ namespace GTA {
         ~Map();
 
     private:
-        int mapLocationArray[WORLD_SIZE_HEIGHT][WORLD_SIZE_WIDTH]={0};        /// Makes an array Matrix that holds the numbers of all the tiles
+        int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH]={0};        /// Makes an array Matrix that holds the numbers of all the tiles
 
-        int mapArray[WORLD_SIZE_HEIGHT * WORLD_SIZE_WIDTH]={0};     /// Makes an array that contains the size of the total Tiles that is loaded
+        int mapArray[WORLD_HEIGHT * WORLD_WIDTH]={0};     /// Makes an array that contains the size of the total Tiles that is loaded
     };
 
 }

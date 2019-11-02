@@ -21,7 +21,7 @@ namespace GTA{
         this->_data->assets.LoadTexture("Play button", MAIN_MENU_PLAY_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Load Button", MAIN_MENU_LOAD_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Exit Button", MAIN_MENU_EXIT_BUTTON);  /// Load Texture
-        this->_data->assets.LoadTexture("Game Title", MAIN_MENU_TITLE_PATH);    /// Load Texture
+        this->_data->assets.LoadTexture("Game Title", MAIN_MENU_LOGO_PATH);    /// Load Texture
 
         this->_playButton.setTexture(this->_data->assets.GetTexture("Play button"));   /// Set Texture
         this->_loadButton.setTexture(this->_data->assets.GetTexture("Load Button"));   /// Set Texture

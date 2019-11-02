@@ -10,16 +10,16 @@ namespace GTA{
         for (int &i : mapArray) { file >> i; }
         file.close();
 
-        if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(TILE_SIZE, TILE_SIZE),mapArray, WORLD_SIZE_WIDTH, WORLD_SIZE_HEIGHT)){
+        if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(TILE_SIZE, TILE_SIZE), mapArray, WORLD_WIDTH, WORLD_HEIGHT)){
             std::cout << "Error in Map loading!" << std::endl;
         }
     }
 
     void Map::MapLocation() {
         file.open(MAP_FILE);
-        for(int i=0; i < WORLD_SIZE_HEIGHT; i++) {
-            for (int j = 0; j < WORLD_SIZE_WIDTH; j++) {
-                file >> mapLocationArray[i][j];
+        for(int y=0; y < WORLD_HEIGHT; y++) {
+            for (int x = 0; x < WORLD_WIDTH; x++) {
+                file >> mapLocationArray[y][x];
             }
         }
         file.close();
@@ -27,11 +27,11 @@ namespace GTA{
     }
 
     void Map::MapLocationPrint() {
-        for(int k=0; k < WORLD_SIZE_HEIGHT; k++) {
-            for (int l = 0; l < WORLD_SIZE_WIDTH; l++) {
-                std::cout << mapLocationArray[k][l] << "|";
+        for(int y=0; y < WORLD_HEIGHT; y++) {
+            for (int x = 0; x < WORLD_WIDTH; x++) {
+                std::cout << "|"<< mapLocationArray[y][x] ;
             }
-            std::cout << std::endl;
+            std::cout << "|"<< std::endl;
         }
         std::cout << "MapLocation printed!";
     }
