@@ -7,8 +7,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #define SCREEN_WIDTH 1800
 #define SCREEN_HEIGHT 1600
+
 #define WORLD_SIZE_WIDTH 90
-#define WORLD_SIZE_HEIGHT 500
+#define WORLD_SIZE_HEIGHT 300
 
 #define TILE_SIZE 70
 

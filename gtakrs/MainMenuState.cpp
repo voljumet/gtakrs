@@ -56,14 +56,16 @@ namespace GTA{
     }
 
     void MainMenuState::Update(float dt) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) this->_data->window.close();
+//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) this->_data->window.close();
 
         if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
             this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
         }
 
         if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::L)){
-            this->_data->machine.AddState(StateRef(new Mission(_data)), false);          ///Load the last running game state
+            this->_data->machine.GetActiveState()->Resume();
+            this->_data->machine.RemoveState();
+//            this->_data->machine.AddState(StateRef(new Mission(_data)), false);          ///Load the last running game state
         }
     }
 

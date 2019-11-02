@@ -75,8 +75,12 @@ namespace GTA {
         while (this->_data->window.pollEvent(event)) {
             if (event.type == sf::Event::Closed
                 || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
-                    event.type == sf::Event::KeyReleased))
+                    event.type == sf::Event::KeyReleased)){
+                map.MapLocationPrint();
+                map.~Map();
+                map.MapLocationPrint();
                 this->_data->window.close();
+            }
         }
 
         switch (event.type) {
@@ -241,7 +245,8 @@ namespace GTA {
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+            this->_data->machine.GetActiveState()->Pause();
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
 
 
