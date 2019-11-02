@@ -13,16 +13,16 @@ class check_collision;
 
 namespace GTA {
 
-    WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {
-
-    }
+    WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {}
 
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
-        map.MapLoad();      ///Loads map as background
-        map.MapLocation();  /// Loads maparray as numbers --[x][y]--
+        map.MapLoad();               /// Loads map as background
+        map.MapLocation();           /// Loads maparray as numbers --[x][y]--
+        map.MapLocationPrint();
+
 
         audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
@@ -76,16 +76,15 @@ namespace GTA {
             if (event.type == sf::Event::Closed
                 || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
                     event.type == sf::Event::KeyReleased)){
-                map.MapLocationPrint();
-                map.~Map();
-                map.MapLocationPrint();
+//                map.~Map();
+//                map.MapLocationPrint();
                 this->_data->window.close();
             }
         }
 
         switch (event.type) {
             case sf::Event::KeyPressed:
-
+/// kan slettes -----------------------------------------------------------------------------
                 switch (event.key.code)
                     case sf::Keyboard::Space:
                         if (!Driving) {
@@ -97,7 +96,7 @@ namespace GTA {
                         }
 
                 break;
-
+/// kan slettes -----------------------------------------------------------------------------
             case sf::Event::KeyReleased:
                 switch (event.key.code)
                     case sf::Keyboard::Space:
@@ -248,8 +247,6 @@ namespace GTA {
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
-
-
     }
 
     void WorldState::Draw(float dt) {

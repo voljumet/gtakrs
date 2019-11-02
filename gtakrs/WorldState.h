@@ -59,6 +59,7 @@ namespace GTA{
 
         /// Create a new sprite
         std::vector<sf::Sprite*> spriteListy;
+
         GameDataRef _data;
         sf::View view;
 
