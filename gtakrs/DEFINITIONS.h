@@ -9,7 +9,7 @@
 #define SCREEN_HEIGHT 1600
 
 #define WORLD_WIDTH 90
-#define WORLD_HEIGHT 250
+#define WORLD_HEIGHT 245
 
 #define TILE_SIZE 70
 
@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MAP_TILE_FILEPATH "Resources/res/Tileset_Tileset.png"
 #define MAP_FILE "Resources/res/MAP.map"
+#define MAP_FILE_TEST "Resources/res/MAP_TEST.map"
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///Sprites

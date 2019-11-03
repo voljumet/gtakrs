@@ -2,7 +2,8 @@
 
 namespace GTA{
 
-
+   class Values{
+   public:
     /// Tile numbers
     int black = 0;
     int road1 = 14, road2 = 5, road3 = 6, road4 = 7, road5 = 8;
@@ -15,5 +16,6 @@ namespace GTA{
     int bitcoins = 0;
     int health = 0;
     int wantedStars = 0;
+   };
 
 }

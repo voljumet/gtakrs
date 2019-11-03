@@ -19,9 +19,11 @@ namespace GTA {
         map.MapLoad();               /// Loads map as background
 //        map.MapLocation();           /// Loads maparray as numbers --[x][y]--
 //        map.MapLocationPrint();
-//        block;
 
-        audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
+//        std::cout<< "juice"<<std::endl;
+//        mappy.Init();
+
+//        audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -252,9 +254,9 @@ namespace GTA {
 
         this->UpdateView(dt);
         this->_data->window.setView(this->view);
-        this->_data->window.clear(sf::Color::Black);        /// Clear window with white color
-
-        this->_data->window.draw(this->map._map);      /// Draw map/ ground
+//        mappy.Draw(dt);
+        this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
+        this->_data->window.draw(this->map._map);      /// Draw map
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car

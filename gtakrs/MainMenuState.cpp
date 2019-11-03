@@ -3,8 +3,7 @@
 #include "DEFINITIONS.h"
 #include "WorldState.h"
 #include "Mission.h"
-
-
+#include "Mappy.h"
 
 #include <iostream>
 
@@ -63,6 +62,7 @@ namespace GTA{
 
         if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
             this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
+//            this->_data->machine.AddState(StateRef(new Mappy(_data)), true);
         }
 
         if(this->_data->input.IsSpriteClicked(this->_loadButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::L)){

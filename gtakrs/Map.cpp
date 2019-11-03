@@ -26,15 +26,15 @@ namespace GTA{
 //        std::cout << "MapLocation Made!" << std::endl;
 //    }
 
-    void Map::MapLocationPrint() {
-        for(int y = 0; y < WORLD_HEIGHT; y++) {
-            for (int x = 0; x < WORLD_WIDTH; x++) {
-                std::cout << "|"<< mapLocationArray[y][x] ;
-            }
-            std::cout << "|"<< std::endl;
-        }
-        std::cout << "MapLocation printed!";
-    }
+//    void Map::MapLocationPrint() {
+//        for(int y = 0; y < WORLD_HEIGHT; y++) {
+//            for (int x = 0; x < WORLD_WIDTH; x++) {
+//                std::cout << "|"<< mapLocationArray[y][x] ;
+//            }
+//            std::cout << "|"<< std::endl;
+//        }
+//        std::cout << "MapLocation printed!";
+//    }
 
     Map::~Map() = default;
 

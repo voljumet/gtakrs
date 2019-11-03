@@ -13,30 +13,29 @@
 namespace GTA{
     class Mappy : public State{
     public:
+        Map map;
         std::ifstream file;
+        Values values;
 
-        Mappy();
-        ~Mappy();
+        explicit Mappy(GTA::GameDataRef data);
+//        ~Mappy();
 
-        void LoadMap();
-        void DrawMap();
+        void Init();
+        void Draw(float dt) override;
+        void HandleInput() override;
+        void Update(float dt) override;
+        void UpdateView(const float& dt);
 
     private:
         int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH];
         GameDataRef _data;
 
-        sf::RectangleShape src, dest;
-
-//        sf::Texture* _road1;
-//        sf::Texture* _grass;
-//        sf::Texture* _water;
-
-    sf::Sprite *_black;
-    sf::Sprite *_road1, *_road2, *_road3, *_road4, *_road5;
-    sf::Sprite *_curb1, *_curb2, *_curb3, *_curb4;
-    sf::Sprite *_water;
-    sf::Sprite *_grass, *_bush;
-    sf::Sprite *_roof1, *_roof2;
+        sf::Sprite _black;
+        sf::Sprite _road1, _road2, _road3, _road4, _road5;
+        sf::Sprite _curb1, _curb2, _curb3, _curb4;
+        sf::Sprite _water;
+        sf::Sprite _grass, _bush;
+        sf::Sprite _roof1, _roof2;
 
     };
 

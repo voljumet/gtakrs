@@ -11,16 +11,17 @@
 #include "TileMap.h"
 #include "collisionTest.h"
 #include "colliderTest.h"
-#include "Block.h"
+
+//#include "Mappy.h"
 
 class check_collision;
-
 
 namespace GTA{
     class WorldState : public  State{
     public:
         Map map;
-        Audio audio; ///i create the object here so that i can use sounds in worldstate.cpp
+//        Mappy mappy;
+        Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
 
         const float dt = 0.01f;
         int WalkCounterForward = 0, SpriteSpeed = 0;
@@ -59,8 +60,6 @@ namespace GTA{
 
         /// Create a new sprite
         std::vector<sf::Sprite*> spriteListy;
-
-//        Block block[1][1];
 
         GameDataRef _data;
         sf::View view;

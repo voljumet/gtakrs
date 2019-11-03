@@ -10,7 +10,6 @@
 namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
 
-
     void Mission::Init() {
         this->posX = SCREEN_WIDTH/2;
         this->posY = SCREEN_HEIGHT/2;
@@ -24,7 +23,6 @@ namespace GTA{
         this->_data->assets.LoadTexture("Building", MISSION_1_BUILDING);
         _background.setTexture(this->_data->assets.GetTexture("Building"));
         this->_background.setPosition(posX, posY);
-
 
         ///Load texture for sprite.
         this->_data->assets.LoadTexture("Sprite", MISSION_1_SPRITE);
