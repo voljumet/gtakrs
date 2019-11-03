@@ -7,6 +7,7 @@
 #include "State.h"
 #include "Values.h"
 #include "Map.h"
+#include "Array.h"
 #include <fstream>
 
 
@@ -27,6 +28,8 @@ namespace GTA{
         void UpdateView(const float& dt);
 
     private:
+//        Array array;
+        Array MappyArray[4][4];
         int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH];
         GameDataRef _data;
 

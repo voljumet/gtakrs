@@ -31,7 +31,7 @@ namespace GTA{
                         this->_black.setTextureRect(sf::IntRect(0, TILE_SIZE * values.black, TILE_SIZE, TILE_SIZE));
                     }
                     case 14 : {
-                        mapLocationArray[Y][X];
+                        MappyArray[Y][X].setPosition(TILE_SIZE * X, TILE_SIZE * Y);
                         _road1.setTexture(this->_data->assets.GetTexture("tiles"));
                         _road1.setPosition(TILE_SIZE*X, TILE_SIZE*Y);
                         _road1.setTextureRect(sf::IntRect(0, TILE_SIZE * values.road1, TILE_SIZE, TILE_SIZE));
