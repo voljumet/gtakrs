@@ -15,19 +15,19 @@ namespace GTA{
         }
     }
 
-    void Map::MapLocation() {
-        file.open(MAP_FILE);
-        for(int y=0; y < WORLD_HEIGHT; y++) {
-            for (int x = 0; x < WORLD_WIDTH; x++) {
-                file >> mapLocationArray[y][x];
-            }
-        }
-        file.close();
-        std::cout << "MapLocation Made!" << std::endl;
-    }
+//    void Map::MapLocation() {
+//        file.open(MAP_FILE);
+//        for(int y = 0; y < WORLD_HEIGHT; y++) {
+//            for (int x = 0; x < WORLD_WIDTH; x++) {
+//                file >> mapLocationArray[y][x];
+//            }
+//        }
+//        file.close();
+//        std::cout << "MapLocation Made!" << std::endl;
+//    }
 
     void Map::MapLocationPrint() {
-        for(int y=0; y < WORLD_HEIGHT; y++) {
+        for(int y = 0; y < WORLD_HEIGHT; y++) {
             for (int x = 0; x < WORLD_WIDTH; x++) {
                 std::cout << "|"<< mapLocationArray[y][x] ;
             }

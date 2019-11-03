@@ -11,14 +11,14 @@ namespace GTA {
         TileMap _map;
 
         Map();
-        void MapLocation();
+//        void MapLocation();
         void MapLocationPrint();
         void MapLoad();
         ~Map();
 
     private:
-        int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH]={0};        /// Makes an array Matrix that holds the numbers of all the tiles
 
+        int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH];        /// Makes an array Matrix that holds the numbers of all the tiles
         int mapArray[WORLD_HEIGHT * WORLD_WIDTH]={0};     /// Makes an array that contains the size of the total Tiles that is loaded
     };
 

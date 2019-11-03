@@ -118,6 +118,7 @@ namespace Collision
     {
         sf::IntRect OriginalSize = Object.getTextureRect();
         sf::Vector2f Scale = Object.getScale();
+
         return sf::Vector2f (OriginalSize.width*Scale.x, OriginalSize.height*Scale.y);
     }
 

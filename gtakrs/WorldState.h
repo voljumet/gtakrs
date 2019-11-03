@@ -1,14 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "State.h"
-#include "Game.h"
-#include "DEFINITIONS.h"
-#include "Audio.h"
-#include "Map.h"
-
 #include <vector>
 
+#include "DEFINITIONS.h"
+#include "State.h"
+#include "Game.h"
+#include "Audio.h"
+#include "Map.h"
 #include "TileMap.h"
 #include "collisionTest.h"
 #include "colliderTest.h"
@@ -60,6 +59,8 @@ namespace GTA{
 
         /// Create a new sprite
         std::vector<sf::Sprite*> spriteListy;
+
+//        Block block[1][1];
 
         GameDataRef _data;
         sf::View view;

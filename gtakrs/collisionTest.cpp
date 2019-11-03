@@ -35,8 +35,8 @@ bool Collider::Check_Collision(const Collider& other, float push)
     /// Collision Detection
     if (IntersectX < 0.0f && IntersectY < 0.0f)
     {
-        std::cout<<"IntersectX"<<IntersectX<<std::endl;
-        std::cout<<"IntersectY"<<IntersectY<<std::endl;
+//        std::cout<<"IntersectX"<<IntersectX<<std::endl;
+//        std::cout<<"IntersectY"<<IntersectY<<std::endl;
         //Clamping process (Limit the push variable between 0 and 1)
         push = std::min(std::max(push, 0.0f),1.0f);
 
