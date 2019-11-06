@@ -1,10 +1,6 @@
-//
-// Created by Peshang Alo on 24/10/2019.
-//
-
-
-
 #include "collisionTest.h"
+namespace GTA{
+
 
 // Initializer
 Collider::Collider(sf::Sprite& body) :
@@ -72,3 +68,4 @@ bool Collider::Check_Collision(const Collider& other, float push)
     return false;
 }
 
+}

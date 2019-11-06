@@ -6,14 +6,11 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include <algorithm>
-#include "collisionTest.h"
 #include "Movement.h"
 #include "colliderTest.h"
 
 
 /// Denne klassen er for WORLD
-class check_collision;
-
 namespace GTA {
 
 
@@ -26,15 +23,9 @@ namespace GTA {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
 
-
         Map(); /// Load Map
         audio.loadall(); //loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
         std::cout << "audio loaded!";
-
-
-
-
-
 
         /// Player Texture / Sittings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -58,11 +49,7 @@ namespace GTA {
 
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR);
 
-
-
         ////Car 2 Texture / Sittings
-
-        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
         _car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car2.setPosition(600, 600);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
@@ -71,8 +58,6 @@ namespace GTA {
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR);
 
         //// Car 3 Texture / Sittings
-
-        this->_data->assets.LoadTexture("car", CAR);   /// Load Texture
         _car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car3.setPosition(1400, 300);
         this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
@@ -99,21 +84,6 @@ namespace GTA {
         }
 
         switch (event.type) {
-            case sf::Event::KeyPressed:
-
-                switch (event.key.code)
-                    case sf::Keyboard::Space:
-                        if (!Driving) {
-
-                            this->_car.setPosition(this->_player.getPosition());
-                            Driving = true;
-                        } else if (Driving) {
-                            this->_player.setPosition(this->_car.getPosition());
-                            Driving = false;
-                        }
-
-
-                break;
 
             case sf::Event::KeyReleased:
                 switch (event.key.code)
@@ -134,67 +104,18 @@ namespace GTA {
         }
 
 
-
-
-
-        /////////////////////////////////////////////////////////////////////////
-        //////////////// DRIVING /////////////////////////
-
-
-        ////////////////////////////////////
-        ///////// Sprite Movement//////////
-
-        if (Driving) {
-            this->_car.move(movement.movementVec * movement.currentSpeed * movement.dt);
-
-        } else if (!Driving) {
-
-            this->_player.move(movement.movementVec * movement.currentSpeed * movement.dt);
-        }
-
-        if (!Driving) {
-            movement.Walk(this->_player);
-        } else {
-
-            movement.Drive(this->_car);
-        }
-
-
-
-
-        //////////////////////////////////
-        ///////// Collision ////////////
-
-        /* if(this->_car.getGlobalBounds().intersects(this->_car2.getGlobalBounds()) )
-         {
-            CanDriveForward = false;
-
-         }
-         if (this->_car.getGlobalBounds().intersects(this->_car2.getGlobalBounds()) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-         {
-             this->_car2.move(-40,0);
-         }
- */
+        UpdateMovement(this->_player, this->_car);
 
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
-/*
-        if(Collision::PixelPerfectTest(this->_player, this->_car2))
-        {
-           this->_car2.move(40,4);
-        }*/
-
     }
 
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
-
         }
-
-
     }
 
     void WorldState::Draw(float dt) {
@@ -237,9 +158,22 @@ namespace GTA {
         else if (!Driving) { this->view.setCenter(this->_player.getPosition()); }
     }
 
-    bool WorldState::check_collision(const sf::Sprite &other, float push) {
+    void WorldState::UpdateMovement(sf::Sprite &walker, sf::Sprite &driver) {
+        if (Driving) {
+            driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
 
-        return false;
+        } else if (!Driving) {
+            walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
+        }
+        if (!Driving) {
+            movement.Walk(this->_player);
+        } else {
+
+            movement.Drive(this->_car);
+        }
+
     }
+
+
 }
 

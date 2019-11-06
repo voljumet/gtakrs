@@ -1,30 +1,20 @@
-//
-// Created by Peshang Alo on 01/11/2019.
-//
-
-#ifndef GTAKRS_MOVEMENT_H
-#define GTAKRS_MOVEMENT_H
-
-
+#pragma once
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
 class Movement {
 public:
     Movement();
-    friend class WorldState;
     float dt = 0.01f;
     /// Speed / Movement Controller
     float WalkSpeed = 1.f;
     float rotateAmount = 150.f;
     float currentSpeed = 0.f;
-    int WalkCounterForward = 0, SpriteSpeed = 0, SpriteSpeedBa = 0;
-    int WalkCounterBackward = 5;
+    int WalkCounterForward = 0, SpriteSpeed = 0;
 
 
     ///Car variables /  Driving variables
 
-    bool Enter = false;
     bool up = false;
     bool CanDriveForward = true;
     float acceleration = 25.f;
@@ -39,6 +29,3 @@ public:
 
 
 };
-
-
-#endif //GTAKRS_MOVEMENT_H
