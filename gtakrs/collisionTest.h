@@ -1,14 +1,12 @@
-//
-// Created by Peshang Alo on 24/10/2019.
-//
-
-#ifndef CAR_COLLIDER_H
-#define CAR_COLLIDER_H
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <algorithm>
 #include <iostream>
 #include <cmath>
+
+namespace GTA{
+
 
 class Collider {
 public:
@@ -28,5 +26,5 @@ private:
 
 };
 
+}
 
-#endif //CAR_COLLIDER_H

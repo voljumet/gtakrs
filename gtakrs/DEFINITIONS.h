@@ -21,7 +21,7 @@
 #define CAR "Resources/res/carBlue.png"
 
 
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
+#define SPLASH_SCENE_BACKGROUND_FILEPATH "/Users/peshangalo/Documents/Andre År/gtakrs/gtakrs/Resources/res/mission_1/Mission_1_alive.png"
 
 #define MAIN_MENU_TITLE_PATH "Resources/res/Menus/Game Title.png"
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Menus/Buttons-01.png"
