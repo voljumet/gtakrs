@@ -22,10 +22,13 @@ namespace GTA{
         sf::View view;
 
         sf::Sprite _playButton;
-
         sf::Sprite _resumeButton;
         sf::Sprite _exitButton;
+        sf::Sprite _debugButton;
+        sf::Sprite _mission_1Button;
+        sf::Sprite _mission_2Button;
 
-        sf::Sprite _title;
+
+        sf::Sprite _logo;
     };
 }

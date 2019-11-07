@@ -49,9 +49,8 @@ namespace GTA{
         while (this->_data->window.pollEvent(event)) {
             _scope.setPosition(0,0);
 
-            if (event.type == sf::Event::Closed
-                || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-                this->_data->window.close();
+//            if (event.type == sf::Event::Closed|| (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+//                this->_data->window.close();
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             posX -= movementspeed;
@@ -130,6 +129,7 @@ namespace GTA{
     void Mission::Update(float dt) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+
         }
     }
 
