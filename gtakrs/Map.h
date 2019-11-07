@@ -4,23 +4,36 @@
 #include "DEFINITIONS.h"
 
 namespace GTA {
-    class Map {
+
+    class Block : public sf::RectangleShape{
+    public:
+        sf::RectangleShape getRekt;
+        sf::Text text;
+        int tileTextureNumber;
+
+    };
+
+    class Map{
 
     public:
+        sf::Font font;
+        std::string tileNumer;
+        std::string strX;
+        std::string strY;
         std::ifstream file;
         TileMap _map;
 
         Map();
-//        void MapLocation();
-//        void MapLocationPrint();
         void MapLoad();
+        void Array();
         ~Map();
+        Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
 
     private:
-
-//        int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH];        /// Makes an array Matrix that holds the numbers of all the tiles
         int mapArray[WORLD_HEIGHT * WORLD_WIDTH]={0};     /// Makes an array that contains the size of the total Tiles that is loaded
     };
+
+
 
 }
 

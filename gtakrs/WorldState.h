@@ -12,13 +12,11 @@
 #include "collisionTest.h"
 #include "colliderTest.h"
 
-#include "Mappy.h"
-
 namespace GTA{
     class WorldState : public  State{
     public:
         Map map;
-        Mappy mappy;
+
         Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
 
         const float dt = 0.01f;
@@ -35,6 +33,8 @@ namespace GTA{
         float acceleration = 25.f;
         const float deceleration = 25.f;
         const float maxSpeed = 1500.f;
+
+        bool debug = false;
 
         sf::Vector2f movementVec; ///normal vector based on current direction
 

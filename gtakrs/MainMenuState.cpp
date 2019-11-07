@@ -1,11 +1,10 @@
 #include <sstream>
+#include <iostream>
 #include "MainMenuState.h"
 #include "DEFINITIONS.h"
 #include "WorldState.h"
 #include "Mission.h"
-#include "Mappy.h"
 
-#include <iostream>
 
 /// Denne klassen er MainMenu
 

@@ -17,13 +17,10 @@ namespace GTA {
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
         map.MapLoad();               /// Loads map as background
-//        map.MapLocation();           /// Loads maparray as numbers --[x][y]--
-//        map.MapLocationPrint();
+        map.Array();
 
-//        std::cout<< "juice"<<std::endl;
-        mappy.Init();
-
-//        audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
+        /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
+//        audio.loadall();
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -84,27 +81,12 @@ namespace GTA {
             if (event.type == sf::Event::Closed
                 || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
                     event.type == sf::Event::KeyReleased)){
-//                map.~Map();
-//                map.MapLocationPrint();
+                map.~Map();     /// Destructer
                 this->_data->window.close();
             }
         }
 
         switch (event.type) {
-            case sf::Event::KeyPressed:
-/// kan slettes -----------------------------------------------------------------------------
-                switch (event.key.code)
-                    case sf::Keyboard::Space:
-                        if (!Driving) {
-                            this->_car.setPosition(this->_player.getPosition());
-                            Driving = true;
-                        } else if (Driving) {
-                            this->_player.setPosition(this->_car.getPosition());
-                            Driving = false;
-                        }
-
-                break;
-/// kan slettes -----------------------------------------------------------------------------
             case sf::Event::KeyReleased:
                 switch (event.key.code)
                     case sf::Keyboard::Space:
@@ -117,6 +99,19 @@ namespace GTA {
                             Driving = false;
                             audio.playcardoor();
                             audio.playsong();
+                        }
+
+        }
+
+        switch (event.type) {
+            case sf::Event::KeyReleased:
+                switch (event.key.code)
+                    case sf::Keyboard::G:
+                        if (!debug) {
+                            debug = true;
+                        } else if (debug) {
+                            debug = false;
+
                         }
 
         }
@@ -255,6 +250,9 @@ namespace GTA {
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
+//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::G)) {
+//            debug = true;
+//        }
     }
 
     void WorldState::Draw(float dt) {
@@ -264,8 +262,23 @@ namespace GTA {
 
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
         this->_data->window.draw(this->map._map);      /// Draw map
-//        this->mappy.draw(Block[5][5].rectangleShape;
-//        this->mappy.Draw(mappy.Block[5][5])
+
+        if (debug){
+            for(int Y = 0; Y < WORLD_HEIGHT; Y+=2) {
+                for (int X = 0; X < WORLD_WIDTH; X+=2) {
+                    this->_data->window.draw(this->map._Block[Y][X].getRekt);      /// Draw map
+                    this->_data->window.draw(this->map._Block[Y][X].text);
+                }
+            }
+            for(int Y = 1; Y < WORLD_HEIGHT; Y+=2) {
+                for (int X = 1; X < WORLD_WIDTH; X+=2) {
+                    this->_data->window.draw(this->map._Block[Y][X].getRekt);      /// Draw map
+                    this->_data->window.draw(this->map._Block[Y][X].text);
+
+                }
+            }
+        }
+
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
