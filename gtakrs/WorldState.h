@@ -48,7 +48,7 @@ namespace GTA{
         void Draw( float dt) override;
         void UpdateView(const float& dt);
 
-        bool check_collision(const sf::Sprite & other, float push);
+//        bool check_collision(const sf::Sprite & other, float push);
         bool CanDriveForward = true;
 
         Collider GetCollider_car_2() { return Collider(_car2);}

@@ -277,10 +277,10 @@ namespace GTA {
         else if (!Driving){this->view.setCenter(this->_player.getPosition());}
     }
 
-    bool WorldState::check_collision(const sf::Sprite & other, float push)
-    {
-
-        return false;
-    }
+//    bool WorldState::check_collision(const sf::Sprite & other, float push)
+//    {
+//
+//        return false;
+//    }
 }
 
