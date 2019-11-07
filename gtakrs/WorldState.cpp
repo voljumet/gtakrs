@@ -28,7 +28,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_data->assets.GetTexture("Player").setSmooth(true);
-        this->_player.setPosition((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2));                /// Place player
+        this->_player.setPosition((TILE_SIZE * 33), (TILE_SIZE * 13));                /// Place player
         this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
@@ -37,7 +37,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
-        this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
+        this->_car.setPosition((TILE_SIZE * 33), (TILE_SIZE * 13));
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
@@ -47,7 +47,7 @@ namespace GTA {
         ////Car 2 Texture / Settings
         this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-        this->_car2.setPosition(800, 550);
+        this->_car2.setPosition(TILE_SIZE * 30, TILE_SIZE * 7);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car2.setRotation(90);
         this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
