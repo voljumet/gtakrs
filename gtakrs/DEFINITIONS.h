@@ -23,10 +23,13 @@
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/mission_1/Mission_1_alive.png"
 
-#define MAIN_MENU_TITLE_PATH "Resources/res/Menus/Game Title.png"
+#define MAIN_MENU_LOGO_PATH "Resources/res/Menus/Game Title.png"
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Menus/Buttons-01.png"
 #define MAIN_MENU_LOAD_BUTTON "Resources/res/Menus/Buttons-02.png"
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Menus/Buttons-03.png"
+#define MAIN_MENU_MISSION1_BUTTON "Resources/res/Menus/Buttons-04.png"
+#define MAIN_MENU_MISSION2_BUTTON "Resources/res/Menus/Buttons-05.png"
+#define MAIN_MENU_DEBUG_BUTTON "Resources/res/Menus/Buttons-06.png"
 
 ///MISSION 1 TEXTURES
 //////////////////////////////////////////////////////////////////////////////////////////

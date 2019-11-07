@@ -108,6 +108,7 @@ namespace GTA {
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
     }
