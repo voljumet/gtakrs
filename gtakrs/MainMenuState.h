@@ -15,9 +15,11 @@ namespace GTA{
         void HandleInput() override;
         void Update(float dt) override;
         void Draw(float dt) override;
+        void UpdateView(const float &dt);
 
     private:
         GameDataRef _data;
+        sf::View view;
 
         sf::Sprite _playButton;
 
