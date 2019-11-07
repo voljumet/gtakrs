@@ -70,6 +70,8 @@ namespace GTA{
     }
 
     void MainMenuState::Draw(float dt) {
+        this->UpdateView(dt);
+        this->_data->window.setView(this->view);
         this->_data->window.clear();      /// Clear all
 
         this->_data->window.draw(this->_title);        /// Draw Button
