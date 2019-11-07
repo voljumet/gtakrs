@@ -1,12 +1,10 @@
 #include <sstream>
+#include <iostream>
 #include "MainMenuState.h"
 #include "DEFINITIONS.h"
 #include "WorldState.h"
 #include "Mission.h"
 
-
-
-#include <iostream>
 
 /// Denne klassen er MainMenu
 
@@ -17,8 +15,11 @@ namespace GTA{
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
-
         this->_data->assets.LoadTexture("Game Logo", MAIN_MENU_LOGO_PATH);    /// Load Texture
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
+
+
         this->_data->assets.LoadTexture("Play button", MAIN_MENU_PLAY_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Resume Button", MAIN_MENU_LOAD_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Exit Button", MAIN_MENU_EXIT_BUTTON);  /// Load Texture
@@ -33,7 +34,6 @@ namespace GTA{
         this->_debugButton.setTexture(this->_data->assets.GetTexture("Debug"));   /// Set Texture
         this->_mission_1Button.setTexture(this->_data->assets.GetTexture("Mission1"));   /// Set Texture
         this->_mission_2Button.setTexture(this->_data->assets.GetTexture("Mission2"));   /// Set Texture
-
 
         this->_logo.setPosition((SCREEN_WIDTH / 2) - (this->_logo.getGlobalBounds().width / 2), this->_logo.getGlobalBounds().height * 0.1);     /// Set Position to title/logo
 
@@ -54,7 +54,6 @@ namespace GTA{
 
             if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
                 std::cout << "Play Game" << std::endl;
-
             }
 
             if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
@@ -62,6 +61,7 @@ namespace GTA{
             }
 
             if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
+
                 std::cout << "Exit Game" << std::endl;
                 this->_data->window.close();
             }
@@ -77,6 +77,7 @@ namespace GTA{
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
         }
+
         if(this->_data->input.IsSpriteClicked(this->_mission_1Button, sf::Mouse::Left, this->_data->window)){
             this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
         }
@@ -100,6 +101,6 @@ namespace GTA{
     }
 
     void MainMenuState::UpdateView(const float &dt) {
-        this->view.setCenter((SCREEN_WIDTH/2) , (SCREEN_HEIGHT/2));
+        this->view.setCenter( (SCREEN_WIDTH/2) , (SCREEN_HEIGHT/2) );
     }
 }

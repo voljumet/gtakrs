@@ -2,13 +2,7 @@
 #include "DEFINITIONS.h"
 #include "Audio.h"
 
-
-
-
-
-
-
-//dank airhorn som en begynnelse
+///dank airhorn som en begynnelse
 sf::Sound Audio::loadhorn(){
     bufferhorn.loadFromFile(AIRHORN_FILEPATH);
     soundhorn.setBuffer(bufferhorn);
@@ -46,9 +40,6 @@ void Audio::loadall() {
 }
 
 
-
-
-
 void Audio::playhorn() {
     soundhorn.play();
 }
@@ -64,7 +55,6 @@ void Audio::playfootsteps() {
 void Audio::playcardoor() {
     cardoor.play();
 }
-
 
 
 void Audio::loadsong() {

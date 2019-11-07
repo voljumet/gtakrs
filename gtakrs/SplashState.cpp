@@ -4,8 +4,7 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 
-/// Denne klassen er bare for splashstate i starten av spillet
-
+/// Denne klassen er bare for splashscreen i starten av spillet
 namespace GTA{
     SplashState::SplashState(GTA::GameDataRef data ): _data(std::move( data )) { }
 
@@ -32,9 +31,7 @@ namespace GTA{
 
     void SplashState::Draw(float dt){
         this->_data->window.clear(sf::Color::Black);        /// Draw Color
-
         this->_data->window.draw(this->_background);        /// Draw Texture
-
         this->_data->window.display();      /// Display all
     }
 }

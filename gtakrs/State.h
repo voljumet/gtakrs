@@ -13,7 +13,5 @@ namespace GTA{
 
         virtual void Pause(){ }
         virtual void Resume(){ }
-
-
     };
 }

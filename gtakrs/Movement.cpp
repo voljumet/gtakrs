@@ -1,21 +1,18 @@
-//
-// Created by Peshang Alo on 01/11/2019.
-//
-
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Transform.hpp>
 #include <iostream>
+
 #include "Movement.h"
-Movement::Movement()
-{
-}
 
- sf::Vector2f Movement::forwardVec() {
-    return sf::Vector2f(0.f, -WalkSpeed);
-}
+namespace GTA{
+    Movement::Movement(){}
 
-void Movement::Drive(sf::Sprite& driver) {
+    sf::Vector2f Movement::forwardVec() {
+        return sf::Vector2f(0.f, -WalkSpeed);
+    }
+
+    void Movement::Drive(sf::Sprite& driver) {
 
         if (up) {
 
@@ -56,18 +53,13 @@ void Movement::Drive(sf::Sprite& driver) {
                 up = false;
 
             }
-
         }
+    }
 
-
-}
-
-void Movement::Walk(sf::Sprite& walker) {
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    void Movement::Walk(sf::Sprite& walker) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             std::cout<<"fuck ";
             walker.rotate(-rotateAmount * dt);
-
 
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             walker.rotate(rotateAmount * dt);
@@ -103,4 +95,4 @@ void Movement::Walk(sf::Sprite& walker) {
         if (WalkCounterForward == 5)
             WalkCounterForward = 0;
     }
-
+}

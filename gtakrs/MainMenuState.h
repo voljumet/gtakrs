@@ -28,7 +28,6 @@ namespace GTA{
         sf::Sprite _mission_1Button;
         sf::Sprite _mission_2Button;
 
-
         sf::Sprite _logo;
     };
 }

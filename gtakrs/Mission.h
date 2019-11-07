@@ -17,10 +17,10 @@ public:
 
     int counter, steps;
 
-    void Init();
-    void HandleInput();
-    void Update(float dt);
-    void Draw(float dt);
+    void Init() override;
+    void HandleInput() override;
+    void Update(float dt) override;
+    void Draw(float dt) override;
 
 private:
 

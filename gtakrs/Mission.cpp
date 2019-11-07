@@ -10,7 +10,6 @@
 namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
 
-
     void Mission::Init() {
         this->posX = SCREEN_WIDTH/2;
         this->posY = SCREEN_HEIGHT/2;
@@ -24,7 +23,6 @@ namespace GTA{
         this->_data->assets.LoadTexture("Building", MISSION_1_BUILDING);
         _background.setTexture(this->_data->assets.GetTexture("Building"));
         this->_background.setPosition(posX, posY);
-
 
         ///Load texture for sprite.
         this->_data->assets.LoadTexture("Sprite", MISSION_1_SPRITE);
@@ -41,16 +39,12 @@ namespace GTA{
 
     }
 
-
     ///Function to handle all input from player during state.
     void Mission::HandleInput() {
         sf::Event event{};
         counter += 1;
         while (this->_data->window.pollEvent(event)) {
             _scope.setPosition(0,0);
-
-//            if (event.type == sf::Event::Closed|| (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-//                this->_data->window.close();
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             posX -= movementspeed;
@@ -85,7 +79,6 @@ namespace GTA{
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 
             _scope.setPosition(0, -80);
-
 
             ///If statement checks if the target is in the corsairs.
             if(shape->getGlobalBounds().intersects(spriteshape->getGlobalBounds())) {

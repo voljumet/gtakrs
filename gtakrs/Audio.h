@@ -1,10 +1,6 @@
-
-
 #include <SFML/Audio.hpp>
 
-
 class Audio {
-
 public:
 
      sf::SoundBuffer bufferhorn, buffergunshot, bufferfootstep, buffercardoor;
@@ -29,8 +25,6 @@ public:
 
     //laster inn lydeffekt fra minnet og returnerer det
     // bør lastes inn i begynnelsen når spillet starter oppp slik at den er klar
-
-
 
     // spiller av lydeffekten
      void playhorn();
