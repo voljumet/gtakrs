@@ -64,8 +64,9 @@ namespace GTA{
             this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
         }
 
-        if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)){
-            
+        if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+            this->_data->machine.GetActiveState()->Resume();
+            this->_data->machine.RemoveState();
             this->_data->machine.AddState(StateRef(new Mission(_data)), false);          ///Resume the last running game state
         }
     }
