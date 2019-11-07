@@ -21,30 +21,38 @@ namespace GTA {
 //        map.MapLocationPrint();
 
 //        std::cout<< "juice"<<std::endl;
-//        mappy.Init();
+        mappy.Init();
 
 //        audio.loadall(); /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
+        this->_data->assets.GetTexture("Player").setSmooth(true);
         this->_player.setPosition((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2));                /// Place player
         this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
 
+
         /// Player car Texture / Settings
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
+        this->_data->assets.GetTexture("car1").setSmooth(true);
+
         this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
+        this->_car.setColor(sf::Color(50,50,50));
+
 
         ////Car 2 Texture / Settings
         this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
+        this->_data->assets.GetTexture("car").setSmooth(true);
+
         this->_car2.setPosition(800, 550);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car2.setRotation(90);
@@ -53,15 +61,14 @@ namespace GTA {
         Collision::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR_BLUE);
 
         //// Car 3 Texture / Settings
-
         this->_car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car3.setPosition(1400, 500);
         this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car3.setRotation(90);
         this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car3.setOrigin(50.f, 90.f);
+        this->_car3.setColor(sf::Color::Red);
 
-        
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
@@ -254,9 +261,11 @@ namespace GTA {
 
         this->UpdateView(dt);
         this->_data->window.setView(this->view);
-//        mappy.Draw(dt);
+
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
         this->_data->window.draw(this->map._map);      /// Draw map
+//        this->mappy.draw(Block[5][5].rectangleShape;
+//        this->mappy.Draw(mappy.Block[5][5])
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car

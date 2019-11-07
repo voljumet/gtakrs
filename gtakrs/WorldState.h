@@ -12,15 +12,13 @@
 #include "collisionTest.h"
 #include "colliderTest.h"
 
-//#include "Mappy.h"
-
-class check_collision;
+#include "Mappy.h"
 
 namespace GTA{
     class WorldState : public  State{
     public:
         Map map;
-//        Mappy mappy;
+        Mappy mappy;
         Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
 
         const float dt = 0.01f;
@@ -33,7 +31,6 @@ namespace GTA{
 
         ///Car variables /  Driving variables
         bool Driving = true;
-        bool Enter = false;
         bool up = false;
         float acceleration = 25.f;
         const float deceleration = 25.f;
@@ -48,7 +45,6 @@ namespace GTA{
         void Draw( float dt) override;
         void UpdateView(const float& dt);
 
-//        bool check_collision(const sf::Sprite & other, float push);
         bool CanDriveForward = true;
 
         Collider GetCollider_car_2() { return Collider(_car2);}
@@ -68,7 +64,6 @@ namespace GTA{
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;
-        sf::RectangleShape _car4;
 
     };
 }

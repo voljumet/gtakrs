@@ -7,30 +7,31 @@
 #include "State.h"
 #include "Values.h"
 #include "Map.h"
-#include "Array.h"
-#include <fstream>
+#include "Block.h"
+//#include "Array.h"
+
 
 
 namespace GTA{
-    class Mappy : public State{
+    class Mappy{
     public:
-        Map map;
+//        Map map;
         std::ifstream file;
         Values values;
 
-        explicit Mappy(GTA::GameDataRef data);
+        explicit Mappy();
 //        ~Mappy();
 
         void Init();
-        void Draw(float dt) override;
-        void HandleInput() override;
-        void Update(float dt) override;
-        void UpdateView(const float& dt);
+        void Draw(float dt);
+//        void HandleInput();
+//        void Update(float dt) ;
+//        void UpdateView(const float& dt);
 
+        Block Block[WORLD_HEIGHT][WORLD_WIDTH];
     private:
 //        Array array;
-        Array MappyArray[4][4];
-        int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH];
+//        int mapLocationArray[WORLD_HEIGHT][WORLD_WIDTH];
         GameDataRef _data;
 
         sf::Sprite _black;

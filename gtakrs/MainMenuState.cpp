@@ -38,7 +38,6 @@ namespace GTA{
     void MainMenuState::HandleInput() {
         sf::Event event{};
 
-
         while (this->_data->window.pollEvent(event)){
             if(sf::Event::Closed == event.type){ this->_data->window.close(); }      /// Handle if window is exited
 
@@ -50,7 +49,7 @@ namespace GTA{
                 std::cout << "Load Game" << std::endl;
             }
 
-            if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
+            if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
                 std::cout << "Exit Game" << std::endl;
                 this->_data->window.close();
             }
