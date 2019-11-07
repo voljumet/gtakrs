@@ -9,6 +9,7 @@
 
 
 /// Denne klassen er for WORLD
+class check_collision;
 
 namespace GTA {
 
@@ -20,7 +21,8 @@ namespace GTA {
 
         map.MapLoad();               /// Loads map as background
         map.Array();
-
+        this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
+        nonpc.spawnNpc(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 //        audio.loadall();
 
@@ -137,6 +139,7 @@ namespace GTA {
 
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
         this->_data->window.draw(this->map._map);      /// Draw map
+        this->_data->window.draw(this->nonpc.npcBot);
 
         /// Loop to create the MAP GRID and text
         if (debug){
