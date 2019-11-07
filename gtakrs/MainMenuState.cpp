@@ -14,6 +14,9 @@ namespace GTA{
     MainMenuState::MainMenuState(GameDataRef data) : _data(std::move(data)){ }
 
     void MainMenuState::Init() {
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
+
 
         this->_data->assets.LoadTexture("Play button", MAIN_MENU_PLAY_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Load Button", MAIN_MENU_LOAD_BUTTON);  /// Load Texture
@@ -76,5 +79,11 @@ namespace GTA{
 
         this->_data->window.display();      /// Display all
 
+
     }
+
+    void MainMenuState::UpdateView(const float &dt) {
+        this->view.setCenter((SCREEN_WIDTH/2) , (SCREEN_HEIGHT/2));
+    }
+
 }
