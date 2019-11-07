@@ -50,6 +50,8 @@ namespace GTA {
         std::vector<sf::Sprite *> spriteListy;
         GameDataRef _data;
         sf::View view;
+        sf::View minimap;
+
         int MapArray[MAP_SIZE_HEIGHT * MAP_SIZE_WIDTH];
 
         TileMap _map;
