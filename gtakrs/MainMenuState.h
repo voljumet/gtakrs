@@ -23,7 +23,7 @@ namespace GTA{
 
         sf::Sprite _playButton;
 
-        sf::Sprite _loadButton;
+        sf::Sprite _resumeButton;
         sf::Sprite _exitButton;
 
         sf::Sprite _title;
