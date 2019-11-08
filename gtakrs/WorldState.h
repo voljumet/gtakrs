@@ -40,17 +40,15 @@ namespace GTA {
         Collider GetCollider_player() { return Collider(_player); }
 
     private:
-
         /// Create a new sprite
         std::vector<sf::Sprite *> spriteListy;
-
         GameDataRef _data;
         sf::View view;
+        sf::View minimap;
 
         sf::Sprite _player;
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;
-
     };
 }
