@@ -25,6 +25,7 @@ namespace GTA {
 
         void Init() override;
 
+
         void HandleInput() override;
 
         void Update(float dt) override;
@@ -51,6 +52,9 @@ namespace GTA {
         GameDataRef _data;
         sf::View view;
         sf::View minimap;
+        sf::RectangleShape rectangleShape;
+
+
 
         int MapArray[MAP_SIZE_HEIGHT * MAP_SIZE_WIDTH];
 
