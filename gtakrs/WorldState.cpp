@@ -157,19 +157,16 @@ namespace GTA {
                 }
             }
         }
-        this->_data->window.clear(sf::Color::Black);        /// Clear window with white color
-        this->_data->window.draw(this->map._map);      /// Draw map/ ground
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
-        /////DRAW EVERY SPRITE IN THE LIST
 
+        /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) {
             this->_data->window.draw(*i);
         }
 
         ///////// Minimap
-
         this->_data->window.setView(this->minimap);
         this->_data->window.draw(this->map._map);      /// Draw map/ ground
 
@@ -180,9 +177,9 @@ namespace GTA {
         for (auto &i : spriteListy) {
             this->_data->window.draw(*i);
         }
-
-        this->_data->window.display();
         
+        this->_data->window.display();
+
     }
 
     /// husk å bruke view
