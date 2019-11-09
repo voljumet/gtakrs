@@ -5,9 +5,7 @@
 #include "WorldState.h"
 #include "Mission.h"
 
-
 /// Denne klassen er MainMenu
-
 namespace GTA{
     MainMenuState::MainMenuState(GameDataRef data) : _data(std::move(data)){ }
 
@@ -18,7 +16,6 @@ namespace GTA{
         this->_data->assets.LoadTexture("Game Logo", MAIN_MENU_LOGO_PATH);    /// Load Texture
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
-
 
         this->_data->assets.LoadTexture("Play button", MAIN_MENU_PLAY_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Resume Button", MAIN_MENU_LOAD_BUTTON);  /// Load Texture
@@ -36,7 +33,6 @@ namespace GTA{
         this->_mission_2Button.setTexture(this->_data->assets.GetTexture("Mission2"));   /// Set Texture
 
         this->_logo.setPosition((SCREEN_WIDTH / 2) - (this->_logo.getGlobalBounds().width / 2), this->_logo.getGlobalBounds().height * 0.1);     /// Set Position to title/logo
-
         this->_playButton.setPosition((SCREEN_WIDTH/2)-(this->_playButton.getGlobalBounds().width/2),(SCREEN_HEIGHT/2)-(this->_playButton.getGlobalBounds().height/2));   /// Set Position to buttons
         this->_resumeButton.setPosition((SCREEN_WIDTH / 2) - (this->_resumeButton.getGlobalBounds().width / 2), _playButton.getPosition().y + _playButton.getGlobalBounds().height);   /// Set Position to buttons
         this->_debugButton.setPosition((SCREEN_WIDTH/2)-(this->_debugButton.getGlobalBounds().width/2), _resumeButton.getPosition().y + _resumeButton.getGlobalBounds().height);   /// Set Position to buttons
@@ -61,7 +57,6 @@ namespace GTA{
             }
 
             if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
-
                 std::cout << "Exit Game" << std::endl;
                 this->_data->window.close();
             }
@@ -78,7 +73,17 @@ namespace GTA{
             this->_data->machine.RemoveState();
         }
 
+        if(this->_data->input.IsSpriteClicked(this->_debugButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+
+            this->_data->machine.GetActiveState()->Resume();
+            this->_data->machine.RemoveState();
+        }
+
         if(this->_data->input.IsSpriteClicked(this->_mission_1Button, sf::Mouse::Left, this->_data->window)){
+            this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
+        }
+
+        if(this->_data->input.IsSpriteClicked(this->_mission_2Button, sf::Mouse::Left, this->_data->window)){
             this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
         }
     }

@@ -21,8 +21,10 @@ namespace GTA{
     public:
         Game(int width, int height, const std::string& title);
 
-         sf::Clock _clock;
-         friend class WorldState;
+        sf::Clock _clock;
+        friend class WorldState;
+        friend class Map;
+
 
     private:
         const float dt = 1.0f / 60.0f;      ///<----------- FPS
