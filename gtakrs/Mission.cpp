@@ -1,11 +1,8 @@
-
 #include <utility>
 #include <iostream>
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include "Mission.h"
-
-
 
 namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
