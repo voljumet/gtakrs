@@ -58,7 +58,7 @@ namespace GTA{
 
     void Movement::Walk(sf::Sprite& walker) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            std::cout<<"fuck ";
+//            std::cout<<"fuck ";
             walker.rotate(-rotateAmount * dt);
 
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {

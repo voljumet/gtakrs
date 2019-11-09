@@ -23,9 +23,12 @@ namespace GTA {
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;
-        bool Driving = true;
+        bool Driving = false;
         bool debug = false;
+        bool Minimap = false;
 
+        int mapReach = 15;
+        int miniMapReach = 27;
         int fromX = 0, toX = 0;
         int fromY = 0, toY = 0;
         int posX, posY;

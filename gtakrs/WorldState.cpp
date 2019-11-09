@@ -7,7 +7,6 @@
 #include "Movement.h"
 #include "colliderTest.h"
 
-
 /// Denne klassen er for WORLD
 
 namespace GTA {
@@ -143,33 +142,19 @@ namespace GTA {
         this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
 
+        /// Draw map as tiles
         MapRendering();
-
-        /// Loop to create the MAP GRID and text for DEBUG
-        if (debug){
-            for(int Y = fromY; Y < toY; Y++) {
-                for (int X = fromX; X < toX; X++) {
-                    this->_data->window.draw(this->map._Block[Y][X].getRekt);
-                    this->_data->window.draw(this->map._Block[Y][X].text);
-                }
-            }
-        }
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
-        for (auto &i : spriteListy) {
-            this->_data->window.draw(*i);
-        }
+        for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
         ///////// Minimap
         this->_data->window.setView(this->minimap);
-        for(int Y = fromY; Y < toY; Y++) {
-            for (int X = fromX; X < toX; X++) {
-                this->_data->window.draw(this->map._Block[Y][X].tileSprite);
-            }
-        }
+        Minimap = true;
+        MapRendering();
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
@@ -178,19 +163,17 @@ namespace GTA {
         for (auto &i : spriteListy) {
             this->_data->window.draw(*i);
         }
-        
-        this->_data->window.display();
 
+        this->_data->window.display();
     }
 
     /// husk å bruke view
-    void WorldState::UpdateView(const float &dt)
-    {
+    void WorldState::UpdateView(const float &dt){
         if(Driving){this->view.setCenter(this->_car.getPosition());}
         else if (!Driving){this->view.setCenter(this->_player.getPosition());}
+
         if(Driving){this->minimap.setCenter(this->_car.getPosition());}
         else if (!Driving){this->minimap.setCenter(this->_player.getPosition());}
-
 
     }
 
@@ -211,48 +194,39 @@ namespace GTA {
 
     void WorldState::MapRendering() {
         if(Driving){
-            posX = _car.getPosition().x / 70;
-            posY = _car.getPosition().y / 70;
+            posX = _car.getPosition().x / TILE_SIZE;
+            posY = _car.getPosition().y / TILE_SIZE;
         } else {
-            posX = _player.getPosition().x / 70;
-            posY = _player.getPosition().y / 70;
+            posX = _player.getPosition().x / TILE_SIZE;
+            posY = _player.getPosition().y / TILE_SIZE;
         }
-        fromX = posX- 15;
-        toX = posX + 15;
-        fromY = posY - 15;
-        toY = posY + 15;
-
-        /// X loops ----------------------
-        if(fromX < 0){
-            fromX = 0;
-        } else if (fromX >= WORLD_WIDTH) {
-            fromX = WORLD_WIDTH -1;
-        }
-
-        if(toX < 0){
-            toX = 0;
-        } else if (toX >= WORLD_WIDTH) {
-            toX = WORLD_WIDTH -1;
+        if(!Minimap){
+            fromX = posX - mapReach;
+            toX = posX + mapReach;
+            fromY = posY - mapReach;
+            toY = posY + mapReach;
+        } else {
+            fromX = posX - miniMapReach;
+            toX = posX + miniMapReach;
+            fromY = posY - miniMapReach;
+            toY = posY + miniMapReach;
+            Minimap = false;
         }
 
-        /// Y loops ------------------------
-        if(fromY < 0){
-            fromY = 0;
-        } else if (fromY >= WORLD_HEIGHT) {
-            fromY = WORLD_HEIGHT -1;
-        }
+        if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
+        if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
+        if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
+        if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
 
-        if(toY < 0){
-            toY = 0;
-        } else if (toY >= WORLD_HEIGHT) {
-            toY = WORLD_HEIGHT -1;
-        }
-
-        /// Draw map as tiles
         for(int Y = fromY; Y < toY; Y++) {
             for (int X = fromX; X < toX; X++) {
+                /// Draw tiles
                 this->_data->window.draw(this->map._Block[Y][X].tileSprite);
 
+                if(debug){
+                    this->_data->window.draw(this->map._Block[Y][X].getRekt);
+                    this->_data->window.draw(this->map._Block[Y][X].text);
+                }
             }
         }
     }

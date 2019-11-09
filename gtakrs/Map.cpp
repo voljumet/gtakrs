@@ -42,7 +42,6 @@ namespace GTA{
                 this->_Block[Y][X].text.setPosition((TILE_SIZE * X), (TILE_SIZE * Y)+9);
             }
         }
-        std::cout << _Block[5][5].tileTextureNumber << std::endl;
         file.close();
     }
 
