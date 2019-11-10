@@ -19,4 +19,6 @@ namespace GTA{
     sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window){      /// Get mouse position
         return sf::Mouse::getPosition(window);
     }
+
+
 }

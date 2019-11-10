@@ -68,7 +68,7 @@ namespace GTA{
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
-                currentSpeed = 300;
+                currentSpeed = 100;
             }
             sf::Transform t;
             t.rotate(walker.getRotation());
@@ -93,6 +93,6 @@ namespace GTA{
         }
 
         if (WalkCounterForward == 5)
-            WalkCounterForward = 0;
+            WalkCounterForward = 1;
     }
 }

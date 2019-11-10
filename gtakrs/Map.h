@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <fstream>
-
+#include "Game.h"
 #include "DEFINITIONS.h"
 
 namespace GTA {
@@ -19,8 +19,6 @@ namespace GTA {
     class Map{
 
     public:
-        sf::Font font;
-
         std::string tileNumer;
         std::string strX;
         std::string strY;
@@ -29,9 +27,11 @@ namespace GTA {
         Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
 
         Map();
-        void Array(sf::Texture & texture);
+        void Array(sf::Texture & texture, sf::Font & font);
         ~Map();
 
+    private:
+//        GameDataRef _data;
     };
 }
 
