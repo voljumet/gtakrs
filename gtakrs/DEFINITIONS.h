@@ -36,6 +36,10 @@
 #define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
+///HACKING TEXTURE
+#define CRT_SCREEN "Resources/res/mission_2/crtScreen.png"
+#define RETRO "Resources/fonts/retro.ttf"
+
 
 
 
