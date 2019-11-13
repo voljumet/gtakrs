@@ -213,7 +213,7 @@ namespace GTA {
             toX = posX + miniMapReach;
             fromY = posY - miniMapReach;
             toY = posY + miniMapReach;
-            Minimap = false;
+
         }
 
         if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
@@ -225,12 +225,16 @@ namespace GTA {
             for (int X = fromX; X < toX; X++) {
                 /// Draw tiles
                 this->_data->window.draw(this->map._Block[Y][X].tileSprite);
-                if(debug){
-                    this->_data->window.draw(this->map._Block[Y][X].getRekt);
-                    this->_data->window.draw(this->map._Block[Y][X].text);
-                }
+
+//                if(!Minimap){
+                    if(debug){
+                        this->_data->window.draw(this->map._Block[Y][X].getRekt);
+                        this->_data->window.draw(this->map._Block[Y][X].text);
+                    }
+//                }
             }
         }
+        Minimap = false;
 
 //        if(debug){
 //            for(int Y = fromY; Y < toY; Y+=2) {
