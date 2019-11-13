@@ -38,11 +38,12 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
-        this->_car.setPosition(TILE_SIZE * 36, TILE_SIZE * 12);
+        this->_car.setPosition(TILE_SIZE * 58, TILE_SIZE * 24);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
+        this->_car.setRotation(180);
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Settings
@@ -124,41 +125,7 @@ namespace GTA {
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
 
         // npc
-        nonpc.NpcPos(map._Block);
-
-//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 1){
-//            nonpc.npcRotation();
-//            nonpc.dir = nonpc.UP;
-//            nonpc.stop = true;
-//        }
-
-//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 2){
-//            nonpc.npcRotation();
-//            nonpc.dir = nonpc.DOWN;
-//            nonpc.stop = true;
-//        }
-//
-//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 3){
-//
-//            nonpc.getNpcBot().setPosition(nonpc.getNpcBot().getPosition().x,
-//                    nonpc.getNpcBot().getPosition().y+1);
-//
-//            nonpc.npcRotation();
-//            nonpc.dir = nonpc.RIGHT;
-//            nonpc.stop = true;
-//        }
-//
-//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 4){
-//            nonpc.npcRotation();
-//            nonpc.dir = nonpc.LEFT;
-//        }
-
-
-
-
-        nonpc.move();
-
-
+        nonpc.move(map._Block, debug);
     }
 
 

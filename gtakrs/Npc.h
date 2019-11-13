@@ -1,8 +1,9 @@
 # pragma once
 
+#include <iostream>
+
 #include "Game.h"
 #include "Movement.h"
-#include "iostream"
 #include "DEFINITIONS.h"
 #include "Map.h"
 
@@ -11,27 +12,26 @@ namespace GTA {
 
     class Npc : public Movement{
     public:
-        explicit Npc(GameDataRef data);
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
-
 
         Npc();
         virtual ~Npc();
 
         void npcInit(sf::Texture &texture); // loading the texture instead *1
-//        void npcDirectUpdate();
-        void move();
-        void NpcPos(Block pBlock[109][115]);
-        void npcRotation();
-        bool stop = false;
+        void move(Block _Block[109][115],bool);
 
         // variables
-        int posX,posY;
-        int nyPosX, nyPosY;
-        int walkSpeed = 1;
+        int NextPosX,NextPosY;
+        int CurrentPosX, CurrentPosY;
+        int walkSpeed = 4;
+        int walkUp, walkDown, walkRight, walkLeft;
+        int NextNpcTile;
+        bool crashCurb;
+        int UpdatedPosX, UpdatedPosY;
 
         sf::Sprite &getNpcBot();
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
+        int curb[4]={1,2,3,4};
 
     private:
         //Player Speed

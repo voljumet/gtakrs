@@ -13,6 +13,7 @@ namespace GTA{
         if (!_map.load(MAP_TILE_FILEPATH, sf::Vector2u(TILE_SIZE, TILE_SIZE), mapArray, WORLD_WIDTH, WORLD_HEIGHT)){
             std::cout << "Error in Map loading!" << std::endl;
         }
+
     }
 
     void Map::Array() {

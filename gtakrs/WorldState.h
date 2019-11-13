@@ -27,8 +27,6 @@ namespace GTA {
         bool Driving = true;
         bool debug = false;
 
-        int nPosX, nPosY;
-
         explicit WorldState(GameDataRef data);
         void Init() override;
         void HandleInput() override;
