@@ -4,6 +4,7 @@
 #include "DEFINITIONS.h"
 #include "WorldState.h"
 #include "Mission.h"
+#include "Hacking.h"
 
 /// Denne klassen er MainMenu
 namespace GTA{
@@ -68,6 +69,7 @@ namespace GTA{
             this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
         }
 
+
         if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
@@ -83,8 +85,9 @@ namespace GTA{
             this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
         }
 
-        if(this->_data->input.IsSpriteClicked(this->_mission_2Button, sf::Mouse::Left, this->_data->window)){
-            this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
+        if(this->_data->input.IsSpriteClicked(this->_mission_2Button, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::H)){
+            this->_data->machine.AddState(StateRef(new Hacking(_data)), true);        /// New state to replace the running state
+
         }
     }
 

@@ -57,8 +57,17 @@
 #define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///AUDIO
-//////////////////////////////////////////////////////////////////////////////////////////
+
+///HACKING TEXTURE
+#define CRT_SCREEN "Resources/res/mission_2/crtScreen.png"
+#define RETRO "Resources/fonts/retro.ttf"
+
+
+
+
+
+/////AUDIO SAMPLES/////////
+//////////////////////////////////////
 #define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
 #define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"
 #define FOOTSTEP_FILEPATH "Resources/res/Sound/footstep.ogg"
