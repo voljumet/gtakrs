@@ -8,7 +8,6 @@ namespace GTA{
         this->_isReplacing = isReplacing;
 
         this->_newState = std::move(newState);
-
     }
 
     void StateMachine::RemoveState() {      /// Config for RemoveState when creating a new stateClass
@@ -33,6 +32,7 @@ namespace GTA{
             this->_isAdding = false;
         }
     }
+
     StateRef &StateMachine::GetActiveState() {         /// Config for Getting last active state
         return this->_states.top();
     }

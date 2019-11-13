@@ -32,13 +32,9 @@ it freely, subject to the following restrictions:
  *
  * Created on 30 January 2009, 11:02
  */
-
-#ifndef COLLISION_H
-#define COLLISION_H
-
+#pragma once
 #include <SFML/Graphics.hpp>
-
-namespace Collision {
+namespace GTA{
     //////
     /// Test for a collision between two sprites by comparing the alpha values of overlapping pixels
     /// Supports scaling and rotation
@@ -73,5 +69,3 @@ namespace Collision {
     //////
     bool BoundingBoxTest(const sf::Sprite& Object1, const sf::Sprite& Object2);
 }
-
-#endif	/* COLLISION_H */
