@@ -24,14 +24,22 @@ namespace GTA {
         std::string strY;
         std::ifstream file;
 
+//        bool debug = false;
+//        bool Minimap = false;
+
+        int mapReach = 15;
+        int miniMapReach = 27;
+        int fromX = 0, toX = 0;
+        int fromY = 0, toY = 0;
+//        int mposX, posY;
+
         Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
 
         Map();
         void Array(sf::Texture & texture, sf::Font & font);
+        void Numbers(int,int,bool);
         ~Map();
 
-    private:
-//        GameDataRef _data;
     };
 }
 

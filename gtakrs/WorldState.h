@@ -27,11 +27,7 @@ namespace GTA {
         bool debug = false;
         bool Minimap = false;
 
-        int mapReach = 15;
-        int miniMapReach = 27;
-        int fromX = 0, toX = 0;
-        int fromY = 0, toY = 0;
-        int posX, posY;
+        int mPosX, mPosY;
 
         explicit WorldState(GameDataRef data);
         void Init() override;

@@ -44,5 +44,25 @@ namespace GTA{
         file.close();
     }
 
+     void Map::Numbers(int posX, int posY, bool Minimap) {
+        if(!Minimap){
+            fromX = posX - mapReach;
+            toX = posX + mapReach;
+            fromY = posY - mapReach;
+            toY = posY + mapReach;
+        } else {
+            fromX = posX - miniMapReach;
+            toX = posX + miniMapReach;
+            fromY = posY - miniMapReach;
+            toY = posY + miniMapReach;
+        }
+
+        if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
+        if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
+        if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
+        if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
+
+    }
+
     Map::~Map() = default;
 }
