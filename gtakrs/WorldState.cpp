@@ -1,6 +1,5 @@
 #include <utility>
 #include <algorithm>
-
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
@@ -22,9 +21,9 @@ namespace GTA {
         map.MapLoad();               /// Loads map as background
         map.Array();
         this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
-        nonpc.spawnNpc(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
+        nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-//        audio.loadall();
+        audio.loadall();
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -39,7 +38,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
-        this->_car.setPosition(this->_data->window.getSize().x / 2, this->_data->window.getSize().y / 2);
+        this->_car.setPosition(TILE_SIZE * 36, TILE_SIZE * 12);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
@@ -119,9 +118,47 @@ namespace GTA {
 
         UpdateMovement(this->_player, this->_car);
 
+
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
+
+        // npc
+        nonpc.npcPos();
+
+        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 1){
+            nonpc.npcRotation();
+            nonpc.dir = nonpc.UP;
+            nonpc.stop = true;
+        }
+
+        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 2){
+            nonpc.npcRotation();
+            nonpc.dir = nonpc.DOWN;
+            nonpc.stop = true;
+        }
+
+        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 3){
+
+            nonpc.getNpcBot().setPosition(nonpc.getNpcBot().getPosition().x,
+                    nonpc.getNpcBot().getPosition().y+1);
+
+            nonpc.npcRotation();
+            nonpc.dir = nonpc.RIGHT;
+            nonpc.stop = true;
+        }
+
+        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 4){
+            nonpc.npcRotation();
+            nonpc.dir = nonpc.LEFT;
+        }
+
+
+
+
+        nonpc.move();
+
+
     }
 
 
@@ -139,7 +176,8 @@ namespace GTA {
 
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
         this->_data->window.draw(this->map._map);      /// Draw map
-        this->_data->window.draw(this->nonpc.npcBot);
+
+        this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
 
         /// Loop to create the MAP GRID and text
         if (debug){
@@ -153,7 +191,6 @@ namespace GTA {
                 for (int X = 1; X < WORLD_WIDTH; X+=2) {
                     this->_data->window.draw(this->map._Block[Y][X].getRekt);
                     this->_data->window.draw(this->map._Block[Y][X].text);
-
                 }
             }
         }
@@ -177,18 +214,25 @@ namespace GTA {
     }
 
     void WorldState::UpdateMovement(sf::Sprite &walker, sf::Sprite &driver) {
+
+
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
 
         } else if (!Driving) {
             walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
         }
+
         if (!Driving) {
             movement.Walk(this->_player);
         } else {
 
             movement.Drive(this->_car);
         }
+
+//        std::cout << "test test" << std::endl;
+        //nonpc.npcWalkStart(void);
     }
+
 }
 

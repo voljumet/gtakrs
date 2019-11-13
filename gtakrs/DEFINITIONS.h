@@ -8,8 +8,8 @@
 #define SCREEN_WIDTH 1800
 #define SCREEN_HEIGHT 1600
 
-#define WORLD_WIDTH 90
-#define WORLD_HEIGHT 245
+#define WORLD_WIDTH 115
+#define WORLD_HEIGHT 109
 
 #define TILE_SIZE 70
 

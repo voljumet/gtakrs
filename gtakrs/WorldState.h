@@ -27,6 +27,7 @@ namespace GTA {
         bool Driving = true;
         bool debug = false;
 
+        int nPosX, nPosY;
 
         explicit WorldState(GameDataRef data);
         void Init() override;
@@ -35,7 +36,6 @@ namespace GTA {
         void Draw(float dt) override;
         void UpdateView(const float &dt);
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
-
 
 
         Collider GetCollider_car_2() { return Collider(_car2); }
@@ -50,7 +50,6 @@ namespace GTA {
 
         GameDataRef _data;
         sf::View view;
-
 
         sf::Sprite _player;
         sf::Sprite _car;

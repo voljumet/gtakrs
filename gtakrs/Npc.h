@@ -1,27 +1,41 @@
 # pragma once
 
 #include "Game.h"
-#include "aiController.h"
+#include "Movement.h"
+#include "iostream"
+#include "DEFINITIONS.h"
+#include "Map.h"
 
 
 namespace GTA {
-    class Npc {
-    public:
 
+    class Npc : public Movement{
+    public:
+        explicit Npc(GameDataRef data);
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
+
 
         Npc();
         virtual ~Npc();
 
-        void spawnNpc(sf::Texture & texture); // loading the texture instead *1
-        void npcWalkStart();
+        void npcInit(sf::Texture &texture); // loading the texture instead *1
+//        void npcDirectUpdate();
+        void move();
+        void npcPos();
+        void npcRotation();
+        bool stop = false;
 
         // variables
-        sf::Sprite npcBot;
-        sf::Sprite npcBot1;
+        int posX,posY;
+        int nyPosX, nyPosY;
+        int walkSpeed = 1;
 
-        int tileSize= 70;
+        sf::Sprite &getNpcBot();
+        enum direction{UP, DOWN, LEFT, RIGHT} dir;
+
     private:
+        //Player Speed
         GameDataRef _data;
+        sf::Sprite npcBot;
     };
 }
