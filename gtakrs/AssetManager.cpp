@@ -24,4 +24,15 @@ namespace GTA{
     sf::Font &AssetManager::GetFont(const std::string& name) {        /// Use Font function
         return this->_fonts.at(name);
     }
+
+    void AssetManager::LoadSound(const std::string &name, const std::string &fileName) {
+        sf::SoundBuffer sound;
+
+        if (sound.loadFromFile(fileName)){
+            this->_sounds[name] = sound;
+        }
+    }
+    sf::SoundBuffer &AssetManager::GetSound(const std::string &name) {
+        return this->_sounds.at(name);
+    }
 }
