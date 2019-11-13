@@ -29,6 +29,8 @@ namespace GTA {
         ~Map();
         Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
 
+        friend class Npc;
+
     private:
         int mapArray[WORLD_HEIGHT * WORLD_WIDTH]={0};     /// Makes an array that contains the size of the total Tiles that is loaded
     };

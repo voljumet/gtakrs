@@ -124,34 +124,34 @@ namespace GTA {
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
 
         // npc
-        nonpc.npcPos();
+        nonpc.NpcPos(map._Block);
 
-        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 1){
-            nonpc.npcRotation();
-            nonpc.dir = nonpc.UP;
-            nonpc.stop = true;
-        }
+//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 1){
+//            nonpc.npcRotation();
+//            nonpc.dir = nonpc.UP;
+//            nonpc.stop = true;
+//        }
 
-        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 2){
-            nonpc.npcRotation();
-            nonpc.dir = nonpc.DOWN;
-            nonpc.stop = true;
-        }
-
-        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 3){
-
-            nonpc.getNpcBot().setPosition(nonpc.getNpcBot().getPosition().x,
-                    nonpc.getNpcBot().getPosition().y+1);
-
-            nonpc.npcRotation();
-            nonpc.dir = nonpc.RIGHT;
-            nonpc.stop = true;
-        }
-
-        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 4){
-            nonpc.npcRotation();
-            nonpc.dir = nonpc.LEFT;
-        }
+//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 2){
+//            nonpc.npcRotation();
+//            nonpc.dir = nonpc.DOWN;
+//            nonpc.stop = true;
+//        }
+//
+//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 3){
+//
+//            nonpc.getNpcBot().setPosition(nonpc.getNpcBot().getPosition().x,
+//                    nonpc.getNpcBot().getPosition().y+1);
+//
+//            nonpc.npcRotation();
+//            nonpc.dir = nonpc.RIGHT;
+//            nonpc.stop = true;
+//        }
+//
+//        if(map._Block[nonpc.posY][nonpc.posX].tileTextureNumber == 4){
+//            nonpc.npcRotation();
+//            nonpc.dir = nonpc.LEFT;
+//        }
 
 
 
@@ -233,6 +233,5 @@ namespace GTA {
 //        std::cout << "test test" << std::endl;
         //nonpc.npcWalkStart(void);
     }
-
 }
 

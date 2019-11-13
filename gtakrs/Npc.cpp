@@ -32,7 +32,43 @@ namespace GTA {
         return npcBot;
     }
 
+    void Npc::npcRotation() {
+        npcBot.rotate(90.f);
+    }
 
+    void Npc::NpcPos(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+
+        posX = npcBot.getPosition().x /TILE_SIZE;
+        posY = npcBot.getPosition().y/TILE_SIZE;
+
+        if(_Block[posY][posX].tileTextureNumber == 1){
+            npcRotation();
+            dir = UP;
+            stop = true;
+        }
+
+        if(_Block[posY][posX].tileTextureNumber == 2){
+            npcRotation();
+            dir = DOWN;
+            stop = true;
+        }
+
+        if(_Block[posY][posX].tileTextureNumber == 3){
+
+            getNpcBot().setPosition(getNpcBot().getPosition().x,
+                                          getNpcBot().getPosition().y+1);
+
+            npcRotation();
+            dir = RIGHT;
+            stop = true;
+        }
+
+        if(_Block[posY][posX].tileTextureNumber == 4){
+            npcRotation();
+            dir = LEFT;
+        }
+
+    }
 
     void Npc::move() {
         nyPosX = npcBot.getPosition().x;
@@ -76,20 +112,6 @@ namespace GTA {
             WalkCounterForward = 1;
 
     }
-
-    void Npc::npcPos() {
-        posX = npcBot.getPosition().x /TILE_SIZE;
-        posY = npcBot.getPosition().y/TILE_SIZE;
-
-
-        Map::_Block[posY][posX].tileTextureNumber == 1
-
-    }
-
-    void Npc::npcRotation() {
-        npcBot.rotate(90.f);
-    }
-
 
 }
 

@@ -21,7 +21,7 @@ namespace GTA {
         void npcInit(sf::Texture &texture); // loading the texture instead *1
 //        void npcDirectUpdate();
         void move();
-        void npcPos();
+        void NpcPos(Block pBlock[109][115]);
         void npcRotation();
         bool stop = false;
 
