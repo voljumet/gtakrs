@@ -2,6 +2,7 @@
 
 #include <map>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 namespace GTA{
     class AssetManager{
@@ -16,8 +17,12 @@ namespace GTA{
         void LoadFont( const std::string& name, const std::string& fileName);
         sf::Font &GetFont(const std::string& name);
 
+        void LoadSound( const std::string& name, const std::string& fileName);
+        sf::SoundBuffer &GetSound(const std::string& name);
+
     private:
         std::map<std::string, sf::Texture> _textures;
         std::map<std::string, sf::Font> _fonts;
+        std::map<std::string, sf::SoundBuffer> _sounds;
     };
 }
