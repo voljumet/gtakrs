@@ -113,9 +113,9 @@ namespace GTA{
 
 
 
-            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
-                this->_data->window.close();
-            }
+//            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
+//                this->_data->window.close();
+//            }
         }
     }
 
@@ -123,7 +123,10 @@ namespace GTA{
 
 
     void Hacking::Update(float dt) {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
 
+        }
     }
 
 
