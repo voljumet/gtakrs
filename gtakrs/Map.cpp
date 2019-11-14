@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Map.h"
+#include "WorldState.h"
 
 namespace GTA{
 
@@ -45,22 +46,63 @@ namespace GTA{
     }
 
      void Map::Numbers(int posX, int posY, bool Minimap) {
-        if(!Minimap){
-            fromX = posX - mapReach;
-            toX = posX + mapReach;
-            fromY = posY - mapReach;
-            toY = posY + mapReach;
+//        if(!Minimap){
+//            fromX = posX - mapReach;
+//            toX = posX + mapReach;
+//            fromY = posY - mapReach;
+//            toY = posY + mapReach;
+//        } else {
+//            fromX = posX - miniMapReach;
+//            toX = posX + miniMapReach;
+//            fromY = posY - miniMapReach;
+//            toY = posY + miniMapReach;
+//        }
+
+//        if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
+//        if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
+//        if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
+//        if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
+
+    }
+
+void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::RenderWindow window) {
+        if(Driving){
+            mPosX = carPosX / TILE_SIZE;
+            mPosY = carPosY / TILE_SIZE;
         } else {
-            fromX = posX - miniMapReach;
-            toX = posX + miniMapReach;
-            fromY = posY - miniMapReach;
-            toY = posY + miniMapReach;
+            mPosX = playerPosX / TILE_SIZE;
+            mPosY = playerPosY / TILE_SIZE;
+        }
+
+        if(!Minimap){
+            fromX = mPosX - mapReach;
+            toX = mPosX + mapReach;
+            fromY = mPosY - mapReach;
+            toY = mPosY + mapReach;
+        } else {
+            fromX = mPosX - miniMapReach;
+            toX = mPosX + miniMapReach;
+            fromY = mPosY - miniMapReach;
+            toY = mPosY + miniMapReach;
         }
 
         if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
         if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
         if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
         if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
+
+        for(int Y = fromY; Y < toY; Y++) {
+            for (int X = fromX; X < toX; X++) {
+                /// Draw tiles
+
+
+//                 this->_data->window.draw(this->_Block[Y][X].tileSprite);
+                if(Debug){
+//                    this->_data->window.draw(this->_Block[Y][X].getRekt);
+//                    this->_data->window.draw(this->_Block[Y][X].text);
+                }
+            }
+        }
 
     }
 

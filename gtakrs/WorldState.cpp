@@ -114,10 +114,10 @@ namespace GTA {
             case sf::Event::KeyReleased:{
                 switch (event.key.code){
                     case sf::Keyboard::G:{
-                        if (!debug) {
-                            debug = true;
-                        } else if (debug) {
-                            debug = false;
+                        if (!Debug) {
+                            Debug = true;
+                        } else if (Debug) {
+                            Debug = false;
 
                         }
                     }
@@ -146,7 +146,9 @@ namespace GTA {
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
 
         /// Draw map as tiles
-        MapRendering();
+//        MapRendering();
+        map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y, _player.getPosition().x, _player.getPosition().y, map._Block, _data->window(map._Block));
+
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
@@ -155,10 +157,10 @@ namespace GTA {
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
         ///////// Minimap
-        if(!debug){
+        if(!Debug){
             this->_data->window.setView(this->minimap);
             Minimap = true;
-            MapRendering();
+//            MapRendering();
         }
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
@@ -198,26 +200,26 @@ namespace GTA {
     }
 
     void WorldState::MapRendering() {
-        if(Driving){
-            mPosX = _car.getPosition().x / TILE_SIZE;
-            mPosY = _car.getPosition().y / TILE_SIZE;
-        } else {
-            mPosX = _player.getPosition().x / TILE_SIZE;
-            mPosY = _player.getPosition().y / TILE_SIZE;
-        }
+//        if(Driving){
+//            mPosX = _car.getPosition().x / TILE_SIZE;
+//            mPosY = _car.getPosition().y / TILE_SIZE;
+//        } else {
+//            mPosX = _player.getPosition().x / TILE_SIZE;
+//            mPosY = _player.getPosition().y / TILE_SIZE;
+//        }
 
-        map.Numbers(mPosX, mPosY, Minimap);
+//        map.Numbers(mPosX, mPosY, Minimap);
 
-        for(int Y = map.fromY; Y < map.toY; Y++) {
-            for (int X = map.fromX; X < map.toX; X++) {
-                /// Draw tiles
-                this->_data->window.draw(this->map._Block[Y][X].tileSprite);
-                if(debug){
-                    this->_data->window.draw(this->map._Block[Y][X].getRekt);
-                    this->_data->window.draw(this->map._Block[Y][X].text);
-                }
-            }
-        }
+//        for(int Y = map.fromY; Y < map.toY; Y++) {
+//            for (int X = map.fromX; X < map.toX; X++) {
+//                /// Draw tiles
+//                this->_data->window.draw(this->map._Block[Y][X].tileSprite);
+//                if(Debug){
+//                    this->_data->window.draw(this->map._Block[Y][X].getRekt);
+//                    this->_data->window.draw(this->map._Block[Y][X].text);
+//                }
+//            }
+//        }
     }
 }
 

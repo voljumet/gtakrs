@@ -24,7 +24,7 @@ namespace GTA {
         const float dt = 0.01f;
         float WalkSpeed = 1.f;
         bool Driving = false;
-        bool debug = false;
+        bool Debug = false;
         bool Minimap = false;
 
         int mPosX, mPosY;
@@ -42,6 +42,8 @@ namespace GTA {
         Collider GetCollider_car() { return Collider(_car); }
         Collider GetCollider_car3() { return Collider(_car3); }
         Collider GetCollider_player() { return Collider(_player); }
+
+        friend class Map;
 
     private:
         /// Create a new sprite
