@@ -1,6 +1,5 @@
 #include <utility>
 #include <algorithm>
-
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
@@ -8,6 +7,7 @@
 #include "colliderTest.h"
 
 /// Denne klassen er for WORLD
+class check_collision;
 
 namespace GTA {
 
@@ -24,9 +24,11 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("tiles"), this->_data->assets.GetFont("Arial"));
 
+        this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
+        nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
+
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 //        audio.loadAll();
-
 //        this->_data->assets.LoadSound()
 
         /// Player Texture / Settings
@@ -42,12 +44,14 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
-        this->_car.setPosition(_player.getPosition().x, _player.getPosition().y);
+
+        this->_car.setPosition(TILE_SIZE * 58, TILE_SIZE * 24);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
 
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
+        this->_car.setRotation(180);
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Settings
@@ -127,9 +131,13 @@ namespace GTA {
 
         UpdateMovement(this->_player, this->_car);
 
+
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
+
+        // npc
+        nonpc.move(map._Block);
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -149,6 +157,7 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 _player.getPosition().x, _player.getPosition().y, map._Block, _data);
 
+        this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
@@ -162,6 +171,7 @@ namespace GTA {
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                        _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+
         }
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
@@ -192,6 +202,7 @@ namespace GTA {
         } else if (!Driving) {
             walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
         }
+
         if (!Driving) {
             movement.Walk(this->_player);
         } else {

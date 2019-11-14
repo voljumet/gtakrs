@@ -29,7 +29,7 @@ namespace GTA{
         /// _______________________
 
     private:
-        const float dt = 1.0f / 60.0f;      ///<----------- FPS
+        const float dt = 1.0f / 80.0f;      ///<----------- FPS
 
         GameDataRef _data = std::make_shared<GameData>();
 

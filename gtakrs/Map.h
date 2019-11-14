@@ -31,6 +31,13 @@ namespace GTA {
         int mPosX, mPosY;
 
         Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
+        int roads[5]={14,5,6,7,8};
+        int curbs[4]={1,2,3,4};
+        int roof[2]={11,12};
+        int grass[2]={10,13};
+        int water = 9;
+
+        friend class Npc;
 
         void Array(sf::Texture & texture, sf::Font & font);
         void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,

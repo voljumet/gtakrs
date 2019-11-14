@@ -4,7 +4,8 @@
 namespace GTA{
     void Map::Array(sf::Texture & texture, sf::Font & font){
 
-        file.open(MAP_TEST2);
+        file.open(MAP_FILE);
+
         for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
             for (int X = 0; X < WORLD_WIDTH; X++) {
                 file >> _Block[Y][X].tileTextureNumber;
@@ -79,6 +80,4 @@ void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPos
             }
         }
     }
-
-//    Map::~Map() = default;
 }
