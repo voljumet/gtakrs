@@ -1,9 +1,10 @@
 #include <utility>
 #include <iostream>
-#include <string>
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include "Hacking.h"
+
+
 
 
 
@@ -11,6 +12,9 @@ namespace GTA{
     Hacking::Hacking(GTA::GameDataRef data): _data(std::move(data)) { }
     void Hacking::Init() {
 
+        hackaudio.loadall();
+        hackaudio.loadcomputer();
+        hackaudio.playcomputer();
 
 
         this->posX = 0;
@@ -44,12 +48,17 @@ namespace GTA{
     }
 
     void Hacking::HandleInput() {
+
+
+
         sf::Event event{};
         while(this->_data->window.pollEvent(event)) {
 
             if (event.type == sf::Event::TextEntered) {
                 playerinput += event.text.unicode;
                 playertext.setString(playerinput);
+
+                hackaudio.playbuttonpress();
 
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
                     playerinput.clear();

@@ -61,6 +61,7 @@
 ///HACKING TEXTURE
 #define CRT_SCREEN "Resources/res/mission_2/crtScreen.png"
 #define RETRO "Resources/fonts/retro.ttf"
+#define COMPUTERSOUNDS "Resources/res/Music/computer_sounds.ogg"
 
 
 
@@ -72,6 +73,7 @@
 #define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"
 #define FOOTSTEP_FILEPATH "Resources/res/Sound/footstep.ogg"
 #define GUNHSOT_FILEPATH "Resources/res/Sound/gunshot.ogg"
+#define BUTTONPRESS "Resources/res/Sound/buttonpress.ogg"
 #define SONG "Resources/res/Music/DragonForce - Through The Fire And Flames.ogg"
 //////////////////////////////////////////////////////////////////////////////////////////
 
