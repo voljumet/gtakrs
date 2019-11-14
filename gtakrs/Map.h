@@ -24,25 +24,22 @@ namespace GTA {
         std::string strY;
         std::ifstream file;
 
-//        bool Debug = false;
-//        bool Minimap = false;
-
         int mapReach = 15;
         int miniMapReach = 27;
         int fromX = 0, toX = 0;
         int fromY = 0, toY = 0;
         int mPosX, mPosY;
 
-        sf::Sprite sprite;
-
         Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
 
-        Map();
         void Array(sf::Texture & texture, sf::Font & font);
-        void Numbers(int,int,bool);
-        void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block pBlock[WORLD_HEIGHT][WORLD_WIDTH]);
-        ~Map();
+        void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
+                int playerPosY, Block pBlock[WORLD_HEIGHT][WORLD_WIDTH], GameDataRef _data);
 
+    private:
+        GameDataRef _data;
     };
+
+
 }
 

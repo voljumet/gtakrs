@@ -1,11 +1,7 @@
 #include <iostream>
 #include "Map.h"
-#include "WorldState.h"
 
 namespace GTA{
-
-    Map::Map() = default;
-
     void Map::Array(sf::Texture & texture, sf::Font & font){
 
         file.open(MAP_TEST2);
@@ -45,27 +41,8 @@ namespace GTA{
         file.close();
     }
 
-     void Map::Numbers(int posX, int posY, bool Minimap) {
-//        if(!Minimap){
-//            fromX = posX - mapReach;
-//            toX = posX + mapReach;
-//            fromY = posY - mapReach;
-//            toY = posY + mapReach;
-//        } else {
-//            fromX = posX - miniMapReach;
-//            toX = posX + miniMapReach;
-//            fromY = posY - miniMapReach;
-//            toY = posY + miniMapReach;
-//        }
-
-//        if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
-//        if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
-//        if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
-//        if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
-
-    }
-
-void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
+        int playerPosY, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], GameDataRef inn_data) {
         if(Driving){
             mPosX = carPosX / TILE_SIZE;
             mPosY = carPosY / TILE_SIZE;
@@ -85,7 +62,7 @@ void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPos
             fromY = mPosY - miniMapReach;
             toY = mPosY + miniMapReach;
         }
-
+         _data = inn_data;
         if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
         if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
         if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
@@ -94,17 +71,14 @@ void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPos
         for(int Y = fromY; Y < toY; Y++) {
             for (int X = fromX; X < toX; X++) {
                 /// Draw tiles
-
-
-//                 this->_data->window.draw(this->_Block[Y][X].tileSprite);
+                 this->_data->window.draw(this->_Block[Y][X].tileSprite);
                 if(Debug){
-//                    this->_data->window.draw(this->_Block[Y][X].getRekt);
-//                    this->_data->window.draw(this->_Block[Y][X].text);
+                    this->_data->window.draw(this->_Block[Y][X].getRekt);
+                    this->_data->window.draw(this->_Block[Y][X].text);
                 }
             }
         }
-
     }
 
-    Map::~Map() = default;
+//    Map::~Map() = default;
 }
