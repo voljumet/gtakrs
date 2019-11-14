@@ -18,7 +18,7 @@ namespace GTA {
         virtual ~Npc();
 
         void npcInit(sf::Texture &texture); // loading the texture instead *1
-        void move(Block _Block[109][115],bool);
+        void move(Block _Block[109][115]);
 
         // variables
         int NextPosX,NextPosY;

@@ -22,7 +22,7 @@ namespace GTA {
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-    void Npc::move(Block _Block[109][115], bool debug) {
+    void Npc::move(Block _Block[109][115]) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
@@ -39,7 +39,7 @@ namespace GTA {
         /// FUNKER -------------------
         switch (dir){
             case RIGHT : {
-                NextPosX = walkRight / TILE_SIZE;
+                NextPosX = (walkRight+31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
 
                 UpdatedPosX = walkRight;
@@ -49,7 +49,7 @@ namespace GTA {
             }
 
             case LEFT : {
-                NextPosX = walkLeft / TILE_SIZE;
+                NextPosX = (walkLeft-31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
 
                 UpdatedPosX = walkLeft;
@@ -60,7 +60,7 @@ namespace GTA {
 
             case UP : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = walkUp / TILE_SIZE;
+                NextPosY = (walkUp-31) / TILE_SIZE;
 
                 UpdatedPosX = CurrentPosX;
                 UpdatedPosY = walkUp;
@@ -70,7 +70,7 @@ namespace GTA {
 
             case DOWN : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = walkDown / TILE_SIZE;
+                NextPosY = (walkDown+31) / TILE_SIZE;
 
                 UpdatedPosX = CurrentPosX;
                 UpdatedPosY = walkDown;
@@ -110,4 +110,5 @@ namespace GTA {
             WalkCounterForward = 1;
 
     }
+
 }

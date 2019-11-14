@@ -125,7 +125,7 @@ namespace GTA {
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
 
         // npc
-        nonpc.move(map._Block, debug);
+        nonpc.move(map._Block);
     }
 
 
