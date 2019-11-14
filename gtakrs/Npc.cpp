@@ -33,7 +33,7 @@ namespace GTA {
 
 
         /// Generates random direction
-        direction RANDIR = static_cast<direction >(rand() % 4);
+        RANDIR = static_cast<direction >(rand() % 4);
 
 
         /// FUNKER -------------------

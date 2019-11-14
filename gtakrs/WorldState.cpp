@@ -159,6 +159,11 @@ namespace GTA {
 
         this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
 
+        if(this->_car.getGlobalBounds().intersects(nonpc.getNpcBot().getGlobalBounds())){
+//            nonpc.getNpcBot().rotate(180);
+            nonpc.dir = nonpc.RANDIR;
+        }
+
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 

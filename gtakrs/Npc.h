@@ -31,8 +31,9 @@ namespace GTA {
 
         sf::Sprite &getNpcBot();
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
-        int curb[4]={1,2,3,4};
+        int curb[6]={1,2,3,4,11,12};
 
+        direction RANDIR;
     private:
         //Player Speed
         GameDataRef _data;
