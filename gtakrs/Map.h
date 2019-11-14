@@ -40,7 +40,7 @@ namespace GTA {
         Map();
         void Array(sf::Texture & texture, sf::Font & font);
         void Numbers(int,int,bool);
-        void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block pBlock[WORLD_HEIGHT][WORLD_WIDTH], sf::RenderWindow window);
+        void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block pBlock[WORLD_HEIGHT][WORLD_WIDTH]);
         ~Map();
 
     };

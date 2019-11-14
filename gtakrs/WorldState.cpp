@@ -147,7 +147,7 @@ namespace GTA {
 
         /// Draw map as tiles
 //        MapRendering();
-        map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y, _player.getPosition().x, _player.getPosition().y, map._Block, _data->window(map._Block));
+        map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y, _player.getPosition().x, _player.getPosition().y, map._Block);
 
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player

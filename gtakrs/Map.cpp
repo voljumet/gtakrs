@@ -65,7 +65,7 @@ namespace GTA{
 
     }
 
-void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::RenderWindow window) {
+void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         if(Driving){
             mPosX = carPosX / TILE_SIZE;
             mPosY = carPosY / TILE_SIZE;
