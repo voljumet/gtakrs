@@ -3,6 +3,8 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include "Mission.h"
+#include "SpriteFactory.h"
+#include <vector>
 
 
 namespace GTA{
@@ -16,6 +18,11 @@ namespace GTA{
         this->spriteposY = posY +700.f;
         this->steps = 0;
         dir = Right;                        ///Dir is an enum for direction, used for moving the sprite.
+
+
+
+
+
 
         ///Load texture for background.
         this->_data->assets.LoadTexture("Building", MISSION_1_BUILDING);
@@ -39,6 +46,18 @@ namespace GTA{
 
     ///Function to handle all input from player during state.
     void Mission::HandleInput() {
+
+        ////////////////////////
+        Factory* factory = new SpriteFactory;
+        if(spritelist.size() <= 10){
+        spritelist.push_back(factory->CreateNPC());
+        for(auto s : spritelist) {
+            s->setPosition(rand() % 1000, rand() % 1000);
+            s->setTexture(this->_data->assets.GetTexture("Sprite"));
+            }
+        }
+        ////////////////////////
+
         sf::Event event{};
         counter += 1;
         while (this->_data->window.pollEvent(event)) {
@@ -131,6 +150,9 @@ namespace GTA{
         this->_data->window.draw(this->_sprite);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(this->_scope);
+        for(auto &s: spritelist){
+            this->_data->window.draw(*s);
+        }
         this->_data->window.display();
     }
 }
