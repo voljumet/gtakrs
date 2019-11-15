@@ -20,7 +20,7 @@ namespace GTA {
         void npcInit(sf::Texture &texture); // loading the texture instead *1
         void move(Block _Block[109][115]);
 
-        // variables
+        /// Variables
         int NextPosX,NextPosY;
         int CurrentPosX, CurrentPosY;
         int walkSpeed = 4;
@@ -33,9 +33,9 @@ namespace GTA {
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
         int curb[6]={1,2,3,4,11,12};
 
-        direction RANDIR;
+        direction RandomDir;
     private:
-        //Player Speed
+        /// Player Speed
         GameDataRef _data;
         sf::Sprite npcBot;
     };

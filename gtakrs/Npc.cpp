@@ -1,6 +1,5 @@
 #pragma once
 
-#include <random>
 #include <algorithm>
 #include <iterator>
 #include "Npc.h"
@@ -12,17 +11,17 @@ namespace GTA {
 
     // Using a reference of texture works
     void Npc::npcInit(sf::Texture & texture) { // dependency injection method is the trick. *2
-        dir = RIGHT;
+        dir = RandomDir;
         this->npcBot.setTexture(texture);
         this->npcBot.setPosition(TILE_SIZE * 49, TILE_SIZE * 25);
-        this->npcBot.setTextureRect(sf::IntRect(0, 0,
-                100, 100));
+        this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
 
     }
 
-    sf::Sprite &Npc::getNpcBot() { return npcBot; }
+    sf::Sprite &Npc::getNpcBot() {
+        return npcBot; }
 
     void Npc::move(Block _Block[109][115]) {
         CurrentPosX = npcBot.getPosition().x;
@@ -35,7 +34,7 @@ namespace GTA {
 
 
         /// Generates random direction
-        RANDIR = static_cast<direction >(rand() % 4);
+        RandomDir = static_cast<direction >(rand() % 4);
 
 
         /// FUNKER -------------------
@@ -90,7 +89,7 @@ namespace GTA {
         if(!crashCurb){
             npcBot.setPosition(UpdatedPosX, UpdatedPosY);
         } else {
-            dir = RANDIR; /// set random Direction
+            dir = RandomDir; /// set random Direction
         }
 
         /// Sets the rotation of the NPC

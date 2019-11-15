@@ -20,7 +20,8 @@ namespace GTA {
         Map map;
         Movement movement;
         Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
-        Npc nonpc;
+
+        std::vector<Npc*> npcVec;
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;

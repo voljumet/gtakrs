@@ -18,12 +18,7 @@ namespace GTA{
         this->spriteposY = posY +700.f;
         this->steps = 0;
         dir = Right;                        ///Dir is an enum for direction, used for moving the sprite.
-
-
-
-
-
-
+        
         ///Load texture for background.
         this->_data->assets.LoadTexture("Building", MISSION_1_BUILDING);
         _background.setTexture(this->_data->assets.GetTexture("Building"));

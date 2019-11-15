@@ -24,8 +24,6 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
-        this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
-        nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 //        audio.loadAll();
@@ -35,7 +33,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_data->assets.GetTexture("Player").setSmooth(true);
-        this->_player.setPosition((SCREEN_WIDTH), (SCREEN_HEIGHT));                /// Place player
+        this->_player.setPosition(TILE_SIZE * 49, TILE_SIZE * 22);                /// Place player
         this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
@@ -48,7 +46,6 @@ namespace GTA {
         this->_car.setPosition(TILE_SIZE * 58, TILE_SIZE * 24);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
-
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
         this->_car.setRotation(180);
@@ -77,9 +74,25 @@ namespace GTA {
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
+
+
+        for (int i = 0; i < 50; ++i) {
+            npcVec.push_back(new Npc);
+            npcVec[i]->npcInit(this->_data->assets.GetTexture("Player") );
+
+            npcVec[i]->getNpcBot().setPosition((TILE_SIZE * 49)+(i*10), TILE_SIZE * 25);
+
+
+
+            /// RANDOM POS -----
+        }
     }
 
     void WorldState::HandleInput() {
+
+        /// npc
+        for(auto n : npcVec) { n->move(map._Block); }
+
         sf::Event event{};
 
         const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
@@ -102,7 +115,7 @@ namespace GTA {
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
                             audio.playcardoor();
-                        } else if (Driving) {
+                        } else {
                             this->_player.setPosition(this->_car.getPosition());
                             Driving = false;
                             audio.playcardoor();
@@ -120,7 +133,7 @@ namespace GTA {
                     case sf::Keyboard::G:{
                         if (!Debug) {
                             Debug = true;
-                        } else if (Debug) {
+                        } else {
                             Debug = false;
 
                         }
@@ -131,13 +144,10 @@ namespace GTA {
 
         UpdateMovement(this->_player, this->_car);
 
-
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
 
-        // npc
-        nonpc.move(map._Block);
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -157,14 +167,18 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 _player.getPosition().x, _player.getPosition().y, map._Block, _data);
 
-        this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
+        for (auto &i : npcVec) {
+            this->_data->window.draw(i->getNpcBot());
 
-        if(this->_car.getGlobalBounds().intersects(nonpc.getNpcBot().getGlobalBounds())){
-            nonpc.dir = nonpc.RANDIR;
+            if(this->_car.getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds())){
+                i->dir = i->RandomDir;
+            }
         }
 
+//        this->_data->window.draw(npc.getNpcBot());   /// draw npc
+
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
-        if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
+        else { this->_data->window.draw(this->_car); }          /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
@@ -179,7 +193,7 @@ namespace GTA {
         }
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
-        if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
+        else { this->_data->window.draw(this->_car); }          /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) {
@@ -192,10 +206,10 @@ namespace GTA {
     /// husk å bruke view
     void WorldState::UpdateView(const float &dt){
         if(Driving){this->view.setCenter(this->_car.getPosition());}
-        else if (!Driving){this->view.setCenter(this->_player.getPosition());}
+        else {this->view.setCenter(this->_player.getPosition());}
 
         if(Driving){this->minimap.setCenter(this->_car.getPosition());}
-        else if (!Driving){this->minimap.setCenter(this->_player.getPosition());}
+        else {this->minimap.setCenter(this->_player.getPosition());}
 
     }
 
@@ -203,7 +217,7 @@ namespace GTA {
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
 
-        } else if (!Driving) {
+        } else {
             walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
         }
 
