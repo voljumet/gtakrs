@@ -20,9 +20,9 @@ namespace GTA {
         this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
         this->minimap.setViewport(sf::FloatRect(0.79f,0.01f , 0.2f, 0.2f));
 
-        this->_data->assets.LoadTexture("tiles", MAP_TILE_FILEPATH);    // dependency injected directly *3
+        this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
-        map.Array(this->_data->assets.GetTexture("tiles"), this->_data->assets.GetFont("Arial"));
+        map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
         this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
         nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
@@ -160,7 +160,6 @@ namespace GTA {
         this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
 
         if(this->_car.getGlobalBounds().intersects(nonpc.getNpcBot().getGlobalBounds())){
-//            nonpc.getNpcBot().rotate(180);
             nonpc.dir = nonpc.RANDIR;
         }
 

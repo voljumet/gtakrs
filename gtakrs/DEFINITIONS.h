@@ -10,7 +10,7 @@
 
 ///IMPORTANT TO KNOW HOW MANY COLUMNS THERE ARE IN THE MAP FILE!!!!!!
 #define WORLD_WIDTH 115
-#define WORLD_HEIGHT 109
+#define WORLD_HEIGHT 121
 
 #define TILE_SIZE 70
 
@@ -19,7 +19,7 @@
 
 ///Map
 //////////////////////////////////////////////////////////////////////////////////////////
-#define MAP_TILE_FILEPATH "Resources/res/Tileset_Tileset.png"
+#define TILEMAP_PNG_FILEPATH "Resources/res/Tileset_Tileset.png"
 #define MAP_FILE "Resources/res/MAP.map"
 #define MAP_TEST "Resources/res/MAP2.map"
 #define MAP_TEST2 "Resources/res/MAP_TEST.map"
