@@ -13,8 +13,8 @@ namespace GTA{
     void Hacking::Init() {
 
         hackaudio.loadall();
-        hackaudio.loadcomputer();
         hackaudio.playcomputer();
+
 
 
         this->posX = 0;
@@ -49,8 +49,6 @@ namespace GTA{
 
     void Hacking::HandleInput() {
 
-
-
         sf::Event event{};
         while(this->_data->window.pollEvent(event)) {
 
@@ -58,7 +56,10 @@ namespace GTA{
                 playerinput += event.text.unicode;
                 playertext.setString(playerinput);
 
-                hackaudio.playbuttonpress();
+                hackaudio.PlaySound(hackaudio.button);
+
+
+
 
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
                     playerinput.clear();
@@ -67,6 +68,7 @@ namespace GTA{
 
                     this->_data->window.draw(playertext);
             }
+
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
 
@@ -144,8 +146,4 @@ namespace GTA{
         this->_data->window.draw(playertext);
         this->_data->window.display();
     }
-
-
-
-
 }

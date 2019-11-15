@@ -3,10 +3,34 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
+#include <list>
+#include"DEFINITIONS.h"
 
 namespace GTA{
     class AssetManager{
     public:
+        std::list<sf::Sound> sounds;
+        sf::SoundBuffer bufferhorn, buffergunshot, bufferfootstep, buffercardoor, bufferbutton;
+
+        sf::Sound soundhorn, gunshot, footstep, cardoor, button;
+
+        sf::Music song;
+        sf::Music computersounds;
+
+        void loadsong();
+        void playsong();
+        void loadcomputer();
+        void playcomputer();
+
+        sf::Sound loadhorn();
+        sf::Sound loadgunshot();
+        sf::Sound loadfootstep();
+        sf::Sound loadcardoor();
+        sf::Sound loadbuttonpress();
+
+        void loadall();
+
         AssetManager()= default;
         ~AssetManager()= default;
 

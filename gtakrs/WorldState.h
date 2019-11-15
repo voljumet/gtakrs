@@ -6,7 +6,6 @@
 #include "DEFINITIONS.h"
 #include "State.h"
 #include "Game.h"
-#include "Audio.h"
 #include "Map.h"
 #include "collisionTest.h"
 #include "colliderTest.h"
@@ -19,7 +18,7 @@ namespace GTA {
 
         Map map;
         Movement movement;
-        Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
+       ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;

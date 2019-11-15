@@ -38,4 +38,70 @@ namespace GTA {
     sf::Sound &AssetManager::GetSound(const std::string &name) {
         return this->_sounds.at(name);
     }
+
+    void AssetManager::PlaySound(const sf::Sound sound) {  ///Takes in a sf::Sound object and plays it
+        sounds.push_back(sound);
+        sounds.back().play();
+    }
+
+
+
+
+    sf::Sound AssetManager::loadhorn() {
+        bufferhorn.loadFromFile(AIRHORN_FILEPATH);
+        soundhorn.setBuffer(bufferhorn);
+        return soundhorn;
+    }
+
+    sf::Sound AssetManager::loadgunshot() {
+        buffergunshot.loadFromFile(GUNHSOT_FILEPATH);
+        gunshot.setBuffer(buffergunshot);
+        return gunshot;
+    }
+
+    sf::Sound AssetManager::loadfootstep() {
+        bufferfootstep.loadFromFile(GUNHSOT_FILEPATH);
+        footstep.setBuffer(bufferfootstep);
+        return footstep;
+    }
+
+    sf::Sound AssetManager::loadcardoor() {
+        buffercardoor.loadFromFile(CARDOOR_FILEPATH);
+        cardoor.setBuffer(buffercardoor);
+        return cardoor;
+    }
+    sf::Sound AssetManager::loadbuttonpress() {
+        bufferbutton.loadFromFile(BUTTONPRESS);
+        button.setBuffer(bufferbutton);
+        return button;
+    }
+
+
+    void AssetManager::loadall() {
+        loadhorn();
+        loadgunshot();
+        loadfootstep();
+        loadcardoor();
+        loadbuttonpress();
+        loadsong();
+        loadcomputer();
+    }
+
+    void AssetManager::loadsong() {
+        song.openFromFile(SONG);
+    }
+
+    void AssetManager::playsong() {
+        song.play();
+    }
+
+    void AssetManager::loadcomputer() {
+        computersounds.openFromFile(COMPUTERSOUNDS);
+    }
+
+    void AssetManager::playcomputer() {
+        computersounds.play();
+    }
+
+
 }

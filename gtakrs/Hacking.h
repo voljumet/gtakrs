@@ -3,7 +3,6 @@
 #include "State.h"
 #include "Game.h"
 #include "DEFINITIONS.h"
-#include "Audio.h"
 
 
 namespace GTA{
@@ -11,7 +10,7 @@ class Hacking : public State {
 public:
     explicit Hacking(GameDataRef data);
 
-    Audio hackaudio;
+    AssetManager hackaudio;
 
     float posX, posY, size;
     bool correctpassword;

@@ -24,7 +24,6 @@ namespace GTA {
         map.Array(this->_data->assets.GetTexture("tiles"));
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-//        audio.loadall();
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -94,12 +93,9 @@ namespace GTA {
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
-                            audio.playcardoor();
                         } else if (Driving) {
                             this->_player.setPosition(this->_car.getPosition());
                             Driving = false;
-                            audio.playcardoor();
-                            audio.playsong();
                         }
                     }
                 }
