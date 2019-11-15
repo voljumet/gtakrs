@@ -1,10 +1,4 @@
-//
-// Created by Ole Gunvaldsen on 10/11/2019.
-//
-
-#ifndef GTAKRS_SPRITEFACTORY_H
-#define GTAKRS_SPRITEFACTORY_H
-
+#pragma once
 
 
 #include <SFML/Graphics/Sprite.hpp>
@@ -25,5 +19,3 @@ namespace GTA {
     };
 }
 
-
-#endif //GTAKRS_SPRITEFACTORY_H
