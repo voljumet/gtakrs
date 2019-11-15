@@ -1,6 +1,5 @@
 #include <utility>
 #include <algorithm>
-
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
@@ -8,6 +7,7 @@
 #include "colliderTest.h"
 
 /// Denne klassen er for WORLD
+class check_collision;
 
 namespace GTA {
 
@@ -21,10 +21,15 @@ namespace GTA {
         this->minimap.setViewport(sf::FloatRect(0.79f,0.01f , 0.2f, 0.2f));
 
         this->_data->assets.LoadTexture("tiles", MAP_TILE_FILEPATH);    // dependency injected directly *3
-        map.Array(this->_data->assets.GetTexture("tiles"));
+        this->_data->assets.LoadFont("Arial", FONT_ARIAL);
+        map.Array(this->_data->assets.GetTexture("tiles"), this->_data->assets.GetFont("Arial"));
+
+        this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
+        nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-//        audio.loadall();
+//        audio.loadAll();
+//        this->_data->assets.LoadSound()
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -39,18 +44,20 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
-        this->_car.setPosition(_player.getPosition().x, _player.getPosition().y);
+
+        this->_car.setPosition(TILE_SIZE * 58, TILE_SIZE * 24);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
 
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
+        this->_car.setRotation(180);
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Settings
         this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-        this->_car2.setPosition(TILE_SIZE * 30, TILE_SIZE * 7);
+        this->_car2.setPosition(TILE_SIZE * 46, TILE_SIZE * 24);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car2.setRotation(90);
         this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
@@ -60,9 +67,9 @@ namespace GTA {
         //// Car 3 Texture / Settings
         this->_car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_data->assets.GetTexture("car").setSmooth(true);
-        this->_car3.setPosition(1400, 500);
+        this->_car3.setPosition(TILE_SIZE * 56, TILE_SIZE * 21);
         this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car3.setRotation(90);
+        this->_car3.setRotation(-90);
         this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car3.setOrigin(50.f, 90.f);
         this->_car3.setColor(sf::Color::Red);
@@ -111,10 +118,10 @@ namespace GTA {
             case sf::Event::KeyReleased:{
                 switch (event.key.code){
                     case sf::Keyboard::G:{
-                        if (!debug) {
-                            debug = true;
-                        } else if (debug) {
-                            debug = false;
+                        if (!Debug) {
+                            Debug = true;
+                        } else if (Debug) {
+                            Debug = false;
 
                         }
                     }
@@ -124,9 +131,13 @@ namespace GTA {
 
         UpdateMovement(this->_player, this->_car);
 
+
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
+
+        // npc
+        nonpc.move(map._Block);
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -143,7 +154,15 @@ namespace GTA {
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
 
         /// Draw map as tiles
-        MapRendering();
+        map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
+                _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+
+        this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
+
+        if(this->_car.getGlobalBounds().intersects(nonpc.getNpcBot().getGlobalBounds())){
+//            nonpc.getNpcBot().rotate(180);
+            nonpc.dir = nonpc.RANDIR;
+        }
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
@@ -152,9 +171,13 @@ namespace GTA {
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
         ///////// Minimap
-        this->_data->window.setView(this->minimap);
-        Minimap = true;
-        MapRendering();
+        if(!Debug){
+            this->_data->window.setView(this->minimap);
+            Minimap = true;
+            map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
+                       _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+
+        }
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
@@ -184,53 +207,12 @@ namespace GTA {
         } else if (!Driving) {
             walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
         }
+
         if (!Driving) {
             movement.Walk(this->_player);
         } else {
-
             movement.Drive(this->_car);
         }
     }
-
-    void WorldState::MapRendering() {
-        if(Driving){
-            posX = _car.getPosition().x / TILE_SIZE;
-            posY = _car.getPosition().y / TILE_SIZE;
-        } else {
-            posX = _player.getPosition().x / TILE_SIZE;
-            posY = _player.getPosition().y / TILE_SIZE;
-        }
-        if(!Minimap){
-            fromX = posX - mapReach;
-            toX = posX + mapReach;
-            fromY = posY - mapReach;
-            toY = posY + mapReach;
-        } else {
-            fromX = posX - miniMapReach;
-            toX = posX + miniMapReach;
-            fromY = posY - miniMapReach;
-            toY = posY + miniMapReach;
-            Minimap = false;
-        }
-
-        if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
-        if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
-        if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
-        if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
-
-        for(int Y = fromY; Y < toY; Y++) {
-            for (int X = fromX; X < toX; X++) {
-                /// Draw tiles
-                this->_data->window.draw(this->map._Block[Y][X].tileSprite);
-
-                if(debug){
-                    this->_data->window.draw(this->map._Block[Y][X].getRekt);
-                    this->_data->window.draw(this->map._Block[Y][X].text);
-                }
-            }
-        }
-    }
-
-
 }
 

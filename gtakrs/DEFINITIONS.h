@@ -8,8 +8,9 @@
 #define SCREEN_WIDTH 1800
 #define SCREEN_HEIGHT 1600
 
-#define WORLD_WIDTH 90
-#define WORLD_HEIGHT 245
+///IMPORTANT TO KNOW HOW MANY COLUMNS THERE ARE IN THE MAP FILE!!!!!!
+#define WORLD_WIDTH 115
+#define WORLD_HEIGHT 121
 
 #define TILE_SIZE 70
 
@@ -20,7 +21,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MAP_TILE_FILEPATH "Resources/res/Tileset_Tileset.png"
 #define MAP_FILE "Resources/res/MAP.map"
-#define MAP_FILE_TEST "Resources/res/MAP_TEST.map"
+#define MAP_TEST "Resources/res/MAP2.map"
+#define MAP_TEST2 "Resources/res/MAP_TEST.map"
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///Fonts
@@ -57,8 +60,17 @@
 #define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
-///AUDIO
-//////////////////////////////////////////////////////////////////////////////////////////
+
+///HACKING TEXTURE
+#define CRT_SCREEN "Resources/res/mission_2/crtScreen.png"
+#define RETRO "Resources/fonts/retro.ttf"
+
+
+
+
+
+/////AUDIO SAMPLES/////////
+//////////////////////////////////////
 #define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
 #define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"
 #define FOOTSTEP_FILEPATH "Resources/res/Sound/footstep.ogg"
