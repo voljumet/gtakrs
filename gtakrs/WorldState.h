@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-
 #include "DEFINITIONS.h"
 #include "State.h"
 #include "Game.h"
@@ -11,6 +10,7 @@
 #include "collisionTest.h"
 #include "colliderTest.h"
 #include "Movement.h"
+#include "Npc.h"
 
 
 namespace GTA {
@@ -20,18 +20,13 @@ namespace GTA {
         Map map;
         Movement movement;
         Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
+        Npc nonpc;
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;
         bool Driving = false;
-        bool debug = false;
+        bool Debug = false;
         bool Minimap = false;
-
-        int mapReach = 15;
-        int miniMapReach = 27;
-        int fromX = 0, toX = 0;
-        int fromY = 0, toY = 0;
-        int posX, posY;
 
         explicit WorldState(GameDataRef data);
         void Init() override;
@@ -40,12 +35,14 @@ namespace GTA {
         void Draw(float dt) override;
         void UpdateView(const float &dt);
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
-        void MapRendering();
+
 
         Collider GetCollider_car_2() { return Collider(_car2); }
         Collider GetCollider_car() { return Collider(_car); }
         Collider GetCollider_car3() { return Collider(_car3); }
         Collider GetCollider_player() { return Collider(_player); }
+
+        friend class Map;
 
     private:
         /// Create a new sprite

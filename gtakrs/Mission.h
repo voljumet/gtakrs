@@ -13,9 +13,9 @@ public:
 
     bool spriteisdead = false;
 
-    float posX, posY, spriteposX, spriteposY, movementspeed;
+    float posX{}, posY{}, spriteposX{}, spriteposY{}, movementspeed{};
 
-    int counter, steps;
+    int counter{}, steps{};
 
     void Init() override;
     void HandleInput() override;

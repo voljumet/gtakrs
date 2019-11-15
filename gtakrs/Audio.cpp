@@ -30,7 +30,7 @@ sf::Sound Audio::loadcardoor() {
 
 
 
-void Audio::loadall() {
+void Audio::loadAll() {
     loadhorn();
     loadgunshot();
     loadfootstep();

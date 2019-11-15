@@ -58,7 +58,6 @@ namespace GTA{
 
     void Movement::Walk(sf::Sprite& walker) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-//            std::cout<<"fuck ";
             walker.rotate(-rotateAmount * dt);
 
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
@@ -68,7 +67,7 @@ namespace GTA{
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
-                currentSpeed = 300;
+                currentSpeed = 100;
             }
             sf::Transform t;
             t.rotate(walker.getRotation());
@@ -78,6 +77,15 @@ namespace GTA{
             walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
                 currentSpeed = 300;
+            }
+            sf::Transform t;
+            t.rotate(walker.getRotation());
+            movementVec = t.transformPoint(Movement::forwardVec());
+
+        } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+            walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 150, 100, 110));
+            if(currentSpeed == maxSpeed){
+                currentSpeed = 600;
             }
             sf::Transform t;
             t.rotate(walker.getRotation());
@@ -93,6 +101,6 @@ namespace GTA{
         }
 
         if (WalkCounterForward == 5)
-            WalkCounterForward = 0;
+            WalkCounterForward = 1;
     }
 }

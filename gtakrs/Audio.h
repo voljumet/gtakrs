@@ -21,7 +21,7 @@ public:
       sf::Sound loadfootstep();
       sf::Sound loadcardoor();
 
-      void loadall();
+      void loadAll();
 
     //laster inn lydeffekt fra minnet og returnerer det
     // bør lastes inn i begynnelsen når spillet starter oppp slik at den er klar
