@@ -24,13 +24,18 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
-
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 //        audio.loadAll();
 //        this->_data->assets.LoadSound()
 
+        ///Load Textures
+        this->_data->assets.LoadTexture("Player", PLAYER);
+        this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
+        this->_data->assets.LoadTexture("car1", CAR_WHITE);
+        this->_data->assets.LoadTexture("car", CAR_BLUE);
+
+
         /// Player Texture / Settings
-        this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_data->assets.GetTexture("Player").setSmooth(true);
         this->_player.setPosition(TILE_SIZE * 49, TILE_SIZE * 22);                /// Place player
@@ -39,7 +44,6 @@ namespace GTA {
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
 
         /// Player car Texture / Settings
-        this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
 
@@ -52,7 +56,6 @@ namespace GTA {
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Settings
-        this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car2.setPosition(TILE_SIZE * 46, TILE_SIZE * 24);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
@@ -75,23 +78,31 @@ namespace GTA {
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
 
+        /// Create NPCars
+//        for (int k = 0; k < 10; ++k) {
+//            npcCarVec.push_back(new NpcCar);
+//            npcCarVec[k]->npcCarInit(this->_data->assets.GetTexture("car"), map._Block);
+//        }
 
-        for (int i = 0; i < 50; ++i) {
+        /// Create NPCaracters
+        for (int i = 0; i < 55; ++i) {
             npcVec.push_back(new Npc);
-            npcVec[i]->npcInit(this->_data->assets.GetTexture("Player") );
-
-            npcVec[i]->getNpcBot().setPosition((TILE_SIZE * 49)+(i*10), TILE_SIZE * 25);
-
-
-
-            /// RANDOM POS -----
+            npcVec[i]->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
         }
+
+
     }
 
     void WorldState::HandleInput() {
 
         /// npc
-        for(auto n : npcVec) { n->move(map._Block); }
+        for(auto n : npcVec) {
+            if(!n->dead){
+                n->move(map._Block);
+            }
+        }
+//        for(auto nop : npcCarVec) { nop->moveCar(map._Block); }
+
 
         sf::Event event{};
 
@@ -167,15 +178,32 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 _player.getPosition().x, _player.getPosition().y, map._Block, _data);
 
+        /// Draw NPCharacters
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
 
-            if(this->_car.getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds())){
-                i->dir = i->RandomDir;
+            /// Npc collision with car
+            if(!i->dead){
+                if(this->_car.getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds())){
+                    i->dead = true;
+                    i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+//                i->dir = i->RandomDir;
+                }
             }
+
+            /// Kommer til å intersecte med seg selv?!?!?!? -----
+//            for(auto &j : npcVec){
+//                if(j->getNpcBot().getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds())){
+//                    j->dir = j->RandomDir;
+//                }
+//            }
         }
 
-//        this->_data->window.draw(npc.getNpcBot());   /// draw npc
+        /// Draw NPCars
+//        for (auto &i : npcCarVec) {
+//            this->_data->window.draw(i->getNpcCarBot());
+//        }
+
 
         if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
         else { this->_data->window.draw(this->_car); }          /// Draw Car

@@ -10,6 +10,7 @@
 #include "collisionTest.h"
 #include "colliderTest.h"
 #include "Movement.h"
+#include "NpcCar.h"
 #include "Npc.h"
 
 
@@ -21,6 +22,7 @@ namespace GTA {
         Movement movement;
         Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
 
+//        std::vector<NpcCar*> npcCarVec;
         std::vector<Npc*> npcVec;
 
         const float dt = 0.01f;

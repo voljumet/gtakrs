@@ -17,21 +17,27 @@ namespace GTA {
         Npc();
         virtual ~Npc();
 
-        void npcInit(sf::Texture &texture); // loading the texture instead *1
+        void setNpcBot(sf::Texture &texture);
+
+        void npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
         void move(Block _Block[109][115]);
 
         /// Variables
         int NextPosX,NextPosY;
         int CurrentPosX, CurrentPosY;
-        int walkSpeed = 4;
+        int walkSpeed = 1;
         int walkUp, walkDown, walkRight, walkLeft;
         int NextNpcTile;
-        bool crashCurb;
         int UpdatedPosX, UpdatedPosY;
+        int npcStepsCounter = 0;
+        int randomPosX, randomPosY, RandNpcTile;
+        bool crashCurb, npcCheckWalkable = false, dead = false;
 
-        sf::Sprite &getNpcBot();
+        int npcCanStartHere[4]={10, 15, 16, 17};
+        int npcCanNOTwalkHere[14]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14};
+
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
-        int curb[6]={1,2,3,4,11,12};
+        sf::Sprite &getNpcBot();
 
         direction RandomDir;
     private:

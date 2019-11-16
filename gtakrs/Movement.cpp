@@ -1,7 +1,6 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Transform.hpp>
-#include <iostream>
 
 #include "Movement.h"
 

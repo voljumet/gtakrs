@@ -10,18 +10,30 @@ namespace GTA {
     Npc::~Npc() = default;
 
     // Using a reference of texture works
-    void Npc::npcInit(sf::Texture & texture) { // dependency injection method is the trick. *2
+    void Npc::npcInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npcBot.setTexture(texture);
-        this->npcBot.setPosition(TILE_SIZE * 49, TILE_SIZE * 25);
+
+        /// Spawn random
+        while(!npcCheckWalkable){
+            randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
+            randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
+
+            RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
+
+            /// IF True, break loop (true means that the tile is ok to spawn in)
+            npcCheckWalkable = std::find(std::begin(npcCanStartHere), std::end(npcCanStartHere), RandNpcTile) != std::end(npcCanStartHere);
+        }
+
+        this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
-
     }
 
-    sf::Sprite &Npc::getNpcBot() {
-        return npcBot; }
+    sf::Sprite &Npc::getNpcBot() { return npcBot; }
+
+
 
     void Npc::move(Block _Block[109][115]) {
         CurrentPosX = npcBot.getPosition().x;
@@ -32,50 +44,37 @@ namespace GTA {
         walkUp = CurrentPosY - walkSpeed;
         walkDown = CurrentPosY + walkSpeed;
 
-
         /// Generates random direction
         RandomDir = static_cast<direction >(rand() % 4);
-
 
         /// FUNKER -------------------
         switch (dir){
             case RIGHT : {
                 NextPosX = (walkRight+31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-
                 UpdatedPosX = walkRight;
                 UpdatedPosY = CurrentPosY;
-
                 break;
             }
-
             case LEFT : {
                 NextPosX = (walkLeft-31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-
                 UpdatedPosX = walkLeft;
                 UpdatedPosY = CurrentPosY;
-
                 break;
             }
-
             case UP : {
                 NextPosX = CurrentPosX / TILE_SIZE;
                 NextPosY = (walkUp-31) / TILE_SIZE;
-
                 UpdatedPosX = CurrentPosX;
                 UpdatedPosY = walkUp;
-
                 break;
             }
-
             case DOWN : {
                 NextPosX = CurrentPosX / TILE_SIZE;
                 NextPosY = (walkDown+31) / TILE_SIZE;
-
                 UpdatedPosX = CurrentPosX;
                 UpdatedPosY = walkDown;
-
                 break;
             }
         }
@@ -83,13 +82,18 @@ namespace GTA {
         NextNpcTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(curb), std::end(curb), NextNpcTile) != std::end(curb);
+        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextNpcTile) != std::end(npcCanNOTwalkHere);
 
         /// if "crashCurb" is false, keep moving
         if(!crashCurb){
             npcBot.setPosition(UpdatedPosX, UpdatedPosY);
         } else {
             dir = RandomDir; /// set random Direction
+        }
+        npcStepsCounter +=1;
+        if(npcStepsCounter == 500){
+            dir = RandomDir;
+            npcStepsCounter=0;
         }
 
         /// Sets the rotation of the NPC
@@ -109,6 +113,14 @@ namespace GTA {
 
         if (WalkCounterForward == 5)
             WalkCounterForward = 1;
+
+    }
+
+    void Npc::setNpcBot(sf::Texture &textura) {
+        std::cout << "dead!"<< std::endl;
+
+        this->npcBot.setTexture(textura);
+        npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
     }
 
