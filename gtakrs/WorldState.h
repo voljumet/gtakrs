@@ -31,6 +31,9 @@ namespace GTA {
         bool Debug = false;
         bool Minimap = false;
 
+        int playerStartPosX;
+        int playerStartPosY;
+
         explicit WorldState(GameDataRef data);
         void Init() override;
         void HandleInput() override;

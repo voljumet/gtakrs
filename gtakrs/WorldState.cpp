@@ -34,11 +34,13 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
 
+        playerStartPosX = TILE_SIZE * 49;
+        playerStartPosY = TILE_SIZE * 22;
 
         /// Player Texture / Settings
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_data->assets.GetTexture("Player").setSmooth(true);
-        this->_player.setPosition(TILE_SIZE * 49, TILE_SIZE * 22);                /// Place player
+        this->_player.setPosition(playerStartPosX, playerStartPosY);                /// Place player
         this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
@@ -47,12 +49,12 @@ namespace GTA {
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
 
-        this->_car.setPosition(TILE_SIZE * 58, TILE_SIZE * 24);
+        this->_car.setPosition(playerStartPosX, playerStartPosY);
         this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
-        this->_car.setRotation(180);
+//        this->_car.setRotation(180);
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////Car 2 Texture / Settings
@@ -124,10 +126,12 @@ namespace GTA {
                     case sf::Keyboard::Space:{
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
+                            this->_car.setRotation(this->_player.getRotation());
                             Driving = true;
                             audio.playcardoor();
                         } else {
                             this->_player.setPosition(this->_car.getPosition());
+                            this->_player.setRotation(this->_car.getRotation());
                             Driving = false;
                             audio.playcardoor();
                             audio.playsong();

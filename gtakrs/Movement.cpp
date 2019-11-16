@@ -12,17 +12,11 @@ namespace GTA{
     }
 
     void Movement::Drive(sf::Sprite& driver) {
-
         if (up) {
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                driver.rotate(-rotateAmount * dt);
-
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                driver.rotate(rotateAmount * dt);
-            }
-
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { driver.rotate(-rotateAmount * dt); }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) { driver.rotate(rotateAmount * dt); }
         }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
             up = true;
             currentSpeed -= deceleration * 2;
