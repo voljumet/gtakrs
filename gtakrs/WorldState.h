@@ -22,7 +22,7 @@ namespace GTA {
         Movement movement;
         Audio audio; ///this creates the audio object so that sounds can be used in worldstate.cpp
 
-//        std::vector<NpcCar*> npcCarVec;
+        std::vector<NpcCar*> npcCarVec;
         std::vector<Npc*> npcVec;
 
         const float dt = 0.01f;
@@ -30,6 +30,10 @@ namespace GTA {
         bool Driving = false;
         bool Debug = false;
         bool Minimap = false;
+        bool NoDrivingOrWalkingBool = false;
+
+        int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
+        int NoDrivWalkInt;
 
         int playerStartPosX;
         int playerStartPosY;
@@ -42,11 +46,13 @@ namespace GTA {
         void UpdateView(const float &dt);
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
 
-
-        Collider GetCollider_car_2() { return Collider(_car2); }
         Collider GetCollider_car() { return Collider(_car); }
+        Collider GetCollider_car_2() { return Collider(_car2); }
         Collider GetCollider_car3() { return Collider(_car3); }
         Collider GetCollider_player() { return Collider(_player); }
+
+        Collider GetCollider_Buildings(){ return Collider(_buildings); }
+//        Collider GetCollider_NPC(){ return Collider(_NPC); }
 
         friend class Map;
 
@@ -61,5 +67,6 @@ namespace GTA {
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;
+        sf::Sprite _buildings;
     };
 }

@@ -57,7 +57,7 @@ namespace GTA {
 //        this->_car.setRotation(180);
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
-        ////Car 2 Texture / Settings
+        ////NPC-Car 2 Texture / Settings
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_car2.setPosition(TILE_SIZE * 46, TILE_SIZE * 24);
         this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
@@ -66,7 +66,7 @@ namespace GTA {
         this->_car2.setOrigin(50.f, 90.f);
         GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR_BLUE);
 
-        //// Car 3 Texture / Settings
+        ////NPC-Car 3 Texture / Settings
         this->_car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
         this->_data->assets.GetTexture("car").setSmooth(true);
         this->_car3.setPosition(TILE_SIZE * 56, TILE_SIZE * 21);
@@ -76,15 +76,21 @@ namespace GTA {
         this->_car3.setOrigin(50.f, 90.f);
         this->_car3.setColor(sf::Color::Red);
 
+        /// BUILDING COLLISION TEST
+//        this->_buildings.set
+//        this->_buildings.setPosition( TILE_SIZE * 54, TILE_SIZE * 26);
+//        this->_buildings.setColor(sf::Color::Red);
+
+
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
-//        for (int k = 0; k < 10; ++k) {
-//            npcCarVec.push_back(new NpcCar);
-//            npcCarVec[k]->npcCarInit(this->_data->assets.GetTexture("car"), map._Block);
-//        }
+        for (int k = 0; k < 10; ++k) {
+            npcCarVec.push_back(new NpcCar);
+            npcCarVec[k]->npcCarInit(this->_data->assets.GetTexture("car1"), map._Block);
+        }
 
         /// Create NPCaracters
         for (int i = 0; i < 55; ++i) {
@@ -103,7 +109,8 @@ namespace GTA {
                 n->move(map._Block);
             }
         }
-//        for(auto nop : npcCarVec) { nop->moveCar(map._Block); }
+
+        for(auto nop : npcCarVec) { nop->moveCar(map._Block); }
 
 
         sf::Event event{};
@@ -159,9 +166,28 @@ namespace GTA {
 
         UpdateMovement(this->_player, this->_car);
 
+
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
-        if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
+
+
+        for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
+            for (int X = 0; X < WORLD_WIDTH; X++) {
+                NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
+                NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray), NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
+                if(NoDrivingOrWalkingBool){
+                    if(Driving){
+                        if (this->GetCollider_car().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
+                    } else {
+                        if (this->GetCollider_player().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
+
+                    }
+                }
+            }
+        }
+
+
+        if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
 
     }
 
@@ -181,6 +207,9 @@ namespace GTA {
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+
+        this->_data->window.draw(this->_buildings);
+
 
         /// Draw NPCharacters
         for (auto &i : npcVec) {
@@ -204,18 +233,18 @@ namespace GTA {
         }
 
         /// Draw NPCars
-//        for (auto &i : npcCarVec) {
-//            this->_data->window.draw(i->getNpcCarBot());
-//        }
+        for (auto &i : npcCarVec) {
+            this->_data->window.draw(i->getNpcCarBot());
+        }
 
-
-        if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
-        else { this->_data->window.draw(this->_car); }          /// Draw Car
+        /// Draw Player or Car
+        if (!Driving) { this->_data->window.draw(this->_player); }
+        else { this->_data->window.draw(this->_car); }
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
-        ///////// Minimap
+        /////////Draw Minimap
         if(!Debug){
             this->_data->window.setView(this->minimap);
             Minimap = true;
@@ -224,40 +253,38 @@ namespace GTA {
 
         }
 
-        if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
-        else { this->_data->window.draw(this->_car); }          /// Draw Car
+        /// Draw Player or Car
+        if (!Driving) { this->_data->window.draw(this->_player); }
+        else { this->_data->window.draw(this->_car); }
 
         /////DRAW EVERY SPRITE IN THE LIST
-        for (auto &i : spriteListy) {
-            this->_data->window.draw(*i);
-        }
+        for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+
 
         this->_data->window.display();
     }
 
     /// husk å bruke view
     void WorldState::UpdateView(const float &dt){
-        if(Driving){this->view.setCenter(this->_car.getPosition());}
-        else {this->view.setCenter(this->_player.getPosition());}
-
-        if(Driving){this->minimap.setCenter(this->_car.getPosition());}
-        else {this->minimap.setCenter(this->_player.getPosition());}
+        if(Driving){
+            this->view.setCenter(this->_car.getPosition());
+            this->minimap.setCenter(this->_car.getPosition());
+        } else {
+            this->view.setCenter(this->_player.getPosition());
+            this->minimap.setCenter(this->_player.getPosition());
+        }
 
     }
 
     void WorldState::UpdateMovement(sf::Sprite &walker, sf::Sprite &driver) {
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
-
+            movement.Drive(this->_car);
         } else {
             walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
+            movement.Walk(this->_player);
         }
 
-        if (!Driving) {
-            movement.Walk(this->_player);
-        } else {
-            movement.Drive(this->_car);
-        }
     }
 }
 
