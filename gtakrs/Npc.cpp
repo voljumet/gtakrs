@@ -90,7 +90,7 @@ namespace GTA {
         } else {
             dir = RandomDir; /// set random Direction
         }
-        npcStepsCounter +=1;
+        npcStepsCounter++;
         if(npcStepsCounter == 500){
             dir = RandomDir;
             npcStepsCounter=0;
@@ -103,16 +103,16 @@ namespace GTA {
         else if (dir == DOWN){npcBot.setRotation(180);}
 
         /// NPC movement Animation
-        npcBot.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+        npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
 
         SpriteSpeed++;
-        if (SpriteSpeed == 8) {
-            WalkCounterForward++;
+        if (SpriteSpeed == 18) {
+            walkAnimation++;
             SpriteSpeed = 0;
         }
 
-        if (WalkCounterForward == 5)
-            WalkCounterForward = 1;
+        if (walkAnimation == 5)
+            walkAnimation = 1;
 
     }
 

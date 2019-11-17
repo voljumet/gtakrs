@@ -58,7 +58,7 @@ namespace GTA{
 
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+            walker.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
                 currentSpeed = 100;
             }
@@ -67,7 +67,7 @@ namespace GTA{
             movementVec = t.transformPoint(-Movement::forwardVec());
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-            walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 110, 100, 110));
+            walker.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
                 currentSpeed = 300;
             }
@@ -76,7 +76,7 @@ namespace GTA{
             movementVec = t.transformPoint(Movement::forwardVec());
 
         } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-            walker.setTextureRect(sf::IntRect(0, WalkCounterForward * 150, 100, 110));
+            walker.setTextureRect(sf::IntRect(0, walkAnimation * 150, 100, 110));
             if(currentSpeed == maxSpeed){
                 currentSpeed = 600;
             }
@@ -89,11 +89,11 @@ namespace GTA{
         }
         SpriteSpeed++;
         if (SpriteSpeed == 8) {
-            WalkCounterForward++;
+            walkAnimation++;
             SpriteSpeed = 0;
         }
 
-        if (WalkCounterForward == 5)
-            WalkCounterForward = 1;
+        if (walkAnimation == 5)
+            walkAnimation = 1;
     }
 }

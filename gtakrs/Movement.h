@@ -13,7 +13,7 @@ namespace GTA{
         float WalkSpeed = 1.f;
         float rotateAmount = 150.f;
         float currentSpeed = 0.f;
-        int WalkCounterForward = 0, SpriteSpeed = 0;
+        int walkAnimation = 0, SpriteSpeed = 0;
 
         ///Car variables /  Driving variables
         bool up = false;
