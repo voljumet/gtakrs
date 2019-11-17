@@ -76,12 +76,6 @@ namespace GTA {
         this->_car3.setOrigin(50.f, 90.f);
         this->_car3.setColor(sf::Color::Red);
 
-        /// BUILDING COLLISION TEST
-//        this->_buildings.set
-//        this->_buildings.setPosition( TILE_SIZE * 54, TILE_SIZE * 26);
-//        this->_buildings.setColor(sf::Color::Red);
-
-
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
@@ -208,9 +202,6 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 _player.getPosition().x, _player.getPosition().y, map._Block, _data);
 
-        this->_data->window.draw(this->_buildings);
-
-
         /// Draw NPCharacters
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
@@ -259,8 +250,7 @@ namespace GTA {
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
-
-
+        
         this->_data->window.display();
     }
 

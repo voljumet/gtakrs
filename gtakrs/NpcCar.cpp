@@ -108,16 +108,6 @@ namespace GTA {
 
         /// NPC movement Animation
         npcCarBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
-//
-//        SpriteSpeed++;
-//        if (SpriteSpeed == 8) {
-//            WalkCounterForward++;
-//            SpriteSpeed = 0;
-//        }
-//
-//        if (WalkCounterForward == 5)
-//            WalkCounterForward = 1;
 
     }
-
 }

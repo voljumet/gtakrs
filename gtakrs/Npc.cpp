@@ -31,8 +31,6 @@ namespace GTA {
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-
-
     void Npc::move(Block _Block[109][115]) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;

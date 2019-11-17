@@ -51,9 +51,6 @@ namespace GTA {
         Collider GetCollider_car3() { return Collider(_car3); }
         Collider GetCollider_player() { return Collider(_player); }
 
-        Collider GetCollider_Buildings(){ return Collider(_buildings); }
-//        Collider GetCollider_NPC(){ return Collider(_NPC); }
-
         friend class Map;
 
     private:
@@ -67,6 +64,5 @@ namespace GTA {
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;
-        sf::Sprite _buildings;
     };
 }

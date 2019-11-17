@@ -7,7 +7,6 @@
 #include "DEFINITIONS.h"
 #include "Map.h"
 
-
 namespace GTA {
 
     class Npc : public Movement{
