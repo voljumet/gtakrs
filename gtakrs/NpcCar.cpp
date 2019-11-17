@@ -20,7 +20,7 @@ namespace GTA {
             RandNpcTile = Car_Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
-            npcCheckWalkable = std::find(std::begin(npcCarCanStartHere), std::end(npcCarCanStartHere), RandNpcTile) != std::end(npcCarCanStartHere);
+            npcCheckWalkable = std::find(std::begin(npcCarCanSpawnHere), std::end(npcCarCanSpawnHere), RandNpcTile) != std::end(npcCarCanSpawnHere);
         }
 
         randomColor = (rand() % 6, rand() % 6);
@@ -41,7 +41,7 @@ namespace GTA {
 
     sf::Sprite &NpcCar::getNpcCarBot() { return npcCarBot; }
 
-    void NpcCar::moveCar(Block Car_Block[109][115]) {
+    void NpcCar::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         CurrentPosX = npcCarBot.getPosition().x;
         CurrentPosY = npcCarBot.getPosition().y;
 

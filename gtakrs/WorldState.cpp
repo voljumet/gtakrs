@@ -109,7 +109,7 @@ namespace GTA {
 
         sf::Event event{};
 
-        const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
+//        const sf::Vector2f forwardVec(0.f, -WalkSpeed); //normal vec pointing forward
 
         while (this->_data->window.pollEvent(event)) {
             if (event.type == sf::Event::Closed
@@ -164,7 +164,7 @@ namespace GTA {
         if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
         if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
 
-
+        /// Collision with buildings and static elements
         for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
             for (int X = 0; X < WORLD_WIDTH; X++) {
                 NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
@@ -174,7 +174,6 @@ namespace GTA {
                         if (this->GetCollider_car().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
                     } else {
                         if (this->GetCollider_player().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
-
                     }
                 }
             }
@@ -208,10 +207,14 @@ namespace GTA {
 
             /// Npc collision with car
             if(!i->dead){
-                if(this->_car.getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds())){
-                    i->dead = true;
-                    i->setNpcBot(this->_data->assets.GetTexture("Dead"));
-//                i->dir = i->RandomDir;
+                if(this->_car.getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds()) ){ /// && if(_car.getvectorchenge > 0);
+                    if(movement.currentSpeed <= 800){
+                        i->dir = i->RandomDir;
+                        i->setNpcBot(movement.movementVec * movement.currentSpeed * movement.dt);
+                    } else {
+                        i->dead = true;
+                        i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+                    }
                 }
             }
 
@@ -250,7 +253,7 @@ namespace GTA {
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
-        
+
         this->_data->window.display();
     }
 
@@ -274,7 +277,6 @@ namespace GTA {
             walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
             movement.Walk(this->_player);
         }
-
     }
 }
 

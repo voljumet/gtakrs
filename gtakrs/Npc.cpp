@@ -20,7 +20,7 @@ namespace GTA {
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
-            npcCheckWalkable = std::find(std::begin(npcCanStartHere), std::end(npcCanStartHere), RandNpcTile) != std::end(npcCanStartHere);
+            npcCheckWalkable = std::find(std::begin(npcCanSpawnHere), std::end(npcCanSpawnHere), RandNpcTile) != std::end(npcCanSpawnHere);
         }
 
         this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
@@ -31,7 +31,7 @@ namespace GTA {
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-    void Npc::move(Block _Block[109][115]) {
+    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
@@ -118,6 +118,11 @@ namespace GTA {
         this->npcBot.setTexture(textura);
         npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
+    }
+
+    void Npc::setNpcBot(sf::Vector2f vector2F) {
+
+        npcBot.move(vector2F);
     }
 
 }

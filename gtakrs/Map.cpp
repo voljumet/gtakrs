@@ -12,11 +12,11 @@ namespace GTA{
 
                 tileNumer = std::to_string(_Block[Y][X].tileTextureNumber);
 
-                this->_Block[Y][X].getRekt.setSize(sf::Vector2f(TILE_SIZE, TILE_SIZE));
-                this->_Block[Y][X].getRekt.setOutlineColor(sf::Color::Red);
-                this->_Block[Y][X].getRekt.setOutlineThickness(0.5);
-                this->_Block[Y][X].getRekt.setPosition((TILE_SIZE * X), (TILE_SIZE * Y));
-                this->_Block[Y][X].getRekt.setFillColor(sf::Color(0, 0, 0, 0));
+//                this->_Block[Y][X].getRekt.setSize(sf::Vector2f(TILE_SIZE, TILE_SIZE));
+//                this->_Block[Y][X].getRekt.setOutlineColor(sf::Color::Red);
+//                this->_Block[Y][X].getRekt.setOutlineThickness(0.5);
+//                this->_Block[Y][X].getRekt.setPosition((TILE_SIZE * X), (TILE_SIZE * Y));
+//                this->_Block[Y][X].getRekt.setFillColor(sf::Color(0, 0, 0, 0));
 
                 this->_Block[Y][X].tileSprite.setTexture(texture);         /// Set Texture for tile
                 this->_Block[Y][X].tileSprite.setPosition((TILE_SIZE * X), (TILE_SIZE * Y));                /// Place player
