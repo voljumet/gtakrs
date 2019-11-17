@@ -110,4 +110,18 @@ namespace GTA {
         npcCarBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
 
     }
+
+    void NpcCar::setNpcCarBot(sf::Texture &textura) {
+        std::cout << "Destroyed!"<< std::endl;
+
+        this->npcCarBot.setTexture(textura);
+        npcCarBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
+
+    }
+
+    void NpcCar::setNpcCarBot(sf::Vector2f vector2F) {
+
+        npcCarBot.move(vector2F);
+    }
+
 }

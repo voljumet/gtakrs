@@ -18,6 +18,9 @@ namespace GTA {
         NpcCar();
         virtual ~NpcCar();
 
+        void setNpcCarBot(sf::Texture &texture);
+        void setNpcCarBot(sf::Vector2f vector2F);
+
         void npcCarInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
         void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
 
@@ -31,7 +34,7 @@ namespace GTA {
         int npcStepsCounter = 0;
         int randomPosX, randomPosY, RandNpcTile;
         int randomColor;
-        bool crashCurb, npcCheckWalkable = false;
+        bool crashCurb, npcCheckWalkable = false, dead = false;
 
         int npcCarCanSpawnHere[9]={7, 8, 14, 15, 16};
         int npcCarCanNotDriveHere[18]={1,2,3,4,0, 5, 6, 9, 10, 11, 12,17,18,19,20,21,22};

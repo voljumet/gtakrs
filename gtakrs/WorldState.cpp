@@ -226,9 +226,24 @@ namespace GTA {
 //            }
         }
 
+
         /// Draw NPCars
         for (auto &i : npcCarVec) {
             this->_data->window.draw(i->getNpcCarBot());
+
+            /// Npc collision with car
+                if(this->_car.getGlobalBounds().intersects(i->getNpcCarBot().getGlobalBounds()) ){ /// && if(_car.getvectorchenge > 0);
+//                    if(movement.currentSpeed <= 800){
+//                        i->dir = i->RandomDir;
+                        i->setNpcCarBot(movement.movementVec * movement.currentSpeed * movement.dt);
+//                    }
+//                    else {
+//                        i->dead = true;
+//                        i->setNpcCarBot(this->_data->assets.GetTexture("Dead"));
+//                    }
+                }
+
+
         }
 
         /// Draw Player or Car
