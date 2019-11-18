@@ -56,7 +56,7 @@ namespace GTA {
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
 //        this->_car.setRotation(180);
-        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
 
         ////NPC-Car 2 Texture / Settings
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
@@ -206,9 +206,11 @@ namespace GTA {
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
 
+
             /// Npc collision with car
             if(!i->dead){
-                if(this->_car.getGlobalBounds().intersects(i->getNpcBot().getGlobalBounds()) ){ /// && if(_car.getvectorchenge > 0);
+
+                if(PixelPerfectTest(this->_car,i->getNpcBot())){ /// && if(_car.getvectorchenge > 0);
                     if(movement.currentSpeed <= 800){
                         i->dir = i->RandomDir;
                         i->setNpcBot(movement.movementVec * movement.currentSpeed * movement.dt);
@@ -233,7 +235,7 @@ namespace GTA {
             this->_data->window.draw(i->getNpcCarBot());
 
             /// Npc collision with car
-                if(this->_car.getGlobalBounds().intersects(i->getNpcCarBot().getGlobalBounds()) ){ /// && if(_car.getvectorchenge > 0);
+                if(PixelPerfectTest(this->_car,i->getNpcCarBot())){ /// && if(_car.getvectorchenge > 0);
 //                    if(movement.currentSpeed <= 800){
 //                        i->dir = i->RandomDir;
                         i->setNpcCarBot(movement.movementVec * movement.currentSpeed * movement.dt);

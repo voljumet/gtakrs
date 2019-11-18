@@ -80,7 +80,7 @@ namespace GTA
                             return true;
 
                             float intersectY = (o2v.y)+O1SubRect.top ;
-                        std::cout<<"IntersectX: "<<intersectY <<std::endl;
+//                        std::cout<<"IntersectX: "<<intersectY <<std::endl;
 
                     }
                 }
