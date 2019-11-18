@@ -7,7 +7,7 @@
 #include "colliderTest.h"
 
 /// Denne klassen er for WORLD
-class check_collision;
+//class check_collision;
 
 namespace GTA {
 
@@ -34,6 +34,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
 
+        /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
 
@@ -199,7 +200,7 @@ namespace GTA {
 
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+                _player.getPosition().x, _player.getPosition().y, _data);
 
         /// Draw NPCharacters
         for (auto &i : npcVec) {
@@ -258,7 +259,7 @@ namespace GTA {
             this->_data->window.setView(this->minimap);
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                       _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+                       _player.getPosition().x, _player.getPosition().y, _data);
 
         }
 

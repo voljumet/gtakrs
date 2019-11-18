@@ -43,14 +43,14 @@ namespace GTA{
     void Mission::HandleInput() {
 
         ////////////////////////
-        Factory* factory = new SpriteFactory;
-        if(spritelist.size() <= 10){
-        spritelist.push_back(factory->CreateNPC());
-        for(auto s : spritelist) {
-            s->setPosition(rand() % 1000, rand() % 1000);
-            s->setTexture(this->_data->assets.GetTexture("Sprite"));
-            }
-        }
+//        Factory* factory = new SpriteFactory;
+//        if(spritelist.size() <= 10){
+//        spritelist.push_back(factory->CreateNPC());
+//        for(auto s : spritelist) {
+//            s->setPosition(rand() % 1000, rand() % 1000);
+//            s->setTexture(this->_data->assets.GetTexture("Sprite"));
+//            }
+//        }
         ////////////////////////
 
         sf::Event event{};

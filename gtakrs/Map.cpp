@@ -10,6 +10,12 @@ namespace GTA{
             for (int X = 0; X < WORLD_WIDTH; X++) {
                 file >> _Block[Y][X].tileTextureNumber;
 
+                /// Offset tile by 1 to work with TileMap editor
+//                _Block[Y][X].tileTextureNumber+=1;
+
+                /// Include the json file here somwhere
+                /// -------------------------------------------------
+
                 tileNumer = std::to_string(_Block[Y][X].tileTextureNumber);
 
 //                this->_Block[Y][X].getRekt.setSize(sf::Vector2f(TILE_SIZE, TILE_SIZE));
@@ -43,7 +49,7 @@ namespace GTA{
     }
 
 void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
-        int playerPosY, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], GameDataRef inn_data) {
+        int playerPosY, GameDataRef inn_data) {
         if(Driving){
             mPosX = carPosX / TILE_SIZE;
             mPosY = carPosY / TILE_SIZE;
