@@ -173,8 +173,15 @@ namespace GTA {
                 if(NoDrivingOrWalkingBool){
                     if(Driving){
                         if (this->GetCollider_car().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
+
+                        if (PixelPerfectTest(this->_car,map._Block[Y][X].tileSprite)){
+//                            this->_car.move(-movement.movementVec * movement.currentSpeed * movement.dt);
+                        }
                     } else {
                         if (this->GetCollider_player().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
+                        if (PixelPerfectTest(this->_player,map._Block[Y][X].tileSprite)){
+//                            this->_player.move(sf::Vector2f(0,0));
+                        }
                     }
                 }
             }
@@ -209,14 +216,21 @@ namespace GTA {
 
             /// Npc collision with car
             if(!i->dead){
-
-                if(PixelPerfectTest(this->_car,i->getNpcBot())){ /// && if(_car.getvectorchenge > 0);
-                    if(movement.currentSpeed <= 800){
-                        i->dir = i->RandomDir;
+                if(Driving){
+                    if(PixelPerfectTest(this->_car,i->getNpcBot())){ /// && if(_car.getvectorchenge > 0);
+                        if(movement.currentSpeed <= 800){
+//                            i->dir = i->RandomDir;
+                            i->setNpcBot(movement.movementVec * movement.currentSpeed * movement.dt);
+                        } else {
+                            i->dead = true;
+                            i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+                        }
+                    }
+                } else {
+                    if(PixelPerfectTest(this->_player,i->getNpcBot())){ /// && if(_car.getvectorchenge > 0);
+//                        i->dir = i->RandomDir;
                         i->setNpcBot(movement.movementVec * movement.currentSpeed * movement.dt);
-                    } else {
-                        i->dead = true;
-                        i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+
                     }
                 }
             }
