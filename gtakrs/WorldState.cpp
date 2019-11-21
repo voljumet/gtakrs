@@ -219,7 +219,6 @@ namespace GTA {
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
 
-
             /// Npc collision with car
             if(!i->dead){
                 if(Driving){
