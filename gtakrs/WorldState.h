@@ -11,6 +11,7 @@
 #include "NpcCar.h"
 #include "Npc.h"
 #include "Collision_Detaction.h"
+#include "Player.h"
 
 
 namespace GTA {
@@ -22,6 +23,10 @@ namespace GTA {
 
         std::vector<NpcCar*> npcCarVec;
         std::vector<Npc*> npcVec;
+       ///TODO: PUT IN AUDIO FROM ASSETMANAGER
+        Npc nonpc;
+        Player player;
+
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;
@@ -54,10 +59,12 @@ namespace GTA {
         GameDataRef _data;
         sf::View view;
         sf::View minimap;
+        sf::Vector2f viewCenter;
 
-        sf::Sprite _player;
+//        sf::Sprite _player;
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;
+
     };
 }

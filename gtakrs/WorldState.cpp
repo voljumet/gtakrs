@@ -23,6 +23,8 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
+
+
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         ///Load Textures
@@ -36,13 +38,8 @@ namespace GTA {
         playerStartPosY = TILE_SIZE * 22;
 
         /// Player Texture / Settings
-        this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
-        this->_data->assets.GetTexture("Player").setSmooth(true);
-        this->_player.setPosition(playerStartPosX, playerStartPosY);                /// Place player
-        this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
 
-        this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
-        this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
+        player.playerInit(this->_data->assets.GetTexture("Player"));
 
         /// Player car Texture / Settings
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
@@ -55,7 +52,6 @@ namespace GTA {
         this->_car.setColor(sf::Color(10,50,50));
         CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
         this->_car.setRotation(180);
-
 
         ////NPC-Car 2 Texture / Settings
         this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
@@ -122,14 +118,14 @@ namespace GTA {
                 switch (event.key.code) {
                     case sf::Keyboard::Space: {
                         if (!Driving) {
-                            this->_car.setPosition(this->_player.getPosition());
-                            this->_car.setRotation(this->_player.getRotation());
+                            this->_car.setPosition(player.player_Getposition());
+                            this->_car.setRotation(this->player.getRotaion());
                             Driving = true;
 //                            audio.playcardoor();
                         } else {
-                            this->_player.setPosition(this->_car.getPosition());
-                            this->_player.setRotation(this->_car.getRotation());
-                            Driving = false;
+                            player.player_SetPosition(this->_car.getPosition());
+                            this->player.setRotaion(this->_car.getRotation());
+                            Driving = true;
                         }
                     }
                 }
@@ -152,7 +148,8 @@ namespace GTA {
             }
         }
 
-        UpdateMovement(this->_player, this->_car);
+        UpdateMovement(player.playerGetSprite(), this->_car);
+        player.playerVec(movement);
 
 
         /// Collision with buildings and static elements
@@ -168,7 +165,7 @@ namespace GTA {
 //                            this->_car.move(movement.movementVec * movement.currentSpeed * movement.dt);
 //                        }
                     } else {
-                        collisionDetaction.Check_Collision(_player,map._Block[Y][X].tileSprite,false);
+                        collisionDetaction.Check_Collision(player.playerGetSprite(),map._Block[Y][X].tileSprite,false);
 
 //                        if (PixelPerfectTest(this->_player,map._Block[Y][X].tileSprite)){
 //                            this->_player.move(sf::Vector2f(0,0));
@@ -180,7 +177,7 @@ namespace GTA {
 
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
-            collisionDetaction.Check_Collision(_player,_car2,false);
+            collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
             
         // npc
 //        nonpc.move(map._Block);
@@ -201,7 +198,7 @@ namespace GTA {
 
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                _player.getPosition().x, _player.getPosition().y, _data);
+                player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
 
         /// Draw NPCharacters
         for (auto &i : npcVec) {
@@ -221,9 +218,10 @@ namespace GTA {
                     }
                 } else {
 //                        i->dir = i->RandomDir;
-                    collisionDetaction.Check_Collision(_player,i->getNpcBot(),true);
+                    collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcBot(),true);
                 }
             }
+
 
             /// Kommer til å intersecte med seg selv?!?!?!? -----
 //            for(auto &j : npcVec){
@@ -250,29 +248,30 @@ namespace GTA {
 //                }
             } else {
 //                    i->dir = i->RandomDir;
-                collisionDetaction.Check_Collision(_player,i->getNpcCarBot(),false);
+                collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcCarBot(),false);
             }
 
         }
 
         /// Draw Player or Car
-        if (!Driving) { this->_data->window.draw(this->_player); }
-        else { this->_data->window.draw(this->_car); }
+        if (!Driving) {player.Draw(this->_data->window); } /// Draw Player
+        else { this->_data->window.draw(this->_car); }  /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+        player.HealthBar( this->_data->window);
 
         /////////Draw Minimap
         if(!Debug){
             this->_data->window.setView(this->minimap);
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                       _player.getPosition().x, _player.getPosition().y, _data);
+                       player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
 
         }
 
         /// Draw Player or Car
-        if (!Driving) { this->_data->window.draw(this->_player); }
+        if (!Driving) { player.Draw(this->_data->window); }
         else { this->_data->window.draw(this->_car); }
 
         /////DRAW EVERY SPRITE IN THE LIST
@@ -287,8 +286,8 @@ namespace GTA {
             this->view.setCenter(this->_car.getPosition());
             this->minimap.setCenter(this->_car.getPosition());
         } else {
-            this->view.setCenter(this->_player.getPosition());
-            this->minimap.setCenter(this->_player.getPosition());
+            this->view.setCenter(this->player.player_Getposition());
+            this->minimap.setCenter(this->player.player_Getposition());
         }
 
     }
@@ -297,10 +296,12 @@ namespace GTA {
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
             movement.Drive(this->_car);
+
         } else {
-            walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
-            movement.Walk(this->_player);
+           player.playerMoves(movement);
         }
+
+
     }
 }
 

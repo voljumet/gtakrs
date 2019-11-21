@@ -29,7 +29,6 @@ namespace GTA{
                 this->_Block[Y][X].tileSprite.setTextureRect(sf::IntRect(0, (_Block[Y][X].tileTextureNumber) * TILE_SIZE, 70,70));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
                 this->_Block[Y][X].tileSprite.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
                 this->_Block[Y][X].tileSprite.setOrigin(0.f, 0.f);                                          /// Origin player position
-
                 strX = std::to_string(X);
                 strY = std::to_string(Y);
 
