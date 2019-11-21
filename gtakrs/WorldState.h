@@ -12,6 +12,7 @@
 #include "Npc.h"
 #include "Collision_Detaction.h"
 #include "Player.h"
+#include "missionPlacement.h"
 
 
 namespace GTA {
@@ -24,8 +25,9 @@ namespace GTA {
         std::vector<NpcCar*> npcCarVec;
         std::vector<Npc*> npcVec;
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
-        Npc nonpc;
+
         Player player;
+        missionPlacement msp;
 
 
         const float dt = 0.01f;
@@ -34,6 +36,7 @@ namespace GTA {
         bool Debug = false;
         bool Minimap = false;
         bool NoDrivingOrWalkingBool = false;
+        bool mission = false;
 
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
         int NoDrivWalkInt;

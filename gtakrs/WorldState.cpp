@@ -23,7 +23,8 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
-
+        /// calls initcoin function from missionPlacement
+        msp.initCoin();
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
@@ -199,11 +200,11 @@ namespace GTA {
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
+        this->_data->window.draw(msp.getMissionCircle());
 
         /// Draw NPCharacters
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
-
 
             /// Npc collision with car
             if(!i->dead){
