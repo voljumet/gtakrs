@@ -11,6 +11,7 @@
 #include "NpcCar.h"
 #include "Npc.h"
 #include "Collision_Detaction.h"
+#include "Shooting.h"
 
 
 namespace GTA {
@@ -19,6 +20,8 @@ namespace GTA {
 
         Map map;
         Movement movement;
+        Shooting shooting;
+
 
         std::vector<NpcCar*> npcCarVec;
         std::vector<Npc*> npcVec;
