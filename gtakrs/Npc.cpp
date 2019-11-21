@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iterator>
 #include "Npc.h"
+#include "colliderTest.h"
 
 
 namespace GTA {
@@ -28,6 +29,7 @@ namespace GTA {
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
         npcCheckWalkable = false;
+
     }
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
@@ -114,16 +116,76 @@ namespace GTA {
     }
 
     void Npc::setNpcBot(sf::Texture &textura) {
-        std::cout << "dead!"<< std::endl;
 
         this->npcBot.setTexture(textura);
         npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
     }
 
-    void Npc::setNpcBot(sf::Vector2f vector2F) {
+//    void Npc::setNpcBot(sf::Vector2f vector2F) {
+//
+//        npcBot.move(vector2F);
+//    }
 
-        npcBot.move(vector2F);
+    void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+
+        for (int i = 0; i < 55; ++i) {
+            npcVec.push_back(new Npc);
+            npcVec[i]->npcInit(texture, _Block);
+        }
     }
+
+    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+
+        for(auto n : npcVec) {
+            if(!n->dead){
+                n->move(_Block);
+            } else {
+                n->RespawnTime -= 1;
+                if (n->RespawnTime == 0){
+                    n->npcInit(texture, _Block);
+                    n->dead = false;
+                    n->RespawnTime = 600;
+                }
+            }
+        }
+    }
+
+    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player) {
+        _data = inn_data;
+        for (auto &i : npcVec) {
+            this->_data->window.draw(i->getNpcBot());
+
+
+            /// Npc collision with car
+            if(!i->dead){
+                if(Driving){
+                    if(MovementSpeed <= 800){
+                        collisionDetaction.Check_Collision(_car,i->getNpcBot(),true);
+                    } else {
+                        if(PixelPerfectTest(i->getNpcBot(),_car)){
+                            i->dead = true;
+                            i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+                        }
+                    }
+                } else {
+                        i->dir = i->RandomDir;
+                    collisionDetaction.Check_Collision(_player,i->getNpcBot(),true);
+                }
+            }
+
+
+            /// Kommer til å intersecte med seg selv?!?!?!? -----
+//            for(auto &j : npcVec){
+//                for(auto &k : npcVec){
+//                    if(PixelPerfectTest(j->getNpcBot(),k->getNpcBot())){
+////                    collisionDetaction.Check_Collision(j->getNpcBot(),k->getNpcBot(),true);
+//                        j->dir = j->RandomDir;
+//                    }
+//                }
+//            }
+        }
+    }
+
 
 }

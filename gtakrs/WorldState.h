@@ -20,9 +20,10 @@ namespace GTA {
 
         Map map;
         Movement movement;
+        NpcController npcController;
 
         std::vector<NpcCar*> npcCarVec;
-        std::vector<Npc*> npcVec;
+
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
         Player player;
 

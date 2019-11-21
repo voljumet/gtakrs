@@ -5,6 +5,7 @@
 #include "Movement.h"
 #include "DEFINITIONS.h"
 #include "Map.h"
+#include "Collision_Detaction.h"
 
 namespace GTA {
 
@@ -16,7 +17,7 @@ namespace GTA {
         virtual ~Npc();
 
         void setNpcBot(sf::Texture &texture);
-        void setNpcBot(sf::Vector2f vector2F);
+//        void setNpcBot(sf::Vector2f vector2F);
 
         void npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
         void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
@@ -44,5 +45,19 @@ namespace GTA {
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npcBot;
+    };
+
+    class NpcController{
+    public:
+        typedef std::shared_ptr<GTA::GameData> GameDataRef;
+
+        void NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player);
+        std::vector<Npc*> npcVec;
+
+    private:
+        GameDataRef _data;
+        Collision_Detaction collisionDetaction;
     };
 }

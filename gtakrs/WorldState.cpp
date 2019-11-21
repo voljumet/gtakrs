@@ -83,28 +83,17 @@ namespace GTA {
         }
 
         /// Create NPCaracters
-        for (int i = 0; i < 55; ++i) {
-            npcVec.push_back(new Npc);
-            npcVec[i]->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
-        }
+        npcController.NpcSpawn(this->_data->assets.GetTexture("Player"), map._Block);
+
     }
 
     void WorldState::HandleInput() {
 
-        /// npc
-        for(auto n : npcVec) {
-            if(!n->dead){
-                n->move(map._Block);
-            } else {
-                n->RespawnTime -= 1;
-                if (n->RespawnTime == 0){
-                    n->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
-                    n->dead = false;
-                    n->RespawnTime = 600;
-                }
-            }
-        }
+        /// npc Respawn and Move
+        npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block);
 
+
+        /// npcCar Respawn and Move
         for(auto nop : npcCarVec) { nop->moveCar(map._Block); }
 
 
@@ -167,13 +156,11 @@ namespace GTA {
                 if(NoDrivingOrWalkingBool){
                     if(Driving){
                         collisionDetaction.Check_Collision(_car,map._Block[Y][X].tileSprite,false);
-
 //                        if (PixelPerfectTest(this->_car,map._Block[Y][X].tileSprite)){
 //                            this->_car.move(movement.movementVec * movement.currentSpeed * movement.dt);
 //                        }
                     } else {
                         collisionDetaction.Check_Collision(player.playerGetSprite(),map._Block[Y][X].tileSprite,false);
-
 //                        if (PixelPerfectTest(this->_player,map._Block[Y][X].tileSprite)){
 //                            this->_player.move(sf::Vector2f(0,0));
 //                        }
@@ -186,8 +173,8 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
             
-        // npc
-//        nonpc.move(map._Block);
+
+
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -208,38 +195,8 @@ namespace GTA {
                 player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
 
         /// Draw NPCharacters
-        for (auto &i : npcVec) {
-            this->_data->window.draw(i->getNpcBot());
+        npcController.NpcDraw(_data, Driving, movement.currentSpeed,_car, player.playerGetSprite());
 
-
-            /// Npc collision with car
-            if(!i->dead){
-                if(Driving){
-                    if(movement.currentSpeed <= 800){
-                        collisionDetaction.Check_Collision(_car,i->getNpcBot(),true);
-                    } else {
-                        if(PixelPerfectTest(i->getNpcBot(),_car)){
-                            i->dead = true;
-                            i->setNpcBot(this->_data->assets.GetTexture("Dead"));
-                        }
-                    }
-                } else {
-//                        i->dir = i->RandomDir;
-                    collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcBot(),true);
-                }
-            }
-
-
-            /// Kommer til å intersecte med seg selv?!?!?!? -----
-//            for(auto &j : npcVec){
-//                for(auto &k : npcVec){
-//                    if(PixelPerfectTest(j->getNpcBot(),k->getNpcBot())){
-////                    collisionDetaction.Check_Collision(j->getNpcBot(),k->getNpcBot(),true);
-//                        j->dir = j->RandomDir;
-//                    }
-//                }
-//            }
-        }
 
         /// Draw NPCars
         for (auto &i : npcCarVec) {
