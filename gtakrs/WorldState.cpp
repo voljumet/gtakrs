@@ -29,8 +29,6 @@ namespace GTA {
         nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-//        audio.loadAll();
-//        this->_data->assets.LoadSound()
 
         /// Player Texture / Settings
         this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
@@ -106,12 +104,9 @@ namespace GTA {
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
-                            audio.playcardoor();
                         } else if (Driving) {
                             this->_player.setPosition(this->_car.getPosition());
                             Driving = false;
-                            audio.playcardoor();
-                            audio.playsong();
                         }
                     }
                 }

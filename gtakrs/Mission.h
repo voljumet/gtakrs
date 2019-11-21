@@ -13,7 +13,10 @@ public:
 
     bool spriteisdead = false;
 
-    float posX{}, posY{}, spriteposX{}, spriteposY{}, movementspeed{};
+
+    float posX, posY, spriteposX, spriteposY, movementspeed;
+    std::vector<sf::Sprite*> spritelist;
+
 
     int counter{}, steps{};
 

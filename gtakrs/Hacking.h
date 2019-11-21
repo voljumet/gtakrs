@@ -4,13 +4,17 @@
 #include "Game.h"
 #include "DEFINITIONS.h"
 
+
 namespace GTA{
 class Hacking : public State {
 public:
     explicit Hacking(GameDataRef data);
 
+    AssetManager hackaudio;
+
     float posX, posY, size;
     bool correctpassword;
+
 
     void Init();
     void HandleInput();
