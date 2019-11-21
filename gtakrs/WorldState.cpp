@@ -172,15 +172,15 @@ namespace GTA {
                 NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray), NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
                 if(NoDrivingOrWalkingBool){
                     if(Driving){
-                        if (this->GetCollider_car().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
+//                        if (this->GetCollider_car().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
 
                         if (PixelPerfectTest(this->_car,map._Block[Y][X].tileSprite)){
-//                            this->_car.move(-movement.movementVec * movement.currentSpeed * movement.dt);
+                            this->_car.move(movement.movementVec * movement.currentSpeed * movement.dt);
                         }
                     } else {
-                        if (this->GetCollider_player().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
+//                        if (this->GetCollider_player().Check_Collision(map._Block[Y][X].tileSprite, 0.0f));
                         if (PixelPerfectTest(this->_player,map._Block[Y][X].tileSprite)){
-//                            this->_player.move(sf::Vector2f(0,0));
+                            this->_player.move(sf::Vector2f(0,0));
                         }
                     }
                 }
