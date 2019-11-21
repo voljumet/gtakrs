@@ -22,9 +22,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
-
-
-
+        
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         ///Load Textures
@@ -50,37 +48,15 @@ namespace GTA {
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10,50,50));
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
         this->_car.setRotation(180);
 
-        ////NPC-Car 2 Texture / Settings
-        this->_car2.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-        this->_car2.setPosition(TILE_SIZE * 46, TILE_SIZE * 24);
-        this->_car2.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car2.setRotation(90);
-        this->_car2.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
-        this->_car2.setOrigin(50.f, 90.f);
-        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR_BLUE);
-
-        ////NPC-Car 3 Texture / Settings
-        this->_car3.setTexture(this->_data->assets.GetTexture("car"));      /// Set Texture
-        this->_data->assets.GetTexture("car").setSmooth(true);
-        this->_car3.setPosition(TILE_SIZE * 56, TILE_SIZE * 21);
-        this->_car3.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car3.setRotation(-90);
-        this->_car3.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
-        this->_car3.setOrigin(50.f, 90.f);
-        this->_car3.setColor(sf::Color::Red);
 
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
-        for (int k = 0; k < 10; ++k) {
-            npcCarVec.push_back(new NpcCar);
-            npcCarVec[k]->npcCarInit(this->_data->assets.GetTexture("car1"), map._Block);
-        }
+        carController.CarSpawn(this->_data->assets.GetTexture("car1"), map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(this->_data->assets.GetTexture("Player"), map._Block);
@@ -92,10 +68,8 @@ namespace GTA {
         /// npc Respawn and Move
         npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block);
 
-
-        /// npcCar Respawn and Move
-        for(auto nop : npcCarVec) { nop->moveCar(map._Block); }
-
+        /// Car Respawn and Move
+        carController.CarMoveAndSpawn(this->_data->assets.GetTexture("car1"), map._Block);
 
         sf::Event event{};
 
@@ -191,31 +165,17 @@ namespace GTA {
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
 
         /// Draw map as tiles
-        map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
+        map.Render(Driving, Minimap, Debug, _car.getPosition().x,
+                _car.getPosition().y,player.playerGetSprite().getPosition().x,
+                player.playerGetSprite().getPosition().y, _data);
 
         /// Draw NPCharacters
-        npcController.NpcDraw(_data, Driving, movement.currentSpeed,_car, player.playerGetSprite());
-
+        npcController.NpcDraw(_data, Driving,
+                movement.currentSpeed,_car, player.playerGetSprite());
 
         /// Draw NPCars
-        for (auto &i : npcCarVec) {
-            this->_data->window.draw(i->getNpcCarBot());
-
-            /// Npc collision with car
-            if(Driving){
-//                if(movement.currentSpeed <= 800){
-                    collisionDetaction.Check_Collision(_car,i->getNpcCarBot(),true);
-//                } else {
-//                    i->dead = true;
-//                    i->setNpcCarBot(this->_data->assets.GetTexture("Dead"));
-//                }
-            } else {
-//                    i->dir = i->RandomDir;
-                collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcCarBot(),false);
-            }
-
-        }
+        carController.CarDraw(_data,Driving,
+                movement.currentSpeed, _car, player.playerGetSprite());
 
         /// Draw Player or Car
         if (!Driving) {player.Draw(this->_data->window); } /// Draw Player
@@ -229,8 +189,9 @@ namespace GTA {
         if(!Debug){
             this->_data->window.setView(this->minimap);
             Minimap = true;
-            map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                       player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
+            map.Render(Driving, Minimap, Debug, _car.getPosition().x,
+                    _car.getPosition().y,player.playerGetSprite().getPosition().x,
+                    player.playerGetSprite().getPosition().y, _data);
 
         }
 
@@ -264,8 +225,6 @@ namespace GTA {
         } else {
            player.playerMoves(movement);
         }
-
-
     }
 }
 

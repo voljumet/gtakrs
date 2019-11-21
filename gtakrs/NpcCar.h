@@ -21,7 +21,7 @@ namespace GTA {
         void setNpcCarBot(sf::Texture &texture);
         void setNpcCarBot(sf::Vector2f vector2F);
 
-        void npcCarInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
+        void CarInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
         void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
 
         /// Variables
@@ -47,5 +47,19 @@ namespace GTA {
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npcCarBot;
+    };
+
+    class CarController{
+    public:
+        typedef std::shared_ptr<GTA::GameData> GameDataRef;
+
+        void CarSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void CarMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void CarDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player);
+        std::vector<NpcCar*> CarVec;
+
+    private:
+        GameDataRef _data;
+        Collision_Detaction collisionDetaction;
     };
 }

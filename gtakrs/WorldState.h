@@ -21,6 +21,7 @@ namespace GTA {
         Map map;
         Movement movement;
         NpcController npcController;
+        CarController carController;
 
         std::vector<NpcCar*> npcCarVec;
 

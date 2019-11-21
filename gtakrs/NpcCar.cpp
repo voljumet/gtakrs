@@ -8,7 +8,7 @@ namespace GTA {
     NpcCar::~NpcCar() = default;
 
     // Using a reference of texture works
-    void NpcCar::npcCarInit(sf::Texture & texture,Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void NpcCar::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npcCarBot.setTexture(texture);
 
@@ -17,7 +17,7 @@ namespace GTA {
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
 
-            RandNpcTile = Car_Block[randomPosY][randomPosX].tileTextureNumber;
+            RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
             npcCheckWalkable = std::find(std::begin(npcCarCanSpawnHere), std::end(npcCarCanSpawnHere), RandNpcTile) != std::end(npcCarCanSpawnHere);
@@ -124,4 +124,37 @@ namespace GTA {
         npcCarBot.move(vector2F);
     }
 
+    void CarController::CarSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH] ) {
+        for (int k = 0; k < 10; ++k) {
+            CarVec.push_back(new NpcCar);
+            CarVec[k]->CarInit(texture, _Block);
+        }
+    }
+
+    void CarController::CarMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+        for(auto nop : CarVec) {
+            nop->moveCar(_Block);
+        }
+    }
+
+    void CarController::CarDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car,sf::Sprite _player) {
+        _data = inn_data;
+        for (auto &i : CarVec) {
+            this->_data->window.draw(i->getNpcCarBot());
+
+            /// Npc collision with car
+            if(Driving){
+//                if(movement.currentSpeed <= 800){
+                collisionDetaction.Check_Collision(_car,i->getNpcCarBot(),true);
+//                } else {
+//                    i->dead = true;
+//                    i->setNpcCarBot(this->_data->assets.GetTexture("Dead"));
+//                }
+            } else {
+//                    i->dir = i->RandomDir;
+                collisionDetaction.Check_Collision(_player,i->getNpcCarBot(),false);
+            }
+
+        }
+    }
 }
