@@ -29,6 +29,7 @@ namespace GTA {
         int NextNpcTile;
         int UpdatedPosX, UpdatedPosY;
         int npcStepsCounter = 0;
+        int RespawnTime = 600;
         int randomPosX, randomPosY, RandNpcTile;
         bool crashCurb, npcCheckWalkable = false, dead = false;
 

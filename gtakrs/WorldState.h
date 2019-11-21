@@ -24,7 +24,6 @@ namespace GTA {
         std::vector<NpcCar*> npcCarVec;
         std::vector<Npc*> npcVec;
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
-        Npc nonpc;
         Player player;
 
 

@@ -95,6 +95,13 @@ namespace GTA {
         for(auto n : npcVec) {
             if(!n->dead){
                 n->move(map._Block);
+            } else {
+                n->RespawnTime -= 1;
+                if (n->RespawnTime == 0){
+                    n->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
+                    n->dead = false;
+                    n->RespawnTime = 600;
+                }
             }
         }
 

@@ -27,6 +27,7 @@ namespace GTA {
         this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
+        npcCheckWalkable = false;
     }
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
