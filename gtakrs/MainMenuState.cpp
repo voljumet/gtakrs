@@ -44,6 +44,7 @@ namespace GTA{
     }
 
     void MainMenuState::HandleInput() {
+
         sf::Event event{};
 
         while (this->_data->window.pollEvent(event)){

@@ -92,6 +92,10 @@ namespace GTA {
 
     void WorldState::HandleInput() {
 
+        /// mission activation
+//        msp.activate();
+
+
         /// npc
         for(auto n : npcVec) {
             if(!n->dead){
@@ -180,8 +184,7 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
             
-        // npc
-//        nonpc.move(map._Block);
+
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state

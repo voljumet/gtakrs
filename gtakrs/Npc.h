@@ -6,6 +6,7 @@
 #include "DEFINITIONS.h"
 #include "Map.h"
 
+
 namespace GTA {
 
     class Npc : public Movement{
@@ -37,11 +38,13 @@ namespace GTA {
 
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
         sf::Sprite &getNpcBot();
-
         direction RandomDir;
+
     private:
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npcBot;
+        friend class missionPlacement; /// friends class missionplacement,
+        /// give it its private data
     };
 }

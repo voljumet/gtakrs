@@ -3,7 +3,10 @@
 #include "missionPlacement.h"
 #include "DEFINITIONS.h"
 
+
+
 namespace GTA{
+
 
     missionPlacement::missionPlacement() = default;
     missionPlacement::~missionPlacement() = default;
@@ -20,9 +23,22 @@ namespace GTA{
 
     }
 
+    void missionPlacement::activate(Npc npc) {
 
-    void missionPlacement::activate() {
+        int npcPosY, npcPosX;
+        sf::Vector2f npcPos = npc.getNpcBot().getPosition();
+        sf::Vector2f missionCircle = getMissionCircle().getPosition();
 
+
+        if(mission){
+            if(npcPos == missionCircle){
+                std::cout << "Player on place" << std::endl;
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)){
+                    this->_data->machine.GetActiveState();
+                    this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+                }
+            }
+        }
 
     }
 
