@@ -1,8 +1,6 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Transform.hpp>
-#include <iostream>
-
 #include "Movement.h"
 
 namespace GTA{
@@ -103,4 +101,6 @@ namespace GTA{
         if (WalkCounterForward == 5)
             WalkCounterForward = 1;
     }
+
+
 }

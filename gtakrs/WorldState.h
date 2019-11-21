@@ -11,6 +11,7 @@
 #include "colliderTest.h"
 #include "Movement.h"
 #include "Npc.h"
+#include "Collision_Detaction.h"
 
 
 namespace GTA {
@@ -28,6 +29,7 @@ namespace GTA {
         bool Debug = false;
         bool Minimap = false;
 
+
         explicit WorldState(GameDataRef data);
         void Init() override;
         void HandleInput() override;
@@ -35,6 +37,8 @@ namespace GTA {
         void Draw(float dt) override;
         void UpdateView(const float &dt);
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
+
+
 
 
         Collider GetCollider_car_2() { return Collider(_car2); }
@@ -46,6 +50,7 @@ namespace GTA {
 
     private:
         /// Create a new sprite
+        Collision_Detaction collisionDetaction;
         std::vector<sf::Sprite *> spriteListy;
         GameDataRef _data;
         sf::View view;

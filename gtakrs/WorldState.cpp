@@ -6,6 +6,7 @@
 #include "Movement.h"
 #include "colliderTest.h"
 
+
 /// Denne klassen er for WORLD
 class check_collision;
 
@@ -14,11 +15,11 @@ namespace GTA {
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {}
 
     void WorldState::Init() {
-        this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
-        this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH*2,SCREEN_HEIGHT*2));
-        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
-        this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
-        this->minimap.setViewport(sf::FloatRect(0.79f,0.01f , 0.2f, 0.2f));
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+        this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+        this->minimap.setViewport(sf::FloatRect(0.79f, 0.01f, 0.2f, 0.2f));
 
         this->_data->assets.LoadTexture("tiles", MAP_TILE_FILEPATH);    // dependency injected directly *3
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
@@ -36,7 +37,8 @@ namespace GTA {
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_data->assets.GetTexture("Player").setSmooth(true);
         this->_player.setPosition((SCREEN_WIDTH), (SCREEN_HEIGHT));                /// Place player
-        this->_player.setTextureRect(sf::IntRect(0, 0, 100,110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
+        this->_player.setTextureRect(sf::IntRect(0, 0, 100,
+                                                 110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
 
@@ -50,9 +52,11 @@ namespace GTA {
         this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
 
         this->_car.setOrigin(35.f, 50.f);
-        this->_car.setColor(sf::Color(10,50,50));
+        this->_car.setColor(sf::Color(10, 50, 50));
         this->_car.setRotation(180);
-        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
+//        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
+//        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR_BLUE);
+
 
         ////Car 2 Texture / Settings
         this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
@@ -77,6 +81,7 @@ namespace GTA {
         ////Add Sprites in to Sprite List
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
+
     }
 
     void WorldState::HandleInput() {
@@ -87,7 +92,7 @@ namespace GTA {
         while (this->_data->window.pollEvent(event)) {
             if (event.type == sf::Event::Closed
                 || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
-                    event.type == sf::Event::KeyReleased)){
+                    event.type == sf::Event::KeyReleased)) {
                 map.~Map();     /// Destructer
                 this->_data->window.close();
             }
@@ -96,8 +101,8 @@ namespace GTA {
         /// Change between person and car
         switch (event.type) {
             case sf::Event::KeyReleased: {
-                switch (event.key.code){
-                    case sf::Keyboard::Space:{
+                switch (event.key.code) {
+                    case sf::Keyboard::Space: {
                         if (!Driving) {
                             this->_car.setPosition(this->_player.getPosition());
                             Driving = true;
@@ -115,9 +120,9 @@ namespace GTA {
 
         /// Activate DEBUG-MODE
         switch (event.type) {
-            case sf::Event::KeyReleased:{
-                switch (event.key.code){
-                    case sf::Keyboard::G:{
+            case sf::Event::KeyReleased: {
+                switch (event.key.code) {
+                    case sf::Keyboard::G: {
                         if (!Debug) {
                             Debug = true;
                         } else if (Debug) {
@@ -132,10 +137,10 @@ namespace GTA {
         UpdateMovement(this->_player, this->_car);
 
 
-        if (this->GetCollider_car().Check_Collision(this->GetCollider_car_2(), 1.0f));
-        if (this->GetCollider_car().Check_Collision(this->GetCollider_car3(), 0.0f));
-        if (this->GetCollider_player().Check_Collision(this->GetCollider_car_2(), 0.0f));
-
+            collisionDetaction.Check_Collision(_car,_car2,true);
+            collisionDetaction.Check_Collision(_car,_car3,true);
+            collisionDetaction.Check_Collision(_player,_car2,false);
+            
         // npc
         nonpc.move(map._Block);
     }
@@ -155,11 +160,11 @@ namespace GTA {
 
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+                   _player.getPosition().x, _player.getPosition().y, map._Block, _data);
 
         this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
 
-        if(this->_car.getGlobalBounds().intersects(nonpc.getNpcBot().getGlobalBounds())){
+        if (this->_car.getGlobalBounds().intersects(nonpc.getNpcBot().getGlobalBounds())) {
 //            nonpc.getNpcBot().rotate(180);
             nonpc.dir = nonpc.RANDIR;
         }
@@ -171,7 +176,7 @@ namespace GTA {
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
         ///////// Minimap
-        if(!Debug){
+        if (!Debug) {
             this->_data->window.setView(this->minimap);
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
@@ -191,12 +196,12 @@ namespace GTA {
     }
 
     /// husk å bruke view
-    void WorldState::UpdateView(const float &dt){
-        if(Driving){this->view.setCenter(this->_car.getPosition());}
-        else if (!Driving){this->view.setCenter(this->_player.getPosition());}
+    void WorldState::UpdateView(const float &dt) {
+        if (Driving) { this->view.setCenter(this->_car.getPosition()); }
+        else if (!Driving) { this->view.setCenter(this->_player.getPosition()); }
 
-        if(Driving){this->minimap.setCenter(this->_car.getPosition());}
-        else if (!Driving){this->minimap.setCenter(this->_player.getPosition());}
+        if (Driving) { this->minimap.setCenter(this->_car.getPosition()); }
+        else if (!Driving) { this->minimap.setCenter(this->_player.getPosition()); }
 
     }
 
