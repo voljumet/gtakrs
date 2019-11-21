@@ -1,26 +1,27 @@
 #include <algorithm>
 #include <iterator>
-#include "NpcCar.h"
+#include "Npv.h"
 
 
 namespace GTA {
-    NpcCar::NpcCar() = default;
-    NpcCar::~NpcCar() = default;
+    Npv::Npv() = default;
+    Npv::~Npv() = default;
 
     // Using a reference of texture works
-    void NpcCar::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void Npv::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npcCarBot.setTexture(texture);
+        movementSpeed = 4;
 
         /// Spawn random
-        while(!npcCheckWalkable){
+        while(!CheckWalkable){
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
 
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
-            npcCheckWalkable = std::find(std::begin(npcCarCanSpawnHere), std::end(npcCarCanSpawnHere), RandNpcTile) != std::end(npcCarCanSpawnHere);
+            CheckWalkable = std::find(std::begin(npcCarCanSpawnHere), std::end(npcCarCanSpawnHere), RandNpcTile) != std::end(npcCarCanSpawnHere);
         }
 
         randomColor = (rand() % 6, rand() % 6);
@@ -39,16 +40,16 @@ namespace GTA {
         this->npcCarBot.setOrigin(50.f, 67.f);
     }
 
-    sf::Sprite &NpcCar::getNpcCarBot() { return npcCarBot; }
+    sf::Sprite &Npv::getNpcCarBot() { return npcCarBot; }
 
-    void NpcCar::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         CurrentPosX = npcCarBot.getPosition().x;
         CurrentPosY = npcCarBot.getPosition().y;
 
-        walkRight = CurrentPosX + walkSpeed;
-        walkLeft = CurrentPosX - walkSpeed;
-        walkUp = CurrentPosY - walkSpeed;
-        walkDown = CurrentPosY + walkSpeed;
+        moveRight = CurrentPosX + movementSpeed;
+        moveLeft = CurrentPosX - movementSpeed;
+        moveUp = CurrentPosY - movementSpeed;
+        moveDown = CurrentPosY + movementSpeed;
 
         /// Generates random direction
         RandomDir = static_cast<direction >(rand() % 4);
@@ -56,48 +57,48 @@ namespace GTA {
         /// FUNKER -------------------
         switch (dir){
             case RIGHT : {
-                NextPosX = (walkRight+31) / TILE_SIZE;
+                NextPosX = (moveRight + 31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-                UpdatedPosX = walkRight;
+                UpdatedPosX = moveRight;
                 UpdatedPosY = CurrentPosY;
                 break;
             }
             case LEFT : {
-                NextPosX = (walkLeft-31) / TILE_SIZE;
+                NextPosX = (moveLeft - 31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-                UpdatedPosX = walkLeft;
+                UpdatedPosX = moveLeft;
                 UpdatedPosY = CurrentPosY;
                 break;
             }
             case UP : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = (walkUp-31) / TILE_SIZE;
+                NextPosY = (moveUp - 31) / TILE_SIZE;
                 UpdatedPosX = CurrentPosX;
-                UpdatedPosY = walkUp;
+                UpdatedPosY = moveUp;
                 break;
             }
             case DOWN : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = (walkDown+31) / TILE_SIZE;
+                NextPosY = (moveDown + 31) / TILE_SIZE;
                 UpdatedPosX = CurrentPosX;
-                UpdatedPosY = walkDown;
+                UpdatedPosY = moveDown;
                 break;
             }
         }
 
-        NextNpcTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
+        NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(npcCarCanNotDriveHere), std::end(npcCarCanNotDriveHere), NextNpcTile) != std::end(npcCarCanNotDriveHere);
+        crashCurb = std::find(std::begin(npcCarCanNotDriveHere), std::end(npcCarCanNotDriveHere), NextTile) != std::end(npcCarCanNotDriveHere);
 
         /// if "crashCurb" is false, keep moving, else set random Direction
         if(!crashCurb){ npcCarBot.setPosition(UpdatedPosX, UpdatedPosY); }
         else { dir = RandomDir; }
 
-        npcStepsCounter +=1;
-        if(npcStepsCounter == 500){
+        StepCounter +=1;
+        if(StepCounter == 500){
             dir = RandomDir;
-            npcStepsCounter=0;
+            StepCounter=0;
         }
 
         /// Sets the rotation of the NPC
@@ -111,7 +112,7 @@ namespace GTA {
 
     }
 
-    void NpcCar::setNpcCarBot(sf::Texture &textura) {
+    void Npv::setNpcCarBot(sf::Texture &textura) {
         std::cout << "Destroyed!"<< std::endl;
 
         this->npcCarBot.setTexture(textura);
@@ -119,14 +120,14 @@ namespace GTA {
 
     }
 
-    void NpcCar::setNpcCarBot(sf::Vector2f vector2F) {
+    void Npv::setNpcCarBot(sf::Vector2f vector2F) {
 
         npcCarBot.move(vector2F);
     }
 
     void CarController::CarSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH] ) {
         for (int k = 0; k < 10; ++k) {
-            CarVec.push_back(new NpcCar);
+            CarVec.push_back(new Npv);
             CarVec[k]->CarInit(texture, _Block);
         }
     }

@@ -1,10 +1,10 @@
-#include "Collision_Detaction.h"
+#include "Collision_Detection.h"
 #include "colliderTest.h"
 
 namespace GTA {
 
 
-    void GTA::Collision_Detaction::Check_Collision(sf::Sprite &sprite1, sf::Sprite &sprite2, bool move) {
+    void GTA::Collision_Detection::Check_Collision(sf::Sprite &sprite1, sf::Sprite &sprite2, bool move) {
 
         while (GTA::PixelPerfectTest(sprite1, sprite2)) {
             float carposx = sprite1.getPosition().x;

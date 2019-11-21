@@ -14,15 +14,23 @@ namespace GTA {
 
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-        this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+        this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
         this->minimap.setViewport(sf::FloatRect(0.79f, 0.01f, 0.2f, 0.2f));
 
         this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
-        
+
+        this->getRektMap.setSize(sf::Vector2f(380, 340));
+        this->getRektMap.setFillColor(sf::Color(0, 0, 0, 200));
+//        this->getRektMap.setOutlineColor(sf::Color::Black);
+//        this->getRektMap.setOutlineThickness(10);
+
+//        this->getRektMap.setPosition(sf::Vector2f(minimap.getCenter().x/*-(minimap.getSize().x/2)*/,minimap.getCenter().y/*-(minimap.getSize().y/2)*/));
+//        this->getRektMap.
+
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         ///Load Textures
@@ -121,7 +129,6 @@ namespace GTA {
         UpdateMovement(player.playerGetSprite(), this->_car);
         player.playerVec(movement);
 
-
         /// Collision with buildings and static elements
         for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
             for (int X = 0; X < WORLD_WIDTH; X++) {
@@ -146,8 +153,6 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
-            
-
 
     }
 
@@ -187,6 +192,7 @@ namespace GTA {
 
         /////////Draw Minimap
         if(!Debug){
+            this->_data->window.draw(this->getRektMap);
             this->_data->window.setView(this->minimap);
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x,
@@ -208,12 +214,16 @@ namespace GTA {
     /// husk å bruke view
     void WorldState::UpdateView(const float &dt){
         if(Driving){
-            this->view.setCenter(this->_car.getPosition());
-            this->minimap.setCenter(this->_car.getPosition());
+            X = this->_car.getPosition().x;
+            Y = this->_car.getPosition().y;
         } else {
-            this->view.setCenter(this->player.player_Getposition());
-            this->minimap.setCenter(this->player.player_Getposition());
+            X = this->player.player_Getposition().x;
+            Y = this->player.player_Getposition().y;
         }
+        this->view.setCenter(X,Y);
+        this->minimap.setCenter(X,Y);
+        this->getRektMap.setPosition(X+=512,Y-=794);
+
 
     }
 

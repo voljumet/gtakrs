@@ -32,7 +32,7 @@ namespace GTA {
 
         Block _Block[WORLD_HEIGHT][WORLD_WIDTH];
 
-        friend class NpcCar;
+        friend class Npv;
         friend class Npc;
 
         void Array(sf::Texture & texture, sf::Font & font);

@@ -14,21 +14,21 @@ namespace GTA {
         this->npcBot.setTexture(texture);
 
         /// Spawn random
-        while(!npcCheckWalkable){
+        while(!CheckWalkable){
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
 
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
-            npcCheckWalkable = std::find(std::begin(npcCanSpawnHere), std::end(npcCanSpawnHere), RandNpcTile) != std::end(npcCanSpawnHere);
+            CheckWalkable = std::find(std::begin(npcCanSpawnHere), std::end(npcCanSpawnHere), RandNpcTile) != std::end(npcCanSpawnHere);
         }
 
         this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
-        npcCheckWalkable = false;
+        CheckWalkable = false;
 
     }
 
@@ -38,10 +38,10 @@ namespace GTA {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
-        walkRight = CurrentPosX + walkSpeed;
-        walkLeft = CurrentPosX - walkSpeed;
-        walkUp = CurrentPosY - walkSpeed;
-        walkDown = CurrentPosY + walkSpeed;
+        moveRight = CurrentPosX + movementSpeed;
+        moveLeft = CurrentPosX - movementSpeed;
+        moveUp = CurrentPosY - movementSpeed;
+        moveDown = CurrentPosY + movementSpeed;
 
         /// Generates random direction
         RandomDir = static_cast<direction >(rand() % 4);
@@ -49,39 +49,39 @@ namespace GTA {
         /// FUNKER -------------------
         switch (dir){
             case RIGHT : {
-                NextPosX = (walkRight+31) / TILE_SIZE;
+                NextPosX = (moveRight + 31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-                UpdatedPosX = walkRight;
+                UpdatedPosX = moveRight;
                 UpdatedPosY = CurrentPosY;
                 break;
             }
             case LEFT : {
-                NextPosX = (walkLeft-31) / TILE_SIZE;
+                NextPosX = (moveLeft - 31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-                UpdatedPosX = walkLeft;
+                UpdatedPosX = moveLeft;
                 UpdatedPosY = CurrentPosY;
                 break;
             }
             case UP : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = (walkUp-31) / TILE_SIZE;
+                NextPosY = (moveUp - 31) / TILE_SIZE;
                 UpdatedPosX = CurrentPosX;
-                UpdatedPosY = walkUp;
+                UpdatedPosY = moveUp;
                 break;
             }
             case DOWN : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = (walkDown+31) / TILE_SIZE;
+                NextPosY = (moveDown+31) / TILE_SIZE;
                 UpdatedPosX = CurrentPosX;
-                UpdatedPosY = walkDown;
+                UpdatedPosY = moveDown;
                 break;
             }
         }
 
-        NextNpcTile = _Block[NextPosY][NextPosX].tileTextureNumber;
+        NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextNpcTile) != std::end(npcCanNOTwalkHere);
+        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextTile) != std::end(npcCanNOTwalkHere);
 
         /// if "crashCurb" is false, keep moving
         if(!crashCurb){
@@ -89,10 +89,10 @@ namespace GTA {
         } else {
             dir = RandomDir; /// set random Direction
         }
-        npcStepsCounter++;
-        if(npcStepsCounter == 500){
+        StepCounter++;
+        if(StepCounter == 500){
             dir = RandomDir;
-            npcStepsCounter=0;
+            StepCounter=0;
         }
 
         /// Sets the rotation of the NPC
@@ -169,7 +169,6 @@ namespace GTA {
                         }
                     }
                 } else {
-                        i->dir = i->RandomDir;
                     collisionDetaction.Check_Collision(_player,i->getNpcBot(),true);
                 }
             }
