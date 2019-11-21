@@ -10,7 +10,7 @@ namespace GTA {
     // Using a reference of texture works
     void Npv::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
-        this->npcCarBot.setTexture(texture);
+        this->npvBot.setTexture(texture);
         movementSpeed = 4;
 
         /// Spawn random
@@ -26,25 +26,25 @@ namespace GTA {
 
         randomColor = (rand() % 6, rand() % 6);
         switch (randomColor){
-            case 1 : this->npcCarBot.setColor(sf::Color::Red); break;
-            case 2 : this->npcCarBot.setColor(sf::Color::Green); break;
-            case 3 : this->npcCarBot.setColor(sf::Color::Magenta); break;
-            case 4 : this->npcCarBot.setColor(sf::Color::Black); break;
-            case 5 : this->npcCarBot.setColor(sf::Color::White); break;
-            case 6 : this->npcCarBot.setColor(sf::Color::Cyan); break;
+            case 1 : this->npvBot.setColor(sf::Color::Red); break;
+            case 2 : this->npvBot.setColor(sf::Color::Green); break;
+            case 3 : this->npvBot.setColor(sf::Color::Magenta); break;
+            case 4 : this->npvBot.setColor(sf::Color::Black); break;
+            case 5 : this->npvBot.setColor(sf::Color::White); break;
+            case 6 : this->npvBot.setColor(sf::Color::Cyan); break;
         }
 
-        this->npcCarBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
-        this->npcCarBot.setTextureRect(sf::IntRect(0, 0, 100, 100));
-        this->npcCarBot.setScale(sf::Vector2f(1.0f, 1.0f));
-        this->npcCarBot.setOrigin(50.f, 67.f);
+        this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
+        this->npvBot.setTextureRect(sf::IntRect(0, 0, 100, 100));
+        this->npvBot.setScale(sf::Vector2f(1.0f, 1.0f));
+        this->npvBot.setOrigin(50.f, 67.f);
     }
 
-    sf::Sprite &Npv::getNpcCarBot() { return npcCarBot; }
+    sf::Sprite &Npv::getNpvBot() { return npvBot; }
 
     void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        CurrentPosX = npcCarBot.getPosition().x;
-        CurrentPosY = npcCarBot.getPosition().y;
+        CurrentPosX = npvBot.getPosition().x;
+        CurrentPosY = npvBot.getPosition().y;
 
         moveRight = CurrentPosX + movementSpeed;
         moveLeft = CurrentPosX - movementSpeed;
@@ -92,7 +92,7 @@ namespace GTA {
         crashCurb = std::find(std::begin(npcCarCanNotDriveHere), std::end(npcCarCanNotDriveHere), NextTile) != std::end(npcCarCanNotDriveHere);
 
         /// if "crashCurb" is false, keep moving, else set random Direction
-        if(!crashCurb){ npcCarBot.setPosition(UpdatedPosX, UpdatedPosY); }
+        if(!crashCurb){ npvBot.setPosition(UpdatedPosX, UpdatedPosY); }
         else { dir = RandomDir; }
 
         StepCounter +=1;
@@ -102,58 +102,58 @@ namespace GTA {
         }
 
         /// Sets the rotation of the NPC
-        if(dir == RIGHT){npcCarBot.setRotation(90);}
-        else if (dir == LEFT){npcCarBot.setRotation(270);}
-        else if (dir == UP){npcCarBot.setRotation(0);}
-        else if (dir == DOWN){npcCarBot.setRotation(180);}
+        if(dir == RIGHT){npvBot.setRotation(90);}
+        else if (dir == LEFT){npvBot.setRotation(270);}
+        else if (dir == UP){npvBot.setRotation(0);}
+        else if (dir == DOWN){npvBot.setRotation(180);}
 
         /// NPC movement Animation
-        npcCarBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
+        npvBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
 
     }
 
-    void Npv::setNpcCarBot(sf::Texture &textura) {
+    void Npv::setNvcBot(sf::Texture &textura) {
         std::cout << "Destroyed!"<< std::endl;
 
-        this->npcCarBot.setTexture(textura);
-        npcCarBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
+        this->npvBot.setTexture(textura);
+        npvBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
     }
 
-    void Npv::setNpcCarBot(sf::Vector2f vector2F) {
+    void Npv::setNpvBot(sf::Vector2f vector2F) {
 
-        npcCarBot.move(vector2F);
+        npvBot.move(vector2F);
     }
 
-    void CarController::CarSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH] ) {
+    void CarController::NpvSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int k = 0; k < 10; ++k) {
-            CarVec.push_back(new Npv);
-            CarVec[k]->CarInit(texture, _Block);
+            npvVec.push_back(new Npv);
+            npvVec[k]->CarInit(texture, _Block);
         }
     }
 
-    void CarController::CarMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        for(auto nop : CarVec) {
+    void CarController::NpvMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+        for(auto nop : npvVec) {
             nop->moveCar(_Block);
         }
     }
 
-    void CarController::CarDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car,sf::Sprite _player) {
+    void CarController::NpvDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car,sf::Sprite _player) {
         _data = inn_data;
-        for (auto &i : CarVec) {
-            this->_data->window.draw(i->getNpcCarBot());
+        for (auto &i : npvVec) {
+            this->_data->window.draw(i->getNpvBot());
 
             /// Npc collision with car
             if(Driving){
 //                if(movement.currentSpeed <= 800){
-                collisionDetaction.Check_Collision(_car,i->getNpcCarBot(),true);
+                collisionDetaction.Check_Collision(_car, i->getNpvBot(), true);
 //                } else {
 //                    i->dead = true;
-//                    i->setNpcCarBot(this->_data->assets.GetTexture("Dead"));
+//                    i->setNvcBot(this->_data->assets.GetTexture("Dead"));
 //                }
             } else {
 //                    i->dir = i->RandomDir;
-                collisionDetaction.Check_Collision(_player,i->getNpcCarBot(),false);
+                collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
             }
 
         }

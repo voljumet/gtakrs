@@ -64,7 +64,7 @@ namespace GTA {
         spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
-        carController.CarSpawn(this->_data->assets.GetTexture("car1"), map._Block);
+        carController.NpvSpawn(this->_data->assets.GetTexture("car1"), map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(this->_data->assets.GetTexture("Player"), map._Block);
@@ -74,10 +74,13 @@ namespace GTA {
     void WorldState::HandleInput() {
 
         /// npc Respawn and Move
-        npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block);
+        npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block,
+
+                /// VIRKER IKKE NÅ
+                this->_data->assets.GetTexture("Dead"));
 
         /// Car Respawn and Move
-        carController.CarMoveAndSpawn(this->_data->assets.GetTexture("car1"), map._Block);
+        carController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car1"), map._Block);
 
         sf::Event event{};
 
@@ -178,13 +181,13 @@ namespace GTA {
         npcController.NpcDraw(_data, Driving,
                 movement.currentSpeed,_car, player.playerGetSprite());
 
-        /// Draw NPCars
-        carController.CarDraw(_data,Driving,
+        /// Draw NPVehicles
+        carController.NpvDraw(_data,Driving,
                 movement.currentSpeed, _car, player.playerGetSprite());
 
-        /// Draw Player or Car
+        /// Draw Player or Vehicle
         if (!Driving) {player.Draw(this->_data->window); } /// Draw Player
-        else { this->_data->window.draw(this->_car); }  /// Draw Car
+        else { this->_data->window.draw(this->_car); }  /// Draw Vehicle
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }

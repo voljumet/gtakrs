@@ -34,7 +34,7 @@ namespace GTA {
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
@@ -113,6 +113,16 @@ namespace GTA {
         if (walkAnimation == 5)
             walkAnimation = 1;
 
+        currentTile = _Block[CurrentPosY/TILE_SIZE][CurrentPosX/TILE_SIZE].tileTextureNumber;
+
+        /// check if  "NextNpcPos" crashes with any of the variables in "curb"
+        OnIllegalGround = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), currentTile) != std::end(npcCanNOTwalkHere);
+
+        if(OnIllegalGround){
+            dead = true;
+            setNpcBot(texture);
+        }
+
     }
 
     void Npc::setNpcBot(sf::Texture &textura) {
@@ -135,11 +145,11 @@ namespace GTA {
         }
     }
 
-    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture1) {
 
         for(auto n : npcVec) {
             if(!n->dead){
-                n->move(_Block);
+                n->move(_Block, texture);
             } else {
                 n->RespawnTime -= 1;
                 if (n->RespawnTime == 0){
@@ -156,7 +166,6 @@ namespace GTA {
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
 
-
             /// Npc collision with car
             if(!i->dead){
                 if(Driving){
@@ -172,7 +181,6 @@ namespace GTA {
                     collisionDetaction.Check_Collision(_player,i->getNpcBot(),true);
                 }
             }
-
 
             /// Kommer til å intersecte med seg selv?!?!?!? -----
 //            for(auto &j : npcVec){

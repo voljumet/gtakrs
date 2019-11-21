@@ -13,7 +13,7 @@ namespace GTA {
         void setNpcBot(sf::Texture &texture);
 
         void npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
-        void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture);
 
         sf::Sprite &getNpcBot();
 
@@ -27,7 +27,7 @@ namespace GTA {
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
         void NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
-        void NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture1);
         void NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player);
         std::vector<Npc*> npcVec;
 
