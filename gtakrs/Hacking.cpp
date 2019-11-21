@@ -117,6 +117,13 @@ namespace GTA{
                     ///Exit the minigame after this perhaps?
                 }
 
+                if (event.type == sf::Event::Closed
+                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
+                        event.type == sf::Event::KeyReleased)) {
+
+                    this->_data->window.close();
+                }
+
 
                 playerinput.clear();
             }

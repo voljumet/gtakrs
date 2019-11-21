@@ -35,15 +35,15 @@ namespace GTA {
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
 
-        ///TESTING
+        ///TESTING//////////////////////////////////////////////////////////////////////////////////////////////////
 
         weapon.Gun_init();
 
-        weapon.gun_posX = TILE_SIZE * 49;
-        weapon.gun_posY = TILE_SIZE * 22;
+        weapon.gun_posX = TILE_SIZE * 51;
+        weapon.gun_posY = TILE_SIZE * 23;
         weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
 
-        ///TESTING
+        ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Player Texture / Settings
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
@@ -193,6 +193,23 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(_player,_car2,false);
+
+            if(PixelPerfectTest(_player, weapon.gun)){ ///Dersom player plukker opp pistolen
+
+                weapon.hasweapon=true;
+                std::cout << "weapon is now ready" << std::endl;
+
+                weapon.gun_posX = TILE_SIZE * 60;
+                weapon.gun_posY = TILE_SIZE * 23;
+                weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
+                std::cout << "posx is " << weapon.gun_posX << std::endl;
+                std::cout << "posy is " << weapon.gun_posY << std::endl;
+
+            }
+
+//            if(weapon.hasweapon=true){
+//                std::cout << "weapon is now ready" << std::endl;
+//            }
             
         // npc
 //        nonpc.move(map._Block);
