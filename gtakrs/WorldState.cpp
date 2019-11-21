@@ -35,6 +35,16 @@ namespace GTA {
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
 
+        ///TESTING
+
+        weapon.Gun_init();
+
+        weapon.gun_posX = TILE_SIZE * 49;
+        weapon.gun_posY = TILE_SIZE * 22;
+        weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
+
+        ///TESTING
+
         /// Player Texture / Settings
         this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
         this->_data->assets.GetTexture("Player").setSmooth(true);
@@ -91,6 +101,8 @@ namespace GTA {
             npcVec.push_back(new Npc);
             npcVec[i]->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
         }
+
+
     }
 
     void WorldState::HandleInput() {
@@ -259,6 +271,8 @@ namespace GTA {
         if (!Driving) { this->_data->window.draw(this->_player); }
         else { this->_data->window.draw(this->_car); }
 
+        this->_data->window.draw(weapon.gun);
+
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
@@ -277,6 +291,8 @@ namespace GTA {
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+
+
 
         this->_data->window.display();
     }
