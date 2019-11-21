@@ -8,8 +8,6 @@
 
 
 /// Denne klassen er for WORLD
-class check_collision;
-
 namespace GTA {
 
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {}
@@ -26,19 +24,13 @@ namespace GTA {
         map.Array(this->_data->assets.GetTexture("tiles"), this->_data->assets.GetFont("Arial"));
 
         this->_data->assets.LoadTexture("npc_char", PLAYER);    // dependency injected directly *3
+        this->_data->assets.LoadTexture("Player", PLAYER);    // dependency injected directly *3
         nonpc.npcInit(this->_data->assets.GetTexture("npc_char")); // loads Npc *4
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
         /// Player Texture / Settings
-        this->_data->assets.LoadTexture("Player", PLAYER);                            /// Load Texture for player
-        this->_player.setTexture(this->_data->assets.GetTexture("Player"));         /// Set Texture for player
-        this->_data->assets.GetTexture("Player").setSmooth(true);
-        this->_player.setPosition((SCREEN_WIDTH), (SCREEN_HEIGHT));                /// Place player
-        this->_player.setTextureRect(sf::IntRect(0, 0, 100,
-                                                 110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
-        this->_player.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
-        this->_player.setOrigin(50.f, 67.f);                                          /// Origin player position
+        player.playerInit(this->_data->assets.GetTexture("Player"));
 
         /// Player car Texture / Settings
         this->_data->assets.LoadTexture("car1", CAR_WHITE);   /// Load Texture
@@ -52,9 +44,6 @@ namespace GTA {
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setColor(sf::Color(10, 50, 50));
         this->_car.setRotation(180);
-//        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car1"), CAR_WHITE);
-//        GTA::CreateTextureAndBitmask(this->_data->assets.GetTexture("car"), CAR_BLUE);
-
 
         ////Car 2 Texture / Settings
         this->_data->assets.LoadTexture("car", CAR_BLUE);   /// Load Texture
@@ -80,6 +69,9 @@ namespace GTA {
         spriteListy.push_back(&this->_car2);
         spriteListy.push_back(&this->_car3);
 
+
+
+
     }
 
     void WorldState::HandleInput() {
@@ -102,10 +94,10 @@ namespace GTA {
                 switch (event.key.code) {
                     case sf::Keyboard::Space: {
                         if (!Driving) {
-                            this->_car.setPosition(this->_player.getPosition());
+                            this->_car.setPosition(player.player_Getposition());
                             Driving = true;
                         } else if (Driving) {
-                            this->_player.setPosition(this->_car.getPosition());
+                            player.player_SetPosition(this->_car.getPosition());
                             Driving = false;
                         }
                     }
@@ -129,12 +121,13 @@ namespace GTA {
             }
         }
 
-        UpdateMovement(this->_player, this->_car);
+        UpdateMovement(player.playerGetSprite(), this->_car);
+        player.playerVec(movement);
 
 
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
-            collisionDetaction.Check_Collision(_player,_car2,false);
+            collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
             
         // npc
         nonpc.move(map._Block);
@@ -155,7 +148,7 @@ namespace GTA {
 
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                   _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+                  player.player_Getposition().x, player.player_Getposition().y, map._Block, _data);
 
         this->_data->window.draw(nonpc.getNpcBot());   /// draw npc
 
@@ -164,22 +157,23 @@ namespace GTA {
             nonpc.dir = nonpc.RANDIR;
         }
 
-        if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
+        if (!Driving) { player.Draw(this->_data->window); }     /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+        player.HealthBar( this->_data->window);
 
         ///////// Minimap
         if (!Debug) {
             this->_data->window.setView(this->minimap);
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                       _player.getPosition().x, _player.getPosition().y, map._Block, _data);
+                       player.player_Getposition().x, player.player_Getposition().y, map._Block, _data);
 
         }
 
-        if (!Driving) { this->_data->window.draw(this->_player); }    /// Draw Player
+        if (!Driving) { player.Draw(this->_data->window); }    /// Draw Player
         if (Driving) { this->_data->window.draw(this->_car); }          /// Draw Car
 
         /////DRAW EVERY SPRITE IN THE LIST
@@ -192,27 +186,26 @@ namespace GTA {
 
     /// husk å bruke view
     void WorldState::UpdateView(const float &dt) {
+
+
         if (Driving) { this->view.setCenter(this->_car.getPosition()); }
-        else if (!Driving) { this->view.setCenter(this->_player.getPosition()); }
+        else if (!Driving) { this->view.setCenter(player.player_Getposition()); }
 
         if (Driving) { this->minimap.setCenter(this->_car.getPosition()); }
-        else if (!Driving) { this->minimap.setCenter(this->_player.getPosition()); }
+        else if (!Driving) { this->minimap.setCenter(player.player_Getposition()); }
 
     }
 
     void WorldState::UpdateMovement(sf::Sprite &walker, sf::Sprite &driver) {
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
-
-        } else if (!Driving) {
-            walker.move(movement.movementVec * movement.currentSpeed * movement.dt);
-        }
-
-        if (!Driving) {
-            movement.Walk(this->_player);
-        } else {
             movement.Drive(this->_car);
+
+        } else {
+           player.playerMoves(movement);
         }
+
+
     }
 }
 
