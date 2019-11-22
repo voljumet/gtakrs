@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iterator>
 #include "Npc.h"
+#include "colliderTest.h"
 
 
 namespace GTA {
@@ -13,32 +14,34 @@ namespace GTA {
         this->npcBot.setTexture(texture);
 
         /// Spawn random
-        while(!npcCheckWalkable){
+        while(!CheckWalkable){
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
 
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
-            npcCheckWalkable = std::find(std::begin(npcCanSpawnHere), std::end(npcCanSpawnHere), RandNpcTile) != std::end(npcCanSpawnHere);
+            CheckWalkable = std::find(std::begin(npcCanSpawnHere), std::end(npcCanSpawnHere), RandNpcTile) != std::end(npcCanSpawnHere);
         }
 
         this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
+        CheckWalkable = false;
+
     }
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
-        walkRight = CurrentPosX + walkSpeed;
-        walkLeft = CurrentPosX - walkSpeed;
-        walkUp = CurrentPosY - walkSpeed;
-        walkDown = CurrentPosY + walkSpeed;
+        moveRight = CurrentPosX + movementSpeed;
+        moveLeft = CurrentPosX - movementSpeed;
+        moveUp = CurrentPosY - movementSpeed;
+        moveDown = CurrentPosY + movementSpeed;
 
         /// Generates random direction
         RandomDir = static_cast<direction >(rand() % 4);
@@ -46,39 +49,39 @@ namespace GTA {
         /// FUNKER -------------------
         switch (dir){
             case RIGHT : {
-                NextPosX = (walkRight+31) / TILE_SIZE;
+                NextPosX = (moveRight + 31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-                UpdatedPosX = walkRight;
+                UpdatedPosX = moveRight;
                 UpdatedPosY = CurrentPosY;
                 break;
             }
             case LEFT : {
-                NextPosX = (walkLeft-31) / TILE_SIZE;
+                NextPosX = (moveLeft - 31) / TILE_SIZE;
                 NextPosY = CurrentPosY / TILE_SIZE;
-                UpdatedPosX = walkLeft;
+                UpdatedPosX = moveLeft;
                 UpdatedPosY = CurrentPosY;
                 break;
             }
             case UP : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = (walkUp-31) / TILE_SIZE;
+                NextPosY = (moveUp - 31) / TILE_SIZE;
                 UpdatedPosX = CurrentPosX;
-                UpdatedPosY = walkUp;
+                UpdatedPosY = moveUp;
                 break;
             }
             case DOWN : {
                 NextPosX = CurrentPosX / TILE_SIZE;
-                NextPosY = (walkDown+31) / TILE_SIZE;
+                NextPosY = (moveDown+31) / TILE_SIZE;
                 UpdatedPosX = CurrentPosX;
-                UpdatedPosY = walkDown;
+                UpdatedPosY = moveDown;
                 break;
             }
         }
 
-        NextNpcTile = _Block[NextPosY][NextPosX].tileTextureNumber;
+        NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextNpcTile) != std::end(npcCanNOTwalkHere);
+        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextTile) != std::end(npcCanNOTwalkHere);
 
         /// if "crashCurb" is false, keep moving
         if(!crashCurb){
@@ -86,10 +89,10 @@ namespace GTA {
         } else {
             dir = RandomDir; /// set random Direction
         }
-        npcStepsCounter++;
-        if(npcStepsCounter == 500){
+        StepCounter++;
+        if(StepCounter == 500){
             dir = RandomDir;
-            npcStepsCounter=0;
+            StepCounter=0;
         }
 
         /// Sets the rotation of the NPC
@@ -110,19 +113,86 @@ namespace GTA {
         if (walkAnimation == 5)
             walkAnimation = 1;
 
+        currentTile = _Block[CurrentPosY/TILE_SIZE][CurrentPosX/TILE_SIZE].tileTextureNumber;
+
+        /// check if  "NextNpcPos" crashes with any of the variables in "curb"
+        OnIllegalGround = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), currentTile) != std::end(npcCanNOTwalkHere);
+
+//        if(OnIllegalGround){
+//            dead = true;
+//            setNpcBot(texture);
+//        }
+
     }
 
     void Npc::setNpcBot(sf::Texture &textura) {
-        std::cout << "dead!"<< std::endl;
 
         this->npcBot.setTexture(textura);
         npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
     }
 
-    void Npc::setNpcBot(sf::Vector2f vector2F) {
+//    void Npc::setNpcBot(sf::Vector2f vector2F) {
+//
+//        npcBot.move(vector2F);
+//    }
 
-        npcBot.move(vector2F);
+    void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+
+        for (int i = 0; i < 55; ++i) {
+            npcVec.push_back(new Npc);
+            npcVec[i]->npcInit(texture, _Block);
+        }
     }
+
+    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture1) {
+
+        for(auto n : npcVec) {
+            if(!n->dead){
+                n->move(_Block, texture);
+            } else {
+                n->RespawnTime -= 1;
+                if (n->RespawnTime == 0){
+                    n->npcInit(texture, _Block);
+                    n->dead = false;
+                    n->RespawnTime = 600;
+                }
+            }
+        }
+    }
+
+    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player) {
+        _data = inn_data;
+        for (auto &i : npcVec) {
+            this->_data->window.draw(i->getNpcBot());
+
+            /// Npc collision with car
+            if(!i->dead){
+                if(Driving){
+                    if(MovementSpeed <= 800){
+                        collisionDetaction.Check_Collision(_car,i->getNpcBot(),true);
+                    } else {
+                        if(PixelPerfectTest(i->getNpcBot(),_car)){
+                            i->dead = true;
+                            i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+                        }
+                    }
+                } else {
+                    collisionDetaction.Check_Collision(_player,i->getNpcBot(),true);
+                }
+            }
+
+            /// Kommer til å intersecte med seg selv?!?!?!? -----
+//            for(auto &j : npcVec){
+//                for(auto &k : npcVec){
+//                    if(PixelPerfectTest(j->getNpcBot(),k->getNpcBot())){
+////                    collisionDetaction.Check_Collision(j->getNpcBot(),k->getNpcBot(),true);
+//                        j->dir = j->RandomDir;
+//                    }
+//                }
+//            }
+        }
+    }
+
 
 }

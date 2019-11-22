@@ -79,7 +79,7 @@ void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPos
                 /// Draw tiles
                  this->_data->window.draw(this->_Block[Y][X].tileSprite);
                 if(Debug){
-                    this->_data->window.draw(this->_Block[Y][X].getRekt);
+//                    this->_data->window.draw(this->_Block[Y][X].getRekt);
                     this->_data->window.draw(this->_Block[Y][X].text);
                 }
             }

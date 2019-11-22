@@ -4,7 +4,7 @@
 #include "Movement.h"
 
 namespace GTA {
-    class Collision_Detaction {
+    class Collision_Detection {
     public:
 
         void Check_Collision(sf::Sprite&, sf::Sprite&, bool move);

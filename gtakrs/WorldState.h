@@ -8,9 +8,9 @@
 #include "Map.h"
 #include "colliderTest.h"
 #include "Movement.h"
-#include "NpcCar.h"
+#include "Npv.h"
 #include "Npc.h"
-#include "Collision_Detaction.h"
+#include "Collision_Detection.h"
 #include "Player.h"
 #include "missionPlacement.h"
 
@@ -21,14 +21,15 @@ namespace GTA {
 
         Map map;
         Movement movement;
+        NpcController npcController;
+        CarController carController;
 
-        std::vector<NpcCar*> npcCarVec;
-        std::vector<Npc*> npcVec;
+        std::vector<Npv*> npcCarVec;
+
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
         Player player;
         missionPlacement msp;
-
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;
@@ -43,6 +44,7 @@ namespace GTA {
 
         int playerStartPosX;
         int playerStartPosY;
+        int  X, Y;
 
 
         explicit WorldState(GameDataRef data);
@@ -57,11 +59,12 @@ namespace GTA {
 
     private:
         /// Create a new sprite
-        Collision_Detaction collisionDetaction;
+        Collision_Detection collisionDetaction;
         std::vector<sf::Sprite *> spriteListy;
         GameDataRef _data;
         sf::View view;
         sf::View minimap;
+        sf::RectangleShape getRektMap;
         sf::Vector2f viewCenter;
 
 //        sf::Sprite _player;
