@@ -118,10 +118,10 @@ namespace GTA {
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
         OnIllegalGround = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), currentTile) != std::end(npcCanNOTwalkHere);
 
-        if(OnIllegalGround){
-            dead = true;
-            setNpcBot(texture);
-        }
+//        if(OnIllegalGround){
+//            dead = true;
+//            setNpcBot(texture);
+//        }
 
     }
 
