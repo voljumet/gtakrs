@@ -28,6 +28,7 @@ namespace GTA {
         CarController carController;
         Shooting shooting;
         Weapon weapon;
+        AssetManager sound;
 
 
         std::vector<Npv*> npcCarVec;

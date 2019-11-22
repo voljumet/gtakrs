@@ -28,6 +28,7 @@ namespace GTA {
 
         /// calls initcoin function from missionPlacement
         msp.initCoin();
+        sound.loadall();
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
@@ -175,7 +176,7 @@ namespace GTA {
             shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
             shooting.MoveBullet();
 
-            if(PixelPerfectTest(_player, weapon.gun)){                             ///Dersom player plukker opp pistolen
+            if(PixelPerfectTest(player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
 
                 weapon.hasweapon=true;
                 std::cout << "weapon is now ready" << std::endl;

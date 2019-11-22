@@ -1,6 +1,6 @@
 #include "Weapon.h"
 
-void Weapon::Gun_init() {
+void GTA::Weapon::Gun_init() {
 
     gunTexture.loadFromFile(GLOCK);
     gun.setTexture(gunTexture);
@@ -14,7 +14,7 @@ void Weapon::Gun_init() {
 
 }
 
-void Weapon::Gun_randompos() {
+void GTA::Weapon::Gun_randompos() {
 
 
 

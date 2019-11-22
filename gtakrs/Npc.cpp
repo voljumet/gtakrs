@@ -13,6 +13,7 @@ namespace GTA {
         dir = RandomDir;
         this->npcBot.setTexture(texture);
 
+
         /// Spawn random
         while(!CheckWalkable){
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
@@ -175,6 +176,7 @@ namespace GTA {
                     } else {
                         if(PixelPerfectTest(i->getNpcBot(),_car)){
                             i->dead = true;
+                            ///legg til cardeath
                             i->setNpcBot(this->_data->assets.GetTexture("Dead"));
                         }
                     }

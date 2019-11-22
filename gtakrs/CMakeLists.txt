@@ -28,6 +28,7 @@ add_executable(GTAKRS
         missionPlacement.h missionPlacement.cpp
         Bullet.h
         Shooting.cpp Shooting.h
+        Weapon.h Weapon.cpp
         )
 
 target_link_libraries (GTAKRS sfml-audio sfml-graphics sfml-window sfml-system)
