@@ -33,32 +33,41 @@ namespace GTA{
         this->_mission_1Button.setTexture(this->_data->assets.GetTexture("Mission1"));   /// Set Texture
         this->_mission_2Button.setTexture(this->_data->assets.GetTexture("Mission2"));   /// Set Texture
 
-        this->_logo.setPosition((SCREEN_WIDTH / 2) - (this->_logo.getGlobalBounds().width / 2), this->_logo.getGlobalBounds().height * 0.1);     /// Set Position to title/logo
-        this->_playButton.setPosition((SCREEN_WIDTH/2)-(this->_playButton.getGlobalBounds().width/2),(SCREEN_HEIGHT/2)-(this->_playButton.getGlobalBounds().height/2));   /// Set Position to buttons
-        this->_resumeButton.setPosition((SCREEN_WIDTH / 2) - (this->_resumeButton.getGlobalBounds().width / 2), _playButton.getPosition().y + _playButton.getGlobalBounds().height);   /// Set Position to buttons
-        this->_debugButton.setPosition((SCREEN_WIDTH/2)-(this->_debugButton.getGlobalBounds().width/2), _resumeButton.getPosition().y + _resumeButton.getGlobalBounds().height);   /// Set Position to buttons
-        this->_exitButton.setPosition((SCREEN_WIDTH/2)-(this->_exitButton.getGlobalBounds().width/2), _debugButton.getPosition().y + _debugButton.getGlobalBounds().height);   /// Set Position to buttons
+        this->_logo.setPosition((SCREEN_WIDTH / 2) - (this->_logo.getGlobalBounds().width / 2),
+                this->_logo.getGlobalBounds().height * 0.1);     /// Set Position to title/logo
+        this->_playButton.setPosition((SCREEN_WIDTH/2)-(this->_playButton.getGlobalBounds().width/2),
+                (SCREEN_HEIGHT/2)-(this->_playButton.getGlobalBounds().height/2));   /// Set Position to buttons
+        this->_resumeButton.setPosition((SCREEN_WIDTH / 2) - (this->_resumeButton.getGlobalBounds().width / 2),
+                _playButton.getPosition().y + _playButton.getGlobalBounds().height);   /// Set Position to buttons
+        this->_debugButton.setPosition((SCREEN_WIDTH/2)-(this->_debugButton.getGlobalBounds().width/2),
+                _resumeButton.getPosition().y + _resumeButton.getGlobalBounds().height);   /// Set Position to buttons
+        this->_exitButton.setPosition((SCREEN_WIDTH/2)-(this->_exitButton.getGlobalBounds().width/2),
+                _debugButton.getPosition().y + _debugButton.getGlobalBounds().height);   /// Set Position to buttons
 
-        //this->_mission_1Button.setPosition((SCREEN_WIDTH/2)-(this->_mission_1Button.getGlobalBounds().width), _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
-        //this->_mission_2Button.setPosition((SCREEN_WIDTH/2), _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
+        //this->_mission_1Button.setPosition((SCREEN_WIDTH/2)-(this->_mission_1Button.getGlobalBounds().width),
+        // _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
+        //this->_mission_2Button.setPosition((SCREEN_WIDTH/2), _exitButton.getPosition().y
+        // + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
     }
 
     void MainMenuState::HandleInput() {
-
         sf::Event event{};
 
         while (this->_data->window.pollEvent(event)){
             if(sf::Event::Closed == event.type){ this->_data->window.close(); }      /// Handle if window is exited
 
-            if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
+            if(this->_data->input.IsSpriteClicked(this->_playButton,
+                    sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
                 std::cout << "Play Game" << std::endl;
             }
 
-            if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
+            if(this->_data->input.IsSpriteClicked(this->_resumeButton,
+                    sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
                 std::cout << "Resume Game" << std::endl;
             }
 
-            if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
+            if(this->_data->input.IsSpriteClicked(this->_exitButton,
+                    sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
                 std::cout << "Exit Game" << std::endl;
                 this->_data->window.close();
             }
@@ -107,8 +116,8 @@ namespace GTA{
         this->_data->window.draw(this->_resumeButton);   /// Draw Button
         this->_data->window.draw(this->_debugButton);   /// Draw Button
         this->_data->window.draw(this->_exitButton);   /// Draw Button
-        this->_data->window.draw(this->_mission_1Button);   /// Draw Button
-        this->_data->window.draw(this->_mission_2Button);   /// Draw Button
+        //this->_data->window.draw(this->_mission_1Button);   /// Draw Button
+        //this->_data->window.draw(this->_mission_2Button);   /// Draw Button
 
         this->_data->window.display();      /// Display all
 

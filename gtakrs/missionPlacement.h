@@ -21,15 +21,13 @@ namespace GTA{
         virtual ~missionPlacement();
 
         void initCoin();
-        void activate(GameDataRef data_inn, Player player);
-        void updateView();
+        void missionSnipe(GameDataRef data_inn, Player player);
+        void missionHack(GameDataRef data_inn, Player player);
 
 
     private:
         GameDataRef _data;
         sf::Sprite missionCircle;
-        sf::Vector2f PlayerPos;
-        sf::Vector2f misnCircle;
         sf::Texture texture;
 
     public:

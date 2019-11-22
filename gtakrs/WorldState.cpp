@@ -99,7 +99,7 @@ namespace GTA {
 
         /// mission trigger
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
-            msp.activate(_data, player);
+            msp.missionSnipe(_data, player);
 
         }
 
@@ -187,8 +187,12 @@ namespace GTA {
 
     void WorldState::Update(float dt) {         /// New state to replace this state
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            std::cout << "morri" << std::endl;
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+
+            std::cout << "shamsi" << std::endl;
+
         }
     }
 

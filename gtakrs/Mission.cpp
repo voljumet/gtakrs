@@ -136,10 +136,13 @@ namespace GTA{
 
     ///Updates the
     void Mission::Update(float dt) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            this->_data->machine.AddState(StateRef(new WorldState(_data)),
-                    true);
+        if(spriteisdead){
+            std::cout << "rompa juice" << std::endl;
+//            this->_data->machine.AddState(StateRef(new WorldState(_data)),
+//                    true);
             this->_data->machine.GetActiveState()->Resume();
+            this->_data->machine.RemoveState();
+
         }
     }
 
