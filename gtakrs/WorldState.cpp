@@ -194,7 +194,7 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(_player,_car2,false);
 
-            if(PixelPerfectTest(_player, weapon.gun)){ ///Dersom player plukker opp pistolen
+            if(PixelPerfectTest(_player, weapon.gun)){                             ///Dersom player plukker opp pistolen
 
                 weapon.hasweapon=true;
                 std::cout << "weapon is now ready" << std::endl;
