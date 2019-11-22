@@ -117,7 +117,7 @@ namespace GTA {
         }
 ////////////////
         if(event.key.code == sf::Keyboard::E){
-            shooting.CreateBullet(_player);
+            shooting.CreateBullet(_player, this->_data->assets.GetTexture("car"));
         }
 ////////////////////////////////////
         /// Change between person and car
@@ -209,11 +209,13 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
                 _player.getPosition().x, _player.getPosition().y, _data);
 
-        for(auto b: shooting.bulletlist){
-            b->bullet.setTexture(this->_data->assets.GetTexture("car"));
-            b->bullet.setScale(0.2,0.2 );
-            this->_data->window.draw(b->bullet);
-        }
+        shooting.DrawBullet(_data);
+
+//        for(auto b: shooting.bulletlist){
+//            b->bullet.setTexture(this->_data->assets.GetTexture("car"));
+//            b->bullet.setScale(0.2,0.2 );
+//            this->_data->window.draw(b->bullet);
+//        }
 
         /// Draw NPCharacters
         for (auto &i : npcVec) {
