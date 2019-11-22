@@ -57,7 +57,8 @@ namespace GTA{
                 playertext.setString(playerinput);
 
                 hackaudio.PlaySound(hackaudio.button);
-
+                //std::remove_if(sounds.begin(), sounds.end(), [](sf::Sound&) {!sound.isPlaying()});
+                ///get this working brutha
 
 
 
@@ -115,6 +116,13 @@ namespace GTA{
                                           "$ have a nice day!\n");
                     correctpassword = true;
                     ///Exit the minigame after this perhaps?
+                }
+
+                if (event.type == sf::Event::Closed
+                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
+                        event.type == sf::Event::KeyReleased)) {
+
+                    this->_data->window.close();
                 }
 
 

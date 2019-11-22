@@ -45,6 +45,16 @@ namespace GTA {
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
 
+        ///TESTING//////////////////////////////////////////////////////////////////////////////////////////////////
+
+        weapon.Gun_init();
+
+        weapon.gun_posX = TILE_SIZE * 51;
+        weapon.gun_posY = TILE_SIZE * 23;
+        weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
+
+        ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// Player Texture / Settings
 
         player.playerInit(this->_data->assets.GetTexture("Player"));
@@ -165,6 +175,18 @@ namespace GTA {
             shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
             shooting.MoveBullet();
 
+            if(PixelPerfectTest(_player, weapon.gun)){                             ///Dersom player plukker opp pistolen
+
+                weapon.hasweapon=true;
+                std::cout << "weapon is now ready" << std::endl;
+
+                weapon.gun_posX = TILE_SIZE * 60;
+                weapon.gun_posY = TILE_SIZE * 23;
+                weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
+                std::cout << "posx is " << weapon.gun_posX << std::endl;
+                std::cout << "posy is " << weapon.gun_posY << std::endl;
+
+            }
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -204,6 +226,7 @@ namespace GTA {
                           this->_data->assets.GetTexture("HB1"),_car.getPosition(),Driving);
 
 
+        this->_data->window.draw(weapon.gun);
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 

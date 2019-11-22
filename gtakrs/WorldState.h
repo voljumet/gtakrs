@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "missionPlacement.h"
 #include "Shooting.h"
+#include "Weapon.h"
 
 
 
@@ -26,6 +27,7 @@ namespace GTA {
         NpcController npcController;
         CarController carController;
         Shooting shooting;
+        Weapon weapon;
 
 
         std::vector<Npv*> npcCarVec;
