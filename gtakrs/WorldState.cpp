@@ -125,7 +125,7 @@ namespace GTA {
                         } else {
                             player.player_SetPosition(this->_car.getPosition());
                             this->player.setRotaion(this->_car.getRotation());
-                            Driving = true;
+                            Driving = false;
                         }
                     }
                 }

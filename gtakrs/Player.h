@@ -4,6 +4,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include "Movement.h"
+#include <sstream>
 
 namespace GTA{
 class Player : Movement{
@@ -28,6 +29,9 @@ private:
     sf::RectangleShape healthBar;
     sf::Text text;
     sf::Font font;
+    int intHealth = 100;
+    std::ostringstream stringHealth;
+    std::string health;
 
 };
 }

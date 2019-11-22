@@ -71,6 +71,16 @@ namespace GTA{
         text.setCharacterSize(15);
         text.setPosition(playerSprite.getPosition().x-850,playerSprite.getPosition().y-800);
         renderWindow.draw(text);
+
+        stringHealth<<intHealth;
+        health = stringHealth.str();
+        text.setString("% "+ health );
+        text.setScale(1,1);
+        text.setFillColor(sf::Color::Black);
+        text.setFont(font);
+        text.setCharacterSize(15);
+        text.setPosition(playerSprite.getPosition().x-845,playerSprite.getPosition().y-750);
+        renderWindow.draw(text);
     }
 
     float Player::getRotaion() {
@@ -82,6 +92,10 @@ namespace GTA{
         playerSprite.setRotation(rotation);
 
     }
+
+
+
+
 
 
 }
