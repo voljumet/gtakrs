@@ -15,7 +15,7 @@ namespace GTA {
         void CreateBullet(sf::Sprite Player, sf::Texture texture);
         void MoveBullet();
         void DrawBullet(GameDataRef inn_data);
-        void Collision(std::vector<Npc*> npclist, std::vector<Bullet*> bulletlist);
+        void Collision(GameDataRef inn_data, std::vector<Npc*> npclist, std::vector<Bullet*> bulletlist);
 
     private:
         GameDataRef _data;

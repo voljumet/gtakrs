@@ -158,7 +158,9 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
+            shooting.Collision(_data, npcController.npcVec ,shooting.bulletlist);
             shooting.MoveBullet();
+
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state

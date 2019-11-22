@@ -38,6 +38,7 @@ namespace GTA {
         this->npvBot.setTextureRect(sf::IntRect(0, 0, 100, 100));
         this->npvBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npvBot.setOrigin(50.f, 67.f);
+        health = 50;
     }
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
