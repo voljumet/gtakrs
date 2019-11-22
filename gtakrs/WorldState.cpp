@@ -39,6 +39,7 @@ namespace GTA {
         /// calls initcoin function from missionPlacement
         msp.initCoin();
 
+
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
@@ -98,10 +99,13 @@ namespace GTA {
     void WorldState::HandleInput() {
 
         /// mission trigger
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
-            msp.missionSnipe(_data, player);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::M )&& missionNumber == 1) {
+
+                msp.missionSnipe(_data, player);
+            
 
         }
+
 
         /// npc
         for(auto n : npcVec) {
@@ -185,15 +189,16 @@ namespace GTA {
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
     }
 
-    void WorldState::Update(float dt) {         /// New state to replace this state
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            std::cout << "morri" << std::endl;
+    void WorldState::Update(float dt) {         /// New state to replace this state@
+
+         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
-
-            std::cout << "shamsi" << std::endl;
-
         }
+
+
+
     }
 
     void WorldState::Draw(float dt) {

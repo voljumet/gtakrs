@@ -38,6 +38,8 @@ namespace GTA {
         bool NoDrivingOrWalkingBool = false;
         bool mission = false;
 
+        int missionNumber = 1;
+
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
         int NoDrivWalkInt;
 
