@@ -8,6 +8,7 @@
 namespace GTA{
 class Player : Movement{
 public:
+    friend class missionPlacement;
     Player();
     ~Player();
 
@@ -23,7 +24,7 @@ public:
     float getRotaion();
     void setRotaion(float rotation);
 private:
-
+    friend class missionPlacement;
     sf::Sprite playerSprite;
     sf::RectangleShape healthBar;
     sf::Text text;

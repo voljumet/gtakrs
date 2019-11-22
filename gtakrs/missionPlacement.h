@@ -5,31 +5,36 @@
 #include <SFML/Graphics.hpp>
 #include "MainMenuState.h"
 #include "iostream"
-#include "Npc.h"
+#include "Player.h"
+#include "DEFINITIONS.h"
+#include "colliderTest.h"
+#include "Mission.h"
 
 
 namespace GTA{
     class missionPlacement{
 
     public:
-       // explicit missionPlacement(GameDataRef data);
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
         missionPlacement();
         virtual ~missionPlacement();
 
-        bool mission = false;
+//        bool mission = false;
 
         void initCoin();
-        void activate(Npc npc);
+        void activate(bool mission, Player player);
 
 
     private:
         GameDataRef _data;
-        sf::CircleShape missionCircle;
+        sf::Sprite missionCircle;
+        sf::Vector2f PlayerPos;
+        sf::Vector2f misnCircle;
+        sf::Texture texture;
 
     public:
-        const sf::CircleShape &getMissionCircle() const;
+       sf::Sprite getMissionCircle();
 
     };
 }

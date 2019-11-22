@@ -59,6 +59,7 @@
 #define MISSION_1_BUILDING "Resources/res/mission_1/Mission_1_Building.png"
 #define MISSION_1_SPRITE "Resources/res/mission_1/Mission_1_alive.png"
 #define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
+#define MISSION_CIRCLE_SPRITE "Resources/res/mission_tile-01.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
 

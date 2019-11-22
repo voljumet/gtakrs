@@ -5,6 +5,7 @@
 #include "MainMenuState.h"
 #include "Movement.h"
 #include "colliderTest.h"
+#include "Mission.h"
 
 /// Denne klassen er for WORLD
 
@@ -23,8 +24,6 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
-        /// calls initcoin function from missionPlacement
-        msp.initCoin();
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
@@ -33,6 +32,10 @@ namespace GTA {
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
+        this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
+
+        /// calls initcoin function from missionPlacement
+        msp.initCoin();
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -93,7 +96,7 @@ namespace GTA {
     void WorldState::HandleInput() {
 
         /// mission activation
-//        msp.activate();
+        msp.activate(mission, player);
 
 
         /// npc
@@ -183,7 +186,8 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
-            
+
+
 
     }
 
