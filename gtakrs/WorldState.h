@@ -13,6 +13,8 @@
 #include "Collision_Detection.h"
 #include "Player.h"
 #include "missionPlacement.h"
+#include "Shooting.h"
+
 
 
 namespace GTA {
@@ -23,6 +25,8 @@ namespace GTA {
         Movement movement;
         NpcController npcController;
         CarController carController;
+        Shooting shooting;
+
 
         std::vector<Npv*> npcCarVec;
 

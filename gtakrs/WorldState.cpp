@@ -90,7 +90,11 @@ namespace GTA {
                 this->_data->window.close();
             }
         }
-
+////////////////
+        if(event.key.code == sf::Keyboard::E){
+            shooting.CreateBullet(player.playerGetSprite(), this->_data->assets.GetTexture("car"));
+        }
+////////////////////////////////////
         /// Change between person and car
         switch (event.type) {
             case sf::Event::KeyReleased: {
@@ -154,7 +158,7 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
-
+            shooting.MoveBullet();
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -174,6 +178,14 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x,
                 _car.getPosition().y,player.playerGetSprite().getPosition().x,
                 player.playerGetSprite().getPosition().y, _data);
+
+        shooting.DrawBullet(_data);
+
+//        for(auto b: shooting.bulletlist){
+//            b->bullet.setTexture(this->_data->assets.GetTexture("car"));
+//            b->bullet.setScale(0.2,0.2 );
+//            this->_data->window.draw(b->bullet);
+//        }
 
         /// Draw NPCharacters
         npcController.NpcDraw(_data, Driving,
