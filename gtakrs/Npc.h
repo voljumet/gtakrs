@@ -28,11 +28,13 @@ namespace GTA {
 
         void NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture1);
-        void NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player);
+        void NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player, sf::Sound cardeath);
         std::vector<Npc*> npcVec;
+
 
     private:
         GameDataRef _data;
         Collision_Detection collisionDetaction;
+
     };
 }

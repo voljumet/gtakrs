@@ -147,7 +147,7 @@ namespace GTA {
         }
     }
 
-    void CarController::NpvDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car,sf::Sprite _player) {
+    void CarController::NpvDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car,sf::Sprite _player, sf::Sound carcrashdone) {
         _data = inn_data;
         for (auto &i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
@@ -161,6 +161,8 @@ namespace GTA {
             if(Driving){
 //                if(movement.currentSpeed <= 800){
                 collisionDetaction.Check_Collision(_car, i->getNpvBot(), true);
+                //this->_data->assets.PlaySound(carcrashdone);
+                /// denne lyden må spilles når en bil "dør", ellers så spilles lyden hver gang spilleren dytter bilen
 //                } else {
 //                    i->dead = true;
 //                    i->setNvcBot(this->_data->assets.GetTexture("Dead"));

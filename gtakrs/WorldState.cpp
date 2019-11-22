@@ -28,7 +28,10 @@ namespace GTA {
 
         /// calls initcoin function from missionPlacement
         msp.initCoin();
+
+        /// Loads audio
         sound.loadall();
+
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
@@ -119,11 +122,12 @@ namespace GTA {
                             this->_car.setPosition(player.player_Getposition());
                             this->_car.setRotation(this->player.getRotaion());
                             Driving = true;
-//                            audio.playcardoor();
+                           sound.PlaySound(sound.cardoor);
                         } else {
                             player.player_SetPosition(this->_car.getPosition());
                             this->player.setRotaion(this->_car.getRotation());
                             Driving = false;
+                            sound.PlaySound(sound.cardoor);
                         }
                     }
                 }
@@ -213,12 +217,14 @@ namespace GTA {
 
         /// Draw NPCharacters
         npcController.NpcDraw(_data, Driving,
-                movement.currentSpeed,_car, player.playerGetSprite());
+                movement.currentSpeed,_car, player.playerGetSprite(), sound.cardeath);
+        /// her inpendecy injecter vi cardeath lyde inn i funksjonen i npc
+        /// som bestemmer hva som skjer dersom npcer blir drept av å bli kjørt på
 
 
         /// Draw NPVehicles
         carController.NpvDraw(_data,Driving,
-                movement.currentSpeed, _car, player.playerGetSprite());
+                movement.currentSpeed, _car, player.playerGetSprite(), sound.carcrash);
 
         /// Draw Player or Vehicle
         if (!Driving) {player.Draw(this->_data->window); } /// Draw Player

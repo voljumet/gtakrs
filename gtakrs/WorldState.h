@@ -15,6 +15,7 @@
 #include "missionPlacement.h"
 #include "Shooting.h"
 #include "Weapon.h"
+#include "AssetManager.h"
 
 
 
@@ -29,6 +30,7 @@ namespace GTA {
         Shooting shooting;
         Weapon weapon;
         AssetManager sound;
+
 
 
         std::vector<Npv*> npcCarVec;

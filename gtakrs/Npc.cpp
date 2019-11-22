@@ -103,6 +103,7 @@ namespace GTA {
         else if (dir == UP){npcBot.setRotation(0);}
         else if (dir == DOWN){npcBot.setRotation(180);}
 
+
         /// NPC movement Animation
         npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
 
@@ -163,7 +164,7 @@ namespace GTA {
         }
     }
 
-    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player) {
+    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player, sf::Sound cardeath) {
         _data = inn_data;
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
@@ -176,6 +177,7 @@ namespace GTA {
                     } else {
                         if(PixelPerfectTest(i->getNpcBot(),_car)){
                             i->dead = true;
+                            this->_data->assets.PlaySound(cardeath);
                             ///legg til cardeath
                             i->setNpcBot(this->_data->assets.GetTexture("Dead"));
                         }
