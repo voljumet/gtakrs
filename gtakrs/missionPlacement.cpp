@@ -28,12 +28,13 @@ namespace GTA{
         _data = std::move(data_inn);
         if (PixelPerfectTest(getMissionCircle(), player.playerGetSprite())) {
                 std::cout << "true" << std::endl;
-            this->_data->machine.AddState(StateRef(new Mission(_data)), true);
+            this->_data->machine.GetActiveState()->Pause();
+            this->_data->machine.AddState(StateRef(new Mission(_data)),
+                    false);
 
-            /*if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-                this->_data->machine.GetActiveState()->Resume();
-            }*/
         }
+
+
     }
 
 

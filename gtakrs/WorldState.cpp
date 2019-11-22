@@ -15,10 +15,12 @@ namespace GTA {
 
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-        this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+
+        this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
-        this->minimap.setViewport(sf::FloatRect(0.79f, 0.01f, 0.2f, 0.2f));
+        this->minimap.setViewport(sf::FloatRect(0.79f,
+                0.01f, 0.2f, 0.2f));
 
         this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
@@ -95,11 +97,11 @@ namespace GTA {
 /**/
     void WorldState::HandleInput() {
 
-        /// mission activation
+        /// mission trigger
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
             msp.activate(_data, player);
-        }
 
+        }
 
         /// npc
         for(auto n : npcVec) {
@@ -109,7 +111,6 @@ namespace GTA {
         }
 
         for(auto nop : npcCarVec) { nop->moveCar(map._Block); }
-
 
         sf::Event event{};
 
@@ -171,15 +172,9 @@ namespace GTA {
                     if(Driving){
                         collisionDetaction.Check_Collision(_car,map._Block[Y][X].tileSprite,false);
 
-//                        if (PixelPerfectTest(this->_car,map._Block[Y][X].tileSprite)){
-//                            this->_car.move(movement.movementVec * movement.currentSpeed * movement.dt);
-//                        }
                     } else {
                         collisionDetaction.Check_Collision(player.playerGetSprite(),map._Block[Y][X].tileSprite,false);
 
-//                        if (PixelPerfectTest(this->_player,map._Block[Y][X].tileSprite)){
-//                            this->_player.move(sf::Vector2f(0,0));
-//                        }
                     }
                 }
             }
@@ -188,9 +183,6 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
-
-
-
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state
@@ -207,8 +199,10 @@ namespace GTA {
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
 
         /// Draw map as tiles
-        map.Render(Driving, Minimap, Debug, _car.getPosition().x, _car.getPosition().y,
-                player.playerGetSprite().getPosition().x, player.playerGetSprite().getPosition().y, _data);
+        map.Render(Driving, Minimap, Debug, _car.getPosition().x,
+                _car.getPosition().y,
+                player.playerGetSprite().getPosition().x,
+                player.playerGetSprite().getPosition().y, _data);
         this->_data->window.draw(msp.getMissionCircle());
 
         /// Draw NPCharacters
@@ -227,21 +221,9 @@ namespace GTA {
                         }
                     }
                 } else {
-//                        i->dir = i->RandomDir;
                     collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcBot(),true);
                 }
             }
-
-
-            /// Kommer til å intersecte med seg selv?!?!?!? -----
-//            for(auto &j : npcVec){
-//                for(auto &k : npcVec){
-//                    if(PixelPerfectTest(j->getNpcBot(),k->getNpcBot())){
-////                    collisionDetaction.Check_Collision(j->getNpcBot(),k->getNpcBot(),true);
-//                        j->dir = j->RandomDir;
-//                    }
-//                }
-//            }
         }
 
         /// Draw NPCars
@@ -257,7 +239,7 @@ namespace GTA {
 //                    i->setNpcCarBot(this->_data->assets.GetTexture("Dead"));
 //                }
             } else {
-//                    i->dir = i->RandomDir;
+//
                 collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcCarBot(),false);
             }
 
@@ -299,6 +281,8 @@ namespace GTA {
             this->view.setCenter(this->player.player_Getposition());
             this->minimap.setCenter(this->player.player_Getposition());
         }
+
+
 
     }
 

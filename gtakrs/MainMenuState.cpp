@@ -39,8 +39,8 @@ namespace GTA{
         this->_debugButton.setPosition((SCREEN_WIDTH/2)-(this->_debugButton.getGlobalBounds().width/2), _resumeButton.getPosition().y + _resumeButton.getGlobalBounds().height);   /// Set Position to buttons
         this->_exitButton.setPosition((SCREEN_WIDTH/2)-(this->_exitButton.getGlobalBounds().width/2), _debugButton.getPosition().y + _debugButton.getGlobalBounds().height);   /// Set Position to buttons
 
-        this->_mission_1Button.setPosition((SCREEN_WIDTH/2)-(this->_mission_1Button.getGlobalBounds().width), _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
-        this->_mission_2Button.setPosition((SCREEN_WIDTH/2), _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
+        //this->_mission_1Button.setPosition((SCREEN_WIDTH/2)-(this->_mission_1Button.getGlobalBounds().width), _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
+        //this->_mission_2Button.setPosition((SCREEN_WIDTH/2), _exitButton.getPosition().y + _exitButton.getGlobalBounds().height);   /// Set Position to buttons
     }
 
     void MainMenuState::HandleInput() {

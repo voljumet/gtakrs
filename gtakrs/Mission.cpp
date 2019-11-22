@@ -5,12 +5,16 @@
 #include "Mission.h"
 #include "SpriteFactory.h"
 #include <vector>
-
+#include "WorldState.h"
 
 namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
 
     void Mission::Init() {
+
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+
         this->posX = SCREEN_WIDTH/2;
         this->posY = SCREEN_HEIGHT/2;
         this->movementspeed = 30.f;        ///Determins the movement speed of the scope
@@ -92,7 +96,7 @@ namespace GTA{
 
             _scope.setPosition(0, -80);
 
-            ///If statement checks if the target is in the corsairs.
+            ///If statement checks if the target is in the crosshair.
             if(shape->getGlobalBounds().intersects(spriteshape->getGlobalBounds())) {
                 ///Load texture for dead sprite.
                 this->_data->assets.LoadTexture("Dead Sprite", MISSION_1_DEADSPRITE);
@@ -133,14 +137,15 @@ namespace GTA{
     ///Updates the
     void Mission::Update(float dt) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
-
+            this->_data->machine.AddState(StateRef(new WorldState(_data)),
+                    true);
+            this->_data->machine.GetActiveState()->Resume();
         }
     }
 
     ///Function used to draw elements in mission state
     void Mission::Draw(float dt) {
-
+        this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::White);
         this->_data->window.draw(this->_sprite);
         this->_data->window.draw(this->_background);

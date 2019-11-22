@@ -29,5 +29,8 @@ private:
     sf::Sprite _background;
     sf::Sprite _sprite;
     sf::Sprite _scope;
+    sf::View view;
+
+
     };
 }
