@@ -57,7 +57,8 @@ namespace GTA{
                 playertext.setString(playerinput);
 
                 hackaudio.PlaySound(hackaudio.button);
-
+                //std::remove_if(sounds.begin(), sounds.end(), [](sf::Sound&) {!sound.isPlaying()});
+                ///get this working brutha
 
 
 

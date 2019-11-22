@@ -47,6 +47,8 @@ namespace GTA {
 
 
 
+
+
     sf::Sound AssetManager::loadhorn() {
         bufferhorn.loadFromFile(AIRHORN_FILEPATH);
         soundhorn.setBuffer(bufferhorn);
@@ -76,6 +78,18 @@ namespace GTA {
         return button;
     }
 
+    sf::Sound AssetManager::loadcarcrash(){
+        buffercrash.loadFromFile(CARCRASH);
+        carcrash.setBuffer(buffercrash);
+        return carcrash;
+    }
+
+    sf::Sound AssetManager::loadcardeath() {
+        buffercardeath.loadFromFile(CARDEATH);
+        cardeath.setBuffer(buffercardeath);
+        return cardeath;
+
+    }
 
     void AssetManager::loadall() {
         loadhorn();
@@ -83,6 +97,9 @@ namespace GTA {
         loadfootstep();
         loadcardoor();
         loadbuttonpress();
+        loadcarcrash();
+        loadcardeath();
+
         loadsong();
         loadcomputer();
     }

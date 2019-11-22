@@ -73,12 +73,13 @@
 
 
 /////AUDIO SAMPLES/////////
-//////////////////////////////////////
 #define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
 #define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"
 #define FOOTSTEP_FILEPATH "Resources/res/Sound/footstep.ogg"
 #define GUNHSOT_FILEPATH "Resources/res/Sound/gunshot.ogg"
 #define BUTTONPRESS "Resources/res/Sound/buttonpress.ogg"
+#define CARCRASH "Resources/res/Sound/carcrashdone.ogg"
+#define CARDEATH "Resources/res/Sound/cardeath.ogg"
 #define SONG "Resources/res/Music/DragonForce - Through The Fire And Flames.ogg"
 //////////////////////////////////////////////////////////////////////////////////////////
 
