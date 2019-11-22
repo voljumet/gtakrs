@@ -91,11 +91,11 @@ namespace GTA {
                 this->_data->window.close();
             }
         }
-////////////////
-        if(event.key.code == sf::Keyboard::E){
-            shooting.CreateBullet(player.playerGetSprite());
-        }
 ////////////////////////////////////
+        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(player.playerGetSprite());}
+////////////////////////////////////
+
+
         /// Change between person and car
         switch (event.type) {
             case sf::Event::KeyReleased: {

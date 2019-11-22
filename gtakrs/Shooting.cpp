@@ -42,12 +42,13 @@ namespace GTA {
             if(!npc->dead){
                 for(auto &bullet : bulletlist){
                    if(bullet->bullet.getGlobalBounds().intersects(npc->getNpcBot().getGlobalBounds())) {
+                       bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
                        npc->health -= 2;
                        npc->movementSpeed = 4;
                        if(npc->health == 0) {
                            npc->dead = true;
                            npc->movementSpeed = 1;
-                           npc->health = 100;
+                           npc->health = 50;
                            npc->setNpcBot(this->_data->assets.GetTexture("Dead"));
                        }
                    }

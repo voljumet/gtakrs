@@ -29,7 +29,7 @@ namespace GTA {
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
         CheckWalkable = false;
-        health = 100;
+        health = 50;
 
     }
 
