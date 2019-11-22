@@ -36,6 +36,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
+        this->_data->assets.LoadTexture("boat", BOAT);
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -43,7 +44,7 @@ namespace GTA {
 
         /// Player Texture / Settings
 
-        player.playerInit(this->_data->assets.GetTexture("Player"));
+        _player.playerInit(this->_data->assets.GetTexture("Player"));
 
         /// Player car Texture / Settings
         this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
@@ -97,13 +98,13 @@ namespace GTA {
                 switch (event.key.code) {
                     case sf::Keyboard::Space: {
                         if (!Driving) {
-                            this->_car.setPosition(player.player_Getposition());
-                            this->_car.setRotation(this->player.getRotaion());
+                            this->_car.setPosition(_player.player_Getposition());
+                            this->_car.setRotation(this->_player.getRotaion());
                             Driving = true;
 //                            audio.playcardoor();
                         } else {
-                            player.player_SetPosition(this->_car.getPosition());
-                            this->player.setRotaion(this->_car.getRotation());
+                            _player.player_SetPosition(this->_car.getPosition());
+                            this->_player.setRotaion(this->_car.getRotation());
                             Driving = false;
                         }
                     }
@@ -127,33 +128,16 @@ namespace GTA {
             }
         }
 
-        UpdateMovement(player.playerGetSprite(), this->_car);
-        player.playerVec(movement);
+        UpdateMovement(_player.playerGetSprite(), this->_car);
+        _player.playerVec(movement);
 
         /// Collision with buildings and static elements
-        for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
-            for (int X = 0; X < WORLD_WIDTH; X++) {
-                NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
-                NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray), NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
-                if(NoDrivingOrWalkingBool){
-                    if(Driving){
-                        collisionDetaction.Check_Collision(_car,map._Block[Y][X].tileSprite,false);
-//                        if (PixelPerfectTest(this->_car,map._Block[Y][X].tileSprite)){
-//                            this->_car.move(movement.movementVec * movement.currentSpeed * movement.dt);
-//                        }
-                    } else {
-                        collisionDetaction.Check_Collision(player.playerGetSprite(),map._Block[Y][X].tileSprite,false);
-//                        if (PixelPerfectTest(this->_player,map._Block[Y][X].tileSprite)){
-//                            this->_player.move(sf::Vector2f(0,0));
-//                        }
-                    }
-                }
-            }
-        }
+//        _player.checkCollision();
+        playerCrashTEMP();
 
-            collisionDetaction.Check_Collision(_car,_car2,true);
-            collisionDetaction.Check_Collision(_car,_car3,true);
-            collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
+        collisionDetaction.Check_Collision(_car,_car2,true);
+        collisionDetaction.Check_Collision(_car,_car3,true);
+        collisionDetaction.Check_Collision(_player.playerGetSprite(), _car2, false);
 
     }
 
@@ -172,24 +156,24 @@ namespace GTA {
 
         /// Draw map as tiles
         map.Render(Driving, Minimap, Debug, _car.getPosition().x,
-                _car.getPosition().y,player.playerGetSprite().getPosition().x,
-                player.playerGetSprite().getPosition().y, _data);
+                   _car.getPosition().y, _player.playerGetSprite().getPosition().x,
+                   _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
 
         /// Draw NPCharacters
         npcController.NpcDraw(_data, Driving,
-                movement.currentSpeed,_car, player.playerGetSprite());
+                              movement.currentSpeed, _car, _player.playerGetSprite());
 
         /// Draw NPVehicles
-        carController.NpvDraw(_data,Driving,
-                movement.currentSpeed, _car, player.playerGetSprite());
+        carController.NpvDraw(_data, Driving,
+                              movement.currentSpeed, _car, _player.playerGetSprite());
 
         /// Draw Player or Vehicle
-        if (!Driving) {player.Draw(this->_data->window); } /// Draw Player
+        if (!Driving) {_player.Draw(this->_data->window); } /// Draw Player
         else { this->_data->window.draw(this->_car); }  /// Draw Vehicle
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
-        player.HealthBar( this->_data->window);
+        _player.HealthBar(this->_data->window);
 
         /////////Draw Minimap
         if(!Debug){
@@ -197,13 +181,12 @@ namespace GTA {
             this->_data->window.setView(this->minimap);
             Minimap = true;
             map.Render(Driving, Minimap, Debug, _car.getPosition().x,
-                    _car.getPosition().y,player.playerGetSprite().getPosition().x,
-                    player.playerGetSprite().getPosition().y, _data);
-
+                       _car.getPosition().y, _player.playerGetSprite().getPosition().x,
+                       _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
         }
 
         /// Draw Player or Car
-        if (!Driving) { player.Draw(this->_data->window); }
+        if (!Driving) { _player.Draw(this->_data->window); }
         else { this->_data->window.draw(this->_car); }
 
         /////DRAW EVERY SPRITE IN THE LIST
@@ -218,8 +201,8 @@ namespace GTA {
             X = this->_car.getPosition().x;
             Y = this->_car.getPosition().y;
         } else {
-            X = this->player.player_Getposition().x;
-            Y = this->player.player_Getposition().y;
+            X = this->_player.player_Getposition().x;
+            Y = this->_player.player_Getposition().y;
         }
         this->view.setCenter(X,Y);
         this->minimap.setCenter(X,Y);
@@ -234,7 +217,43 @@ namespace GTA {
             movement.Drive(this->_car);
 
         } else {
-           player.playerMoves(movement);
+           _player.playerMoves(movement);
+        }
+    }
+
+    void WorldState::playerCrashTEMP() {
+        if(!Debug){
+            if(Driving){
+                mPosX = _car.getPosition().x / TILE_SIZE;
+                mPosY = _car.getPosition().y / TILE_SIZE;
+            } else {
+                mPosX = _player.player_Getposition().x / TILE_SIZE;
+                mPosY = _player.player_Getposition().y / TILE_SIZE;
+            }
+
+            fromX = mPosX - collisionReach;
+            toX = mPosX + collisionReach;
+            fromY = mPosY - collisionReach;
+            toY = mPosY + collisionReach;
+
+            if(fromX < 0){ fromX = 0; } else if (fromX >= WORLD_WIDTH){ fromX = WORLD_WIDTH -1; }
+            if(fromY < 0){ fromY = 0; } else if (fromY >= WORLD_HEIGHT){ fromY = WORLD_HEIGHT -1; }
+            if(toX < 0){ toX = 0; } else if (toX >= WORLD_WIDTH){ toX = WORLD_WIDTH -1; }
+            if(toY < 0){ toY = 0; } else if (toY >= WORLD_HEIGHT){ toY = WORLD_HEIGHT -1; }
+
+            for(int Y = fromY; Y < toY; Y++) {
+                for (int X = fromX; X < toX; X++) {
+                    NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
+                    NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray), NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
+                    if(NoDrivingOrWalkingBool){
+                        if(Driving){
+                            collisionDetaction.Check_Collision(_car,map._Block[Y][X].tileSprite,false);
+                        } else {
+                            collisionDetaction.Check_Collision(_player.playerGetSprite(), map._Block[Y][X].tileSprite, false);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 
 #include "NPC_NPV.h"
 
+
 namespace GTA {
 
     class Npc : public NPC_NPV{
@@ -22,7 +23,7 @@ namespace GTA {
         sf::Sprite npcBot;
     };
 
-    class NpcController{
+    class NpcController : public NPC_NPV{
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
@@ -33,6 +34,5 @@ namespace GTA {
 
     private:
         GameDataRef _data;
-        Collision_Detection collisionDetaction;
     };
 }

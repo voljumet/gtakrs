@@ -9,8 +9,8 @@
 #define SCREEN_HEIGHT 1600
 
 ///IMPORTANT TO KNOW HOW MANY COLUMNS THERE ARE IN THE MAP FILE!!!!!!
-#define WORLD_WIDTH 133
-#define WORLD_HEIGHT 142
+#define WORLD_WIDTH 200
+#define WORLD_HEIGHT 400
 
 #define TILE_SIZE 70
 
@@ -20,9 +20,7 @@
 ///Map
 //////////////////////////////////////////////////////////////////////////////////////////
 #define TILEMAP_PNG_FILEPATH "Resources/res/Tileset_Tileset.png"
-#define MAP_FILE "Resources/res/MAP.map"
-#define MAP_TEST "Resources/res/MAP2.map"
-#define MAP_TEST2 "Resources/res/MAP_TEST.map"
+#define MAP_FILE "Resources/res/MAP2.map"
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -38,6 +36,8 @@
 #define DEAD_PLAYER "Resources/res/dead-01.png"
 #define CAR_BLUE "Resources/res/carBlue.png"
 #define CAR_WHITE "Resources/res/carWhite.png"
+#define BOAT "Resources/res/Boat.png"
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///Main menu

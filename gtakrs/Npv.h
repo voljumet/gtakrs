@@ -25,7 +25,7 @@ namespace GTA {
         sf::Sprite npvBot;
     };
 
-    class CarController{
+    class CarController: public NPC_NPV{
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
@@ -36,6 +36,5 @@ namespace GTA {
 
     private:
         GameDataRef _data;
-        Collision_Detection collisionDetaction;
     };
 }

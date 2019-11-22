@@ -14,7 +14,6 @@
 #include "Player.h"
 #include "missionPlacement.h"
 
-
 namespace GTA {
     class WorldState : public State {
     public:
@@ -24,11 +23,9 @@ namespace GTA {
         NpcController npcController;
         CarController carController;
 
-        std::vector<Npv*> npcCarVec;
-
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
-        Player player;
+        Player _player;
         missionPlacement msp;
 
         const float dt = 0.01f;
@@ -36,16 +33,19 @@ namespace GTA {
         bool Driving = false;
         bool Debug = false;
         bool Minimap = false;
-        bool NoDrivingOrWalkingBool = false;
         bool mission = false;
+        bool NoDrivingOrWalkingBool = false;
 
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
         int NoDrivWalkInt;
+        int collisionReach = 5;
+        int fromX = 0, toX = 0;
+        int fromY = 0, toY = 0;
+        int mPosX, mPosY;
 
         int playerStartPosX;
         int playerStartPosY;
         int  X, Y;
-
 
         explicit WorldState(GameDataRef data);
         void Init() override;
@@ -54,6 +54,7 @@ namespace GTA {
         void Draw(float dt) override;
         void UpdateView(const float &dt);
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
+        void playerCrashTEMP();
 
         friend class Map;
 
@@ -67,7 +68,6 @@ namespace GTA {
         sf::RectangleShape getRektMap;
         sf::Vector2f viewCenter;
 
-//        sf::Sprite _player;
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;

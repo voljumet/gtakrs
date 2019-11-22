@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iterator>
 #include "Npc.h"
-#include "colliderTest.h"
+
 
 
 namespace GTA {
@@ -21,7 +21,7 @@ namespace GTA {
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
-            CheckWalkable = std::find(std::begin(npcCanSpawnHere), std::end(npcCanSpawnHere), RandNpcTile) != std::end(npcCanSpawnHere);
+            CheckWalkable = std::find(std::begin(Npc_Can_SpawnHere), std::end(Npc_Can_SpawnHere), RandNpcTile) != std::end(Npc_Can_SpawnHere);
         }
 
         this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
@@ -81,7 +81,7 @@ namespace GTA {
         NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextTile) != std::end(npcCanNOTwalkHere);
+        crashCurb = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere), NextTile) != std::end(NpcCan_Not_MoveHere);
 
         /// if "crashCurb" is false, keep moving
         if(!crashCurb){
@@ -113,10 +113,10 @@ namespace GTA {
         if (walkAnimation == 5)
             walkAnimation = 1;
 
-        currentTile = _Block[CurrentPosY/TILE_SIZE][CurrentPosX/TILE_SIZE].tileTextureNumber;
+//        currentTile = _Block[CurrentPosY/TILE_SIZE][CurrentPosX/TILE_SIZE].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        OnIllegalGround = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), currentTile) != std::end(npcCanNOTwalkHere);
+//        OnIllegalGround = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere), currentTile) != std::end(NpcCan_Not_MoveHere);
 
 //        if(OnIllegalGround){
 //            dead = true;

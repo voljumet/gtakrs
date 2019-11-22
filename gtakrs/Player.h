@@ -22,6 +22,7 @@ public:
     void HealthBar(sf::RenderWindow &renderWindow);
     float getRotaion();
     void setRotaion(float rotation);
+//    void checkCollision(bool Debug, bool Driving, );
 private:
 
     sf::Sprite playerSprite;
