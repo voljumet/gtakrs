@@ -22,6 +22,7 @@ namespace GTA{
         int StepCounter = 0;
         int RespawnTime = 600;
         int randomPosX, randomPosY, RandNpcTile;
+        int health;
         bool crashCurb, CheckWalkable = false, dead = false;
         bool OnIllegalGround = false;
 
