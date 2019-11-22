@@ -92,11 +92,13 @@ namespace GTA {
             npcVec[i]->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
         }
     }
-
+/**/
     void WorldState::HandleInput() {
 
         /// mission activation
-        msp.activate(mission, player);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+            msp.activate(_data, player);
+        }
 
 
         /// npc

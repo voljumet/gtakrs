@@ -130,7 +130,6 @@ namespace GTA{
     }
 
 
-
     ///Updates the
     void Mission::Update(float dt) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
@@ -141,6 +140,7 @@ namespace GTA{
 
     ///Function used to draw elements in mission state
     void Mission::Draw(float dt) {
+
         this->_data->window.clear(sf::Color::White);
         this->_data->window.draw(this->_sprite);
         this->_data->window.draw(this->_background);

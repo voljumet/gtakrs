@@ -20,10 +20,9 @@ namespace GTA{
         missionPlacement();
         virtual ~missionPlacement();
 
-//        bool mission = false;
-
         void initCoin();
-        void activate(bool mission, Player player);
+        void activate(GameDataRef data_inn, Player player);
+        void updateView();
 
 
     private:

@@ -66,27 +66,32 @@ namespace GTA{
     }
 
     void MainMenuState::Update(float dt) {
-        if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+        if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left,
+                this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
             this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
         }
 
 
-        if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+        if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left,
+                this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
         }
 
-        if(this->_data->input.IsSpriteClicked(this->_debugButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        if(this->_data->input.IsSpriteClicked(this->_debugButton, sf::Mouse::Left,
+                this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
 
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
         }
 
-        if(this->_data->input.IsSpriteClicked(this->_mission_1Button, sf::Mouse::Left, this->_data->window)){
+        if(this->_data->input.IsSpriteClicked(this->_mission_1Button, sf::Mouse::Left,
+                this->_data->window)){
             this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
         }
 
-        if(this->_data->input.IsSpriteClicked(this->_mission_2Button, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::H)){
+        if(this->_data->input.IsSpriteClicked(this->_mission_2Button, sf::Mouse::Left,
+                this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::H)){
             this->_data->machine.AddState(StateRef(new Hacking(_data)), true);        /// New state to replace the running state
 
         }

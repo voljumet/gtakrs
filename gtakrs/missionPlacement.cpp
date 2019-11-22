@@ -1,6 +1,8 @@
 #pragma once
 
 #include "missionPlacement.h"
+
+#include <utility>
 #include "WorldState.h"
 
 
@@ -22,20 +24,25 @@ namespace GTA{
         this->missionCircle.setOrigin(50.f, 67.f);
     }
 
-    void missionPlacement::activate(bool mission, Player player) {
-
+    void missionPlacement::activate(GameDataRef data_inn, Player player) {
+        _data = std::move(data_inn);
         if (PixelPerfectTest(getMissionCircle(), player.playerGetSprite())) {
-            mission = true;
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
                 std::cout << "true" << std::endl;
-//                    this->_data->machine.GetActiveState();
-                this->_data->machine.AddState(StateRef(new Mission(_data)), true);
-            }
+            this->_data->machine.AddState(StateRef(new Mission(_data)), true);
+
+            /*if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+                this->_data->machine.GetActiveState()->Resume();
+            }*/
         }
     }
 
+
     sf::Sprite missionPlacement::getMissionCircle(){
         return missionCircle;
+    }
+
+    void missionPlacement::updateView() {
+
     }
 
 
