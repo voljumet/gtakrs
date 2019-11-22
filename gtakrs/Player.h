@@ -20,18 +20,27 @@ public:
     void player_SetPosition(sf::Vector2f);
     sf::Sprite &playerGetSprite();
     float playerVec( Movement &movement);
-    void HealthBar(sf::RenderWindow &renderWindow);
+    void HealthBar(sf::RenderWindow &renderWindow,sf::Texture &healthbar,
+            sf::Texture &healthbar1,sf::Vector2f pos, bool Deiving);
     float getRotaion();
     void setRotaion(float rotation);
+
+
+    int getDamage();
+    int getCoin();
+    int getBullet();
+    int loseBullet();
 private:
 
     sf::Sprite playerSprite;
-    sf::RectangleShape healthBar;
-    sf::Text text;
+    sf::RectangleShape healthBarRect;
+    sf::RectangleShape bulletBarRect;
     sf::Font font;
-    int intHealth = 100;
-    std::ostringstream stringHealth;
-    std::string health;
+    sf::Text text;
+    int inthralth = 100;
+    int coin = 10;
+    int bullet = 1;
+    sf::Sprite healthbarSprite, healthbarSprite1;
 
 };
 }

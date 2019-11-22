@@ -21,6 +21,10 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #define TILEMAP_PNG_FILEPATH "Resources/res/Tileset_Tileset.png"
 #define MAP_FILE "Resources/res/MAP.map"
+#define HEALTH_BAR "Resources/res/HB.png"
+#define HEALTH_BAR_1 "Resources/res/HB1.png"
+
+
 #define MAP_TEST "Resources/res/MAP2.map"
 #define MAP_TEST2 "Resources/res/MAP_TEST.map"
 

@@ -33,6 +33,9 @@ namespace GTA {
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
 
+        this->_data->assets.LoadTexture("HB", HEALTH_BAR);
+        this->_data->assets.LoadTexture("HB1", HEALTH_BAR_1);
+
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
@@ -214,6 +217,7 @@ namespace GTA {
                         if(PixelPerfectTest(i->getNpcBot(),_car)){
                             i->dead = true;
                             i->setNpcBot(this->_data->assets.GetTexture("Dead"));
+                            player.getBullet();
                         }
                     }
                 } else {
@@ -247,19 +251,28 @@ namespace GTA {
 //                    i->setNpcCarBot(this->_data->assets.GetTexture("Dead"));
 //                }
             } else {
-//                    i->dir = i->RandomDir;
+                if(PixelPerfectTest(player.playerGetSprite(), i->getNpcCarBot()))
+                {
+                    player.getDamage();
                 collisionDetaction.Check_Collision(player.playerGetSprite(),i->getNpcCarBot(),false);
+                }
+//                    i->dir = i->RandomDir;
             }
 
         }
 
         /// Draw Player or Car
-        if (!Driving) {player.Draw(this->_data->window); } /// Draw Player
+        if (!Driving) {player.Draw(this->_data->window); }
+        /// Draw Player
         else { this->_data->window.draw(this->_car); }  /// Draw Car
+        ///  Draw Health Bar
+        player.HealthBar( this->_data->window,this->_data->assets.GetTexture("HB"),
+                          this->_data->assets.GetTexture("HB1"),_car.getPosition(),Driving);
+
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
-        player.HealthBar( this->_data->window);
+
 
         /////////Draw Minimap
         if(!Debug){
@@ -276,7 +289,6 @@ namespace GTA {
 
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
-
         this->_data->window.display();
     }
 
@@ -296,12 +308,9 @@ namespace GTA {
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
             movement.Drive(this->_car);
-
         } else {
            player.playerMoves(movement);
         }
-
-
     }
 }
 
