@@ -38,6 +38,7 @@
 #define DEAD_PLAYER "Resources/res/dead-01.png"
 #define CAR_BLUE "Resources/res/carBlue.png"
 #define CAR_WHITE "Resources/res/carWhite.png"
+#define BULLET_SPRITE "Resources/res/BulletSprite.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///Main menu

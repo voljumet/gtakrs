@@ -36,6 +36,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
+        this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -92,7 +93,7 @@ namespace GTA {
         }
 ////////////////
         if(event.key.code == sf::Keyboard::E){
-            shooting.CreateBullet(player.playerGetSprite(), this->_data->assets.GetTexture("car"));
+            shooting.CreateBullet(player.playerGetSprite());
         }
 ////////////////////////////////////
         /// Change between person and car
@@ -158,7 +159,7 @@ namespace GTA {
             collisionDetaction.Check_Collision(_car,_car2,true);
             collisionDetaction.Check_Collision(_car,_car3,true);
             collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
-            shooting.Collision(_data, npcController.npcVec ,shooting.bulletlist);
+            shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
             shooting.MoveBullet();
 
     }
@@ -182,12 +183,6 @@ namespace GTA {
                 player.playerGetSprite().getPosition().y, _data);
 
         shooting.DrawBullet(_data);
-
-//        for(auto b: shooting.bulletlist){
-//            b->bullet.setTexture(this->_data->assets.GetTexture("car"));
-//            b->bullet.setScale(0.2,0.2 );
-//            this->_data->window.draw(b->bullet);
-//        }
 
         /// Draw NPCharacters
         npcController.NpcDraw(_data, Driving,

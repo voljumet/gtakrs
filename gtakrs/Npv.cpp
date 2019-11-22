@@ -24,21 +24,20 @@ namespace GTA {
             CheckWalkable = std::find(std::begin(npcCarCanSpawnHere), std::end(npcCarCanSpawnHere), RandNpcTile) != std::end(npcCarCanSpawnHere);
         }
 
-        randomColor = (rand() % 6, rand() % 6);
+        randomColor = (rand() % 5, rand() % 5);
         switch (randomColor){
             case 1 : this->npvBot.setColor(sf::Color::Red); break;
             case 2 : this->npvBot.setColor(sf::Color::Green); break;
             case 3 : this->npvBot.setColor(sf::Color::Magenta); break;
-            case 4 : this->npvBot.setColor(sf::Color::Black); break;
-            case 5 : this->npvBot.setColor(sf::Color::White); break;
-            case 6 : this->npvBot.setColor(sf::Color::Cyan); break;
+            case 4 : this->npvBot.setColor(sf::Color::White); break;
+            case 5 : this->npvBot.setColor(sf::Color::Cyan); break;
         }
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npvBot.setTextureRect(sf::IntRect(0, 0, 100, 100));
         this->npvBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npvBot.setOrigin(50.f, 67.f);
-        health = 50;
+        health = 100;
     }
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
@@ -114,7 +113,6 @@ namespace GTA {
     }
 
     void Npv::setNvcBot(sf::Texture &textura) {
-        std::cout << "Destroyed!"<< std::endl;
 
         this->npvBot.setTexture(textura);
         npvBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
@@ -135,7 +133,17 @@ namespace GTA {
 
     void CarController::NpvMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for(auto nop : npvVec) {
+            if(!nop->dead){
             nop->moveCar(_Block);
+            }else{
+                nop->RespawnTime -= 1;
+                if(nop->RespawnTime == 0){
+                    nop->CarInit(texture, _Block);
+                    nop->dead = false;
+                    nop->RespawnTime = 600;
+                    nop->getNpvBot().setColor(sf::Color::Red);
+                }
+            }
         }
     }
 
@@ -143,6 +151,11 @@ namespace GTA {
         _data = inn_data;
         for (auto &i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
+
+            if(i->dead){
+//                i->setNvcBot(this->_data->assets.GetTexture("Dead"));
+                i->movementSpeed = 0;
+            }
 
             /// Npc collision with car
             if(Driving){

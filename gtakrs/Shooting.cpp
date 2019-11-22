@@ -6,7 +6,7 @@
 #include "colliderTest.h"
 
 namespace GTA {
-    void Shooting::CreateBullet(sf::Sprite Player, sf::Texture texture)
+    void Shooting::CreateBullet(sf::Sprite Player)
     {
         Bullet* bullet = new Bullet;
         bullet->bulletspeed = 2000.f;
@@ -15,8 +15,9 @@ namespace GTA {
         bullet->bulletVec = t.transformPoint(movement.forwardVec());
         bullet->bullet.setRotation(Player.getRotation());
         bullet->bullet.setPosition(Player.getPosition().x, Player.getPosition().y);
-        bullet->bullet.setTexture(texture);
-        bullet->bullet.setScale(0.2, 0.2);
+        bullet->bullet.setTexture(this->_data->assets.GetTexture("Bullet"));
+        bullet->bullet.rotate(270);
+        bullet->bullet.setScale(0.03, 0.03);
         bulletlist.push_back(bullet);
     }
     void Shooting::MoveBullet(){
@@ -27,7 +28,6 @@ namespace GTA {
             }else if(b->bullet.getPosition().x <= 0 || b->bullet.getPosition().y <= 0){
                 bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), b), bulletlist.end());
             }
-                std::cout << bulletlist.size() << std::endl;
         }
     }
     void Shooting::DrawBullet(GameDataRef inn_data) {
@@ -36,7 +36,7 @@ namespace GTA {
             this->_data->window.draw(b->bullet);
         }
     }
-    void Shooting::Collision(GameDataRef inn_data, std::vector<Npc *> npclist, std::vector<Bullet *> bulletlist) {
+    void Shooting::Collision(GameDataRef inn_data, std::vector<Npc *> npclist, std::vector<Npv*> npvlist, std::vector<Bullet *> bulletlist) {
         _data = inn_data;
         for(auto &npc: npclist){
             if(!npc->dead){
@@ -51,6 +51,19 @@ namespace GTA {
                            npc->setNpcBot(this->_data->assets.GetTexture("Dead"));
                        }
                    }
+                }
+            }
+        }
+        for(auto &npv : npvlist){
+            for(auto &bullet: bulletlist){
+                if(bullet->bullet.getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){
+                    npv->health -= 2;
+                    npv->movementSpeed = 5;
+                    if(npv->health == 0){
+                        npv->getNpvBot().setColor(sf::Color::Black);
+                        npv->dead = true;
+                        npv->health = 300;
+                    }
                 }
             }
         }
