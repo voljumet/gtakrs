@@ -197,7 +197,7 @@ namespace GTA {
         carController.NpvDraw(_data,Driving,
                 movement.currentSpeed, _car, player.playerGetSprite());
 
-        /// Draw Player or Vehicle
+        /// eDraw Player or Vehicle
         if (!Driving) {player.Draw(this->_data->window); } /// Draw Player
         else { this->_data->window.draw(this->_car); }  /// Draw Vehicle
         player.HealthBar( this->_data->window,this->_data->assets.GetTexture("HB"),
