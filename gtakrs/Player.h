@@ -6,6 +6,7 @@
 #include "Movement.h"
 
 namespace GTA{
+
 class Player : Movement{
 public:
     Player();
@@ -32,6 +33,3 @@ private:
 
 };
 }
-
-
-

@@ -138,8 +138,7 @@ namespace GTA {
 //    }
 
     void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-
-        for (int i = 0; i < 55; ++i) {
+        for (int i = 0; i < 5; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->npcInit(texture, _Block);
         }
