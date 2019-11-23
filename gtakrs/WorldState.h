@@ -42,6 +42,8 @@ namespace GTA {
         int fromX = 0, toX = 0;
         int fromY = 0, toY = 0;
         int mPosX, mPosY;
+        int drawtimerNPC;
+        int drawtimerNPV;
 
         int playerStartPosX;
         int playerStartPosY;
@@ -55,11 +57,26 @@ namespace GTA {
         void UpdateView(const float &dt);
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
         void playerCrashTEMP();
+        void PrintTimer();
 
         friend class Map;
 
     private:
         /// Create a new sprite
+
+        std::clock_t Timer;
+        double NPCMoveDura;
+        double NPVMoveDura;
+        double PlayDura;
+        double MapDura;
+        double MmapDura;
+        double NPCDura;
+        double NPVDura;
+        double NullDura;
+        int timer=0;
+
+
+
         Collision_Detection collisionDetaction;
         std::vector<sf::Sprite *> spriteListy;
         GameDataRef _data;

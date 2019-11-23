@@ -59,8 +59,8 @@ namespace GTA {
 
 
         ////Add Sprites in to Sprite List
-        spriteListy.push_back(&this->_car2);
-        spriteListy.push_back(&this->_car3);
+//        spriteListy.push_back(&this->_car2);
+//        spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
         carController.NpvSpawn(this->_data->assets.GetTexture("car1"), map._Block);
@@ -73,13 +73,27 @@ namespace GTA {
     void WorldState::HandleInput() {
 
         /// npc Respawn and Move
-        npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block,
+        Timer = std::clock();
+        drawtimerNPC +=1;
+        if(drawtimerNPC == 5){
+            npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block,this->_data->assets.GetTexture("Dead"));
+            drawtimerNPC = 0;
+        }
+        NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-                /// VIRKER IKKE NÅ
-                this->_data->assets.GetTexture("Dead"));
 
         /// Car Respawn and Move
-        carController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car1"), map._Block);
+        Timer = std::clock();
+        drawtimerNPV +=1;
+        if(drawtimerNPV == 2){
+            carController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car1"), map._Block);
+            drawtimerNPV = 0;
+        }
+        NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
+
+
+
 
         sf::Event event{};
 
@@ -133,7 +147,11 @@ namespace GTA {
 
         /// Collision with buildings and static elements
 //        _player.checkCollision();
+
+        Timer = std::clock();
+
         playerCrashTEMP();
+        PlayDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         collisionDetaction.Check_Collision(_car,_car2,true);
         collisionDetaction.Check_Collision(_car,_car3,true);
@@ -155,17 +173,35 @@ namespace GTA {
         this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
 
         /// Draw map as tiles
+        Timer = std::clock();
         map.Render(Driving, Minimap, Debug, _car.getPosition().x,
                    _car.getPosition().y, _player.playerGetSprite().getPosition().x,
                    _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
 
+        MapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
+
         /// Draw NPCharacters
+        Timer = std::clock();
         npcController.NpcDraw(_data, Driving,
                               movement.currentSpeed, _car, _player.playerGetSprite());
 
+        NPCDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
         /// Draw NPVehicles
+        Timer = std::clock();
         carController.NpvDraw(_data, Driving,
                               movement.currentSpeed, _car, _player.playerGetSprite());
+
+        NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
+
+        /// NULL
+        Timer = std::clock();
+        for (int j = 0; j < 1; ++j) {
+            mission = true;
+        }
+        NullDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw Player or Vehicle
         if (!Driving) {_player.Draw(this->_data->window); } /// Draw Player
@@ -176,6 +212,7 @@ namespace GTA {
         _player.HealthBar(this->_data->window);
 
         /////////Draw Minimap
+        Timer = std::clock();
         if(!Debug){
             this->_data->window.draw(this->getRektMap);
             this->_data->window.setView(this->minimap);
@@ -184,15 +221,18 @@ namespace GTA {
                        _car.getPosition().y, _player.playerGetSprite().getPosition().x,
                        _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
         }
+        MmapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw Player or Car
         if (!Driving) { _player.Draw(this->_data->window); }
         else { this->_data->window.draw(this->_car); }
 
         /////DRAW EVERY SPRITE IN THE LIST
-        for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+//        for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
         this->_data->window.display();
+        if(Debug){ PrintTimer(); }
+        
     }
 
     /// husk å bruke view
@@ -254,6 +294,33 @@ namespace GTA {
                     }
                 }
             }
+        }
+    }
+
+    void WorldState::PrintTimer() {
+        timer +=1;
+        if (timer == 60){
+            std::cout << "Timer NPC Move: " << NPCMoveDura/60 << std::endl;
+            std::cout << "Timer NPV Move: " << NPVMoveDura/60 << std::endl;
+            std::cout << "Timer Draw Map: " << MapDura/60 << std::endl;
+            std::cout << "Timer Draw miniMap: " << MmapDura/60 << std::endl;
+            std::cout << "Timer Draw NPC: " << NPCDura/60 << std::endl;
+            std::cout << "Timer Draw NPV: " << NPVDura/60 << std::endl;
+            std::cout << "Timer PlayerCollision: " << PlayDura/60 << std::endl;
+            std::cout << "Timer Controll: " << NullDura/60 << std::endl;
+
+
+            std::cout << "--------------------- " << std::endl;
+            MapDura = 0;
+            MmapDura = 0;
+            PlayDura = 0;
+            NPCDura = 0;
+            NPVDura = 0;
+            NullDura = 0;
+            NPVMoveDura = 0;
+            NPCMoveDura = 0;
+
+            timer = 0;
         }
     }
 }

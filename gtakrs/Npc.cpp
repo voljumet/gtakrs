@@ -12,6 +12,7 @@ namespace GTA {
     void Npc::npcInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npcBot.setTexture(texture);
+        movementSpeed = 5;
 
         /// Spawn random
         while(!CheckWalkable){
@@ -90,7 +91,7 @@ namespace GTA {
             dir = RandomDir; /// set random Direction
         }
         StepCounter++;
-        if(StepCounter == 500){
+        if(StepCounter == 100){
             dir = RandomDir;
             StepCounter=0;
         }
@@ -105,7 +106,7 @@ namespace GTA {
         npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
 
         SpriteSpeed++;
-        if (SpriteSpeed == 18) {
+        if (SpriteSpeed == 4) {
             walkAnimation++;
             SpriteSpeed = 0;
         }
@@ -138,7 +139,7 @@ namespace GTA {
 //    }
 
     void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 200; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->npcInit(texture, _Block);
         }

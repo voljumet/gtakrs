@@ -15,7 +15,7 @@ namespace GTA{
     public:
         int NextPosX,NextPosY;
         int CurrentPosX, CurrentPosY;
-        int movementSpeed = 1;
+        int movementSpeed;
         int moveUp, moveDown, moveRight, moveLeft;
         int NextTile, currentTile;
         int UpdatedPosX, UpdatedPosY;

@@ -11,7 +11,7 @@ namespace GTA {
     void Npv::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npvBot.setTexture(texture);
-        movementSpeed = 4;
+        movementSpeed = 8;
 
         /// Spawn random
         while(!CheckWalkable){
@@ -126,7 +126,7 @@ namespace GTA {
     }
 
     void CarController::NpvSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        for (int k = 0; k < 10; ++k) {
+        for (int k = 0; k < 100; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->CarInit(texture, _Block);
         }
