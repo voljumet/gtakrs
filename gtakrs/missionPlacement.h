@@ -9,7 +9,7 @@
 #include "DEFINITIONS.h"
 #include "colliderTest.h"
 #include "Mission.h"
-
+#include "Hacking.h"
 
 namespace GTA{
     class missionPlacement{
@@ -20,10 +20,10 @@ namespace GTA{
         missionPlacement();
         virtual ~missionPlacement();
 
-        void initCoin();
+        void snipeMissionSettings();
+        void hackMissionSettings();
         void missionSnipe(GameDataRef data_inn, Player player);
         void missionHack(GameDataRef data_inn, Player player);
-
 
     private:
         GameDataRef _data;

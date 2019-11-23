@@ -37,7 +37,8 @@ namespace GTA {
         this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
 
         /// calls initcoin function from missionPlacement
-        msp.initCoin();
+        msp.snipeMissionSettings();
+        msp.hackMissionSettings();
 
 
         /// SET STARTING POSITION
@@ -101,11 +102,14 @@ namespace GTA {
         /// mission trigger
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::M )&& missionNumber == 1) {
 
-                msp.missionSnipe(_data, player);
-            
+
+            msp.missionHack(_data, player);
+            missionNumber += 1;
 
         }
-
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::M) && missionNumber == 2){
+            msp.missionSnipe(_data, player);
+        }
 
         /// npc
         for(auto n : npcVec) {

@@ -21,9 +21,6 @@ public:
     void Update(float dt);
     void Draw(float dt);
 
-
-
-
 private:
 
     GameDataRef _data;
@@ -32,6 +29,7 @@ private:
     sf::Text text, playertext;
     std::string playerinput;
     sf::Font font;
+    sf::View view;
 };
 }
 
