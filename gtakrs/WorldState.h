@@ -34,6 +34,7 @@ namespace GTA {
         bool Debug = false;
         bool Minimap = false;
         bool mission = false;
+        bool NULLER = false;
         bool NoDrivingOrWalkingBool = false;
 
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};

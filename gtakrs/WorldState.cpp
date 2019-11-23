@@ -198,9 +198,7 @@ namespace GTA {
 
         /// NULL
         Timer = std::clock();
-        for (int j = 0; j < 1; ++j) {
-            mission = true;
-        }
+        for (int j = 0; j < 1; ++j) { NULLER = false; }
         NullDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw Player or Vehicle
@@ -232,7 +230,7 @@ namespace GTA {
 
         this->_data->window.display();
         if(Debug){ PrintTimer(); }
-        
+
     }
 
     /// husk å bruke view
