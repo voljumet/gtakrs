@@ -42,7 +42,7 @@ namespace GTA {
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
 
-    void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> npvVec) {
         CurrentPosX = npvBot.getPosition().x;
         CurrentPosY = npvBot.getPosition().y;
 
@@ -91,6 +91,12 @@ namespace GTA {
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
         crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere), NextTile) != std::end(NpvCan_Not_MoveHere);
 
+        for(int i = 0; i < npvVec.size(); ++i) {
+            if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
+                dir = RandomDir;
+            }
+        }
+
         /// if "crashCurb" is false, keep moving, else set random Direction
         if(!crashCurb){ npvBot.setPosition(UpdatedPosX, UpdatedPosY); }
         else { dir = RandomDir; }
@@ -128,13 +134,14 @@ namespace GTA {
     void CarController::NpvSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int k = 0; k < 100; ++k) {
             npvVec.push_back(new Npv);
+            npvVec[k]->Number = k;
             npvVec[k]->CarInit(texture, _Block);
         }
     }
 
     void CarController::NpvMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for(auto nop : npvVec) {
-            nop->moveCar(_Block);
+            nop->moveCar(_Block, npvVec);
         }
     }
 

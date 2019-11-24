@@ -15,7 +15,7 @@ namespace GTA {
         void setNpvBot(sf::Vector2f vector2F);
 
         void CarInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
-        void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> npcVec);
 
         sf::Sprite &getNpvBot();
 

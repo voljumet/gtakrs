@@ -12,7 +12,9 @@ namespace GTA {
     void Npc::npcInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npcBot.setTexture(texture);
-        movementSpeed = 5;
+//        randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
+        movementSpeed = (rand() % (3 + 5));
+//                5;
 
         /// Spawn random
         while(!CheckWalkable){
@@ -35,7 +37,7 @@ namespace GTA {
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture) {
+    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> npcVec) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
@@ -80,16 +82,25 @@ namespace GTA {
         }
 
         NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
+        /// 200 = vector size
+
+        for(int i = 0; i < npcVec.size(); ++i) {
+            if(npcVec[i]->NextPosX == NextPosX && npcVec[i]->NextPosY == NextPosY && npcVec[i]->Number != Number){
+                dir = RandomDir;
+            }
+        }
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere), NextTile) != std::end(NpcCan_Not_MoveHere);
+        crashCurb = std::find(std::begin(NpcCan_Not_MoveHere),
+                std::end(NpcCan_Not_MoveHere), NextTile) != std::end(NpcCan_Not_MoveHere);
 
         /// if "crashCurb" is false, keep moving
-        if(!crashCurb){
-            npcBot.setPosition(UpdatedPosX, UpdatedPosY);
-        } else {
+        if(crashCurb){
             dir = RandomDir; /// set random Direction
+        } else {
+            npcBot.setPosition(UpdatedPosX, UpdatedPosY);
         }
+
         StepCounter++;
         if(StepCounter == 100){
             dir = RandomDir;
@@ -103,7 +114,8 @@ namespace GTA {
         else if (dir == DOWN){npcBot.setRotation(180);}
 
         /// NPC movement Animation
-        npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
+        npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110,
+                100, 110));
 
         SpriteSpeed++;
         if (SpriteSpeed == 4) {
@@ -117,7 +129,8 @@ namespace GTA {
 //        currentTile = _Block[CurrentPosY/TILE_SIZE][CurrentPosX/TILE_SIZE].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-//        OnIllegalGround = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere), currentTile) != std::end(NpcCan_Not_MoveHere);
+//        OnIllegalGround = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere),
+//        currentTile) != std::end(NpcCan_Not_MoveHere);
 
 //        if(OnIllegalGround){
 //            dead = true;
@@ -141,15 +154,16 @@ namespace GTA {
     void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int i = 0; i < 200; ++i) {
             npcVec.push_back(new Npc);
+            npcVec[i]->Number=i;
             npcVec[i]->npcInit(texture, _Block);
         }
     }
 
-    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], sf::Texture texture1) {
+    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
         for(auto n : npcVec) {
             if(!n->dead){
-                n->move(_Block, texture);
+                n->move(_Block, npcVec);
             } else {
                 n->RespawnTime -= 1;
                 if (n->RespawnTime == 0){
@@ -161,7 +175,8 @@ namespace GTA {
         }
     }
 
-    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player) {
+    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed,
+            sf::Sprite _car, sf::Sprite _player) {
         _data = inn_data;
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());

@@ -76,7 +76,7 @@ namespace GTA {
         Timer = std::clock();
         drawtimerNPC +=1;
         if(drawtimerNPC == 5){
-            npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block,this->_data->assets.GetTexture("Dead"));
+            npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block);
             drawtimerNPC = 0;
         }
         NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;

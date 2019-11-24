@@ -24,6 +24,7 @@ namespace GTA{
         int RespawnTime = 600;
         int randomPosX, randomPosY, RandNpcTile;
         bool crashCurb, CheckWalkable = false, dead = false;
+        int Number = 0;
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
         int Npv_Can_SpawnHere[9]={7, 8, 14, 15, 16};
