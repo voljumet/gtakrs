@@ -92,9 +92,6 @@ namespace GTA {
         NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
 
-
-
-
         sf::Event event{};
 
         while (this->_data->window.pollEvent(event)) {

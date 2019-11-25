@@ -29,9 +29,8 @@ namespace GTA {
             case 1 : this->npvBot.setColor(sf::Color::Red); break;
             case 2 : this->npvBot.setColor(sf::Color::Green); break;
             case 3 : this->npvBot.setColor(sf::Color::Magenta); break;
-            case 4 : this->npvBot.setColor(sf::Color::Black); break;
-            case 5 : this->npvBot.setColor(sf::Color::White); break;
-            case 6 : this->npvBot.setColor(sf::Color::Cyan); break;
+            case 4 : this->npvBot.setColor(sf::Color::White); break;
+            case 5 : this->npvBot.setColor(sf::Color::Cyan); break;
         }
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
@@ -92,10 +91,19 @@ namespace GTA {
         crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere), NextTile) != std::end(NpvCan_Not_MoveHere);
 
         for(int i = 0; i < npvVec.size(); ++i) {
-            if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
+            if(npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number){
                 dir = RandomDir;
             }
         }
+
+//        for(int i = 0; i < npvVec.size(); ++i) {
+//            if(PixelPerfectTest(npvVec[i]->getNpvBot(), getNpvBot()) && npvVec[i]->Number != Number){
+//                dir = RandomDir;
+//            }
+//            if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
+//                dir = RandomDir;
+//            }
+//        }
 
         /// if "crashCurb" is false, keep moving, else set random Direction
         if(!crashCurb){ npvBot.setPosition(UpdatedPosX, UpdatedPosY); }

@@ -15,7 +15,7 @@ namespace GTA{
     public:
         int NextPosX,NextPosY;
         int CurrentPosX, CurrentPosY;
-        int movementSpeed;
+        double movementSpeed;
         int moveUp, moveDown, moveRight, moveLeft;
         int NextTile, currentTile;
         int UpdatedPosX, UpdatedPosY;
@@ -36,5 +36,6 @@ namespace GTA{
 
         direction RandomDir;
         Collision_Detection collisionDetaction;
+
     };
 }

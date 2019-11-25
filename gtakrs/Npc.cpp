@@ -2,8 +2,6 @@
 #include <iterator>
 #include "Npc.h"
 
-
-
 namespace GTA {
     Npc::Npc() = default;
     Npc::~Npc() = default;
@@ -12,9 +10,17 @@ namespace GTA {
     void Npc::npcInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         this->npcBot.setTexture(texture);
-//        randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
-        movementSpeed = (rand() % (3 + 5));
-//                5;
+        movementSpeed = 5;
+//        (rand() % (4 + 5));
+
+        randomColor = (rand() % 6, rand() % 6);
+        switch (randomColor){
+            case 1 : this->npcBot.setColor(sf::Color::Red); break;
+            case 2 : this->npcBot.setColor(sf::Color::Green); break;
+            case 3 : this->npcBot.setColor(sf::Color::Magenta); break;
+            case 4 : this->npcBot.setColor(sf::Color::White); break;
+            case 5 : this->npcBot.setColor(sf::Color::Cyan); break;
+        }
 
         /// Spawn random
         while(!CheckWalkable){
@@ -82,12 +88,18 @@ namespace GTA {
         }
 
         NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
-        /// 200 = vector size
+
+
 
         for(int i = 0; i < npcVec.size(); ++i) {
-            if(npcVec[i]->NextPosX == NextPosX && npcVec[i]->NextPosY == NextPosY && npcVec[i]->Number != Number){
+            /// change dir if colliding with other npc
+            if(PixelPerfectTest(npcVec[i]->getNpcBot(), getNpcBot()) && npcVec[i]->Number != Number){
                 dir = RandomDir;
             }
+            /// change dir if colliding with any npv
+//            if(PixelPerfectTest(npcVec[i]->getNpcBot(), getNpcBot()) && npcVec[i]->Number != Number){
+//                    dir = RandomDir;
+//                }
         }
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
@@ -126,30 +138,13 @@ namespace GTA {
         if (walkAnimation == 5)
             walkAnimation = 1;
 
-//        currentTile = _Block[CurrentPosY/TILE_SIZE][CurrentPosX/TILE_SIZE].tileTextureNumber;
-
-        /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-//        OnIllegalGround = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere),
-//        currentTile) != std::end(NpcCan_Not_MoveHere);
-
-//        if(OnIllegalGround){
-//            dead = true;
-//            setNpcBot(texture);
-//        }
-
     }
 
     void Npc::setNpcBot(sf::Texture &textura) {
-
         this->npcBot.setTexture(textura);
         npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
 
     }
-
-//    void Npc::setNpcBot(sf::Vector2f vector2F) {
-//
-//        npcBot.move(vector2F);
-//    }
 
     void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int i = 0; i < 200; ++i) {
@@ -196,16 +191,6 @@ namespace GTA {
                     collisionDetaction.Check_Collision(_player,i->getNpcBot(),true);
                 }
             }
-
-            /// Kommer til å intersecte med seg selv?!?!?!? -----
-//            for(auto &j : npcVec){
-//                for(auto &k : npcVec){
-//                    if(PixelPerfectTest(j->getNpcBot(),k->getNpcBot())){
-////                    collisionDetaction.Check_Collision(j->getNpcBot(),k->getNpcBot(),true);
-//                        j->dir = j->RandomDir;
-//                    }
-//                }
-//            }
         }
     }
 
