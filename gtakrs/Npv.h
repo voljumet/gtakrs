@@ -30,7 +30,7 @@ namespace GTA {
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
         void NpvSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
-        void NpvMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void NpvMoveAndSpawn(sf::Texture texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player);
         std::vector<Npv*> npvVec;
 

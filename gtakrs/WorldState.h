@@ -38,6 +38,7 @@ namespace GTA {
         bool NoDrivingOrWalkingBool = false;
 
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
+
         int NoDrivWalkInt;
         int collisionReach = 5;
         int fromX = 0, toX = 0;
@@ -85,6 +86,13 @@ namespace GTA {
         sf::View minimap;
         sf::RectangleShape getRektMap;
         sf::Vector2f viewCenter;
+
+        sf::Texture M3s[5];
+        sf::Texture M3_White;
+        sf::Texture M3_Black;
+        sf::Texture M3_Blue;
+        sf::Texture M3_Red;
+        sf::Texture M3_Silver;
 
         sf::Sprite _car;
         sf::Sprite _car2;

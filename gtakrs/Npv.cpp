@@ -9,8 +9,8 @@ namespace GTA {
 
     // Using a reference of texture works
     void Npv::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+
         dir = RandomDir;
-        this->npvBot.setTexture(texture);
         movementSpeed = 8;
 
         /// Spawn random
@@ -26,17 +26,20 @@ namespace GTA {
 
         randomColor = (rand() % 6, rand() % 6);
         switch (randomColor){
-            case 1 : this->npvBot.setColor(sf::Color::Red); break;
-            case 2 : this->npvBot.setColor(sf::Color::Green); break;
-            case 3 : this->npvBot.setColor(sf::Color::Magenta); break;
-            case 4 : this->npvBot.setColor(sf::Color::White); break;
-            case 5 : this->npvBot.setColor(sf::Color::Cyan); break;
+//            case 1 : this->npvBot.setTexture( ); break;
+//            case 2 : this->npvBot.setTexture( ); break;
+//            case 3 : this->npvBot.setTexture( ); break;
+//            case 4 : this->npvBot.setTexture( ); break;
+//            case 5 : this->npvBot.setTexture( ); break;
         }
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npvBot.setTextureRect(sf::IntRect(0, 0, 100, 100));
         this->npvBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npvBot.setOrigin(50.f, 67.f);
+
+        /// FEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIIIIIIIIIIILLLLLLLLLL
+        this->npvBot.setScale(0.5,0.5);
     }
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
@@ -147,7 +150,7 @@ namespace GTA {
         }
     }
 
-    void CarController::NpvMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void CarController::NpvMoveAndSpawn(sf::Texture texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for(auto nop : npvVec) {
             nop->moveCar(_Block, npvVec);
         }

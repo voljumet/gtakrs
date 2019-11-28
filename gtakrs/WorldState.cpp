@@ -38,6 +38,26 @@ namespace GTA {
         this->_data->assets.LoadTexture("car", CAR_BLUE);
         this->_data->assets.LoadTexture("boat", BOAT);
 
+        this->_data->assets.LoadTexture("M3_BLUE", M3_BLUE);
+        this->_data->assets.LoadTexture("M3_RED", M3_RED);
+        this->_data->assets.LoadTexture("M3_BLACK", M3_BLACK);
+        this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
+        this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
+
+
+        M3_Blue = this->_data->assets.GetTexture("M3_BLUE");
+        M3_Red = this->_data->assets.GetTexture("M3_RED");
+        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
+        M3_Silver = this->_data->assets.GetTexture("M3_SILVER");
+        M3_White = this->_data->assets.GetTexture("M3_WHITE");
+
+        M3s[0] = M3_Blue;
+        M3s[1] = M3_Red;
+        M3s[2] = M3_Black;
+        M3s[3] = M3_Silver;
+        M3s[4] = M3_White;
+
+
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
@@ -47,7 +67,7 @@ namespace GTA {
         _player.playerInit(this->_data->assets.GetTexture("Player"));
 
         /// Player car Texture / Settings
-        this->_car.setTexture(this->_data->assets.GetTexture("car1"));      /// Set Texture
+        this->_car.setTexture(M3_White);      /// Set Texture
         this->_data->assets.GetTexture("car1").setSmooth(true);
 
         this->_car.setPosition(playerStartPosX, playerStartPosY);
@@ -57,13 +77,12 @@ namespace GTA {
         this->_car.setColor(sf::Color(10,50,50));
         this->_car.setRotation(180);
 
-
         ////Add Sprites in to Sprite List
 //        spriteListy.push_back(&this->_car2);
 //        spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
-        carController.NpvSpawn(this->_data->assets.GetTexture("car1"), map._Block);
+        carController.NpvSpawn(M3s[1], map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(this->_data->assets.GetTexture("Player"), map._Block);
@@ -86,7 +105,7 @@ namespace GTA {
         Timer = std::clock();
         drawtimerNPV +=1;
         if(drawtimerNPV == 2){
-            carController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car1"), map._Block);
+            carController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car"), map._Block);
             drawtimerNPV = 0;
         }
         NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;

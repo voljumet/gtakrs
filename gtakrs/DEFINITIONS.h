@@ -38,6 +38,12 @@
 #define CAR_WHITE "Resources/res/carWhite.png"
 #define BOAT "Resources/res/Boat.png"
 
+#define M3_BLUE "Resources/res/Vehicles/model3-01.png"
+#define M3_WHITE "Resources/res/Vehicles/model3-02.png"
+#define M3_RED "Resources/res/Vehicles/model3-03.png"
+#define M3_BLACK "Resources/res/Vehicles/model3-04.png"
+#define M3_SILVER "Resources/res/Vehicles/model3-05.png"
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///Main menu
