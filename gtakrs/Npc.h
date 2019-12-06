@@ -2,7 +2,6 @@
 
 #include "NPC_NPV.h"
 
-
 namespace GTA {
 
     class Npc : public NPC_NPV{
@@ -14,7 +13,7 @@ namespace GTA {
         void setNpcBot(sf::Texture &texture);
 
         void npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
-        void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> npcVec);
+        void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> &npcVec);
 
         sf::Sprite &getNpcBot();
 
@@ -29,7 +28,7 @@ namespace GTA {
 
         void NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
-        void NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car, sf::Sprite _player);
+        void NpcDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player);
 
     private:
         GameDataRef _data;

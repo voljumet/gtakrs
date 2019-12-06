@@ -67,6 +67,7 @@ namespace GTA {
         /// Create a new sprite
 
         std::clock_t Timer;
+        int timer=0;
         double NPCMoveDura;
         double NPVMoveDura;
         double PlayDura;
@@ -75,7 +76,6 @@ namespace GTA {
         double NPCDura;
         double NPVDura;
         double NullDura;
-        int timer=0;
 
 
 

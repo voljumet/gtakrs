@@ -1,8 +1,5 @@
 #include <iostream>
 #include "Map.h"
-#include "rapidjson/document.h"
-#include "json/value.h"
-#include "json/reader.h"
 
 namespace GTA{
     void Map::Array(sf::Texture & texture, sf::Font & font){

@@ -8,10 +8,12 @@ namespace GTA {
     Npv::~Npv() = default;
 
     // Using a reference of texture works
-    void Npv::CarInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void Npv::CarInit(sf::Texture &M3W, sf::Texture &M3K, sf::Texture &M3B, sf::Texture &M3R, sf::Texture &M3S, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
 
         dir = RandomDir;
         movementSpeed = 8;
+        spriteHeight = 208;
+        spriteWidth = 91;
 
         /// Spawn random
         while(!CheckWalkable){
@@ -24,27 +26,25 @@ namespace GTA {
             CheckWalkable = std::find(std::begin(Npv_Can_SpawnHere), std::end(Npv_Can_SpawnHere), RandNpcTile) != std::end(Npv_Can_SpawnHere);
         }
 
-        randomColor = (rand() % 6, rand() % 6);
+        randomColor = (rand() % 5, rand() % 5);
         switch (randomColor){
-//            case 1 : this->npvBot.setTexture( ); break;
-//            case 2 : this->npvBot.setTexture( ); break;
-//            case 3 : this->npvBot.setTexture( ); break;
-//            case 4 : this->npvBot.setTexture( ); break;
-//            case 5 : this->npvBot.setTexture( ); break;
+            case 1 : this->npvBot.setTexture(M3W); break;
+            case 2 : this->npvBot.setTexture(M3K); break;
+            case 3 : this->npvBot.setTexture(M3R); break;
+            case 4 : this->npvBot.setTexture(M3S); break;
+            case 5 : this->npvBot.setTexture(M3B); break;
         }
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
-        this->npvBot.setTextureRect(sf::IntRect(0, 0, 100, 100));
-        this->npvBot.setScale(sf::Vector2f(1.0f, 1.0f));
+        this->npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
+        this->npvBot.setScale(sf::Vector2f(1.2f, 1.2f));
         this->npvBot.setOrigin(50.f, 67.f);
 
-        /// FEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIIIIIIIIIIILLLLLLLLLL
-        this->npvBot.setScale(0.5,0.5);
     }
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
 
-    void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> npvVec) {
+    void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> &npvVec) {
         CurrentPosX = npvBot.getPosition().x;
         CurrentPosY = npvBot.getPosition().y;
 
@@ -125,7 +125,7 @@ namespace GTA {
         else if (dir == DOWN){npvBot.setRotation(180);}
 
         /// NPC movement Animation
-        npvBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
+//        npvBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
 
     }
 
@@ -133,7 +133,7 @@ namespace GTA {
         std::cout << "Destroyed!"<< std::endl;
 
         this->npvBot.setTexture(textura);
-        npvBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
+        npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
 
     }
 
@@ -142,21 +142,21 @@ namespace GTA {
         npvBot.move(vector2F);
     }
 
-    void CarController::NpvSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void CarController::NpvSpawn(sf::Texture &M3W, sf::Texture &M3K, sf::Texture &M3B, sf::Texture &M3R, sf::Texture &M3S, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int k = 0; k < 100; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
-            npvVec[k]->CarInit(texture, _Block);
+            npvVec[k]->CarInit(M3B, M3K, M3R, M3S, M3W, _Block);
         }
     }
 
-    void CarController::NpvMoveAndSpawn(sf::Texture texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void CarController::NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for(auto nop : npvVec) {
             nop->moveCar(_Block, npvVec);
         }
     }
 
-    void CarController::NpvDraw(GameDataRef inn_data, bool Driving, float MovementSpeed, sf::Sprite _car,sf::Sprite _player) {
+    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,sf::Sprite &_player) {
         _data = inn_data;
         for (auto &i : npvVec) {
             this->_data->window.draw(i->getNpvBot());

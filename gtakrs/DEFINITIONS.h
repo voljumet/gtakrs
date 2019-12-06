@@ -32,17 +32,22 @@
 
 ///Sprites
 //////////////////////////////////////////////////////////////////////////////////////////
-#define PLAYER "Resources/res/Walk.png"
+#define PLAYER "Resources/res/Walk_1.png"
+#define PLAYER2 "Resources/res/Walk_2.png"
+#define PLAYER3 "Resources/res/Walk_3.png"
+#define PLAYER4 "Resources/res/Walk_4.png"
+#define PLAYER5 "Resources/res/Walk_5.png"
+
 #define DEAD_PLAYER "Resources/res/dead-01.png"
 #define CAR_BLUE "Resources/res/carBlue.png"
 #define CAR_WHITE "Resources/res/carWhite.png"
 #define BOAT "Resources/res/Boat.png"
 
 #define M3_BLUE "Resources/res/Vehicles/model3-01.png"
-#define M3_WHITE "Resources/res/Vehicles/model3-02.png"
-#define M3_RED "Resources/res/Vehicles/model3-03.png"
-#define M3_BLACK "Resources/res/Vehicles/model3-04.png"
-#define M3_SILVER "Resources/res/Vehicles/model3-05.png"
+#define M3_RED "Resources/res/Vehicles/model3-02.png"
+#define M3_SILVER "Resources/res/Vehicles/model3-03.png"
+#define M3_WHITE "Resources/res/Vehicles/model3-04.png"
+#define M3_BLACK "Resources/res/Vehicles/model3-05.png"
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -72,9 +77,6 @@
 #define CRT_SCREEN "Resources/res/mission_2/crtScreen.png"
 #define RETRO "Resources/fonts/retro.ttf"
 #define COMPUTERSOUNDS "Resources/res/Music/computer_sounds.ogg"
-
-
-
 
 
 /////AUDIO SAMPLES/////////

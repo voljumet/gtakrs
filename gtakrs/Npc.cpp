@@ -43,7 +43,7 @@ namespace GTA {
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 
-    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> npcVec) {
+    void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> &npcVec) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
 
@@ -156,6 +156,8 @@ namespace GTA {
 
     void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
+        RandomDir = static_cast<direction >(rand() % 4);
+
         for(auto n : npcVec) {
             if(!n->dead){
                 n->move(_Block, npcVec);
@@ -170,8 +172,8 @@ namespace GTA {
         }
     }
 
-    void NpcController::NpcDraw(GameDataRef inn_data, bool Driving, float MovementSpeed,
-            sf::Sprite _car, sf::Sprite _player) {
+    void NpcController::NpcDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed,
+            sf::Sprite &_car, sf::Sprite &_player) {
         _data = inn_data;
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());

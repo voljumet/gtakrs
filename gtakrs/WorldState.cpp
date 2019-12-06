@@ -51,13 +51,6 @@ namespace GTA {
         M3_Silver = this->_data->assets.GetTexture("M3_SILVER");
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
 
-        M3s[0] = M3_Blue;
-        M3s[1] = M3_Red;
-        M3s[2] = M3_Black;
-        M3s[3] = M3_Silver;
-        M3s[4] = M3_White;
-
-
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
@@ -68,13 +61,12 @@ namespace GTA {
 
         /// Player car Texture / Settings
         this->_car.setTexture(M3_White);      /// Set Texture
-        this->_data->assets.GetTexture("car1").setSmooth(true);
+        this->_data->assets.GetTexture("M3_WHITE").setSmooth(true);
 
         this->_car.setPosition(playerStartPosX, playerStartPosY);
-        this->_car.setTextureRect(sf::IntRect(0, 0, 100, 180));
-        this->_car.setScale(sf::Vector2f(1.0f, 1.0f)); /// absolute scale factor
+        this->_car.setTextureRect(sf::IntRect(0, 0, 91, 208));
+        this->_car.setScale(sf::Vector2f(1.2f, 1.2f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
-        this->_car.setColor(sf::Color(10,50,50));
         this->_car.setRotation(180);
 
         ////Add Sprites in to Sprite List
@@ -82,7 +74,7 @@ namespace GTA {
 //        spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
-        carController.NpvSpawn(M3s[1], map._Block);
+        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(this->_data->assets.GetTexture("Player"), map._Block);

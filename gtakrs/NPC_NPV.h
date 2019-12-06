@@ -17,6 +17,7 @@ namespace GTA{
         int CurrentPosX, CurrentPosY;
         double movementSpeed;
         int moveUp, moveDown, moveRight, moveLeft;
+        int spriteHeight, spriteWidth;
         int NextTile, currentTile;
         int UpdatedPosX, UpdatedPosY;
         int randomColor;
@@ -36,6 +37,11 @@ namespace GTA{
 
         direction RandomDir;
         Collision_Detection collisionDetaction;
+
+        std::clock_t Timer;
+        int timer2=0;
+        double Rando;
+        double vec;
 
     };
 }
