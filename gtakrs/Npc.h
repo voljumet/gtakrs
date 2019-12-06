@@ -19,7 +19,13 @@ namespace GTA {
         void setNpcBot(sf::Texture &texture);
         void setNpcBot(sf::Vector2f vector2F);
 
-        void npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
+        /* // loading the texture directly instead *1 */
+
+        void npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+
+        /* // loading the texture directly instead *1 */
+
+
         void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
 
         /// Variables

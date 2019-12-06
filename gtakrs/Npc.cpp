@@ -7,6 +7,7 @@ namespace GTA {
     Npc::Npc() = default;
     Npc::~Npc() = default;
 
+
     // Using a reference of texture works
     void Npc::npcInit(sf::Texture & texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
@@ -28,6 +29,8 @@ namespace GTA {
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
     }
+
+
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }
 

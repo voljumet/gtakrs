@@ -142,7 +142,6 @@ namespace GTA{
 //                    true);
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
-
         }
     }
 

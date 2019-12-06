@@ -13,7 +13,7 @@ public:
     AssetManager hackaudio;
 
     float posX, posY, size;
-    bool correctpassword;
+    bool correctpassword = false;
 
 
     void Init();

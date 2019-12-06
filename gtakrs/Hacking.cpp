@@ -121,13 +121,6 @@ namespace GTA{
 
                 playerinput.clear();
             }
-
-
-
-
-//            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
-//                this->_data->window.close();
-//            }
         }
     }
 
@@ -135,8 +128,8 @@ namespace GTA{
 
 
     void Hacking::Update(float dt) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            //this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+        if(correctpassword){
+            std::cout << "rompa juice" << std::endl;
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
         }
