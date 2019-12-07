@@ -15,9 +15,6 @@ namespace GTA{
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
 
         this->_data->assets.LoadTexture("Game Logo", MAIN_MENU_LOGO_PATH);    /// Load Texture
-        this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
-        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
-
         this->_data->assets.LoadTexture("Play button", MAIN_MENU_PLAY_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Resume Button", MAIN_MENU_LOAD_BUTTON);  /// Load Texture
         this->_data->assets.LoadTexture("Exit Button", MAIN_MENU_EXIT_BUTTON);  /// Load Texture

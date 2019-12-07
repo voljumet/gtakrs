@@ -5,6 +5,7 @@
 #include "MainMenuState.h"
 #include "Movement.h"
 #include "colliderTest.h"
+#include "WastedState.h"
 
 /// Denne klassen er for WORLD
 
@@ -33,6 +34,11 @@ namespace GTA {
 
         ///Load Textures
         this->_data->assets.LoadTexture("Player", PLAYER);
+        this->_data->assets.LoadTexture("Player2", PLAYER2);
+        this->_data->assets.LoadTexture("Player3", PLAYER3);
+        this->_data->assets.LoadTexture("Player4", PLAYER4);
+        this->_data->assets.LoadTexture("Player5", PLAYER5);
+
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
@@ -45,10 +51,8 @@ namespace GTA {
         this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
 
 
-        M3_Blue = this->_data->assets.GetTexture("M3_BLUE");
-        M3_Red = this->_data->assets.GetTexture("M3_RED");
-        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
-        M3_Silver = this->_data->assets.GetTexture("M3_SILVER");
+        player1 = this->_data->assets.GetTexture("Player");
+
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
 
         /// SET STARTING POSITION
@@ -74,10 +78,14 @@ namespace GTA {
 //        spriteListy.push_back(&this->_car3);
 
         /// Create NPCars
-        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
+        carController.NpvSpawn(M3_White, map._Block);
+
+//        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
 
         /// Create NPCaracters
-        npcController.NpcSpawn(this->_data->assets.GetTexture("Player"), map._Block);
+        npcController.NpcSpawn( map._Block);
+
+//        npcController.NpcSpawn(player1,player2,player3,player4, player5, map._Block);
 
     }
 
@@ -87,7 +95,7 @@ namespace GTA {
         Timer = std::clock();
         drawtimerNPC +=1;
         if(drawtimerNPC == 5){
-            npcController.NpcMoveAndSpawn(this->_data->assets.GetTexture("Player"), map._Block);
+            npcController.NpcMoveAndSpawn(map._Block);
             drawtimerNPC = 0;
         }
         NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
@@ -150,6 +158,16 @@ namespace GTA {
             }
         }
 
+        switch (event.type) {
+            case sf::Event::KeyReleased: {
+                switch (event.key.code) {
+                    case sf::Keyboard::H: {
+                        this->_player.health-=50;
+                    }
+                }
+            }
+        }
+
         UpdateMovement(_player.playerGetSprite(), this->_car);
         _player.playerVec(movement);
 
@@ -161,9 +179,9 @@ namespace GTA {
         playerCrashTEMP();
         PlayDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-        collisionDetaction.Check_Collision(_car,_car2,true);
-        collisionDetaction.Check_Collision(_car,_car3,true);
-        collisionDetaction.Check_Collision(_player.playerGetSprite(), _car2, false);
+//        collisionDetaction.Check_Collision(_car,_car2,true);
+//        collisionDetaction.Check_Collision(_car,_car3,true);
+//        collisionDetaction.Check_Collision(_player.playerGetSprite(), _car2, false);
 
     }
 
@@ -171,6 +189,11 @@ namespace GTA {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+        }
+        if(this->_player.health == 0){
+            this->_player.health = 100;
+            this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
+
         }
     }
 

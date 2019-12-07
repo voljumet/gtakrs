@@ -14,7 +14,7 @@ namespace GTA {
         void setNvcBot(sf::Texture &textura);
         void setNpvBot(sf::Vector2f vector2F);
 
-        void CarInit(sf::Texture &M3W, sf::Texture &M3K, sf::Texture &M3B, sf::Texture &M3R, sf::Texture &M3S, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
+        void CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
         void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> &npcVec);
 
         sf::Sprite &getNpvBot();
@@ -23,16 +23,23 @@ namespace GTA {
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npvBot;
+
+        sf::Texture M3_Black;
+        sf::Texture M3_Blue;
+        sf::Texture M3_Red;
+        sf::Texture M3_Silver;
     };
 
     class CarController: public NPC_NPV{
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
-        void NpvSpawn(sf::Texture &M3W, sf::Texture &M3K, sf::Texture &M3B, sf::Texture &M3R, sf::Texture &M3S, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        void NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player);
         std::vector<Npv*> npvVec;
+
+
 
     private:
         GameDataRef _data;

@@ -24,6 +24,8 @@ public:
     float getRotaion();
     void setRotaion(float rotation);
 //    void checkCollision(bool Debug, bool Driving, );
+    int health = 100;
+    bool dead = false;
 private:
 
     sf::Sprite playerSprite;

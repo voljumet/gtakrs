@@ -7,8 +7,16 @@ namespace GTA {
     Npv::Npv() = default;
     Npv::~Npv() = default;
 
+//    void Npc::loader(){
+//        M3_Blue = this->_data->assets.GetTexture("M3_BLUE");
+//        M3_Red = this->_data->assets.GetTexture("M3_RED");
+//        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
+//        M3_Silver = this->_data->assets.GetTexture("M3_SILVER");
+//        M3_White = this->_data->assets.GetTexture("M3_WHITE");
+//    }
+
     // Using a reference of texture works
-    void Npv::CarInit(sf::Texture &M3W, sf::Texture &M3K, sf::Texture &M3B, sf::Texture &M3R, sf::Texture &M3S, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void Npv::CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
 
         dir = RandomDir;
         movementSpeed = 8;
@@ -26,14 +34,16 @@ namespace GTA {
             CheckWalkable = std::find(std::begin(Npv_Can_SpawnHere), std::end(Npv_Can_SpawnHere), RandNpcTile) != std::end(Npv_Can_SpawnHere);
         }
 
-        randomColor = (rand() % 5, rand() % 5);
-        switch (randomColor){
-            case 1 : this->npvBot.setTexture(M3W); break;
-            case 2 : this->npvBot.setTexture(M3K); break;
-            case 3 : this->npvBot.setTexture(M3R); break;
-            case 4 : this->npvBot.setTexture(M3S); break;
-            case 5 : this->npvBot.setTexture(M3B); break;
-        }
+//        randomColor = (rand() % 5, rand() % 5);
+//        switch (randomColor){
+//            case 1 :
+                this->npvBot.setTexture(M3W);
+//            break;
+//            case 2 : this->npvBot.setTexture(M3K); break;
+//            case 3 : this->npvBot.setTexture(M3R); break;
+//            case 4 : this->npvBot.setTexture(M3S); break;
+//            case 5 : this->npvBot.setTexture(M3B); break;
+//        }
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
@@ -142,11 +152,11 @@ namespace GTA {
         npvBot.move(vector2F);
     }
 
-    void CarController::NpvSpawn(sf::Texture &M3W, sf::Texture &M3K, sf::Texture &M3B, sf::Texture &M3R, sf::Texture &M3S, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void CarController::NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int k = 0; k < 100; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
-            npvVec[k]->CarInit(M3B, M3K, M3R, M3S, M3W, _Block);
+            npvVec[k]->CarInit(M3W, _Block);
         }
     }
 
@@ -156,9 +166,10 @@ namespace GTA {
         }
     }
 
-    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,sf::Sprite &_player) {
+    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed,
+            sf::Sprite &_car,sf::Sprite &_player) {
         _data = inn_data;
-        for (auto &i : npvVec) {
+        for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
 
             /// Npc collision with car

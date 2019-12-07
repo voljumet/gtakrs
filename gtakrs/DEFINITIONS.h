@@ -15,6 +15,8 @@
 #define TILE_SIZE 70
 
 #define SPLASH_STATE_SHOW_TIME 1
+#define WASTED_STATE_SHOW_TIME 5
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///Map
@@ -62,6 +64,9 @@
 #define MAIN_MENU_DEBUG_BUTTON "Resources/res/Menus/Buttons-06.png"
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
+
+#define WASTED_FILEPATH "Resources/res/Menus/Wasted-01.png"
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 ///MISSION 1

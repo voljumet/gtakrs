@@ -51,7 +51,7 @@ namespace GTA {
         int playerStartPosY;
         int  X, Y;
 
-        explicit WorldState(GameDataRef data);
+        explicit WorldState(GTA::GameDataRef data);
         void Init() override;
         void HandleInput() override;
         void Update(float dt) override;
@@ -77,8 +77,6 @@ namespace GTA {
         double NPVDura;
         double NullDura;
 
-
-
         Collision_Detection collisionDetaction;
         std::vector<sf::Sprite *> spriteListy;
         GameDataRef _data;
@@ -87,12 +85,9 @@ namespace GTA {
         sf::RectangleShape getRektMap;
         sf::Vector2f viewCenter;
 
-        sf::Texture M3s[5];
         sf::Texture M3_White;
-        sf::Texture M3_Black;
-        sf::Texture M3_Blue;
-        sf::Texture M3_Red;
-        sf::Texture M3_Silver;
+
+        sf::Texture player1;
 
         sf::Sprite _car;
         sf::Sprite _car2;
