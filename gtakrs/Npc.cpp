@@ -93,8 +93,6 @@ namespace GTA {
 
         NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
-
-
         for(int i = 0; i < npcVec.size(); ++i) {
             /// change dir if colliding with other npc
             if(PixelPerfectTest(npcVec[i]->getNpcBot(), getNpcBot()) && npcVec[i]->Number != Number){
@@ -164,7 +162,6 @@ namespace GTA {
         for (int i = 0; i < 200; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->Number=i;
-//            npcVec[i]->setNpcBot();
             npcVec[i]->npcInit(texture, _Block);
 
         }

@@ -27,6 +27,7 @@ add_executable(GTAKRS
         NPC_NPV.h
         missionPlacement.h missionPlacement.cpp
         WastedState.h WastedState.cpp
+        ControlsState.h ControlsState.cpp
 
 
         )

@@ -59,13 +59,16 @@
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Menus/Buttons-01.png"
 #define MAIN_MENU_LOAD_BUTTON "Resources/res/Menus/Buttons-02.png"
 #define MAIN_MENU_EXIT_BUTTON "Resources/res/Menus/Buttons-03.png"
-#define MAIN_MENU_MISSION1_BUTTON "Resources/res/Menus/Buttons-04.png"
-#define MAIN_MENU_MISSION2_BUTTON "Resources/res/Menus/Buttons-05.png"
-#define MAIN_MENU_DEBUG_BUTTON "Resources/res/Menus/Buttons-06.png"
+#define MAIN_MENU_CONTROLS_BUTTON "Resources/res/Menus/Buttons-04.png"
+#define MAIN_MENU_BACK_BUTTON "Resources/res/Menus/Buttons-05.png"
+
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
 
 #define WASTED_FILEPATH "Resources/res/Menus/Wasted-01.png"
+
+#define CONTROLS_FILEPATH "Resources/res/Menus/Controls-01.png"
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
