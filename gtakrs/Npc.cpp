@@ -6,8 +6,9 @@ namespace GTA {
     Npc::Npc() = default;
     Npc::~Npc() = default;
 
+
     // Using a reference of texture works
-    void Npc::npcInit(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void Npc::npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         movementSpeed = 5;
 
@@ -17,7 +18,7 @@ namespace GTA {
 //        randomColor = (rand() % 5, rand() % 5);
 //        switch (randomColor){
 //            case 1 :
-                this->npcBot.setTexture(player1);
+                npcBot.setTexture(texture);
 //            break;
 //            case 2 : this->npcBot.setTexture(texture2); break;
 //            case 3 : this->npcBot.setTexture(texture3); break;
@@ -149,7 +150,7 @@ namespace GTA {
 
     }
 
-    void NpcController::NpcSpawn(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 //        this->_data->assets.LoadTexture("Player2", PLAYER2);
 //        this->_data->assets.LoadTexture("Player3", PLAYER3);
 //        this->_data->assets.LoadTexture("Player4", PLAYER4);
@@ -163,12 +164,13 @@ namespace GTA {
         for (int i = 0; i < 200; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->Number=i;
-            npcVec[i]->npcInit(_Block);
+//            npcVec[i]->setNpcBot();
+            npcVec[i]->npcInit(texture, _Block);
 
         }
     }
 
-    void NpcController::NpcMoveAndSpawn(Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
         RandomDir = static_cast<direction >(rand() % 4);
 
@@ -178,7 +180,7 @@ namespace GTA {
             } else {
                 n->RespawnTime -= 1;
                 if (n->RespawnTime == 0){
-                    n->npcInit(_Block);
+                    n->npcInit(texture, _Block);
                     n->dead = false;
                     n->RespawnTime = 600;
                 }

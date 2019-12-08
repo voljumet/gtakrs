@@ -83,7 +83,7 @@ namespace GTA {
 //        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
 
         /// Create NPCaracters
-        npcController.NpcSpawn( map._Block);
+        npcController.NpcSpawn(player1, map._Block);
 
 //        npcController.NpcSpawn(player1,player2,player3,player4, player5, map._Block);
 
@@ -95,7 +95,7 @@ namespace GTA {
         Timer = std::clock();
         drawtimerNPC +=1;
         if(drawtimerNPC == 5){
-            npcController.NpcMoveAndSpawn(map._Block);
+            npcController.NpcMoveAndSpawn(player1, map._Block);
             drawtimerNPC = 0;
         }
         NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
