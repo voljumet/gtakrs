@@ -1,5 +1,4 @@
 #include <sstream>
-#include <iostream>
 #include "MainMenuState.h"
 #include "DEFINITIONS.h"
 #include "WorldState.h"
@@ -38,44 +37,28 @@ namespace GTA{
         while (this->_data->window.pollEvent(event)){
             if(sf::Event::Closed == event.type){ this->_data->window.close(); }      /// Handle if window is exited
 
-            if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
-                std::cout << "Play Game" << std::endl;
+            if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+                this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
             }
 
-            if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)){             /// Handle if button is pressed
-                std::cout << "Resume Game" << std::endl;
+            if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+                this->_data->machine.GetActiveState()->Resume();
+                this->_data->machine.RemoveState();
+            }
+
+            if(this->_data->input.IsSpriteClicked(this->_controlsButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                this->_data->machine.AddState(StateRef(new ControlsState(_data)), false);
+                this->_data->machine.RemoveState();
             }
 
             if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
-                std::cout << "Exit Game" << std::endl;
                 this->_data->window.close();
             }
         }
     }
 
     void MainMenuState::Update(float dt) {
-        if(this->_data->input.IsSpriteClicked(this->_playButton, sf::Mouse::Left, this->_data->window) || sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
-            this->_data->machine.AddState(StateRef(new WorldState(_data)), true);        /// New state to replace the running state
-        }
 
-        if(this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
-            this->_data->machine.GetActiveState()->Resume();
-            this->_data->machine.RemoveState();
-        }
-
-        if(this->_data->input.IsSpriteClicked(this->_controlsButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            this->_data->machine.AddState(StateRef(new ControlsState(_data)), false);
-            this->_data->machine.RemoveState();
-        }
-
-//        if(this->_data->input.IsSpriteClicked(this->_mission_1Button, sf::Mouse::Left, this->_data->window)){
-//            this->_data->machine.AddState(StateRef(new Mission(_data)), true);        /// New state to replace the running state
-//        }
-//
-//        if(this->_data->input.IsSpriteClicked(this->_mission_2Button, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::H)){
-//            this->_data->machine.AddState(StateRef(new Hacking(_data)), true);        /// New state to replace the running state
-//
-//        }
     }
 
     void MainMenuState::Draw(float dt) {

@@ -1,5 +1,4 @@
 #include <sstream>
-#include <iostream>
 #include "ControlsState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"

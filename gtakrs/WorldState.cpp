@@ -168,6 +168,21 @@ namespace GTA {
             }
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            this->_data->machine.GetActiveState()->Pause();
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
+        }
+        if(this->_player.health == 0){
+            this->_player.health = 100;
+            this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
+
+        }
+
+
+
+    }
+
+    void WorldState::Update(float dt) {         /// New state to replace this state
         UpdateMovement(_player.playerGetSprite(), this->_car);
         _player.playerVec(movement);
 
@@ -178,23 +193,6 @@ namespace GTA {
 
         playerCrashTEMP();
         PlayDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
-
-//        collisionDetaction.Check_Collision(_car,_car2,true);
-//        collisionDetaction.Check_Collision(_car,_car3,true);
-//        collisionDetaction.Check_Collision(_player.playerGetSprite(), _car2, false);
-
-    }
-
-    void WorldState::Update(float dt) {         /// New state to replace this state
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            this->_data->machine.GetActiveState()->Pause();
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
-        }
-        if(this->_player.health == 0){
-            this->_player.health = 100;
-            this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
-
-        }
     }
 
     void WorldState::Draw(float dt) {
@@ -337,7 +335,6 @@ namespace GTA {
             std::cout << "Timer Draw NPV: " << NPVDura/60 << std::endl;
             std::cout << "Timer PlayerCollision: " << PlayDura/60 << std::endl;
             std::cout << "Timer Controll: " << NullDura/60 << std::endl;
-
 
             std::cout << "--------------------- " << std::endl;
             MapDura = 0;

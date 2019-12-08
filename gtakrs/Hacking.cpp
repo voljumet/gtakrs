@@ -5,9 +5,6 @@
 #include "Hacking.h"
 
 
-
-
-
 namespace GTA{
     Hacking::Hacking(GTA::GameDataRef data): _data(std::move(data)) { }
     void Hacking::Init() {
@@ -15,12 +12,9 @@ namespace GTA{
         hackaudio.loadall();
         hackaudio.playcomputer();
 
-
-
         this->posX = 0;
         this->posY = 0;
         this->correctpassword = false;
-
 
         this->_data->assets.LoadTexture("CRT", CRT_SCREEN); ///Loading background image of CRT
         _background.setTexture(this->_data->assets.GetTexture("CRT"));
@@ -58,15 +52,12 @@ namespace GTA{
 
                 hackaudio.PlaySound(hackaudio.button);
 
-
-
-
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
                     playerinput.clear();
                     this->_data->window.draw(playertext);
                 }
 
-                    this->_data->window.draw(playertext);
+                this->_data->window.draw(playertext);
             }
 
 
@@ -120,18 +111,8 @@ namespace GTA{
 
                 playerinput.clear();
             }
-
-
-
-
-//            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
-//                this->_data->window.close();
-//            }
         }
     }
-
-
-
 
     void Hacking::Update(float dt) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
@@ -139,8 +120,6 @@ namespace GTA{
 
         }
     }
-
-
 
     void Hacking::Draw(float dt) {
         this->_data->window.clear(sf::Color::Black);
