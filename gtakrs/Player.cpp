@@ -20,8 +20,9 @@ namespace GTA {
         this->playerSprite.setOrigin(50.f, 67.f);
         font.loadFromFile(FONT_ARIAL);
 
-
     }
+
+
 
     void Player::playerMoves(Movement &movement) {
         playerSprite.move(movement.movementVec * movement.currentSpeed * movement.dt);
@@ -68,7 +69,7 @@ namespace GTA {
             renderWindow.draw(healthbarSprite1);
             ///// Red Bar
             healthBarRect.setFillColor(sf::Color::Red);
-            healthBarRect.setSize(sf::Vector2f(22700 / inthralth, 25));
+            healthBarRect.setSize(sf::Vector2f(22700 / intHealth, 25));
             healthBarRect.setPosition(playerSprite.getPosition().x - 775, playerSprite.getPosition().y - 723);
             renderWindow.draw(healthBarRect);
             /////////// bullet bar
@@ -99,7 +100,7 @@ namespace GTA {
             renderWindow.draw(healthbarSprite1);
             ///// Red Bar
             healthBarRect.setFillColor(sf::Color::Red);
-            healthBarRect.setSize(sf::Vector2f(22700 / inthralth, 25));
+            healthBarRect.setSize(sf::Vector2f(22700 / intHealth, 25));
             healthBarRect.setPosition(pos.x - 775, pos.y - 723);
             renderWindow.draw(healthBarRect);
             /////////// bullet bar
@@ -125,8 +126,6 @@ namespace GTA {
             renderWindow.draw(healthbarSprite);
 
         }
-
-
     }
 
     float Player::getRotaion() {
@@ -140,7 +139,7 @@ namespace GTA {
     }
 
     int Player::getDamage() {
-        return inthralth++;
+        return intHealth++;
     }
 
     int Player::getCoin() {

@@ -4,6 +4,7 @@
 #include <fstream>
 #include "Game.h"
 #include "DEFINITIONS.h"
+#include "Collision_Detection.h"
 
 namespace GTA {
 
@@ -13,7 +14,6 @@ namespace GTA {
         sf::Sprite tileSprite;
         sf::Text text;
         int tileTextureNumber;
-
     };
 
     class Map{
@@ -37,7 +37,8 @@ namespace GTA {
 
         void Array(sf::Texture & texture, sf::Font & font);
         void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
-                int playerPosY, GameDataRef _data);
+                int playerPosY, GameDataRef _data, bool NoDrivingOrWalkingBool);
+
 
     private:
         GameDataRef _data;

@@ -15,8 +15,6 @@ public:
 
 
     float posX, posY, spriteposX, spriteposY, movementspeed;
-    std::vector<sf::Sprite*> spritelist;
-
 
     int counter{}, steps{};
 
@@ -24,11 +22,18 @@ public:
     void HandleInput() override;
     void Update(float dt) override;
     void Draw(float dt) override;
+    void UpdateView(const float &dt);
 
 private:
 
     GameDataRef _data;
+    sf::View view;
     sf::Sprite _background;
+    sf::Sprite cars;
+    sf::Sprite clouds;
+    sf::Sprite ground;
+    sf::Sprite houses;
+    sf::Sprite skyskrapers;
     sf::Sprite _sprite;
     sf::Sprite _scope;
     };

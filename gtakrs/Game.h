@@ -8,7 +8,7 @@
 #include "InputManager.h"
 
 namespace GTA{
-    struct    GameData{
+    struct GameData{
         StateMachine machine;
         sf::RenderWindow window;
         AssetManager assets;
