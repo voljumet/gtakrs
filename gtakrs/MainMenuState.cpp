@@ -48,12 +48,16 @@ namespace GTA{
             }
 
             if(this->_data->input.IsSpriteClicked(this->_controlsButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                this->_data->machine.AddState(StateRef(new Mission(_data)), false);
+                this->_data->machine.AddState(StateRef(new ControlsState(_data)), false);
                 this->_data->machine.RemoveState();
             }
 
             if(this->_data->input.IsSpriteClicked(this->_exitButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::X)){             /// Handle if button is pressed
                 this->_data->window.close();
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::F)){
+                this->_data->machine.AddState(StateRef(new Mission(_data)), false);
+                this->_data->machine.RemoveState();
             }
         }
     }

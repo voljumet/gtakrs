@@ -81,9 +81,8 @@
 ///MISSION 1
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
-#define MISSION_1_BUILDING "Resources/res/mission_1/Mission_1_Building.png"
-#define MISSION_1_SPRITE "Resources/res/mission_1/Mission_1_alive.png"
-#define MISSION_1_DEADSPRITE "Resources/res/mission_1/Mission_1_dead.png"
+#define MISSION_1_SPRITE "Resources/res/Mission_1_alive.png"
+#define MISSION_1_DEADSPRITE "Resources/res/Mission_1_dead.png"
 
 #define MISSION_1_BACKGROUND "Resources/res/city_layers/city_1.png"
 #define MISSION_1_CLOUDS "Resources/res/city_layers/city_2.png"

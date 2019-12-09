@@ -13,7 +13,7 @@ namespace GTA{
 
         this->movementspeed = 15.f;        ///Determins the movement speed of the scope
         this->spriteposX = 3700;
-        this->spriteposY = 5125;
+        this->spriteposY = 5100;
         this->steps = 0;
         dir = Right;                        ///Dir is an enum for direction, used for moving the sprite.
 
@@ -27,7 +27,7 @@ namespace GTA{
         ///Load texture for sprite.
         this->_data->assets.LoadTexture("Sprite", MISSION_1_SPRITE);
         _sprite.setTexture(this->_data->assets.GetTexture("Sprite"));
-        _sprite.setScale(0.1, 0.1);
+        _sprite.setScale(0.2, 0.2);
         this->_sprite.setPosition(spriteposX, spriteposY);
 
         ///Load texture for scope.
@@ -82,7 +82,6 @@ namespace GTA{
             posY += movementspeed;
         }
 
-//        _background.setPosition(posX, posY);
         _sprite.setPosition(spriteposX, spriteposY);
      this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
 
@@ -130,7 +129,6 @@ namespace GTA{
                     break;
             }
         }
-//        this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
     }
 
 
