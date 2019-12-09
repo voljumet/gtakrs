@@ -28,7 +28,7 @@ namespace GTA {
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
 
-            //RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
+            RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
             CheckWalkable = std::find(std::begin(Npv_Can_SpawnHere), std::end(Npv_Can_SpawnHere), RandNpcTile) != std::end(Npv_Can_SpawnHere);
@@ -98,7 +98,7 @@ namespace GTA {
             }
         }
 
-        NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
+//        NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
         crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere), NextTile) != std::end(NpvCan_Not_MoveHere);

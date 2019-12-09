@@ -1,34 +1,45 @@
-
 #pragma once
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include "map"
-#include "State.h"
-#include "Game.h"
+#include <SFML/Graphics.hpp>
+#include "MainMenuState.h"
+#include "iostream"
+#include "Player.h"
+#include "DEFINITIONS.h"
+#include "colliderTest.h"
+#include "Mission.h"
+#include "Hacking.h"
 
 namespace GTA{
     class missionPlacement{
 
     public:
-//        explicit missionPlacement(GameDataRef data);
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
         missionPlacement();
-
-
-        void initCoin();
-        void activate();
-
         virtual ~missionPlacement();
+
+        void snipeMissionSettings();
+        void hackMissionSettings();
+        void missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos);
+        void infoBox(sf::Sprite &player, int &missionNumber);
+        void InfoBoxText(sf::Sprite &player, int &missionNumber);
+
 
 
     private:
         GameDataRef _data;
-        sf::CircleShape missionCircle;
-    public:
-        const sf::CircleShape &getMissionCircle() const;
+        sf::Sprite missionCircle;
+        sf::Texture texture;
+        sf::RectangleShape rectangleShape;
+        sf::Text text;
+        sf::Font font;
 
+    public:
+       sf::Sprite getMissionCircle();
+       sf::RectangleShape getBox();
+       sf::Text getText();
     };
 }
 

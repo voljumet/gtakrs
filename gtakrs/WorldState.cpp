@@ -16,9 +16,11 @@ namespace GTA {
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+
         this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
-        this->minimap.setViewport(sf::FloatRect(0.79f, 0.01f, 0.2f, 0.2f));
+        this->minimap.setViewport(sf::FloatRect(0.79f,
+                0.01f, 0.2f, 0.2f));
 
         this->getRektMap.setSize(sf::Vector2f(380, 340));
         this->getRektMap.setFillColor(sf::Color(0, 0, 0, 200));
@@ -27,8 +29,6 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
-        /// calls initcoin function from missionPlacement
-        msp.initCoin();
 
         /// Loads audio
         sound.loadall();
@@ -46,6 +46,12 @@ namespace GTA {
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
+        this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
+
+        /// calls initcoin function from missionPlacement
+        missionPlacement.hackMissionSettings();
+//        missionPlacement.getText();
+
 
         this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
 
@@ -103,7 +109,6 @@ namespace GTA {
 //        npcController.NpcSpawn(player1,player2,player3,player4, player5, map._Block);
 
     }
-
     void WorldState::HandleInput() {
 
         /// npc Respawn and Move
@@ -112,9 +117,23 @@ namespace GTA {
         if(drawtimerNPC == 5){
             npcController.NpcMoveAndSpawn(player1, map._Block);
             drawtimerNPC = 0;
+
+
         }
         NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
+        /// mission trigger
+        if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
+            mission = true;
+            missionPlacement.infoBox(_player.playerGetSprite(), missionNumber);
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+                missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite());
+                std::cout << "Mission: " << missionNumber << std::endl;
+            }
+        }else {
+            mission = false;
+        }
 
         /// Car Respawn and Move
         Timer = std::clock();
@@ -124,7 +143,6 @@ namespace GTA {
             drawtimerNPV = 0;
         }
         NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
-
 
         sf::Event event{};
 
@@ -137,17 +155,7 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-if(weapon.hasweapon==true) {
-    if (event.key.code == sf::Keyboard::E && !Driving) {
-        if(_player.ammo>0) {
-            shooting.CreateBullet(_player.playerGetSprite());
-            _player.ammo -= 1;
-        }
-        else{
-            std::cout << "no ammo left!";
-        }
-    }
-}
+        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
 ////////////////////////////////////
 
 
@@ -195,6 +203,7 @@ if(weapon.hasweapon==true) {
                 switch (event.key.code) {
                     case sf::Keyboard::H: {
                         this->_player.intHealth-=50;
+
                     }
                 }
             }
@@ -203,6 +212,7 @@ if(weapon.hasweapon==true) {
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
@@ -231,11 +241,10 @@ if(weapon.hasweapon==true) {
         shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
         shooting.MoveBullet();
 
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){    ///Dersom player plukker opp pistolen
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
 
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
-            _player.ammo=+30;
 
             weapon.gun_posX = TILE_SIZE * 60;
             weapon.gun_posY = TILE_SIZE * 23;
@@ -260,7 +269,7 @@ if(weapon.hasweapon==true) {
 
         MapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-
+        this->_data->window.draw(missionPlacement.getMissionCircle());
 
         shooting.DrawBullet(_data);
 
@@ -274,8 +283,8 @@ if(weapon.hasweapon==true) {
         Timer = std::clock();
         carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
 
-        NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
+        NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// NULL
         Timer = std::clock();
@@ -293,6 +302,13 @@ if(weapon.hasweapon==true) {
         this->_data->window.draw(weapon.gun);
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+
+        /// if mission equals to true, and player is out of circle the rectangle box disappears
+        if(mission) {
+            this->_data->window.draw(missionPlacement.getBox());
+            this->_data->window.draw(missionPlacement.getText());
+
+        }
 
         /////////Draw Minimap
         Timer = std::clock();
@@ -327,7 +343,6 @@ if(weapon.hasweapon==true) {
         this->view.setCenter(X,Y);
         this->minimap.setCenter(X,Y);
         this->getRektMap.setPosition(X+=512,Y-=794);
-
 
     }
 

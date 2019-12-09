@@ -10,6 +10,7 @@ namespace GTA{
 
 class Player : Movement{
 public:
+    friend class missionPlacement;
     Player();
     ~Player();
 
@@ -30,12 +31,11 @@ public:
     int getCoin();
     int getBullet();
     int loseBullet();
-    int ammo;
 //    void checkCollision(bool Debug, bool Driving, );
 
     int intHealth = 100;
 private:
-
+    friend class missionPlacement;
     sf::Sprite playerSprite;
     sf::RectangleShape healthBarRect;
     sf::RectangleShape bulletBarRect;

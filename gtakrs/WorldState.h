@@ -30,12 +30,11 @@ namespace GTA {
         Weapon weapon;
         AssetManager sound;
 
-
-
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
         Player _player;
         missionPlacement msp;
+        missionPlacement missionPlacement;
 
         const float dt = 0.01f;
         float WalkSpeed = 1.f;
@@ -45,6 +44,8 @@ namespace GTA {
         bool mission = false;
         bool NULLER = false;
         bool NoDrivingOrWalkingBool = false;
+
+        int missionNumber = 1;
 
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
 
@@ -95,9 +96,7 @@ namespace GTA {
         sf::Vector2f viewCenter;
 
         sf::Texture M3_White;
-
         sf::Texture player1;
-
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;

@@ -43,7 +43,12 @@ namespace GTA {
         sounds.push_back(sound);
         sounds.back().play();
     }
-    
+
+
+
+
+
+
     sf::Sound AssetManager::loadhorn() {
         bufferhorn.loadFromFile(AIRHORN_FILEPATH);
         soundhorn.setBuffer(bufferhorn);
@@ -57,7 +62,7 @@ namespace GTA {
     }
 
     sf::Sound AssetManager::loadfootstep() {
-        bufferfootstep.loadFromFile(FOOTSTEP_FILEPATH);
+        bufferfootstep.loadFromFile(GUNHSOT_FILEPATH);
         footstep.setBuffer(bufferfootstep);
         return footstep;
     }
@@ -109,10 +114,11 @@ namespace GTA {
 
     void AssetManager::loadcomputer() {
         computersounds.openFromFile(COMPUTERSOUNDS);
-        computersounds.setVolume(10);
     }
 
     void AssetManager::playcomputer() {
         computersounds.play();
     }
+
+
 }

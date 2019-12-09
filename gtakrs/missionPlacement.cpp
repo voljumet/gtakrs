@@ -1,34 +1,99 @@
 #pragma once
 
 #include "missionPlacement.h"
-#include "DEFINITIONS.h"
+#include <utility>
+
 
 namespace GTA{
+
 
     missionPlacement::missionPlacement() = default;
     missionPlacement::~missionPlacement() = default;
 
-    void missionPlacement::initCoin() {
+    void missionPlacement::hackMissionSettings(){
 
-        sf::CircleShape circle;
-        this->missionCircle.setRadius(50);
-        this->missionCircle.setFillColor(sf::Color::Transparent);
-        this->missionCircle.setOutlineColor(sf::Color::Yellow);
-        this->missionCircle.setOutlineThickness(5);
-        this->missionCircle.setPosition(TILE_SIZE * 33, TILE_SIZE * 43);
-        this->missionCircle.setOrigin(missionCircle.getRadius(), missionCircle.getRadius());
-
+        this->texture.loadFromFile( MISSION_CIRCLE_SPRITE);
+        this->missionCircle.setTexture(texture);
+        this->missionCircle.setPosition(TILE_SIZE * 20, TILE_SIZE * 21);
+        this->missionCircle.setTextureRect(sf::IntRect(0,0,100, 100));
+        this->missionCircle.setScale(2.f, 2.f);
+        this->missionCircle.setOrigin(50.f, 67.f);
+        if (!font.loadFromFile(RETRO)){
+            std::cout << "Cant load font from resources!" << std::endl;
+        }
     }
 
+    void missionPlacement::snipeMissionSettings() {
 
-    void missionPlacement::activate() {
-
-
+        this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
     }
 
-    const sf::CircleShape &missionPlacement::getMissionCircle() const {
+    void missionPlacement::missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos) {
+        _data = std::move(data_inn);
+        std::cout << "mission " << std::endl;
+
+        if (missionNumber == 1) {
+            std::cout << "1" << std::endl;
+            missionNumber++;
+            snipeMissionSettings();
+            this->_data->machine.GetActiveState()->Pause();
+            this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+        }  else if(missionNumber == 2) {
+            std::cout << "2" << std::endl;
+            missionNumber++;
+            this->_data->machine.GetActiveState()->Pause();
+            this->_data->machine.AddState(StateRef(new Mission(_data)),false);
+        }
+    }
+
+    sf::Sprite missionPlacement::getMissionCircle(){
         return missionCircle;
     }
+    sf::RectangleShape missionPlacement::getBox() {
+        return rectangleShape;
+    }
+
+    sf::Text missionPlacement::getText() {
+        return text;
+    }
+
+
+
+    void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber) {
+
+        rectangleShape.setSize(sf::Vector2f(800, 250));
+        rectangleShape.setOutlineColor(sf::Color::Red);
+        rectangleShape.setOutlineThickness(5);
+        rectangleShape.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
+        InfoBoxText(player, missionNumber);
+    }
+
+    void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber) {
+
+        text.setFont(font);
+        if(missionNumber == 1){
+            text.setString("  Mission criticle information: \n\n"
+                           "  * Click space to activate mission.\n\n"
+                           "  * Find gate password.\n\n"
+                           "  * Find location of AbraDolf Lincler.\n\n");
+        }
+        else if(missionNumber == 2){
+            text.setString("  Mission criticle information: \n\n"
+                           "  * Click space to activate mission.\n\n"
+                           "  * Find Abradolf Lincler before he escapes.\n\n"
+                           "  * Kill him.\n\n");
+        }
+        else if(missionNumber == 3){
+
+        }
+
+
+
+        text.setCharacterSize(24);
+        text.setFillColor(sf::Color::Black);
+        text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
+    }
+
 
 
 }

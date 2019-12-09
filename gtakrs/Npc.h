@@ -2,6 +2,7 @@
 
 #include "NPC_NPV.h"
 
+
 namespace GTA {
 
     class Npc : public NPC_NPV{
@@ -15,6 +16,7 @@ namespace GTA {
         void move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> &npcVec);
 
         sf::Sprite &getNpcBot();
+
 
     private:
         GameDataRef _data;
@@ -48,5 +50,7 @@ namespace GTA {
         sf::Texture player4;
         sf::Texture player5;
 
+        friend class missionPlacement; /// friends class missionplacement,
+        /// give it its private data
     };
 }

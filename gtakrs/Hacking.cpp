@@ -9,13 +9,15 @@ namespace GTA{
     Hacking::Hacking(GTA::GameDataRef data): _data(std::move(data)) { }
     void Hacking::Init() {
 
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
+
         hackaudio.loadall();
         hackaudio.playcomputer();
 
         this->posX = 0;
         this->posY = 0;
         this->correctpassword = false;
-        int layer = 0;
 
         this->_data->assets.LoadTexture("CRT", CRT_SCREEN); ///Loading background image of CRT
         _background.setTexture(this->_data->assets.GetTexture("CRT"));
@@ -68,163 +70,66 @@ namespace GTA{
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
 
-                //------------------------------------------------------------------------------------
-
                 if((playerinput.compare("cd files"))==0){ /// CD FILES
-                    layer = 1;
-                    text.setString("cd files");
+                    text.setString("$ confidential files\n"
+                                   "$ illuminati client list\n"
+                                   "$ security");
                 }
-
-
 
                 else if((playerinput.compare("cd confidential files"))==0){ /// CONFIDENTIAL FILES
-                    layer = 11;
-                    text.setString("cd confidential files");
+                    text.setString("$ area 51 alien list [LOCKED]\n"
+                                   "$ the integer between 1 and 2 [LOCKED]\n"
+                                   "$ obamas real name [LOCKED]");
                 }
-
 
                else if((playerinput.compare("cd illuminati client list"))==0){ /// ILLUMINATI CLIENT LIST
-                    layer = 12;
-                    text.setString("cd illuminati client list");
+                    text.setString("$ bill gates\n"
+                                   "$ beyonce\n"
+                                   "$ aron h haugen");
                 }
-
-
 
                else if((playerinput.compare("cd security"))==0){  /// CD SECURITY
-                    layer = 13;
-                    text.setString("cd security");
+                    text.setString("$ passwords\n"
+                                   "$ camera recordings");
                 }
-
 
                else if((playerinput.compare("cd camera recordings"))==0){ /// CD CAMERA RECORDINGS
-                    layer = 132;
-                    text.setString("cd camera recordings");
+                    text.setString("$ epic_fortnite-noscope.mp4\n"
+                                   "$ 20-11-2019.mp4");
                 }
-
 
                else if((playerinput.compare("cd passwords"))==0){ /// CD PASSWORDS
-                    layer = 131;
-                    text.setString("cd passwords");
+                    text.setString("$ gun depot password: gunny123\n"
+                                   "$ gate password: epstein251\n"
+                                   "$ P O T U S phone password: 11111111");
                 }
 
-
-               else if((playerinput.compare("enter password"))==0){ /// ENTER PASSWORD
-                    text.setString("please enter gate password: \n");
+               else if((playerinput.compare("enter password"))==0){ /// CD ENTER PASSWORD
+                    text.setString("$ please enter gate password: \n");
                 }
-
 
                else if((playerinput.compare("epstein251"))==0){ /// IF THE USER ENTERS THE CORRECT PASSWORD
-                    text.setString("password entered, gate opening \n"
-                                          "have a nice day!\n");
+                    text.setString("$ password entered, gate opening \n"
+                                          "$ have a nice day!\n");
                     correctpassword = true;
                     ///Exit the minigame after this perhaps?
                 }
-
-
-                //------------------------------------------------------------------------------------
-
-                if (event.type == sf::Event::Closed
-                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
-                        event.type == sf::Event::KeyReleased)) {
-
-                    this->_data->window.close();
-                }
-
-                //------------------------------------------------------------------------------------
-                if((playerinput.compare("ls"))==0) { /// list kommando
-
-                    if(layer==1) { ///FILES
-                        text.setString("$ confidential files\n"
-                                       "$ illuminati client list\n"
-                                       "$ security");
-                    }
-
-                    if(layer==11) { ///CONFIDENTIAL FILES
-                        text.setString("$ area 51 alien list [LOCKED]\n"
-                                       "$ the integer between 1 and 2 [LOCKED]\n"
-                                       "$ obamas real name [LOCKED]");
-                    }
-
-                    if(layer==12) { ///ILLUMINATI LIST
-                        text.setString("$ bill gates [locked]\n"
-                                       "$ beyonce [locked]\n"
-                                       "$ aron h haugen [locked]");
-                    }
-
-                    if(layer==13) { ///SECURITY
-                        text.setString("$ passwords\n"
-                                       "$ camera recordings");
-                    }
-
-                    if(layer==132) { ///CAMERA RECORDINGS
-                        text.setString("$ epic_fortnite-noscope.mp4[locked]\n"
-                                       "$ 20-11-2019.mp4[locked]");
-                    }
-
-                    if(layer==131) { ///PASSWORDS
-                        text.setString("$ gun depot password: gunny123\n"
-                                       "$ gate password: epstein251\n"
-                                       "$ P O T U S phone password: 11111111");
-                    }
-
-                }
-
-                //------------------------------------------------------------------------------------
-
-                if((playerinput.compare("cd .."))==0) { /// CD .. aka gå tilbake et steg
-
-                    if(layer==1) {
-                        layer = 1;
-                        text.setString("files");
-                    }
-
-                    if(layer==11) {
-                        layer = 1;
-                        text.setString("files");}
-
-
-                    if(layer==12) {
-                        layer = 1;
-                        text.setString("files");
-                    }
-
-                    if(layer==13) {
-                        layer = 1;
-                        text.setString("files");
-                    }
-
-                    if(layer==132) {
-                        layer = 13;
-                        text.setString("security");
-                    }
-
-                    if(layer==131) {
-                        layer = 13;
-                        text.setString("security");
-                    }
-
-                }
-
-                //------------------------------------------------------------------------------------
 
                 playerinput.clear();
             }
         }
     }
 
-
-
-
-
-
     void Hacking::Update(float dt) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
-            hackaudio.computersounds.stop();
+        if(correctpassword){
+            std::cout << "correct password " << std::endl;
+            this->_data->machine.RemoveState();
+            this->_data->machine.GetActiveState()->Resume();
         }
     }
 
     void Hacking::Draw(float dt) {
+        this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::Black);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(text);

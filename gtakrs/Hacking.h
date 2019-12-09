@@ -13,17 +13,13 @@ public:
     AssetManager hackaudio;
 
     float posX, posY, size;
-    bool correctpassword;
-    int layer;
+    bool correctpassword = false;
 
 
     void Init();
     void HandleInput();
     void Update(float dt);
     void Draw(float dt);
-
-
-
 
 private:
 
@@ -33,6 +29,7 @@ private:
     sf::Text text, playertext;
     std::string playerinput;
     sf::Font font;
+    sf::View view;
 };
 }
 
