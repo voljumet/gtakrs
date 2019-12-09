@@ -137,7 +137,17 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-            if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
+if(weapon.hasweapon==true) {
+    if (event.key.code == sf::Keyboard::E && !Driving) {
+        if(_player.ammo>0) {
+            shooting.CreateBullet(_player.playerGetSprite());
+            _player.ammo -= 1;
+        }
+        else{
+            std::cout << "no ammo left!";
+        }
+    }
+}
 ////////////////////////////////////
 
 
@@ -225,6 +235,7 @@ namespace GTA {
 
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
+            _player.ammo=+30;
 
             weapon.gun_posX = TILE_SIZE * 60;
             weapon.gun_posY = TILE_SIZE * 23;
