@@ -7,6 +7,7 @@
 #include <sstream>
 
 namespace GTA{
+
 class Player : Movement{
 public:
     Player();
@@ -25,11 +26,13 @@ public:
     float getRotaion();
     void setRotaion(float rotation);
 
-
     int getDamage();
     int getCoin();
     int getBullet();
     int loseBullet();
+//    void checkCollision(bool Debug, bool Driving, );
+
+    int intHealth = 100;
 private:
 
     sf::Sprite playerSprite;
@@ -37,13 +40,9 @@ private:
     sf::RectangleShape bulletBarRect;
     sf::Font font;
     sf::Text text;
-    int inthralth = 100;
     int coin = 10;
     int bullet = 1;
     sf::Sprite healthbarSprite, healthbarSprite1;
 
 };
 }
-
-
-

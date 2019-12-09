@@ -5,27 +5,23 @@
 #include "Game.h"
 
 namespace GTA{
-    class MainMenuState : public State{
-
+    class WastedState : public  State{
     public:
-        explicit MainMenuState(GameDataRef data);
+        explicit WastedState(GameDataRef data);
 
         void Init() override;
 
         void HandleInput() override;
         void Update(float dt) override;
-        void Draw(float dt) override;
+        void Draw( float dt) override;
         void UpdateView(const float &dt);
+
 
     private:
         GameDataRef _data;
         sf::View view;
 
-        sf::Sprite _playButton;
-        sf::Sprite _resumeButton;
-        sf::Sprite _controlsButton;
-        sf::Sprite _exitButton;
-
-        sf::Sprite _logo;
+        sf::Clock _clock;
+        sf::Sprite _background;
     };
 }
