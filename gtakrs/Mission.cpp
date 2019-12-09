@@ -140,8 +140,8 @@ namespace GTA{
             std::cout << "rompa juice" << std::endl;
 //            this->_data->machine.AddState(StateRef(new WorldState(_data)),
 //                    true);
-            this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
+            this->_data->machine.GetActiveState()->Resume();
         }
     }
 

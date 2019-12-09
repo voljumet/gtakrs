@@ -27,7 +27,7 @@ namespace GTA {
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
         Player player;
-        missionPlacement msp;
+        missionPlacement missionPlacement;
 
 
         const float dt = 0.01f;

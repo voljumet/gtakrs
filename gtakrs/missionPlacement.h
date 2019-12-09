@@ -19,11 +19,11 @@ namespace GTA{
 
         missionPlacement();
         virtual ~missionPlacement();
+        void missionText(int &missionNumber);
 
         void snipeMissionSettings();
         void hackMissionSettings();
-        void missionSnipe(GameDataRef data_inn, Player player);
-        void missionHack(GameDataRef data_inn, Player player);
+        void missionStart(GameDataRef data_inn, Player &player, int &missionNumber);
 
     private:
         GameDataRef _data;

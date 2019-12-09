@@ -117,25 +117,18 @@ namespace GTA{
                     correctpassword = true;
                     ///Exit the minigame after this perhaps?
                 }
-
-
                 playerinput.clear();
             }
         }
     }
 
-
-
-
     void Hacking::Update(float dt) {
         if(correctpassword){
-            std::cout << "rompa juice" << std::endl;
-            this->_data->machine.GetActiveState()->Resume();
+            std::cout << "correct password " << std::endl;
             this->_data->machine.RemoveState();
+            this->_data->machine.GetActiveState()->Resume();
         }
     }
-
-
 
     void Hacking::Draw(float dt) {
         this->_data->window.setView(this->view);

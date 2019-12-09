@@ -37,8 +37,7 @@ namespace GTA {
         this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
 
         /// calls initcoin function from missionPlacement
-        msp.snipeMissionSettings();
-        msp.hackMissionSettings();
+        missionPlacement.hackMissionSettings();
 
 
         /// SET STARTING POSITION
@@ -96,20 +95,15 @@ namespace GTA {
             npcVec[i]->npcInit(this->_data->assets.GetTexture("Player"), map._Block);
         }
     }
-/**/
     void WorldState::HandleInput() {
 
         /// mission trigger
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::M )&& missionNumber == 1) {
-            msp.missionHack(_data, player);
-            missionNumber += 1;
-            std::cout << "Hacking misison" << std::endl;
-        }
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::M) && missionNumber == 2){
-            msp.missionSnipe(_data, player);
-//            missionNumber += 1;
-
-            std::cout << "sniping mission" << std::endl;
+        if(PixelPerfectTest(missionPlacement.getMissionCircle(), player.playerGetSprite())){
+            missionPlacement.missionText(missionNumber);
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+                missionPlacement.missionStart(_data, player, missionNumber);
+                std::cout << "Mission: " << missionNumber << std::endl;
+            }
         }
 
         /// npc
@@ -189,9 +183,9 @@ namespace GTA {
             }
         }
 
-            collisionDetaction.Check_Collision(_car,_car2,true);
-            collisionDetaction.Check_Collision(_car,_car3,true);
-            collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
+        collisionDetaction.Check_Collision(_car,_car2,true);
+        collisionDetaction.Check_Collision(_car,_car3,true);
+        collisionDetaction.Check_Collision(player.playerGetSprite(),_car2,false);
     }
 
     void WorldState::Update(float dt) {         /// New state to replace this state@
@@ -201,9 +195,6 @@ namespace GTA {
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
-
-
-
     }
 
     void WorldState::Draw(float dt) {
@@ -217,7 +208,7 @@ namespace GTA {
                 _car.getPosition().y,
                 player.playerGetSprite().getPosition().x,
                 player.playerGetSprite().getPosition().y, _data);
-        this->_data->window.draw(msp.getMissionCircle());
+        this->_data->window.draw(missionPlacement.getMissionCircle());
 
         /// Draw NPCharacters
         for (auto &i : npcVec) {
