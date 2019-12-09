@@ -5,6 +5,8 @@
 #include <SFML/Graphics/Text.hpp>
 #include "Movement.h"
 #include <sstream>
+#include "Collision_Detection.h"
+#include "Npv.h"
 
 namespace GTA{
 
@@ -44,6 +46,8 @@ private:
     int coin = 10;
     int bullet = 1;
     sf::Sprite healthbarSprite, healthbarSprite1;
+
+    Collision_Detection collisionDetection;
 
 };
 }

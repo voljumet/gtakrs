@@ -290,7 +290,7 @@ namespace GTA {
 
         /// Draw NPVehicles
         Timer = std::clock();
-        carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
+        carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block);
 
 
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
