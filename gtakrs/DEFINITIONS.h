@@ -90,7 +90,6 @@
 #define MISSION_1_SKYSCRAPERS "Resources/res/city_layers/city_3.png"
 #define MISSION_1_HOUSES "Resources/res/city_layers/city_4.png"
 #define MISSION_1_TREES "Resources/res/city_layers/city_5.png"
-#define MISSION_CIRCLE_SPRITE "Resources/res/mission_tile-01.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 
 

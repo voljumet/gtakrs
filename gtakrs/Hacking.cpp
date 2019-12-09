@@ -9,9 +9,6 @@ namespace GTA{
     Hacking::Hacking(GTA::GameDataRef data): _data(std::move(data)) { }
     void Hacking::Init() {
 
-        this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
-        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
-
         hackaudio.loadall();
         hackaudio.playcomputer();
 
@@ -124,7 +121,6 @@ namespace GTA{
                 }
 
 
-
                 //------------------------------------------------------------------------------------
 
                 if (event.type == sf::Event::Closed
@@ -222,17 +218,13 @@ namespace GTA{
 
 
     void Hacking::Update(float dt) {
-        if(correctpassword){
-            std::cout << "correct password " << std::endl;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
             hackaudio.computersounds.stop();
-            this->_data->machine.RemoveState();
-            this->_data->machine.GetActiveState()->Resume();
-
         }
     }
 
     void Hacking::Draw(float dt) {
-        this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::Black);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(text);

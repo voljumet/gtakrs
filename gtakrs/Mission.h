@@ -12,10 +12,9 @@ public:
     enum Direction{Left, Right} dir;
 
     bool spriteisdead = false;
-    bool missionDone = false;
+
 
     float posX, posY, spriteposX, spriteposY, movementspeed;
-//    std::vector<sf::Sprite*> spritelist;
 
     int counter{}, steps{};
 
@@ -37,6 +36,5 @@ private:
     sf::Sprite skyskrapers;
     sf::Sprite _sprite;
     sf::Sprite _scope;
-
     };
 }

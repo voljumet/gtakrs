@@ -16,11 +16,9 @@ namespace GTA {
     void WorldState::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
-
         this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
-        this->minimap.setViewport(sf::FloatRect(0.79f,
-                0.01f, 0.2f, 0.2f));
+        this->minimap.setViewport(sf::FloatRect(0.79f, 0.01f, 0.2f, 0.2f));
 
         this->getRektMap.setSize(sf::Vector2f(380, 340));
         this->getRektMap.setFillColor(sf::Color(0, 0, 0, 200));
@@ -29,6 +27,8 @@ namespace GTA {
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
+        /// calls initcoin function from missionPlacement
+        msp.initCoin();
 
         /// Loads audio
         sound.loadall();
@@ -44,19 +44,8 @@ namespace GTA {
         this->_data->assets.LoadTexture("Player5", PLAYER5);
 
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
-        this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
-
-        /// calls initcoin function from missionPlacement
-        missionPlacement.hackMissionSettings();
-
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player"),PLAYER);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player2"),PLAYER2);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player3"),PLAYER3);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player4"),PLAYER4);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player5"),PLAYER5);
-
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("mission Circle"), MISSION_CIRCLE_SPRITE);
-
+        this->_data->assets.LoadTexture("car1", CAR_WHITE);
+        this->_data->assets.LoadTexture("car", CAR_BLUE);
 
         this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
 
@@ -70,14 +59,6 @@ namespace GTA {
         this->_data->assets.LoadTexture("M3_BLACK", M3_BLACK);
         this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
         this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
-
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("Bullet"), BULLET_SPRITE);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("boat"), BOAT);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_BLUE"), M3_BLUE);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_RED"), M3_RED);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_BLACK"), M3_BLACK);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_SILVER"), M3_SILVER);
-        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_WHITE"), M3_WHITE);
 
 
         player1 = this->_data->assets.GetTexture("Player");
@@ -121,8 +102,8 @@ namespace GTA {
 
 //        npcController.NpcSpawn(player1,player2,player3,player4, player5, map._Block);
 
-
     }
+
     void WorldState::HandleInput() {
 
         /// npc Respawn and Move
@@ -131,21 +112,9 @@ namespace GTA {
         if(drawtimerNPC == 5){
             npcController.NpcMoveAndSpawn(player1, map._Block);
             drawtimerNPC = 0;
-
-
         }
         NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-        /// mission trigger
-        if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
-
-            missionPlacement.infoBox(_player.playerGetSprite());
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-                missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite());
-                std::cout << "Mission: " << missionNumber << std::endl;
-            }
-        }
 
         /// Car Respawn and Move
         Timer = std::clock();
@@ -155,6 +124,7 @@ namespace GTA {
             drawtimerNPV = 0;
         }
         NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
 
         sf::Event event{};
 
@@ -167,7 +137,17 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
+if(weapon.hasweapon==true) {
+    if (event.key.code == sf::Keyboard::E && !Driving) {
+        if(_player.ammo>0) {
+            shooting.CreateBullet(_player.playerGetSprite());
+            _player.ammo -= 1;
+        }
+        else{
+            std::cout << "no ammo left!";
+        }
+    }
+}
 ////////////////////////////////////
 
 
@@ -215,7 +195,6 @@ namespace GTA {
                 switch (event.key.code) {
                     case sf::Keyboard::H: {
                         this->_player.intHealth-=50;
-
                     }
                 }
             }
@@ -224,7 +203,6 @@ namespace GTA {
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
@@ -253,10 +231,11 @@ namespace GTA {
         shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
         shooting.MoveBullet();
 
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){    ///Dersom player plukker opp pistolen
 
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
+            _player.ammo=+30;
 
             weapon.gun_posX = TILE_SIZE * 60;
             weapon.gun_posY = TILE_SIZE * 23;
@@ -281,7 +260,7 @@ namespace GTA {
 
         MapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-        this->_data->window.draw(missionPlacement.getMissionCircle());
+
 
         shooting.DrawBullet(_data);
 
@@ -295,8 +274,8 @@ namespace GTA {
         Timer = std::clock();
         carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
 
-
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
 
         /// NULL
         Timer = std::clock();
@@ -348,6 +327,7 @@ namespace GTA {
         this->view.setCenter(X,Y);
         this->minimap.setCenter(X,Y);
         this->getRektMap.setPosition(X+=512,Y-=794);
+
 
     }
 

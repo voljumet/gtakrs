@@ -11,6 +11,7 @@ namespace GTA{
                 file >> _Block[Y][X].tileTextureNumber;
                 _Block[Y][X].tileTextureNumber -=1;
 
+
                 tileNumer = std::to_string(_Block[Y][X].tileTextureNumber);
 
                 this->_Block[Y][X].tileSprite.setTexture(texture);         /// Set Texture for tile

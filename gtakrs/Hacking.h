@@ -1,5 +1,4 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include "State.h"
 #include "Game.h"
@@ -14,7 +13,7 @@ public:
     AssetManager hackaudio;
 
     float posX, posY, size;
-    bool correctpassword = false;
+    bool correctpassword;
     int layer;
 
 
@@ -22,6 +21,9 @@ public:
     void HandleInput();
     void Update(float dt);
     void Draw(float dt);
+
+
+
 
 private:
 
@@ -31,7 +33,6 @@ private:
     sf::Text text, playertext;
     std::string playerinput;
     sf::Font font;
-    sf::View view;
 };
 }
 

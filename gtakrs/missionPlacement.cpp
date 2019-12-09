@@ -1,65 +1,34 @@
 #pragma once
 
 #include "missionPlacement.h"
-#include <utility>
-
+#include "DEFINITIONS.h"
 
 namespace GTA{
-
 
     missionPlacement::missionPlacement() = default;
     missionPlacement::~missionPlacement() = default;
 
-    void missionPlacement::hackMissionSettings(){
+    void missionPlacement::initCoin() {
 
-        this->texture.loadFromFile( MISSION_CIRCLE_SPRITE);
-        this->missionCircle.setTexture(texture);
-        this->missionCircle.setPosition(TILE_SIZE * 113.30f, TILE_SIZE * 71.30f);
-        this->missionCircle.setTextureRect(sf::IntRect(0,0,100, 100));
-        this->missionCircle.setScale(2.f, 2.f);
-        this->missionCircle.setOrigin(50.f, 67.f);
+        sf::CircleShape circle;
+        this->missionCircle.setRadius(50);
+        this->missionCircle.setFillColor(sf::Color::Transparent);
+        this->missionCircle.setOutlineColor(sf::Color::Yellow);
+        this->missionCircle.setOutlineThickness(5);
+        this->missionCircle.setPosition(TILE_SIZE * 33, TILE_SIZE * 43);
+        this->missionCircle.setOrigin(missionCircle.getRadius(), missionCircle.getRadius());
+
     }
 
-    void missionPlacement::snipeMissionSettings() {
-        this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
+
+    void missionPlacement::activate() {
+
+
     }
 
-    void missionPlacement::missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos) {
-        _data = std::move(data_inn);
-        std::cout << "mission " << std::endl;
-
-        if (missionNumber == 1) {
-            std::cout << "1" << std::endl;
-            missionNumber++;
-            snipeMissionSettings();
-            this->_data->machine.GetActiveState()->Pause();
-            this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
-        }  else if(missionNumber == 2) {
-            std::cout << "2" << std::endl;
-            missionNumber++;
-            this->_data->machine.GetActiveState()->Pause();
-            this->_data->machine.AddState(StateRef(new Mission(_data)),false);
-        }
-    }
-
-    sf::Sprite missionPlacement::getMissionCircle(){
+    const sf::CircleShape &missionPlacement::getMissionCircle() const {
         return missionCircle;
     }
 
-    void missionPlacement::missionText(int &missionNumber) {
-        if (missionNumber == 1){
 
-        } else if (missionNumber == 2){
-
-        }
-    }
-
-    void missionPlacement::infoBox(sf::Sprite &player) {
-
-        sf::RectangleShape rectangleShape;
-        rectangleShape.setSize(sf::Vector2f(200, 100));
-        rectangleShape.setOutlineColor(sf::Color::Red);
-        rectangleShape.setOutlineThickness(5);
-        rectangleShape.setPosition(player.getPosition().x, player.getPosition().y + 600);
-    }
 }

@@ -3,7 +3,7 @@
 #include "MainMenuState.h"
 #include "Mission.h"
 #include <vector>
-#include "WorldState.h"
+
 
 namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
@@ -11,7 +11,6 @@ namespace GTA{
     void Mission::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
-
 
         this->posX = SCREEN_WIDTH/2;
         this->posY = SCREEN_HEIGHT/2;
@@ -97,7 +96,7 @@ namespace GTA{
 
             _scope.setPosition(0, -80);
 
-            ///If statement checks if the target is in the crosshair.
+            ///If statement checks if the target is in the corsairs.
             if(shape->getGlobalBounds().intersects(spriteshape->getGlobalBounds())) {
                 ///Load texture for dead sprite.
                 this->_data->assets.LoadTexture("Dead Sprite", MISSION_1_DEADSPRITE);
@@ -135,11 +134,11 @@ namespace GTA{
     }
 
 
+
     ///Updates the
     void Mission::Update(float dt) {
-        if(spriteisdead){
-            this->_data->machine.RemoveState();
-            this->_data->machine.GetActiveState()->Resume();
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
         }
     }
 
@@ -148,7 +147,6 @@ namespace GTA{
         this->UpdateView(dt);
         this->_data->window.setView(this->view);
         this->_data->window.clear();
-
         this->_data->window.draw(this->_sprite);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(this->_scope);
