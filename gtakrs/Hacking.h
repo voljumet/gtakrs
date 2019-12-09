@@ -14,6 +14,7 @@ public:
 
     float posX, posY, size;
     bool correctpassword;
+    int layer;
 
 
     void Init();
