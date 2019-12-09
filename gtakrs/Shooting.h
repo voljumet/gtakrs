@@ -12,10 +12,10 @@ namespace GTA {
     public:
         Movement movement;
         std::vector<Bullet*> bulletlist;
-        void CreateBullet(sf::Sprite Player);
+        void CreateBullet(sf::Sprite &Player);
         void MoveBullet();
-        void DrawBullet(GameDataRef inn_data);
-        void Collision(GameDataRef inn_data, std::vector<Npc*> npclist,std::vector<Npv*> npvlist, std::vector<Bullet*> bulletlist);
+        void DrawBullet(GameDataRef &inn_data);
+        void Collision(GameDataRef &inn_data, std::vector<Npc*> &npclist,std::vector<Npv*> &npvlist, std::vector<Bullet*> &bulletlist);
 
     private:
         GameDataRef _data;

@@ -6,7 +6,7 @@
 #include "colliderTest.h"
 
 namespace GTA {
-    void Shooting::CreateBullet(sf::Sprite Player)
+    void Shooting::CreateBullet(sf::Sprite &Player)
     {
         Bullet* bullet = new Bullet;
         bullet->bulletspeed = 2000.f;
@@ -30,13 +30,13 @@ namespace GTA {
             }
         }
     }
-    void Shooting::DrawBullet(GameDataRef inn_data) {
+    void Shooting::DrawBullet(GameDataRef &inn_data) {
         _data = inn_data;
         for(auto b: bulletlist){
             this->_data->window.draw(b->bullet);
         }
     }
-    void Shooting::Collision(GameDataRef inn_data, std::vector<Npc *> npclist, std::vector<Npv*> npvlist, std::vector<Bullet *> bulletlist) {
+    void Shooting::Collision(GameDataRef &inn_data, std::vector<Npc *> &npclist, std::vector<Npv*> &npvlist, std::vector<Bullet *> &bulletlist) {
         _data = inn_data;
         for(auto &npc: npclist){
             if(!npc->dead){

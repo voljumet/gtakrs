@@ -141,6 +141,8 @@ namespace GTA {
 ////////////////////////////////////
 
 
+
+
         /// Change between person and car
         switch (event.type) {
             case sf::Event::KeyReleased: {
