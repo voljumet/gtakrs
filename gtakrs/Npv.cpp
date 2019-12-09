@@ -152,7 +152,7 @@ namespace GTA {
     }
 
     void CarController::NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        for (int k = 0; k < 10; ++k) {
+        for (int k = 0; k < 101; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
             npvVec[k]->CarInit(M3W, _Block);
@@ -177,34 +177,22 @@ namespace GTA {
 
 //            nop->moveCar(_Block, npvVec);
 
-    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,sf::Sprite &_player, sf::Sound &carcrashdone) {
+    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,sf::Sprite &_player, sf::Sound &carcrashdone,sf::Texture &cartex, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         _data = inn_data;
         for (auto i : npvVec) {
+            this->_data->window.draw(i->getNpvBot());
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
             {
                 if(!Driving && GTA::PixelPerfectTest(_player,i->getNpvBot())){
                 _car.setPosition(i->getNpvBot().getPosition());
+                _car.setRotation(i->getNpvBot().getRotation());
                 _car.setColor(i->getNpvBot().getColor());
                 npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
                 Driving = true;
-                }
-                else if(Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-//                    npvVec.push_back(new Npv);
-//                    npvVec.back()->getNpvBot().setTexture(this->_data->assets.GetTexture("car1"));
-//                    npvVec.back()->getNpvBot().setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
-//                    npvVec.back()->getNpvBot().setPosition(_car.getPosition());
-//                    npvVec.back()->getNpvBot().setRotation(_car.getRotation());
-//                    this->_data->window.draw(npvVec.back()->getNpvBot());
+                    std::cout<<npvVec.size()<<std::endl;
 
-
-                    _player.setPosition(_car.getPosition());
-                     _player.setRotation(_car.getRotation());
-                Driving = false;
                 }
             }
-
-
-            this->_data->window.draw(i->getNpvBot());
 
             if(i->dead){
 //                i->setNvcBot(this->_data->assets.GetTexture("Dead"));
@@ -227,10 +215,25 @@ namespace GTA {
             }
 
 
-
-
-
         }
+        if(Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+            for (int k = 99; k < 100; ++k) {
+                npvVec.push_back(new Npv);
+                npvVec[k]->Number = k;
+                npvVec[k]->CarInit(cartex, _Block);
+                npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
+                npvVec[k]->getNpvBot().setPosition(_car.getPosition());
+                npvVec[k]->getNpvBot().setRotation(_car.getRotation());
+                npvVec[k]->movementSpeed = 0;
+            }
+
+            _player.setPosition(_car.getPosition().x+50,_car.getPosition().y+50);
+            _player.setRotation(_car.getRotation());
+
+            Driving = false;
+            std::cout<<npvVec.size()<<std::endl;
+        }
+
     }
 
 }

@@ -153,19 +153,9 @@ namespace GTA {
         return bullet --;
     }
 
-    void Player::GetInTheCar(sf::Sprite &player, sf::Sprite &car, std::vector<Npv*> npvVec) {
-        {
-            for(auto nop: npvVec)
-            {
 
 
-            }
 
-
-        }
-
-
-    }
 
 
 }

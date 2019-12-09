@@ -32,7 +32,6 @@ public:
     int getCoin();
     int getBullet();
     int loseBullet();
-    void GetInTheCar(sf::Sprite &player, sf::Sprite &car, std::vector<Npv*> npvVec);
 //    void checkCollision(bool Debug, bool Driving, );
 
     int intHealth = 100;
