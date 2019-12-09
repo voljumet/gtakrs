@@ -52,13 +52,14 @@ namespace GTA{
                 std::cout << "4" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 122.f, TILE_SIZE * 284.f);
-                this->_data->machine.GetActiveState()->Pause();
-                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+
                 break;
             case 5:
                 std::cout << "5" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 20.f, TILE_SIZE * 248.f);
+                this->_data->machine.GetActiveState()->Pause();
+                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
                 break;
             case 6:
                 std::cout << "6" << std::endl;
@@ -117,71 +118,65 @@ namespace GTA{
 
         switch(missionNumber){
             case 1:
-                rectangleShape.setSize(sf::Vector2f(800, 380));
+                rectangleShape.setSize(sf::Vector2f(800, 320));
                 text.setString(" \n"
                         "  The world is running out of Juice\n\n"
                                "  * Please save the Juice.\n\n"
                                "  * Press space to activate mission.\n\n"
                                "  * Steal a car and drive south.\n\n"
-                               "  * Find Tony Montana!\n\n"
-                               "  * Get the location of next mission.");
+                               "  * Find Tony Montana!\n\n");
                 break;
             case 2:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(800, 240));
                 text.setString(" \n"
-                               "  Mission criticle information: \n\n"
                                "  * Press 'space 'to activate mission. \n\n"
                                "  * Nice, You found the Tony! \n\n"
+                               "  * Get the location of next mission.\n\n"
                                "  * Tony says: drive 'East', find a pc and steal.\n\n");
                 break;
             case 3:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(800, 100));
                 text.setString(" \n"
-                        "  Mission criticle information: \n\n"
-                               "  * You seem to be hungry, find a burger"
-                               "  * Eat ");
+                               "  * Cross the bridge. \n\n"
+                               "  * You seem to be hungry, find a burger \n\n"
+                               "  * Eat \n\n");
                 break;
             case 4:
+                rectangleShape.setSize(sf::Vector2f(800, 50));
                 text.setString(" \n"
-                               "  Mission criticle information: \n\n"
-                               "  * Cross the bridge. \n\n"
+
                                "  * Find hacking mission. \n\n");
                 break;
             case 5:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
-                               "  Mission criticle information:  \n\n"
                                "  * Locate his hotel.\n\n"
                                "  * Hack Abradolf Lincler's hotel room door password.\n\n");
                 break;
             case 6:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
-                               "  Mission criticle information: \n\n"
                                "  * Great! \n\n"
                                "  * Meet Tony again. \n\n"
                                "  * He know's where to find a sniper. \n\n");
                 break;
             case 7:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(800, 80));
                 text.setString(" \n"
-                               "  Mission criticle information: \n\n"
                                "  * Find next mission \n\n");
                     break;
             case 8:
                 rectangleShape.setSize(sf::Vector2f(800, 400));
                 text.setString(" \n"
-                               "  Mission criticle information: \n\n"
                                "  * Locate Abradolf's hotel \n\n"
                                "  * Be patience, and wait for him \n\n"
                                "  * Kill that bitch silently! \n\n"
                                "  * Flee the scene \n\n"
-                               "  * Meet Tony at starting point");
+                               "  * Meet Tony again");
                 break;
             case 9:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
-                               "  Mission criticle information: \n\n"
                                "  * Tony will get you out of the city \n\n"
                                "  * Congratulations 'you saved the Juice' \n\n");
                 break;
