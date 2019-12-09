@@ -19,21 +19,27 @@ namespace GTA{
 
         missionPlacement();
         virtual ~missionPlacement();
-        void missionText(int &missionNumber);
 
         void snipeMissionSettings();
         void hackMissionSettings();
         void missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos);
-        void infoBox(sf::Sprite &player);
+        void infoBox(sf::Sprite &player, int &missionNumber);
+        void InfoBoxText(sf::Sprite &player, int &missionNumber);
+
+
 
     private:
         GameDataRef _data;
         sf::Sprite missionCircle;
         sf::Texture texture;
+        sf::RectangleShape rectangleShape;
+        sf::Text text;
+        sf::Font font;
 
     public:
        sf::Sprite getMissionCircle();
-
+       sf::RectangleShape getBox();
+       sf::Text getText();
     };
 }
 

@@ -14,13 +14,17 @@ namespace GTA{
 
         this->texture.loadFromFile( MISSION_CIRCLE_SPRITE);
         this->missionCircle.setTexture(texture);
-        this->missionCircle.setPosition(TILE_SIZE * 113.30f, TILE_SIZE * 71.30f);
+        this->missionCircle.setPosition(TILE_SIZE * 20, TILE_SIZE * 21);
         this->missionCircle.setTextureRect(sf::IntRect(0,0,100, 100));
         this->missionCircle.setScale(2.f, 2.f);
         this->missionCircle.setOrigin(50.f, 67.f);
+        if (!font.loadFromFile(RETRO)){
+            std::cout << "Cant load font from resources!" << std::endl;
+        }
     }
 
     void missionPlacement::snipeMissionSettings() {
+
         this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
     }
 
@@ -45,21 +49,51 @@ namespace GTA{
     sf::Sprite missionPlacement::getMissionCircle(){
         return missionCircle;
     }
-
-    void missionPlacement::missionText(int &missionNumber) {
-        if (missionNumber == 1){
-
-        } else if (missionNumber == 2){
-
-        }
+    sf::RectangleShape missionPlacement::getBox() {
+        return rectangleShape;
     }
 
-    void missionPlacement::infoBox(sf::Sprite &player) {
+    sf::Text missionPlacement::getText() {
+        return text;
+    }
 
-        sf::RectangleShape rectangleShape;
-        rectangleShape.setSize(sf::Vector2f(200, 100));
+
+
+    void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber) {
+
+        rectangleShape.setSize(sf::Vector2f(800, 250));
         rectangleShape.setOutlineColor(sf::Color::Red);
         rectangleShape.setOutlineThickness(5);
-        rectangleShape.setPosition(player.getPosition().x, player.getPosition().y + 600);
+        rectangleShape.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
+        InfoBoxText(player, missionNumber);
     }
+
+    void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber) {
+
+        text.setFont(font);
+        if(missionNumber == 1){
+            text.setString("  Mission criticle information: \n\n"
+                           "  * Click space to activate mission.\n\n"
+                           "  * Find gate password.\n\n"
+                           "  * Find location of AbraDolf Lincler.\n\n");
+        }
+        else if(missionNumber == 2){
+            text.setString("  Mission criticle information: \n\n"
+                           "  * Click space to activate mission.\n\n"
+                           "  * Find Abradolf Lincler before he escapes.\n\n"
+                           "  * Kill him.\n\n");
+        }
+        else if(missionNumber == 3){
+
+        }
+
+        else()
+
+        text.setCharacterSize(24);
+        text.setFillColor(sf::Color::Black);
+        text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
+    }
+
+
+
 }

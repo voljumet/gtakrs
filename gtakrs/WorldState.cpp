@@ -50,6 +50,7 @@ namespace GTA {
 
         /// calls initcoin function from missionPlacement
         missionPlacement.hackMissionSettings();
+//        missionPlacement.getText();
 
 
         this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
@@ -123,13 +124,15 @@ namespace GTA {
 
         /// mission trigger
         if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
-
-            missionPlacement.infoBox(_player.playerGetSprite());
+            mission = true;
+            missionPlacement.infoBox(_player.playerGetSprite(), missionNumber);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
                 missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite());
                 std::cout << "Mission: " << missionNumber << std::endl;
             }
+        }else {
+            mission = false;
         }
 
         /// Car Respawn and Move
@@ -299,6 +302,13 @@ namespace GTA {
         this->_data->window.draw(weapon.gun);
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
+
+        /// if mission equals to true, and player is out of circle the rectangle box disappears
+        if(mission) {
+            this->_data->window.draw(missionPlacement.getBox());
+            this->_data->window.draw(missionPlacement.getText());
+
+        }
 
         /////////Draw Minimap
         Timer = std::clock();
