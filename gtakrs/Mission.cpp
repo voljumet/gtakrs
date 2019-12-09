@@ -1,9 +1,7 @@
 #include <utility>
-#include <iostream>
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 #include "Mission.h"
-#include "SpriteFactory.h"
 #include <vector>
 
 
@@ -11,6 +9,9 @@ namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
 
     void Mission::Init() {
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH /2.f,SCREEN_HEIGHT/2.f));
+
         this->posX = SCREEN_WIDTH/2;
         this->posY = SCREEN_HEIGHT/2;
         this->movementspeed = 30.f;        ///Determins the movement speed of the scope
@@ -20,8 +21,13 @@ namespace GTA{
         dir = Right;                        ///Dir is an enum for direction, used for moving the sprite.
 
         ///Load texture for background.
-        this->_data->assets.LoadTexture("Building", MISSION_1_BUILDING);
-        _background.setTexture(this->_data->assets.GetTexture("Building"));
+        this->_data->assets.LoadTexture("Ground", MISSION_1_BACKGROUND);
+        this->_data->assets.LoadTexture("Clouds", MISSION_1_CLOUDS);
+        this->_data->assets.LoadTexture("Skyscrapers", MISSION_1_SKYSCRAPERS);
+        this->_data->assets.LoadTexture("Houses", MISSION_1_HOUSES);
+        this->_data->assets.LoadTexture("Trees", MISSION_1_TREES);
+
+        _background.setTexture(this->_data->assets.GetTexture("Ground"));
         this->_background.setPosition(posX, posY);
 
         ///Load texture for sprite.
@@ -33,6 +39,15 @@ namespace GTA{
         this->_data->assets.LoadTexture("Scope", MISSION_1_SCOPE);
         _scope.setTexture(this->_data->assets.GetTexture("Scope"));
 
+        this->_data->assets.LoadTexture("Houses", MISSION_1_HOUSES);
+        houses.setTexture(this->_data->assets.GetTexture("Houses"));
+
+        this->_data->assets.LoadTexture("skyscrapers", MISSION_1_SKYSCRAPERS);
+        houses.setTexture(this->_data->assets.GetTexture("skyscrapers"));
+
+        this->_data->assets.LoadTexture("Clouds", MISSION_1_CLOUDS);
+        houses.setTexture(this->_data->assets.GetTexture("Clouds"));
+
         ///Set position for scope and framerate limit for state.
         this->_data->window.setFramerateLimit(60);
         this->_scope.setPosition(0, 0);
@@ -41,17 +56,6 @@ namespace GTA{
 
     ///Function to handle all input from player during state.
     void Mission::HandleInput() {
-
-        ////////////////////////
-//        Factory* factory = new SpriteFactory;
-//        if(spritelist.size() <= 10){
-//        spritelist.push_back(factory->CreateNPC());
-//        for(auto s : spritelist) {
-//            s->setPosition(rand() % 1000, rand() % 1000);
-//            s->setTexture(this->_data->assets.GetTexture("Sprite"));
-//            }
-//        }
-        ////////////////////////
 
         sf::Event event{};
         counter += 1;
@@ -135,19 +139,26 @@ namespace GTA{
     void Mission::Update(float dt) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
-
         }
     }
 
     ///Function used to draw elements in mission state
     void Mission::Draw(float dt) {
-        this->_data->window.clear(sf::Color::White);
+        this->UpdateView(dt);
+        this->_data->window.setView(this->view);
+        this->_data->window.clear();
         this->_data->window.draw(this->_sprite);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(this->_scope);
-        for(auto &s: spritelist){
-            this->_data->window.draw(*s);
-        }
+        this->_data->window.draw(this->houses);
+        this->_data->window.draw(this->skyskrapers);
+//        this->_data->window.draw(this->cars);
+        this->_data->window.draw(this->clouds);
+
         this->_data->window.display();
+    }
+
+    void Mission::UpdateView(const float &dt) {
+        this->view.setCenter( (SCREEN_WIDTH/2) , (SCREEN_HEIGHT/2) );
     }
 }
