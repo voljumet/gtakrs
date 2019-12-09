@@ -237,7 +237,7 @@ if(weapon.hasweapon==true) {
             std::cout << "weapon is now ready" << std::endl;
             _player.ammo=+30;
 
-            weapon.gun_posX = TILE_SIZE * 60;
+            weapon.gun_posX = TILE_SIZE * 42;
             weapon.gun_posY = TILE_SIZE * 23;
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;

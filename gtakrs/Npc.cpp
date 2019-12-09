@@ -162,7 +162,7 @@ namespace GTA {
 //        player3 = this->_data->assets.GetTexture("Player3");
 //        player4 = this->_data->assets.GetTexture("Player4");
 //        player5 = this->_data->assets.GetTexture("Player5");
-        for (int i = 0; i < 200; ++i) {
+        for (int i = 0; i < 5; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->Number=i;
             npcVec[i]->npcInit(texture, _Block);
