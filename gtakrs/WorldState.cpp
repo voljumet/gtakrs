@@ -44,12 +44,18 @@ namespace GTA {
         this->_data->assets.LoadTexture("Player5", PLAYER5);
 
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
-        this->_data->assets.LoadTexture("car1", CAR_WHITE);
-        this->_data->assets.LoadTexture("car", CAR_BLUE);
         this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
 
         /// calls initcoin function from missionPlacement
         missionPlacement.hackMissionSettings();
+
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player"),PLAYER);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player2"),PLAYER2);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player3"),PLAYER3);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player4"),PLAYER4);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("Player5"),PLAYER5);
+
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("mission Circle"), MISSION_CIRCLE_SPRITE);
 
 
         this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
@@ -64,6 +70,14 @@ namespace GTA {
         this->_data->assets.LoadTexture("M3_BLACK", M3_BLACK);
         this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
         this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
+
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("Bullet"), BULLET_SPRITE);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("boat"), BOAT);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_BLUE"), M3_BLUE);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_RED"), M3_RED);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_BLACK"), M3_BLACK);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_SILVER"), M3_SILVER);
+        CreateTextureAndBitmask(this->_data->assets.GetTexture("M3_WHITE"), M3_WHITE);
 
 
         player1 = this->_data->assets.GetTexture("Player");
@@ -106,6 +120,7 @@ namespace GTA {
         npcController.NpcSpawn(player1, map._Block);
 
 //        npcController.NpcSpawn(player1,player2,player3,player4, player5, map._Block);
+
 
     }
     void WorldState::HandleInput() {
@@ -152,7 +167,17 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
+if(weapon.hasweapon==true) {
+    if (event.key.code == sf::Keyboard::E && !Driving) {
+        if(_player.ammo>0) {
+            shooting.CreateBullet(_player.playerGetSprite());
+            _player.ammo -= 1;
+        }
+        else{
+            std::cout << "no ammo left!";
+        }
+    }
+}
 ////////////////////////////////////
 
 
@@ -238,10 +263,11 @@ namespace GTA {
         shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
         shooting.MoveBullet();
 
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){    ///Dersom player plukker opp pistolen
 
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
+            _player.ammo=+30;
 
             weapon.gun_posX = TILE_SIZE * 60;
             weapon.gun_posY = TILE_SIZE * 23;

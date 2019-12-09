@@ -31,6 +31,7 @@ public:
     int getCoin();
     int getBullet();
     int loseBullet();
+    int ammo;
 //    void checkCollision(bool Debug, bool Driving, );
 
     int intHealth = 100;

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include "State.h"
 #include "Game.h"
@@ -14,6 +15,7 @@ public:
 
     float posX, posY, size;
     bool correctpassword = false;
+    int layer;
 
 
     void Init();

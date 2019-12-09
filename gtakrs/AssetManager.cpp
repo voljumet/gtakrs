@@ -62,7 +62,7 @@ namespace GTA {
     }
 
     sf::Sound AssetManager::loadfootstep() {
-        bufferfootstep.loadFromFile(GUNHSOT_FILEPATH);
+        bufferfootstep.loadFromFile(FOOTSTEP_FILEPATH);
         footstep.setBuffer(bufferfootstep);
         return footstep;
     }
@@ -114,11 +114,10 @@ namespace GTA {
 
     void AssetManager::loadcomputer() {
         computersounds.openFromFile(COMPUTERSOUNDS);
+        computersounds.setVolume(10);
     }
 
     void AssetManager::playcomputer() {
         computersounds.play();
     }
-
-
 }
