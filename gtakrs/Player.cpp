@@ -20,8 +20,6 @@ namespace GTA {
         this->playerSprite.setOrigin(50.f, 67.f);
         font.loadFromFile(FONT_ARIAL);
 
-        ammo = 0;
-
     }
 
     void Player::playerMoves(Movement &movement) {
