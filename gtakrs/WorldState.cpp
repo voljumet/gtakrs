@@ -167,7 +167,7 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-            if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
+        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
 ////////////////////////////////////
 
 
@@ -253,7 +253,7 @@ namespace GTA {
         shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
         shooting.MoveBullet();
 
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){    ///Dersom player plukker opp pistolen
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
 
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
