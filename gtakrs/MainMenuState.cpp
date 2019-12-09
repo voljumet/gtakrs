@@ -3,6 +3,7 @@
 #include "DEFINITIONS.h"
 #include "WorldState.h"
 #include "ControlsState.h"
+#include "Mission.h"
 
 /// Denne klassen er MainMenu
 namespace GTA{
@@ -47,7 +48,7 @@ namespace GTA{
             }
 
             if(this->_data->input.IsSpriteClicked(this->_controlsButton, sf::Mouse::Left, this->_data->window)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                this->_data->machine.AddState(StateRef(new ControlsState(_data)), false);
+                this->_data->machine.AddState(StateRef(new Mission(_data)), false);
                 this->_data->machine.RemoveState();
             }
 

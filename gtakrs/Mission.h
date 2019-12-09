@@ -31,6 +31,7 @@ private:
     sf::Sprite _background;
     sf::Sprite cars;
     sf::Sprite clouds;
+    sf::Sprite trees;
     sf::Sprite ground;
     sf::Sprite houses;
     sf::Sprite skyskrapers;
