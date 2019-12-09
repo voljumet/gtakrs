@@ -14,7 +14,7 @@ public:
     bool spriteisdead = false;
 
 
-    float posX, posY, spriteposX, spriteposY, movementspeed;
+    float posX = 5000, posY= 5000, spriteposX, spriteposY, movementspeed;
 
     int counter{}, steps{};
 

@@ -11,24 +11,16 @@ namespace GTA{
     void Mission::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
 
-
-        this->posX = 900;
-        this->posY = 900;
         this->movementspeed = 15.f;        ///Determins the movement speed of the scope
-        this->spriteposX = 5200;
-        this->spriteposY = 2200;
+        this->spriteposX = 3700;
+        this->spriteposY = 5125;
         this->steps = 0;
         dir = Right;                        ///Dir is an enum for direction, used for moving the sprite.
 
         ///Load texture for background.
         this->_data->assets.LoadTexture("Ground", MISSION_1_BACKGROUND);
-        this->_data->assets.LoadTexture("Clouds", MISSION_1_CLOUDS);
-        this->_data->assets.LoadTexture("Skyscrapers", MISSION_1_SKYSCRAPERS);
-        this->_data->assets.LoadTexture("Houses", MISSION_1_HOUSES);
-        this->_data->assets.LoadTexture("Trees", MISSION_1_TREES);
-
         _background.setTexture(this->_data->assets.GetTexture("Ground"));
-        this->_background.setPosition(posX, posY);
+        this->_background.setPosition(SCREEN_HEIGHT/2.f, SCREEN_WIDTH/2.f);
         _background.setScale(10, 10);
         _background.setOrigin(0,0);
 
@@ -41,16 +33,17 @@ namespace GTA{
         ///Load texture for scope.
         this->_data->assets.LoadTexture("Scope", MISSION_1_SCOPE);
         _scope.setTexture(this->_data->assets.GetTexture("Scope"));
+        _scope.setPosition(SCREEN_WIDTH/3.f,SCREEN_HEIGHT/3.f);
 
         this->_data->assets.LoadTexture("Houses", MISSION_1_HOUSES);
         houses.setTexture(this->_data->assets.GetTexture("Houses"));
         houses.setScale(10,10);
-        houses.setPosition(900, 780);
+        houses.setPosition(900, 900);
 
         this->_data->assets.LoadTexture("skyscrapers", MISSION_1_SKYSCRAPERS);
         skyskrapers.setTexture(this->_data->assets.GetTexture("skyscrapers"));
         skyskrapers.setScale(10, 10);
-        skyskrapers.setPosition(900,780);
+        skyskrapers.setPosition(900,900);
 
         this->_data->assets.LoadTexture("Clouds", MISSION_1_CLOUDS);
         clouds.setTexture(this->_data->assets.GetTexture("Clouds"));
@@ -60,12 +53,12 @@ namespace GTA{
         this->_data->assets.LoadTexture("Trees", MISSION_1_TREES);
         trees.setTexture(this->_data->assets.GetTexture("Trees"));
         trees.setScale(10,10);
-        trees.setPosition(900, 800);
+        trees.setPosition(900, 900);
 
 
         ///Set position for scope and framerate limit for state.
         this->_data->window.setFramerateLimit(60);
-        this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
+       this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/3, this->view.getCenter().y - SCREEN_HEIGHT/3);
 
     }
 
@@ -75,7 +68,6 @@ namespace GTA{
         sf::Event event{};
         counter += 1;
         while (this->_data->window.pollEvent(event)) {
-            _scope.setPosition(0,0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             posX += movementspeed;
@@ -92,7 +84,7 @@ namespace GTA{
 
 //        _background.setPosition(posX, posY);
         _sprite.setPosition(spriteposX, spriteposY);
-        this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
+     this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
 
         ///shape and spriteshape is circles enclosing the sprite and the middle of the screen.
         /// These are used to detect intersection between scope and target
@@ -138,7 +130,7 @@ namespace GTA{
                     break;
             }
         }
-        this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
+//        this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
     }
 
 
@@ -152,14 +144,14 @@ namespace GTA{
 
     ///Function used to draw elements in mission state
     void Mission::Draw(float dt) {
-        this->UpdateView(dt);
         this->_data->window.setView(this->view);
+        this->UpdateView(dt);
+
         this->_data->window.clear(sf::Color::Transparent);
 
         this->_data->window.draw(this->_background);
         this->_data->window.draw(this->skyskrapers);
         this->_data->window.draw(this->houses);
-////        this->_data->window.draw(this->cars);
         this->_data->window.draw(this->clouds);
         this->_data->window.draw(this->trees);
         this->_data->window.draw(this->_sprite);
@@ -169,6 +161,7 @@ namespace GTA{
     }
 
     void Mission::UpdateView(const float &dt) {
-        this->view.setCenter( (posX) , (posY) );
+
+       this->view.setCenter( posX , posY );
     }
 }

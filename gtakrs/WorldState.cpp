@@ -137,7 +137,9 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
+
+    if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
+
 ////////////////////////////////////
 
 
