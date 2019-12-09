@@ -9,20 +9,10 @@ namespace GTA{
         for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
             for (int X = 0; X < WORLD_WIDTH; X++) {
                 file >> _Block[Y][X].tileTextureNumber;
+                _Block[Y][X].tileTextureNumber -=1;
 
-                /// Offset tile by 1 to work with TileMap editor
-//                _Block[Y][X].tileTextureNumber+=1;
-
-                /// Include the json file here somwhere
-                /// -------------------------------------------------
 
                 tileNumer = std::to_string(_Block[Y][X].tileTextureNumber);
-
-//                this->_Block[Y][X].getRekt.setSize(sf::Vector2f(TILE_SIZE, TILE_SIZE));
-//                this->_Block[Y][X].getRekt.setOutlineColor(sf::Color::Red);
-//                this->_Block[Y][X].getRekt.setOutlineThickness(0.5);
-//                this->_Block[Y][X].getRekt.setPosition((TILE_SIZE * X), (TILE_SIZE * Y));
-//                this->_Block[Y][X].getRekt.setFillColor(sf::Color(0, 0, 0, 0));
 
                 this->_Block[Y][X].tileSprite.setTexture(texture);         /// Set Texture for tile
                 this->_Block[Y][X].tileSprite.setPosition((TILE_SIZE * X), (TILE_SIZE * Y));                /// Place player
@@ -48,7 +38,7 @@ namespace GTA{
     }
 
 void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
-        int playerPosY, GameDataRef inn_data) {
+        int playerPosY, GameDataRef inn_data, bool NoDrivingOrWalkingBool) {
         if(Driving){
             mPosX = carPosX / TILE_SIZE;
             mPosY = carPosY / TILE_SIZE;
@@ -79,7 +69,6 @@ void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPos
                 /// Draw tiles
                  this->_data->window.draw(this->_Block[Y][X].tileSprite);
                 if(Debug){
-//                    this->_data->window.draw(this->_Block[Y][X].getRekt);
                     this->_data->window.draw(this->_Block[Y][X].text);
                 }
             }

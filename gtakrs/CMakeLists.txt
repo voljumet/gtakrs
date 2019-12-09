@@ -29,7 +29,16 @@ add_executable(GTAKRS
         Bullet.h
         Shooting.cpp Shooting.h
         Weapon.h Weapon.cpp
+        WastedState.h WastedState.cpp
+        ControlsState.h ControlsState.cpp
+
+
         )
+file(GLOB INCLUDE_FILES "json/*.h")
+install(FILES
+        ${INCLUDE_FILES}
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/json)
+
 
 target_link_libraries (GTAKRS sfml-audio sfml-graphics sfml-window sfml-system)
 find_package(SFML REQUIRED system window graphics network audio)
