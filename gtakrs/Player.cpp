@@ -1,7 +1,9 @@
-#include <iostream>
 #include <string>
+#include <SFML/Window/Keyboard.hpp>
 #include "Player.h"
 #include "DEFINITIONS.h"
+#include "colliderTest.h"
+
 
 namespace GTA {
 
@@ -61,8 +63,6 @@ namespace GTA {
     Player::HealthBar(sf::RenderWindow &renderWindow, sf::Texture &healthbar, sf::Texture &healthbar1, sf::Vector2f pos,
                       bool Driving) {
         if (!Driving) {
-
-
             healthbarSprite1.setTexture(healthbar1);
             healthbarSprite1.setPosition(playerSprite.getPosition().x - 845, playerSprite.getPosition().y - 750);
             healthbarSprite1.setTextureRect(sf::IntRect(0, 0, 300, 250));
@@ -119,7 +119,6 @@ namespace GTA {
             text.setPosition(pos.x - 770, pos.y - 605);
             renderWindow.draw(text);
 
-
             healthbarSprite.setTexture(healthbar);
             healthbarSprite.setPosition(pos.x - 845, pos.y - 750);
             healthbarSprite.setTextureRect(sf::IntRect(0, 0, 300, 250));
@@ -152,6 +151,20 @@ namespace GTA {
 
     int Player::loseBullet(){
         return bullet --;
+    }
+
+    void Player::GetInTheCar(sf::Sprite &player, sf::Sprite &car, std::vector<Npv*> npvVec) {
+        {
+            for(auto nop: npvVec)
+            {
+
+
+            }
+
+
+        }
+
+
     }
 
 

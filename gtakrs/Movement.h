@@ -2,6 +2,7 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include "Collision_Detection.h"
 
 namespace GTA{
     class Movement {
@@ -27,6 +28,8 @@ namespace GTA{
 
         void Walk(sf::Sprite&);
         void Drive(sf::Sprite&);
+
+
 
 
 

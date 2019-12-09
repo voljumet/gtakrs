@@ -98,7 +98,7 @@ namespace GTA {
             }
         }
 
-        NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
+//       NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
         crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere), NextTile) != std::end(NpvCan_Not_MoveHere);
@@ -152,7 +152,7 @@ namespace GTA {
     }
 
     void CarController::NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        for (int k = 0; k < 100; ++k) {
+        for (int k = 0; k < 10; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
             npvVec[k]->CarInit(M3W, _Block);
@@ -180,6 +180,30 @@ namespace GTA {
     void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,sf::Sprite &_player, sf::Sound &carcrashdone) {
         _data = inn_data;
         for (auto i : npvVec) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+            {
+                if(!Driving && GTA::PixelPerfectTest(_player,i->getNpvBot())){
+                _car.setPosition(i->getNpvBot().getPosition());
+                _car.setColor(i->getNpvBot().getColor());
+                npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
+                Driving = true;
+                }
+                else if(Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+//                    npvVec.push_back(new Npv);
+//                    npvVec.back()->getNpvBot().setTexture(this->_data->assets.GetTexture("car1"));
+//                    npvVec.back()->getNpvBot().setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
+//                    npvVec.back()->getNpvBot().setPosition(_car.getPosition());
+//                    npvVec.back()->getNpvBot().setRotation(_car.getRotation());
+//                    this->_data->window.draw(npvVec.back()->getNpvBot());
+
+
+                    _player.setPosition(_car.getPosition());
+                     _player.setRotation(_car.getRotation());
+                Driving = false;
+                }
+            }
+
+
             this->_data->window.draw(i->getNpvBot());
 
             if(i->dead){
@@ -202,6 +226,11 @@ namespace GTA {
                 collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
             }
 
+
+
+
+
         }
     }
+
 }

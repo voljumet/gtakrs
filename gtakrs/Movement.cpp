@@ -47,6 +47,7 @@ namespace GTA{
 
             }
         }
+
     }
 
     void Movement::Walk(sf::Sprite& walker) {
@@ -74,8 +75,9 @@ namespace GTA{
             sf::Transform t;
             t.rotate(walker.getRotation());
             movementVec = t.transformPoint(Movement::forwardVec());
+        }
 
-        } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
             walker.setTextureRect(sf::IntRect(0, walkAnimation * 150, 100, 110));
             if(currentSpeed == maxSpeed){
                 currentSpeed = 600;
