@@ -44,7 +44,6 @@ namespace GTA {
         this->npcBot.setOrigin(50.f, 67.f);
         CheckWalkable = false;
         health = 50;
-
     }
 
     sf::Sprite &Npc::getNpcBot() { return npcBot; }

@@ -10,6 +10,7 @@ namespace GTA{
 
 class Player : Movement{
 public:
+    friend class missionPlacement;
     Player();
     ~Player();
 
@@ -34,7 +35,7 @@ public:
 
     int intHealth = 100;
 private:
-
+    friend class missionPlacement;
     sf::Sprite playerSprite;
     sf::RectangleShape healthBarRect;
     sf::RectangleShape bulletBarRect;

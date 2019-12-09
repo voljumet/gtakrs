@@ -22,8 +22,6 @@ namespace GTA {
 
     }
 
-
-
     void Player::playerMoves(Movement &movement) {
         playerSprite.move(movement.movementVec * movement.currentSpeed * movement.dt);
         movement.Walk(playerSprite);
