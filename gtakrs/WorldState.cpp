@@ -101,14 +101,15 @@ namespace GTA {
 
         /// mission trigger
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::M )&& missionNumber == 1) {
-
-
             msp.missionHack(_data, player);
             missionNumber += 1;
-
+            std::cout << "Hacking misison" << std::endl;
         }
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::M) && missionNumber == 2){
             msp.missionSnipe(_data, player);
+//            missionNumber += 1;
+
+            std::cout << "sniping mission" << std::endl;
         }
 
         /// npc

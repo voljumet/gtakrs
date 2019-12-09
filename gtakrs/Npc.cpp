@@ -81,7 +81,9 @@ namespace GTA {
         NextNpcTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(npcCanNOTwalkHere), std::end(npcCanNOTwalkHere), NextNpcTile) != std::end(npcCanNOTwalkHere);
+        crashCurb = std::find(std::begin(npcCanNOTwalkHere),
+                std::end(npcCanNOTwalkHere),
+                NextNpcTile) != std::end(npcCanNOTwalkHere);
 
         /// if "crashCurb" is false, keep moving
         if(!crashCurb){
