@@ -32,7 +32,7 @@ namespace GTA {
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
 
-            RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
+            //RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
             CheckWalkable = std::find(std::begin(Npc_Can_SpawnHere), std::end(Npc_Can_SpawnHere), RandNpcTile) != std::end(Npc_Can_SpawnHere);

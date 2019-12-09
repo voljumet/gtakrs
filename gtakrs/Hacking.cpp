@@ -220,7 +220,7 @@ namespace GTA{
     void Hacking::Update(float dt) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
-
+            hackaudio.computersounds.stop();
         }
     }
 
