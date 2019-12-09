@@ -69,6 +69,9 @@ namespace GTA {
 
         player1 = this->_data->assets.GetTexture("Player");
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
+        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
+        M3_blue = this->_data->assets.GetTexture("M3_BLUE");
+        M3_red = this->_data->assets.GetTexture("M3_RED");
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -100,6 +103,10 @@ namespace GTA {
 
         /// Create NPCars
         carController.NpvSpawn(M3_White, map._Block);
+//        carController.NpvSpawn(M3_Black, map._Block);
+//        carController.NpvSpawn(M3_red, map._Block);
+//        carController.NpvSpawn(M3_blue, map._Block);
+
 
 //        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
 
@@ -155,7 +162,9 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
-        if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
+
+    if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
+
 ////////////////////////////////////
 
 

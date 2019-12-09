@@ -152,7 +152,7 @@ namespace GTA {
     }
 
     void CarController::NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-        for (int k = 0; k < 100; ++k) {
+        for (int k = 0; k < 30; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
             npvVec[k]->CarInit(M3W, _Block);

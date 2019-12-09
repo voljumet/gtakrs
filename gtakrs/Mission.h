@@ -14,8 +14,9 @@ public:
     bool spriteisdead = false;
     bool missionDone = false;
 
-    float posX, posY, spriteposX, spriteposY, movementspeed;
-//    std::vector<sf::Sprite*> spritelist;
+
+    float posX = 5000, posY= 5000, spriteposX, spriteposY, movementspeed;
+
 
     int counter{}, steps{};
 
@@ -32,6 +33,7 @@ private:
     sf::Sprite _background;
     sf::Sprite cars;
     sf::Sprite clouds;
+    sf::Sprite trees;
     sf::Sprite ground;
     sf::Sprite houses;
     sf::Sprite skyskrapers;

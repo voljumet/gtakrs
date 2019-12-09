@@ -96,6 +96,12 @@ namespace GTA {
         sf::Vector2f viewCenter;
 
         sf::Texture M3_White;
+
+        sf::Texture M3_Black;
+        sf::Texture M3_blue;
+        sf::Texture M3_red;
+
+
         sf::Texture player1;
         sf::Sprite _car;
         sf::Sprite _car2;
