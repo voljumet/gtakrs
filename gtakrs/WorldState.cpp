@@ -158,9 +158,6 @@ namespace GTA {
         if(event.key.code == sf::Keyboard::E && !Driving){shooting.CreateBullet(_player.playerGetSprite());}
 ////////////////////////////////////
 
-
-
-
         /// Change between person and car
         switch (event.type) {
             case sf::Event::KeyReleased: {
@@ -210,7 +207,6 @@ namespace GTA {
         }
 
 
-
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 
             this->_data->machine.GetActiveState()->Pause();
@@ -219,7 +215,6 @@ namespace GTA {
         if(this->_player.intHealth == 0){
             this->_player.intHealth = 100;
             this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
-
         }
     }
 

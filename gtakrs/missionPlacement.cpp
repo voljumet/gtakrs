@@ -23,26 +23,69 @@ namespace GTA{
         }
     }
 
-    void missionPlacement::snipeMissionSettings() {
-
-        this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
-    }
-
     void missionPlacement::missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos) {
         _data = std::move(data_inn);
         std::cout << "mission " << std::endl;
 
-        if (missionNumber == 1) {
-            std::cout << "1" << std::endl;
-            missionNumber++;
-            snipeMissionSettings();
-            this->_data->machine.GetActiveState()->Pause();
-            this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
-        }  else if(missionNumber == 2) {
-            std::cout << "2" << std::endl;
-            missionNumber++;
-            this->_data->machine.GetActiveState()->Pause();
-            this->_data->machine.AddState(StateRef(new Mission(_data)),false);
+        switch (missionNumber){
+
+            case 1:
+                std::cout << "1" << std::endl;
+                missionNumber++;
+//                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
+                this->missionCircle.setPosition(TILE_SIZE * 24.f, TILE_SIZE * 376.f);
+                break;
+
+            case 2:
+                std::cout << "2" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 114.f, TILE_SIZE * 117.f);
+
+                break;
+            case 3:
+                std::cout << "3" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 147.f, TILE_SIZE * 366.f);
+
+                break;
+            case 4:
+                std::cout << "4" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 122.f, TILE_SIZE * 284.f);
+                this->_data->machine.GetActiveState()->Pause();
+                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+                break;
+            case 5:
+                std::cout << "5" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 20.f, TILE_SIZE * 248.f);
+                break;
+            case 6:
+                std::cout << "6" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 49.f, TILE_SIZE * 65.f);
+                break;
+            case 7:
+                std::cout << "7" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
+                break;
+            case 8:
+                std::cout << "8" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
+                this->_data->machine.GetActiveState()->Pause();
+                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+                break;
+
+            case 9:
+                std::cout << "9" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 115.f, TILE_SIZE * 17.f);
+                break;
+
+            default:
+                break;
         }
     }
 
@@ -71,25 +114,82 @@ namespace GTA{
     void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber) {
 
         text.setFont(font);
-        if(missionNumber == 1){
-            text.setString("  Mission criticle information: \n\n"
-                           "  * Click space to activate mission.\n\n"
-                           "  * Find gate password.\n\n"
-                           "  * Find location of AbraDolf Lincler.\n\n");
-        }
-        else if(missionNumber == 2){
-            text.setString("  Mission criticle information: \n\n"
-                           "  * Click space to activate mission.\n\n"
-                           "  * Find Abradolf Lincler before he escapes.\n\n"
-                           "  * Kill him.\n\n");
-        }
-        else if(missionNumber == 3){
 
+        switch(missionNumber){
+            case 1:
+                rectangleShape.setSize(sf::Vector2f(800, 380));
+                text.setString(" \n"
+                        "  The world is running out of Juice\n\n"
+                               "  * Please save the Juice.\n\n"
+                               "  * Press space to activate mission.\n\n"
+                               "  * Steal a car and drive south.\n\n"
+                               "  * Find Tony Montana!\n\n"
+                               "  * Get the location of next mission.");
+                break;
+            case 2:
+                rectangleShape.setSize(sf::Vector2f(800, 250));
+                text.setString(" \n"
+                               "  Mission criticle information: \n\n"
+                               "  * Press 'space 'to activate mission. \n\n"
+                               "  * Nice, You found the Tony! \n\n"
+                               "  * Tony says: drive 'East', find a pc and steal.\n\n");
+                break;
+            case 3:
+                rectangleShape.setSize(sf::Vector2f(800, 250));
+                text.setString(" \n"
+                        "  Mission criticle information: \n\n"
+                               "  * You seem to be hungry, find a burger"
+                               "  * Eat ");
+                break;
+            case 4:
+                text.setString(" \n"
+                               "  Mission criticle information: \n\n"
+                               "  * Cross the bridge. \n\n"
+                               "  * Find hacking mission. \n\n");
+                break;
+            case 5:
+                rectangleShape.setSize(sf::Vector2f(800, 250));
+                text.setString(" \n"
+                               "  Mission criticle information:  \n\n"
+                               "  * Locate his hotel.\n\n"
+                               "  * Hack Abradolf Lincler's hotel room door password.\n\n");
+                break;
+            case 6:
+                rectangleShape.setSize(sf::Vector2f(800, 250));
+                text.setString(" \n"
+                               "  Mission criticle information: \n\n"
+                               "  * Great! \n\n"
+                               "  * Meet Tony again. \n\n"
+                               "  * He know's where to find a sniper. \n\n");
+                break;
+            case 7:
+                rectangleShape.setSize(sf::Vector2f(800, 250));
+                text.setString(" \n"
+                               "  Mission criticle information: \n\n"
+                               "  * Find next mission \n\n");
+                    break;
+            case 8:
+                rectangleShape.setSize(sf::Vector2f(800, 400));
+                text.setString(" \n"
+                               "  Mission criticle information: \n\n"
+                               "  * Locate Abradolf's hotel \n\n"
+                               "  * Be patience, and wait for him \n\n"
+                               "  * Kill that bitch silently! \n\n"
+                               "  * Flee the scene \n\n"
+                               "  * Meet Tony at starting point");
+                break;
+            case 9:
+                rectangleShape.setSize(sf::Vector2f(800, 250));
+                text.setString(" \n"
+                               "  Mission criticle information: \n\n"
+                               "  * Tony will get you out of the city \n\n"
+                               "  * Congratulations 'you saved the Juice' \n\n");
+                break;
+            default:
+                break;
         }
 
-        else()
-
-        text.setCharacterSize(24);
+        text.setCharacterSize(22);
         text.setFillColor(sf::Color::Black);
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
     }
