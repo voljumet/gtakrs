@@ -91,6 +91,7 @@ namespace GTA {
                 }
             }
         }
+
         for(auto &npv : npvlist){
             for(auto &bullet: bulletlist){
                 if(bullet->bullet.getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){

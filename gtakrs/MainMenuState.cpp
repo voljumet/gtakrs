@@ -5,7 +5,6 @@
 #include "ControlsState.h"
 
 #include "Hacking.h"
-
 #include "Mission.h"
 
 /// Denne klassen er MainMenu

@@ -6,12 +6,9 @@
 
 namespace GTA {
     Npv::Npv() = default;
-
     Npv::~Npv() = default;
 
-    // Using a reference of texture works
-    void Npv::CarInit(sf::Texture &M3W,
-                      Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void Npv::CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
         dir = RandomDir;
         movementSpeed = 8;
@@ -30,9 +27,7 @@ namespace GTA {
                             std::end(Npv_Can_SpawnHere);
         }
 
-
         this->npvBot.setTexture(M3W);
-
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
@@ -43,7 +38,8 @@ namespace GTA {
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
 
-    void Npv::moveCar(Block Car_Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv *> &npvVec) {
+    void Npv::moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv *> &npvVec) {
+
         CurrentPosX = npvBot.getPosition().x;
         CurrentPosY = npvBot.getPosition().y;
 
@@ -87,42 +83,52 @@ namespace GTA {
             }
         }
 
-        // endrer out of reach.
+        /// Checks if tiles around NPV are movable
+        NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
+
+        NextTile_RIGHT = _Block[CurrentPosY / TILE_SIZE][(moveRight + 31) / TILE_SIZE].tileTextureNumber;
+        NextTile_LEFT = _Block[CurrentPosY / TILE_SIZE][(moveLeft - 31) / TILE_SIZE].tileTextureNumber;
+        NextTile_UP = _Block[(moveUp - 31) / TILE_SIZE][CurrentPosX / TILE_SIZE].tileTextureNumber;
+        NextTile_DOWN = _Block[(moveUp + 31) / TILE_SIZE][CurrentPosX / TILE_SIZE].tileTextureNumber;
+
+        /// If out of reach
         if (dir < 0 || dir < 3) { dir = UP; }
 
-        NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
-
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere), NextTile) !=
-                    std::end(NpvCan_Not_MoveHere);
+        crashCurb_RIGHT = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere),NextTile_RIGHT) != std::end(NpvCan_Not_MoveHere);
+        crashCurb_LEFT = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere),NextTile_LEFT) != std::end(NpvCan_Not_MoveHere);
+        crashCurb_UP = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere),NextTile_UP) != std::end(NpvCan_Not_MoveHere);
+        crashCurb_DOWN = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere),NextTile_DOWN) != std::end(NpvCan_Not_MoveHere);
 
-        for (int i = 0; i < npvVec.size(); ++i) {
+        crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere),NextTile) != std::end(NpvCan_Not_MoveHere);
+
+        /// Check if tile in front of npv is ok
+        if (crashCurb) {
+            /// If all tiles around npv are non-movable, stand still
+            if (crashCurb_RIGHT && crashCurb_LEFT && crashCurb_DOWN && crashCurb_UP){
+                movementSpeed = 0;
+                /// else change dir
+            } else { dir = RandomDir; }
+            /// If the tile in front of npc is ok, move
+        } else  {
+            npvBot.setPosition(UpdatedPosX, UpdatedPosY);
+            StepCounter++;
+        }
+
+        /// change dir if colliding with other npv
+        for(int i = 0; i < npvVec.size(); ++i) {
             if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
                 dir = RandomDir;
             }
+
+            if(PixelPerfectTest(npvVec[i]->getNpvBot(), getNpvBot()) && npvVec[i]->Number != Number){
+                dir = RandomDir;
+                collisionDetaction.Check_Collision(npvVec[i]->getNpvBot(), getNpvBot(), true);
+            }
         }
 
-//        for(int i = 0; i < npvVec.size(); ++i) {
-//            if(PixelPerfectTest(npvVec[i]->getNpvBot(), getNpvBot()) && npvVec[i]->Number != Number){
-//                dir = RandomDir;
-//            }
-//            if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
-//                dir = RandomDir;
-//            }
-//        }
-
-        /// if "crashCurb" is false, keep moving, else set random Direction
-        if (!crashCurb) {
-            npvBot.setPosition(UpdatedPosX, UpdatedPosY);
-            StepCounter += 1;
-        } else {
-            dir = RandomDir;
-
-        }
-        if (StepCounter == 500) {
-            dir = RandomDir;
-            StepCounter = 0;
-        }
+        /// How long should NPV move in one signle direction before turning around
+        if (StepCounter == 500){ dir = RandomDir; StepCounter = 0; }
 
         /// Sets the rotation of the NPC
         if (dir == RIGHT) { npvBot.setRotation(90); }
@@ -130,38 +136,26 @@ namespace GTA {
         else if (dir == UP) { npvBot.setRotation(0); }
         else if (dir == DOWN) { npvBot.setRotation(180); }
 
-        /// NPC movement Animation
-//        npvBot.setTextureRect(sf::IntRect(0, 0, 100, 180));
-
     }
 
-    void Npv::setNvcBot(sf::Texture &textura) {
+    void NpvController::NpvSpawn(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
-        this->npvBot.setTexture(textura);
-        npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
+        /// MUST BE 101 CARS FOR THE CODE TO WORK!!!
+        for (int k = 0; k < 101; ++k) {
 
-    }
-
-    void Npv::setNpvBot(sf::Vector2f vector2F) {
-
-        npvBot.move(vector2F);
-    }
-
-    void CarController::NpvSpawn(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-
-        for (int k = 0; k < 101; ++k) {  /// DET MÅ VÆRE 101 BILER FOR AT DET SKAL VÆRE MULIG Å TA OVER BILER
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
             npvVec[k]->CarInit(M3W, _Block);
-            npvVec[k]->getNpvBot().setColor(CarController::Loader());
+            npvVec[k]->getNpvBot().setColor(NpvController::Loader());
         }
     }
 
-    void CarController::NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void NpvController::NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (auto nop : npvVec) {
             if (!nop->dead) {
                 nop->moveCar(_Block, npvVec);
             } else {
+
                 nop->RespawnTime -= 1;
                 if (nop->RespawnTime == 0) {
                     nop->CarInit(_car, _Block);
@@ -173,7 +167,7 @@ namespace GTA {
         }
     }
 
-    sf::Color CarController::Loader() {
+    sf::Color NpvController::Loader() {
         random = rand() % 6 + 1;
         switch (random) {
             case 1:
@@ -194,16 +188,14 @@ namespace GTA {
             case 6:
                 color = sf::Color::Green;
                 break;
-
         }
         return color;
     }
 
-//            nop->moveCar(_Block, npvVec);
-
-    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
+    void NpvController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
                                 sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex,
                                 Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1) {
+
         _data = inn_data;
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
@@ -214,8 +206,6 @@ namespace GTA {
                     _car.setColor(i->getNpvBot().getColor());
                     npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
                     Driving = true;
-//                    std::cout << npvVec.size() << std::endl;
-
                 }
             }
 
@@ -228,6 +218,7 @@ namespace GTA {
             if (Driving) {
 //                if(movement.currentSpeed <= 800){
                 collisionDetaction.Check_Collision(_car, i->getNpvBot(), true);
+
                 //this->_data->assets.PlaySound(carcrashdone);
                 /// denne lyden må spilles når en bil "dør", ellers så spilles lyden hver gang spilleren dytter bilen
 //                } else {
@@ -239,11 +230,9 @@ namespace GTA {
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     player1.setDamage();
                     collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
-
                 }
-
-
             }
+
             if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
                 for (int k = 99; k < 100; ++k) {
                     npvVec.push_back(new Npv);
@@ -263,8 +252,6 @@ namespace GTA {
                 Driving = false;
 //            std::cout << npvVec.size() << std::endl;
             }
-
         }
-
     }
 }

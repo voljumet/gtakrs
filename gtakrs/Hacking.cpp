@@ -223,14 +223,12 @@ namespace GTA{
         }
     }
 
-
-
-
-
-
     void Hacking::Update(float dt) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+        if(correctpassword){
+            this->_data->machine.RemoveState();
+            this->_data->machine.GetActiveState()->Resume();
+            correctpassword = false;
+            std::cout << "correct password " << std::endl;
             hackaudio.computersounds.stop();
         }
     }

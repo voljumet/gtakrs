@@ -14,23 +14,20 @@ namespace GTA{
     class NPC_NPV : public Movement{
     public:
 
-        int NextPosX = 0,NextPosY= 0;
-        int CurrentPosX= 0, CurrentPosY= 0;
-        double movementSpeed= 0;
-        int moveUp= 0, moveDown= 0, moveRight= 0, moveLeft= 0;
-        int spriteHeight= 0, spriteWidth= 0;
-        int NextTile= 0, currentTile= 0;
-        int UpdatedPosX= 0, UpdatedPosY= 0;
-        int randomColor= 0;
+        int NextPosX = 0, NextPosY = 0;
+        int CurrentPosX = 0, CurrentPosY = 0;
+        double movementSpeed = 0.0;
+        int moveUp = 0, moveDown = 0, moveRight = 0, moveLeft = 0;
+        int spriteHeight = 0, spriteWidth = 0;
+        int NextTile_RIGHT = 0, NextTile_LEFT = 0, NextTile_UP = 0, NextTile_DOWN = 0, NextTile = 0;
+        int UpdatedPosX = 0, UpdatedPosY = 0;
         int StepCounter = 0;
         int RespawnTime = 600;
-        int randomPosX= 0, randomPosY= 0, RandNpcTile= 0;
-        int health= 0;
-        bool crashCurb = true, CheckWalkable = false, dead = false;
-
+        int randomPosX = 0, randomPosY = 0, RandNpcTile = 0;
+        int health = 0;
+        bool crashCurb_RIGHT = false, crashCurb_LEFT = false, crashCurb_UP = false, crashCurb_DOWN = false, crashCurb = true;
+        bool CheckWalkable = false, dead = false;
         int Number = 0;
-        int CrashCounter = 0;
-
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
         int Npv_Can_SpawnHere[9]={7, 8, 14, 15, 16};
@@ -42,11 +39,5 @@ namespace GTA{
 
         direction RandomDir = UP;
         Collision_Detection collisionDetaction;
-
-        std::clock_t Timer;
-        int timer2=0;
-        double Rando;
-        double vec;
-
     };
 }

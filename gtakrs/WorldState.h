@@ -21,12 +21,10 @@
 namespace GTA {
     class WorldState : public State {
     public:
-
-        Npv npv;
         Map map;
         Movement movement;
         NpcController npcController;
-        CarController carController;
+        NpvController npvController;
         Shooting shooting;
         Weapon weapon;
         AssetManager sound;
@@ -34,16 +32,17 @@ namespace GTA {
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
         Player _player;
-        missionPlacement msp;
         missionPlacement missionPlacement;
 
         const float dt = 0.01f;
-        float WalkSpeed = 1.f;
         bool Driving = false;
         bool Debug = false;
         bool Minimap = false;
         bool mission = false;
+
+        /// IKKE SLETT !!!! ------------
         bool NULLER = false;
+        /// _____________________________
         bool NoDrivingOrWalkingBool = false;
 
         int missionNumber = 1;
@@ -72,8 +71,6 @@ namespace GTA {
         void playerCrashTEMP();
         void PrintTimer();
 
-
-
         friend class Map;
 
     private:
@@ -90,20 +87,15 @@ namespace GTA {
         double NPVDura;
         double NullDura;
 
-        Collision_Detection collisionDetaction;
-        std::vector<sf::Sprite *> spriteListy;
+        Collision_Detection collisionDetection;
         GameDataRef _data;
         sf::View view;
         sf::View minimap;
         sf::RectangleShape getRektMap;
-        sf::Vector2f viewCenter;
 
         sf::Texture M3_White;
 
         sf::Texture player1;
         sf::Sprite _car;
-        sf::Sprite _car2;
-        sf::Sprite _car3;
-
     };
 }

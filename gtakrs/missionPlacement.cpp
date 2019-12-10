@@ -6,7 +6,6 @@
 
 namespace GTA{
 
-
     missionPlacement::missionPlacement() = default;
     missionPlacement::~missionPlacement() = default;
 
@@ -25,7 +24,6 @@ namespace GTA{
 
     void missionPlacement::missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos) {
         _data = std::move(data_inn);
-        std::cout << "mission " << std::endl;
 
         switch (missionNumber){
 
@@ -87,24 +85,17 @@ namespace GTA{
 
             default:
                 break;
+
         }
     }
 
-    sf::Sprite missionPlacement::getMissionCircle(){
-        return missionCircle;
-    }
-    sf::RectangleShape missionPlacement::getBox() {
-        return rectangleShape;
-    }
+    sf::Sprite missionPlacement::getMissionCircle(){ return missionCircle; }
 
-    sf::Text missionPlacement::getText() {
-        return text;
-    }
+    sf::RectangleShape missionPlacement::getBox() { return rectangleShape; }
 
-
+    sf::Text missionPlacement::getText() { return text; }
 
     void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber) {
-
         rectangleShape.setSize(sf::Vector2f(800, 250));
         rectangleShape.setOutlineColor(sf::Color::Red);
         rectangleShape.setOutlineThickness(5);
@@ -115,8 +106,6 @@ namespace GTA{
     void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber) {
 
         text.setFont(font);
-
-
         switch(missionNumber){
             case 1:
                 rectangleShape.setSize(sf::Vector2f(800, 320));
@@ -187,11 +176,7 @@ namespace GTA{
         }
 
         text.setCharacterSize(22);
-
         text.setFillColor(sf::Color::Black);
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
     }
-
-
-
 }
