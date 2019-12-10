@@ -13,6 +13,7 @@
 namespace GTA{
     class NPC_NPV : public Movement{
     public:
+
         int NextPosX = 0,NextPosY= 0;
         int CurrentPosX= 0, CurrentPosY= 0;
         double movementSpeed= 0;
@@ -26,6 +27,7 @@ namespace GTA{
         int randomPosX= 0, randomPosY= 0, RandNpcTile= 0;
         int health= 0;
         bool crashCurb = true, CheckWalkable = false, dead = false;
+
         int Number = 0;
         int CrashCounter = 0;
 

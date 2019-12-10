@@ -69,9 +69,7 @@ namespace GTA {
 
         player1 = this->_data->assets.GetTexture("Player");
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
-        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
-        M3_blue = this->_data->assets.GetTexture("M3_BLUE");
-        M3_red = this->_data->assets.GetTexture("M3_RED");
+
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -163,30 +161,35 @@ namespace GTA {
         }
 ////////////////////////////////////
 
+
     if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
 
 ////////////////////////////////////
 
-//        /// Change between person and car
-//        switch (event.type) {
-//            case sf::Event::KeyReleased: {
-//                switch (event.key.code) {
-//                    case sf::Keyboard::Space: {
-//                        if (!Driving) {
-//                            this->_car.setPosition(_player.player_Getposition());
-//                            this->_car.setRotation(this->_player.getRotaion());
-//                            Driving = true;
-//                           sound.PlaySound(sound.cardoor);
-//                        } else {
-//                            _player.player_SetPosition(this->_car.getPosition());
-//                            this->_player.setRotaion(this->_car.getRotation());
-//                            Driving = false;
-//                            sound.PlaySound(sound.cardoor);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+/*
+        /// Change between person and car
+        switch (event.type) {
+            case sf::Event::KeyReleased: {
+                switch (event.key.code) {
+                    case sf::Keyboard::Space: {
+                        if (!Driving) {
+                            this->_car.setPosition(_player.player_Getposition());
+                            this->_car.setRotation(this->_player.getRotaion());
+                            Driving = true;
+                           sound.PlaySound(sound.cardoor);
+                        } else {
+                            _player.player_SetPosition(this->_car.getPosition());
+                            this->_player.setRotaion(this->_car.getRotation());
+                            Driving = false;
+                            sound.PlaySound(sound.cardoor);
+                        }
+                    }
+                }
+            }
+        }
+*/
+
+
 
         /// Activate DEBUG-MODE
         switch (event.type) {
@@ -216,7 +219,6 @@ namespace GTA {
         }
 
 
-
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 
             this->_data->machine.GetActiveState()->Pause();
@@ -225,7 +227,6 @@ namespace GTA {
         if(this->_player.intHealth == 0){
             this->_player.intHealth = 100;
             this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
-
         }
     }
 
