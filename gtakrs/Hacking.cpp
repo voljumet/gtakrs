@@ -107,6 +107,11 @@ namespace GTA{
                     text.setString("cd passwords");
                 }
 
+                else if((playerinput.compare("cd locations"))==0){ /// CD PASSWORDS
+                    layer = 130;
+                    text.setString("cd locations");
+                }
+
 
                else if((playerinput.compare("enter password"))==0){ /// ENTER PASSWORD
                     text.setString("please enter gate password: \n");
@@ -153,7 +158,8 @@ namespace GTA{
 
                     if(layer==13) { ///SECURITY
                         text.setString("$ passwords\n"
-                                       "$ camera recordings");
+                                       "$ camera recordings\n"
+                                       "$ locations");
                     }
 
                     if(layer==132) { ///CAMERA RECORDINGS
@@ -166,6 +172,7 @@ namespace GTA{
                                        "$ gate password: epstein251\n"
                                        "$ P O T U S phone password: 11111111");
                     }
+
 
                 }
 
