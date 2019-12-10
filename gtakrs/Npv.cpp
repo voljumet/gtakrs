@@ -226,8 +226,6 @@ namespace GTA {
 //
                 if(GTA::PixelPerfectTest(_player,i->getNpvBot())){
                     player1.setDamage();
-                    std::cout<<"FÅKK"<<std::endl;
-                }
                 collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
 
             }
