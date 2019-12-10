@@ -167,29 +167,26 @@ namespace GTA {
 
 ////////////////////////////////////
 
-
-
-
-        /// Change between person and car
-        switch (event.type) {
-            case sf::Event::KeyReleased: {
-                switch (event.key.code) {
-                    case sf::Keyboard::Space: {
-                        if (!Driving) {
-                            this->_car.setPosition(_player.player_Getposition());
-                            this->_car.setRotation(this->_player.getRotaion());
-                            Driving = true;
-                           sound.PlaySound(sound.cardoor);
-                        } else {
-                            _player.player_SetPosition(this->_car.getPosition());
-                            this->_player.setRotaion(this->_car.getRotation());
-                            Driving = false;
-                            sound.PlaySound(sound.cardoor);
-                        }
-                    }
-                }
-            }
-        }
+//        /// Change between person and car
+//        switch (event.type) {
+//            case sf::Event::KeyReleased: {
+//                switch (event.key.code) {
+//                    case sf::Keyboard::Space: {
+//                        if (!Driving) {
+//                            this->_car.setPosition(_player.player_Getposition());
+//                            this->_car.setRotation(this->_player.getRotaion());
+//                            Driving = true;
+//                           sound.PlaySound(sound.cardoor);
+//                        } else {
+//                            _player.player_SetPosition(this->_car.getPosition());
+//                            this->_player.setRotaion(this->_car.getRotation());
+//                            Driving = false;
+//                            sound.PlaySound(sound.cardoor);
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         /// Activate DEBUG-MODE
         switch (event.type) {
