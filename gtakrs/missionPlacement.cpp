@@ -51,7 +51,7 @@ namespace GTA{
             case 4:
                 std::cout << "4" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 122.f, TILE_SIZE * 284.f);
+                this->missionCircle.setPosition(TILE_SIZE * 121.f, TILE_SIZE * 285.f);
 
                 break;
             case 5:
@@ -127,22 +127,23 @@ namespace GTA{
                                "  * Find Tony Montana!\n\n");
                 break;
             case 2:
-                rectangleShape.setSize(sf::Vector2f(800, 240));
+                rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
                                "  * Press 'space 'to activate mission. \n\n"
-                               "  * Nice, You found the Tony! \n\n"
+//                               "  * Nice, You found the Tony! \n\n"
                                "  * Get the location of next mission.\n\n"
-                               "  * Tony says: drive 'East', find a pc and steal.\n\n");
+                               "  * Tony says: Cross the bridge north \n\n"
+                               "  * Drive 'East', find a pc and steal.\n\n");
                 break;
             case 3:
-                rectangleShape.setSize(sf::Vector2f(800, 100));
+                rectangleShape.setSize(sf::Vector2f(21, 111));
                 text.setString(" \n"
                                "  * Cross the bridge. \n\n"
                                "  * You seem to be hungry, find a burger \n\n"
                                "  * Eat \n\n");
                 break;
             case 4:
-                rectangleShape.setSize(sf::Vector2f(800, 50));
+                rectangleShape.setSize(sf::Vector2f(800, 70));
                 text.setString(" \n"
 
                                "  * Find hacking mission. \n\n");
