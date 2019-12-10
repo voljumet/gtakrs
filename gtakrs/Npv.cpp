@@ -9,8 +9,7 @@ namespace GTA {
     Npv::~Npv() = default;
 
     // Using a reference of texture works
-    void Npv::CarInit(sf::Texture &M3W,
-                      Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
+    void Npv::CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
 
         dir = RandomDir;
         movementSpeed = 8;
@@ -95,6 +94,7 @@ namespace GTA {
         crashCurb = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere), NextTile) !=
                     std::end(NpvCan_Not_MoveHere);
 
+
         for (int i = 0; i < npvVec.size(); ++i) {
             if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
                 dir = RandomDir;
@@ -145,7 +145,7 @@ namespace GTA {
 
         npvBot.move(vector2F);
     }
-    
+
     void CarController::NpvSpawn(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
         for (int k = 0; k < 101; ++k) {  /// DET MÅ VÆRE 101 BILER FOR AT DET SKAL VÆRE MULIG Å TA OVER BILER
@@ -189,11 +189,12 @@ namespace GTA {
 
     void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
                                 sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex,
-                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH], bool &boat ) {
+        boat = false;
         _data = inn_data;
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W )&& !boat) {
                 if (!Driving && GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     _car.setPosition(i->getNpvBot().getPosition());
                     _car.setRotation(i->getNpvBot().getRotation());
@@ -236,6 +237,7 @@ namespace GTA {
                 npvVec[k]->getNpvBot().setPosition(_car.getPosition());
                 npvVec[k]->getNpvBot().setRotation(_car.getRotation());
                 npvVec[k]->movementSpeed = 0;
+
 //                npvVec[k]
 //                npvVec[k]->dir = UP;
             }
@@ -244,6 +246,7 @@ namespace GTA {
             _player.setRotation(_car.getRotation());
 
             Driving = false;
+            boat = false;
 //            std::cout << npvVec.size() << std::endl;
         }
 

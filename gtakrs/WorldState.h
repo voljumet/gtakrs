@@ -45,8 +45,14 @@ namespace GTA {
         bool mission = false;
         bool NULLER = false;
         bool NoDrivingOrWalkingBool = false;
+        bool nocruising = false;
+
+        bool boatbool = false;
 
         int missionNumber = 1;
+
+
+        int BOATCan_Not_MoveHere[24]={0, 1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24};
 
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
 
@@ -99,6 +105,7 @@ namespace GTA {
         sf::Texture M3_White;
 
         sf::Texture player1;
+        sf::Sprite Boat;
         sf::Sprite _car;
         sf::Sprite _car2;
         sf::Sprite _car3;
