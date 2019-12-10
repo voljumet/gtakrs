@@ -33,9 +33,13 @@ public:
     int getCoin();
     int getBullet();
     int loseBullet();
+
 //    void checkCollision(bool Debug, bool Driving, );
 
     int intHealth = 100;
+
+    int ammo = 0;
+
 private:
     friend class missionPlacement;
     sf::Sprite playerSprite;

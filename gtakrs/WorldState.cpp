@@ -160,9 +160,30 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
+///Skyting
+
+    if (event.key.code == sf::Keyboard::E && !Driving)  {
+
+        if(_player.ammo>=1) {
+
+            shooting.CreateBullet(_player.playerGetSprite());
+            sound.PlaySound(sound.gunshot);
+            _player.ammo -= 1;
+        }
+
+        else (_player.ammo==0);
+            std::cout <<"Out of bullets!" << std::endl;
 
 
-    if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
+    }
+
+
+    else{
+
+        std::cout <<"No weapon equipped bro!" << std::endl;
+
+    }
+
 
 ////////////////////////////////////
 
@@ -251,6 +272,8 @@ namespace GTA {
         if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
 
             weapon.hasweapon=true;
+            _player.ammo=20;
+
             std::cout << "weapon is now ready" << std::endl;
 
             weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
@@ -258,10 +281,6 @@ namespace GTA {
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;
             std::cout << "posy is " << weapon.gun_posY << std::endl;
-
-
-
-
 
         }
     }
