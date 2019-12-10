@@ -78,13 +78,14 @@ namespace GTA {
                 for(auto &bullet : bulletlist){
                    if(bullet->bullet.getGlobalBounds().intersects(npc->getNpcBot().getGlobalBounds())) {
                        bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
-                       npc->health -= 2;
-                       npc->movementSpeed = 4;
+                       npc->health -= 10;
+                       npc->movementSpeed = 16;
                        if(npc->health == 0) {
                            npc->dead = true;
-                           npc->movementSpeed = 1;
+                           npc->movementSpeed = 4;
                            npc->health = 50;
                            npc->setNpcBot(this->_data->assets.GetTexture("Dead"));
+
                        }
                    }
                 }
@@ -93,12 +94,14 @@ namespace GTA {
         for(auto &npv : npvlist){
             for(auto &bullet: bulletlist){
                 if(bullet->bullet.getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){
+                    bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
                     npv->health -= 2;
-                    npv->movementSpeed = 5;
+                    npv->movementSpeed = 16;
                     if(npv->health == 0){
                         npv->getNpvBot().setColor(sf::Color::Black);
                         npv->dead = true;
                         npv->health = 300;
+                        npv->movementSpeed = 8;
                     }
                 }
             }

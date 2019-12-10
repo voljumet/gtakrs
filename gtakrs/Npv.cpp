@@ -33,7 +33,7 @@ namespace GTA {
         this->npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
         this->npvBot.setScale(sf::Vector2f(1.2f, 1.2f));
         this->npvBot.setOrigin(50.f, 67.f);
-        health = 100;
+        health = 200;
     }
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
