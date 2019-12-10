@@ -83,6 +83,10 @@ namespace GTA {
         weapon.gun_posY = TILE_SIZE * 23;
         weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
 
+        weapon.shotgun_posX = TILE_SIZE * 53;
+        weapon.shotgun_posY = TILE_SIZE * 23;
+        weapon.shotgun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
+
         ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Player Texture / Settings
@@ -314,6 +318,7 @@ namespace GTA {
 
 
         this->_data->window.draw(weapon.gun);
+        this->_data->window.draw(weapon.shotgun);
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 

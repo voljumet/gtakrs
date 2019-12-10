@@ -49,6 +49,7 @@
 #define CAR_WHITE "Resources/res/carWhite.png"
 #define BULLET_SPRITE "Resources/res/BulletSprite.png"
 #define GLOCK "Resources/res/8bitglock.png"
+#define SHOTGUN "Resources/res/SHOTGUN.png"
 #define BOAT "Resources/res/Boat.png"
 
 #define M3_BLUE "Resources/res/Vehicles/model3-01.png"
