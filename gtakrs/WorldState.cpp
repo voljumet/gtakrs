@@ -167,8 +167,35 @@ namespace GTA {
         }
 ////////////////////////////////////
     if (event.key.code == sf::Keyboard::E && !Driving) {
-        if(!shooting.shotgun){shooting.CreateBullet(_player.playerGetSprite()); }
-        if(shooting.shotgun){shooting.CreateShotgunBullet(_player.playerGetSprite());}
+        if(weapon.hasweapon){
+            _player.loseBullet();
+            if(weapon.gunammo>0) {
+                shooting.CreateBullet(_player.playerGetSprite());
+                sound.PlaySound(sound.gunshot);
+                weapon.gunammo-=1;
+            }
+
+            else{
+                std::cout << "No bullets left" << std::endl;
+            }
+
+
+        }
+
+
+        if(weapon.hasshotgun){
+            _player.loseBullet();
+            if(weapon.shotammo>0) {
+                shooting.CreateShotgunBullet(_player.playerGetSprite());
+                sound.PlaySound(sound.gunshot); ///legg til shotgun lyd
+                weapon.shotammo-=1;
+            }
+
+            else{
+                std::cout << "No bullets left" << std::endl;
+            }
+
+        }
 
     }
 ////////////////////////////////////
@@ -255,10 +282,13 @@ namespace GTA {
         shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
         shooting.MoveBullet();
 
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistol
 
             weapon.hasweapon=true;
-            std::cout << "weapon is now ready" << std::endl;
+            weapon.hasshotgun=false;
+            std::cout << "gun is now ready" << std::endl;
+            _player.setBullet();
+            weapon.gunammo = 30;
 
             weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             weapon.gun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
@@ -267,10 +297,26 @@ namespace GTA {
             std::cout << "posy is " << weapon.gun_posY << std::endl;
 
 
+        }
 
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.shotgun)){                             ///Dersom player plukker opp shotgun
 
+            weapon.hasshotgun=true;
+            weapon.hasweapon=false;
+            std::cout << "shotgun is now ready" << std::endl;
+            weapon.shotammo = 30;
+            _player.setBullet();
+            weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
+            weapon.gun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
+            weapon.gun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
+            std::cout << "posx is " << weapon.shotgun_posX << std::endl;
+            std::cout << "posy is " << weapon.shotgun_posY << std::endl;
 
         }
+
+
+
+
     }
 
     void WorldState::Draw(float dt) {

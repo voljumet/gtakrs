@@ -161,12 +161,13 @@ namespace GTA {
     }
 
     int Player::setBullet() {
-        if (bullet < 226){return bullet += 10;}
+        if (bullet <= 226){return bullet = 226;}
+
     }
 
     int Player::loseBullet(){
         if(bullet < 0){ bullet = 0; }
-        else{bullet -= 10;}
+        else{bullet -= 8;}
     }
 
     int Player::setHealth()

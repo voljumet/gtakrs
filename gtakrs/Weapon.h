@@ -27,6 +27,10 @@ namespace GTA {
         float gun_posY = SCREEN_HEIGHT / 2;
 
         bool hasweapon;
+        bool hasshotgun;
+
+        int shotammo = 0;
+        int gunammo = 0;
 
         void Gun_init();
 

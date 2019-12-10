@@ -121,18 +121,15 @@ namespace GTA{
             case 1:
                 rectangleShape.setSize(sf::Vector2f(800, 320));
                 text.setString(" \n"
-                        "  The world is running out of Juice\n\n"
-                               "  * Please save the Juice.\n\n"
-                               "  * Press space to activate mission.\n\n"
-                               "  * Steal a car and drive south.\n\n"
-                               "  * Find Tony Montana!\n\n");
+                        "  The world is running out of Juice!\n\n"
+                               "  * You have to rescue help!\n\n"
+                               "  * Get in a car and find Tony Montana.\n\n"
+                               "  * Press space to activate mission.\n\n");
                 break;
             case 2:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
-                               "  * Press 'space 'to activate mission. \n\n"
 //                               "  * Nice, You found the Tony! \n\n"
-                               "  * Get the location of next mission.\n\n"
                                "  * Tony says: Cross the bridge north \n\n"
                                "  * Drive 'East', find a pc and steal.\n\n");
                 break;
@@ -160,7 +157,7 @@ namespace GTA{
                 text.setString(" \n"
                                "  * Great! \n\n"
                                "  * Meet Tony again. \n\n"
-                               "  * He know's where to find a sniper. \n\n");
+                               "  * He knows where to find a sniper. \n\n");
                 break;
             case 7:
                 rectangleShape.setSize(sf::Vector2f(800, 80));

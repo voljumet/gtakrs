@@ -15,9 +15,8 @@ void GTA::Weapon::Gun_init() {
     shotgun.setScale(0.25, 0.25);
 
 
-
-
     hasweapon = false;
+    hasshotgun = false;
 
 }
 
