@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-
+#include <SFML/Graphics.hpp>
 #include "Movement.h"
 #include "Game.h"
 #include "Map.h"
@@ -30,6 +30,7 @@ namespace GTA{
 
         int Number = 0;
         int CrashCounter = 0;
+
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
         int Npv_Can_SpawnHere[9]={7, 8, 14, 15, 16};

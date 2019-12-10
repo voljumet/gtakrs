@@ -9,7 +9,7 @@ namespace GTA {
     void Shooting::CreateBullet(sf::Sprite &Player)
     {
         Bullet* bullet = new Bullet;
-        bullet->bulletspeed = 2000.f;
+        bullet->bulletspeed = 4000.f;
         sf::Transform t;
         t.rotate(Player.getRotation());
         bullet->bulletVec = t.transformPoint(movement.forwardVec());
@@ -19,7 +19,42 @@ namespace GTA {
         bullet->bullet.rotate(270);
         bullet->bullet.setScale(0.03, 0.03);
         bulletlist.push_back(bullet);
+
     }
+    void Shooting::CreateShotgunBullet(sf::Sprite &Player){
+        for(int i = 0; i < 5; i++){
+            Bullet* bullet = new Bullet;
+            sf::Transform t;
+            t.rotate(Player.getRotation());
+            if(i == 0){
+            bullet->bulletVec = t.transformPoint(movement.forwardVec().x -0.2, movement.forwardVec().y);
+                bullet->bulletspeed = 3000.f;
+            }
+            if(i == 1){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec().x -0.1, movement.forwardVec().y);
+                bullet->bulletspeed = 3500.f;
+            }
+            if(i == 2){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec());
+                bullet->bulletspeed = 4000.f;
+            }
+            if(i == 3){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec().x +0.1, movement.forwardVec().y);
+                bullet->bulletspeed = 3500.f;
+            }
+            if(i == 4){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec().x +0.2, movement.forwardVec().y);
+                bullet->bulletspeed = 3000.f;
+            }
+            bullet->bullet.setRotation(Player.getRotation());
+            bullet->bullet.setPosition(Player.getPosition().x, Player.getPosition().y);
+            bullet->bullet.setTexture(this->_data->assets.GetTexture("Bullet"));
+            bullet->bullet.rotate(270);
+            bullet->bullet.setScale(0.03, 0.03);
+            bulletlist.push_back(bullet);
+        }
+    }
+
     void Shooting::MoveBullet(){
         for(auto &b: bulletlist){
             b->bullet.move(b->bulletVec*b->bulletspeed*movement.dt);
@@ -43,13 +78,14 @@ namespace GTA {
                 for(auto &bullet : bulletlist){
                    if(bullet->bullet.getGlobalBounds().intersects(npc->getNpcBot().getGlobalBounds())) {
                        bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
-                       npc->health -= 2;
-                       npc->movementSpeed = 4;
+                       npc->health -= 10;
+                       npc->movementSpeed = 16;
                        if(npc->health == 0) {
                            npc->dead = true;
-                           npc->movementSpeed = 1;
+                           npc->movementSpeed = 4;
                            npc->health = 50;
                            npc->setNpcBot(this->_data->assets.GetTexture("Dead"));
+
                        }
                    }
                 }
@@ -58,12 +94,14 @@ namespace GTA {
         for(auto &npv : npvlist){
             for(auto &bullet: bulletlist){
                 if(bullet->bullet.getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){
+                    bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
                     npv->health -= 2;
-                    npv->movementSpeed = 5;
+                    npv->movementSpeed = 16;
                     if(npv->health == 0){
                         npv->getNpvBot().setColor(sf::Color::Black);
                         npv->dead = true;
                         npv->health = 300;
+                        npv->movementSpeed = 8;
                     }
                 }
             }
