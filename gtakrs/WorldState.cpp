@@ -14,6 +14,9 @@ namespace GTA {
     WorldState::WorldState(GTA::GameDataRef data) : _data(std::move(data)) {}
 
     void WorldState::Init() {
+
+
+
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
 
@@ -103,17 +106,10 @@ namespace GTA {
 
         /// Create NPCars
         carController.NpvSpawn(M3_White, map._Block);
-//        carController.NpvSpawn(M3_Black, map._Block);
-//        carController.NpvSpawn(M3_red, map._Block);
-//        carController.NpvSpawn(M3_blue, map._Block);
 
-
-//        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(player1, map._Block);
-
-//        npcController.NpcSpawn(player1,player2,player3,player4, player5, map._Block);
 
     }
     void WorldState::HandleInput() {
@@ -131,16 +127,16 @@ namespace GTA {
 
         /// mission trigger
         if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
-            mission = true;
+//            mission = true;
             missionPlacement.infoBox(_player.playerGetSprite(), missionNumber);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
                 missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite());
-                std::cout << "Mission: " << missionNumber << std::endl;
             }
         }else {
             mission = false;
         }
+
 
         /// Car Respawn and Move
         Timer = std::clock();
@@ -309,10 +305,9 @@ namespace GTA {
 
 
         this->_data->window.draw(weapon.gun);
-        /////DRAW EVERY SPRITE IN THE LIST
-        for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
-        /// if mission equals to true, and player is out of circle the rectangle box disappears
+
+        /// if mission equals true and player intesects circle, the rectangle box appears
         if(mission) {
             this->_data->window.draw(missionPlacement.getBox());
             this->_data->window.draw(missionPlacement.getText());
@@ -330,6 +325,8 @@ namespace GTA {
                        _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
         }
         MmapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
+        this->_data->window.draw(missionPlacement.getMissionCircle());
 
         /// Draw Player or Car
         if (!Driving) { _player.Draw(this->_data->window); }

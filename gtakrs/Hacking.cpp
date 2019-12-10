@@ -122,9 +122,10 @@ namespace GTA{
 
     void Hacking::Update(float dt) {
         if(correctpassword){
-            std::cout << "correct password " << std::endl;
             this->_data->machine.RemoveState();
             this->_data->machine.GetActiveState()->Resume();
+            correctpassword = false;
+            std::cout << "correct password " << std::endl;
         }
     }
 

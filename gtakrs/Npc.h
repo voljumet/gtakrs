@@ -17,16 +17,10 @@ namespace GTA {
 
         sf::Sprite &getNpcBot();
 
-
     private:
         GameDataRef _data;
         sf::Sprite npcBot;
 
-        sf::Texture player1;
-        sf::Texture player2;
-        sf::Texture player3;
-        sf::Texture player4;
-        sf::Texture player5;
     };
 
     class NpcController : public NPC_NPV{
@@ -44,13 +38,6 @@ namespace GTA {
         GameDataRef _data;
         Collision_Detection collisionDetaction;
 
-        sf::Texture player1;
-        sf::Texture player2;
-        sf::Texture player3;
-        sf::Texture player4;
-        sf::Texture player5;
-
         friend class missionPlacement; /// friends class missionplacement,
-        /// give it its private data
     };
 }

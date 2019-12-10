@@ -30,16 +30,15 @@ namespace GTA{
 
     void missionPlacement::missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos) {
         _data = std::move(data_inn);
-        std::cout << "mission " << std::endl;
 
         if (missionNumber == 1) {
-            std::cout << "1" << std::endl;
             missionNumber++;
             snipeMissionSettings();
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
-        }  else if(missionNumber == 2) {
-            std::cout << "2" << std::endl;
+        }
+
+        else if(missionNumber == 2) {
             missionNumber++;
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new Mission(_data)),false);
@@ -57,8 +56,6 @@ namespace GTA{
         return text;
     }
 
-
-
     void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber) {
 
         rectangleShape.setSize(sf::Vector2f(800, 250));
@@ -68,32 +65,24 @@ namespace GTA{
         InfoBoxText(player, missionNumber);
     }
 
-    void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber) {
+    void missionPlacement::InfoBoxText(sf::Sprite &player, int &MN) {
 
         text.setFont(font);
-        if(missionNumber == 1){
+        if(MN == 1){
             text.setString("  Mission criticle information: \n\n"
                            "  * Click space to activate mission.\n\n"
                            "  * Find gate password.\n\n"
                            "  * Find location of AbraDolf Lincler.\n\n");
         }
-        else if(missionNumber == 2){
+        else if(MN == 2){
             text.setString("  Mission criticle information: \n\n"
                            "  * Click space to activate mission.\n\n"
                            "  * Find Abradolf Lincler before he escapes.\n\n"
                            "  * Kill him.\n\n");
         }
-        else if(missionNumber == 3){
-
-        }
-
-
 
         text.setCharacterSize(24);
         text.setFillColor(sf::Color::Black);
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
     }
-
-
-
 }

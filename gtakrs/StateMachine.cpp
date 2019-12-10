@@ -1,9 +1,10 @@
+#include <iostream>
 #include "StateMachine.h"
 
 /// Statemachine Settings!!
 
 namespace GTA{
-    void StateMachine::AddState(GTA::StateRef newState, bool isReplacing) {     /// Config for AddState when creating a new stateClass
+    void StateMachine::AddState(GTA::StateRef newState, bool isReplacing) {     /// Config for AddState when creating a new state
         this->_isAdding = true;
         this->_isReplacing = isReplacing;
 

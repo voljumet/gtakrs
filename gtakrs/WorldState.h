@@ -37,7 +37,6 @@ namespace GTA {
         missionPlacement missionPlacement;
 
         const float dt = 0.01f;
-        float WalkSpeed = 1.f;
         bool Driving = false;
         bool Debug = false;
         bool Minimap = false;

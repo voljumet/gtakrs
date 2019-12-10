@@ -24,10 +24,6 @@ namespace GTA {
         GameDataRef _data;
         sf::Sprite npvBot;
 
-        sf::Texture M3_Black;
-        sf::Texture M3_Blue;
-        sf::Texture M3_Red;
-        sf::Texture M3_Silver;
     };
 
     class CarController: public NPC_NPV{

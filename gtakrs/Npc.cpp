@@ -3,7 +3,11 @@
 #include "Npc.h"
 
 namespace GTA {
-    Npc::Npc() = default;
+    Npc::Npc(){
+        CheckWalkable = false;
+        health = 50;
+    }
+
     Npc::~Npc() = default;
 
 
@@ -11,21 +15,7 @@ namespace GTA {
     void Npc::npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
         dir = RandomDir;
         movementSpeed = 5;
-
-        /// Walk speed
-//        (rand() % (4 + 5));
-
-//        randomColor = (rand() % 5, rand() % 5);
-//        switch (randomColor){
-//            case 1 :
-                npcBot.setTexture(texture);
-//            break;
-//            case 2 : this->npcBot.setTexture(texture2); break;
-//            case 3 : this->npcBot.setTexture(texture3); break;
-//            case 4 : this->npcBot.setTexture(texture4); break;
-//            case 5 : this->npcBot.setTexture(texture5); break;
-//        }
-
+        npcBot.setTexture(texture);
 
         /// Spawn random
         while(!CheckWalkable){
@@ -39,6 +29,7 @@ namespace GTA {
         }
 
         this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
+//        this->npcBot.setPosition(28 * TILE_SIZE, 19 * TILE_SIZE);
         this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);
@@ -92,34 +83,40 @@ namespace GTA {
             }
         }
 
+        NextTile_RIGHT = _Block[CurrentPosY / TILE_SIZE][(moveRight + 31) / TILE_SIZE].tileTextureNumber;
+        NextTile_LEFT = _Block[CurrentPosY / TILE_SIZE][(moveLeft - 31) / TILE_SIZE].tileTextureNumber;
+        NextTile_UP = _Block[(moveUp - 31) / TILE_SIZE][CurrentPosX / TILE_SIZE].tileTextureNumber;
+        NextTile_DOWN = _Block[(moveUp + 31) / TILE_SIZE][CurrentPosX / TILE_SIZE].tileTextureNumber;
+
         NextTile = _Block[NextPosY][NextPosX].tileTextureNumber;
 
+        /// check if  "NextNpcPos" crashes with any of the variables in "curb"
+        crashCurb_RIGHT = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere),NextTile_RIGHT) != std::end(NpcCan_Not_MoveHere);
+        crashCurb_LEFT = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere),NextTile_LEFT) != std::end(NpcCan_Not_MoveHere);
+        crashCurb_UP = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere),NextTile_UP) != std::end(NpcCan_Not_MoveHere);
+        crashCurb_DOWN = std::find(std::begin(NpcCan_Not_MoveHere), std::end(NpcCan_Not_MoveHere),NextTile_DOWN) != std::end(NpcCan_Not_MoveHere);
+
+        crashCurb = std::find(std::begin(NpcCan_Not_MoveHere),std::end(NpcCan_Not_MoveHere),NextTile) != std::end(NpcCan_Not_MoveHere);
+        /// if "!crashCurb_xxxx" keep moving
+        if (crashCurb) {
+            if (crashCurb_RIGHT && crashCurb_LEFT && crashCurb_DOWN && crashCurb_UP){
+                movementSpeed = 0;
+                walkAnimation = 0;
+            } else {
+                dir = RandomDir;
+
+            }
+        } else  {
+            npcBot.setPosition(UpdatedPosX, UpdatedPosY);
+            StepCounter++;
+            SpriteSpeed++;
+        }
+
+        /// change dir if colliding with other npc
         for(int i = 0; i < npcVec.size(); ++i) {
-            /// change dir if colliding with other npc
             if(PixelPerfectTest(npcVec[i]->getNpcBot(), getNpcBot()) && npcVec[i]->Number != Number){
                 dir = RandomDir;
             }
-            /// change dir if colliding with any npv
-//            if(PixelPerfectTest(npcVec[i]->getNpcBot(), getNpcBot()) && npcVec[i]->Number != Number){
-//                    dir = RandomDir;
-//                }
-        }
-
-        /// check if  "NextNpcPos" crashes with any of the variables in "curb"
-        crashCurb = std::find(std::begin(NpcCan_Not_MoveHere),
-                std::end(NpcCan_Not_MoveHere), NextTile) != std::end(NpcCan_Not_MoveHere);
-
-        /// if "crashCurb" is false, keep moving
-        if(crashCurb){
-            dir = RandomDir; /// set random Direction
-        } else {
-            npcBot.setPosition(UpdatedPosX, UpdatedPosY);
-        }
-
-        StepCounter++;
-        if(StepCounter == 100){
-            dir = RandomDir;
-            StepCounter=0;
         }
 
         /// Sets the rotation of the NPC
@@ -128,19 +125,14 @@ namespace GTA {
         else if (dir == UP){npcBot.setRotation(0);}
         else if (dir == DOWN){npcBot.setRotation(180);}
 
+        if (StepCounter == 100){ dir = RandomDir; StepCounter = 0; }
+        if (SpriteSpeed == 4) { walkAnimation++; SpriteSpeed = 0; }
+        if (walkAnimation == 5) { walkAnimation = 1; }
+
+
 
         /// NPC movement Animation
-        npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110,
-                100, 110));
-
-        SpriteSpeed++;
-        if (SpriteSpeed == 4) {
-            walkAnimation++;
-            SpriteSpeed = 0;
-        }
-
-        if (walkAnimation == 5)
-            walkAnimation = 1;
+        npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110,100, 110));
 
     }
 
@@ -151,26 +143,14 @@ namespace GTA {
     }
 
     void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-//        this->_data->assets.LoadTexture("Player2", PLAYER2);
-//        this->_data->assets.LoadTexture("Player3", PLAYER3);
-//        this->_data->assets.LoadTexture("Player4", PLAYER4);
-//        this->_data->assets.LoadTexture("Player5", PLAYER5);
-//
-//        player1 = this->_data->assets.GetTexture("Player");
-//        player2 = this->_data->assets.GetTexture("Player2");
-//        player3 = this->_data->assets.GetTexture("Player3");
-//        player4 = this->_data->assets.GetTexture("Player4");
-//        player5 = this->_data->assets.GetTexture("Player5");
-        for (int i = 0; i < 70; ++i) {
+        for (int i = 0; i < 200; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->Number=i;
             npcVec[i]->npcInit(texture, _Block);
-
         }
     }
 
     void NpcController::NpcMoveAndSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-
         RandomDir = static_cast<direction >(rand() % 4);
 
         for(auto n : npcVec) {
