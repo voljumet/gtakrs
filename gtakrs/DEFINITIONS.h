@@ -108,6 +108,8 @@
 #define BUTTONPRESS "Resources/res/Sound/buttonpress.ogg"
 #define CARCRASH "Resources/res/Sound/carcrashdone.ogg"
 #define CARDEATH "Resources/res/Sound/cardeath.ogg"
+#define EMPTY "Resources/res/Sound/GUNCLICKDONE.ogg"
+#define SPAS12 "Resources/res/Sound/SPAS12.ogg"
 #define SONG "Resources/res/Music/DragonForce - Through The Fire And Flames.ogg"
 //////////////////////////////////////////////////////////////////////////////////////////
 

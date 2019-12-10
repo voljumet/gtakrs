@@ -177,6 +177,7 @@ namespace GTA {
 
             else{
                 std::cout << "No bullets left" << std::endl;
+                sound.PlaySound(sound.empty);
             }
 
 
@@ -187,12 +188,13 @@ namespace GTA {
             _player.loseBullet();
             if(weapon.shotammo>0) {
                 shooting.CreateShotgunBullet(_player.playerGetSprite());
-                sound.PlaySound(sound.gunshot); ///legg til shotgun lyd
+                sound.PlaySound(sound.spas); 
                 weapon.shotammo-=1;
             }
 
             else{
                 std::cout << "No bullets left" << std::endl;
+                sound.PlaySound(sound.empty);
             }
 
         }
