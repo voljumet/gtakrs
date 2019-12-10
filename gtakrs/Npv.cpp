@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iterator>
 #include "Npv.h"
+#include "Player.h"
 
 
 namespace GTA {
@@ -190,7 +191,7 @@ namespace GTA {
 
     void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
                                 sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex,
-                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1) {
         _data = inn_data;
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
@@ -222,8 +223,13 @@ namespace GTA {
 //                    i->setNvcBot(this->_data->assets.GetTexture("Dead"));
 //                }
             } else {
-//                    i->dir = i->RandomDir;
-                collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
+//
+                if(GTA::PixelPerfectTest(_player,i->getNpvBot())){
+                    player1.setDamage();
+                    std::cout<<"FÅKK"<<std::endl;
+                }
+                collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+
             }
 
 

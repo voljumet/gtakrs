@@ -67,12 +67,12 @@ namespace GTA {
             renderWindow.draw(healthbarSprite1);
             ///// Red Bar
             healthBarRect.setFillColor(sf::Color::Red);
-            healthBarRect.setSize(sf::Vector2f(22700 / intHealth, 25));
+            healthBarRect.setSize(sf::Vector2f(healthSize, 25));
             healthBarRect.setPosition(playerSprite.getPosition().x - 775, playerSprite.getPosition().y - 723);
             renderWindow.draw(healthBarRect);
             /////////// bullet bar
             bulletBarRect.setFillColor(sf::Color::Black);
-            bulletBarRect.setSize(sf::Vector2f(bullet * 5, 25));
+            bulletBarRect.setSize(sf::Vector2f(bullet, 25));
             bulletBarRect.setPosition(playerSprite.getPosition().x - 775, playerSprite.getPosition().y - 663);
             renderWindow.draw(bulletBarRect);
 
@@ -98,12 +98,12 @@ namespace GTA {
             renderWindow.draw(healthbarSprite1);
             ///// Red Bar
             healthBarRect.setFillColor(sf::Color::Red);
-            healthBarRect.setSize(sf::Vector2f(22700 / intHealth, 25));
+            healthBarRect.setSize(sf::Vector2f(healthSize , 25));
             healthBarRect.setPosition(pos.x - 775, pos.y - 723);
             renderWindow.draw(healthBarRect);
             /////////// bullet bar
             bulletBarRect.setFillColor(sf::Color::Black);
-            bulletBarRect.setSize(sf::Vector2f(bullet * 5, 25));
+            bulletBarRect.setSize(sf::Vector2f(bullet, 25));
             bulletBarRect.setPosition(pos.x - 775, pos.y - 663);
             renderWindow.draw(bulletBarRect);
 
@@ -135,25 +135,40 @@ namespace GTA {
 
     }
 
-    int Player::getDamage() {
-        return intHealth++;
+    void Player::setDamage() {
+        counter ++;
+        if(counter == 10)
+        {
+            if(healthSize < 0){ healthSize = 0,playerIsDead = true; }
+            else{
+                healthSize -= 10;
+                counter = 0;
+            }
+        }
     }
 
-    int Player::getCoin() {
+    int Player::setCoin() {
         return coin++;
     }
 
-    int Player::getBullet() {
-        return bullet++;
+    int Player::setBullet() {
+        if (bullet < 226){return bullet += 10;}
     }
 
     int Player::loseBullet(){
-        return bullet --;
+        if(bullet < 0){ bullet = 0; }
+        else{bullet -= 10;}
     }
 
+    int Player::setHealth()
+    {
+        counter++;
+        if (counter == 100)
+        {
+        if (healthSize < 226){return healthSize += 10;}
+        }
 
-
-
+    }
 
 
 }

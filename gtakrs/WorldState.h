@@ -71,6 +71,8 @@ namespace GTA {
         void playerCrashTEMP();
         void PrintTimer();
 
+
+
         friend class Map;
 
     private:

@@ -6,7 +6,7 @@
 #include "Movement.h"
 #include <sstream>
 #include "Collision_Detection.h"
-#include "Npv.h"
+
 
 namespace GTA{
 
@@ -29,13 +29,15 @@ public:
     float getRotaion();
     void setRotaion(float rotation);
 
-    int getDamage();
-    int getCoin();
-    int getBullet();
+    void setDamage();
+    int setHealth();
+    int setCoin();
+    int setBullet();
     int loseBullet();
 //    void checkCollision(bool Debug, bool Driving, );
 
     int intHealth = 100;
+        bool playerIsDead = false;
 private:
     friend class missionPlacement;
     sf::Sprite playerSprite;
@@ -44,8 +46,11 @@ private:
     sf::Font font;
     sf::Text text;
     int coin = 10;
-    int bullet = 1;
+    int bullet = 0;
+    int healthSize = 227;
+
     sf::Sprite healthbarSprite, healthbarSprite1;
+        int counter = 0;
 
     Collision_Detection collisionDetection;
 

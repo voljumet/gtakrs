@@ -222,8 +222,8 @@ namespace GTA {
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
-        if(this->_player.intHealth == 0){
-            this->_player.intHealth = 100;
+        if(_player.playerIsDead){
+
             this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
 
         }
@@ -287,7 +287,7 @@ namespace GTA {
 
         /// Draw NPVehicles
         Timer = std::clock();
-        carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block);
+        carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block,_player);
 
 
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
@@ -388,8 +388,11 @@ namespace GTA {
                     if(NoDrivingOrWalkingBool){
                         if(Driving){
                             collisionDetaction.Check_Collision(_car,map._Block[Y][X].tileSprite,false);
+
                         } else {
                             collisionDetaction.Check_Collision(_player.playerGetSprite(), map._Block[Y][X].tileSprite, false);
+
+
                         }
                     }
                 }
@@ -422,5 +425,6 @@ namespace GTA {
             timer = 0;
         }
     }
+
 }
 
