@@ -69,9 +69,7 @@ namespace GTA {
 
         player1 = this->_data->assets.GetTexture("Player");
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
-        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
-        M3_blue = this->_data->assets.GetTexture("M3_BLUE");
-        M3_red = this->_data->assets.GetTexture("M3_RED");
+
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -102,6 +100,8 @@ namespace GTA {
         this->_car.setRotation(180);
 
         /// Create NPCars
+
+
         carController.NpvSpawn(M3_White, map._Block);
 //        carController.NpvSpawn(M3_Black, map._Block);
 //        carController.NpvSpawn(M3_red, map._Block);
@@ -162,31 +162,37 @@ namespace GTA {
             }
         }
 ////////////////////////////////////
+    if (event.key.code == sf::Keyboard::E && !Driving) {
+        if(!shooting.shotgun){shooting.CreateBullet(_player.playerGetSprite()); }
+        if(shooting.shotgun){shooting.CreateShotgunBullet(_player.playerGetSprite());}
 
-    if (event.key.code == sf::Keyboard::E && !Driving) { shooting.CreateBullet(_player.playerGetSprite()); }
-
+    }
 ////////////////////////////////////
 
-//        /// Change between person and car
-//        switch (event.type) {
-//            case sf::Event::KeyReleased: {
-//                switch (event.key.code) {
-//                    case sf::Keyboard::Space: {
-//                        if (!Driving) {
-//                            this->_car.setPosition(_player.player_Getposition());
-//                            this->_car.setRotation(this->_player.getRotaion());
-//                            Driving = true;
-//                           sound.PlaySound(sound.cardoor);
-//                        } else {
-//                            _player.player_SetPosition(this->_car.getPosition());
-//                            this->_player.setRotaion(this->_car.getRotation());
-//                            Driving = false;
-//                            sound.PlaySound(sound.cardoor);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+/*
+        /// Change between person and car
+        switch (event.type) {
+            case sf::Event::KeyReleased: {
+                switch (event.key.code) {
+                    case sf::Keyboard::Space: {
+                        if (!Driving) {
+                            this->_car.setPosition(_player.player_Getposition());
+                            this->_car.setRotation(this->_player.getRotaion());
+                            Driving = true;
+                           sound.PlaySound(sound.cardoor);
+                        } else {
+                            _player.player_SetPosition(this->_car.getPosition());
+                            this->_player.setRotaion(this->_car.getRotation());
+                            Driving = false;
+                            sound.PlaySound(sound.cardoor);
+                        }
+                    }
+                }
+            }
+        }
+*/
+
+
 
         /// Activate DEBUG-MODE
         switch (event.type) {
@@ -216,7 +222,6 @@ namespace GTA {
         }
 
 
-
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 
             this->_data->machine.GetActiveState()->Pause();
@@ -225,7 +230,6 @@ namespace GTA {
         if(_player.playerIsDead){
 
             this->_data->machine.AddState(StateRef(new WastedState(_data)), true);
-
         }
     }
 
@@ -252,11 +256,15 @@ namespace GTA {
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
 
-            weapon.gun_posX = TILE_SIZE * 60;
-            weapon.gun_posY = TILE_SIZE * 23;
+            weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
+            weapon.gun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;
             std::cout << "posy is " << weapon.gun_posY << std::endl;
+
+
+
+
 
         }
     }

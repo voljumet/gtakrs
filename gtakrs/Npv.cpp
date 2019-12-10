@@ -9,19 +9,10 @@ namespace GTA {
 
     Npv::~Npv() = default;
 
-//    void Npc::loader(){
-//        M3_Blue = this->_data->assets.GetTexture("M3_BLUE");
-//        M3_Red = this->_data->assets.GetTexture("M3_RED");
-//        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
-//        M3_Silver = this->_data->assets.GetTexture("M3_SILVER");
-//        M3_White = this->_data->assets.GetTexture("M3_WHITE");
-//    }
-
     // Using a reference of texture works
     void Npv::CarInit(sf::Texture &M3W,
                       Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) { // dependency injection method is the trick. *2
 
-//        std::cout<<dir<<std::endl;
         dir = RandomDir;
         movementSpeed = 8;
         spriteHeight = 208;
@@ -39,22 +30,15 @@ namespace GTA {
                             std::end(Npv_Can_SpawnHere);
         }
 
-//        randomColor = (rand() % 5, rand() % 5);
-//        switch (randomColor){
-//            case 1 :
+
         this->npvBot.setTexture(M3W);
-//            break;
-//            case 2 : this->npvBot.setTexture(M3K); break;
-//            case 3 : this->npvBot.setTexture(M3R); break;
-//            case 4 : this->npvBot.setTexture(M3S); break;
-//            case 5 : this->npvBot.setTexture(M3B); break;
-//        }
+
 
         this->npvBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
         this->npvBot.setTextureRect(sf::IntRect(0, 0, spriteWidth, spriteHeight));
         this->npvBot.setScale(sf::Vector2f(1.2f, 1.2f));
         this->npvBot.setOrigin(50.f, 67.f);
-        health = 100;
+        health = 200;
     }
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
@@ -103,8 +87,9 @@ namespace GTA {
             }
         }
 
+        // endrer out of reach.
         if (dir < 0 || dir < 3) { dir = UP; }
-//        std::cout << dir << std::endl;
+
         NextTile = Car_Block[NextPosY][NextPosX].tileTextureNumber;
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
@@ -131,7 +116,7 @@ namespace GTA {
             npvBot.setPosition(UpdatedPosX, UpdatedPosY);
             StepCounter += 1;
         } else {
-                        dir = RandomDir;
+            dir = RandomDir;
 
         }
         if (StepCounter == 500) {
@@ -168,6 +153,7 @@ namespace GTA {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
             npvVec[k]->CarInit(M3W, _Block);
+            npvVec[k]->getNpvBot().setColor(CarController::Loader());
         }
     }
 
@@ -185,6 +171,32 @@ namespace GTA {
                 }
             }
         }
+    }
+
+    sf::Color CarController::Loader() {
+        random = rand() % 6 + 1;
+        switch (random) {
+            case 1:
+                color = sf::Color::Red;
+                break;
+            case 2:
+                color = sf::Color::White;
+                break;
+            case 3:
+                color = sf::Color::Blue;
+                break;
+            case 4:
+                color = sf::Color::Cyan;
+                break;
+            case 5:
+                color = sf::Color::Yellow;
+                break;
+            case 6:
+                color = sf::Color::Green;
+                break;
+
+        }
+        return color;
     }
 
 //            nop->moveCar(_Block, npvVec);
@@ -224,34 +236,35 @@ namespace GTA {
 //                }
             } else {
 //
-                if(GTA::PixelPerfectTest(_player,i->getNpvBot())){
+                if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     player1.setDamage();
-                collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+
+                }
+
 
             }
-
-
-        }
-        if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-            for (int k = 99; k < 100; ++k) {
-                npvVec.push_back(new Npv);
-                npvVec[k]->Number = k;
-                npvVec[k]->CarInit(cartex, _Block);
-                npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
-                npvVec[k]->getNpvBot().setPosition(_car.getPosition());
-                npvVec[k]->getNpvBot().setRotation(_car.getRotation());
-                npvVec[k]->movementSpeed = 0;
+            if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+                for (int k = 99; k < 100; ++k) {
+                    npvVec.push_back(new Npv);
+                    npvVec[k]->Number = k;
+                    npvVec[k]->CarInit(cartex, _Block);
+                    npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
+                    npvVec[k]->getNpvBot().setPosition(_car.getPosition());
+                    npvVec[k]->getNpvBot().setRotation(_car.getRotation());
+                    npvVec[k]->movementSpeed = 0;
 //                npvVec[k]
 //                npvVec[k]->dir = UP;
+                }
+
+                _player.setPosition(_car.getPosition().x + 50, _car.getPosition().y + 50);
+                _player.setRotation(_car.getRotation());
+
+                Driving = false;
+//            std::cout << npvVec.size() << std::endl;
             }
 
-            _player.setPosition(_car.getPosition().x + 50, _car.getPosition().y + 50);
-            _player.setRotation(_car.getRotation());
-
-            Driving = false;
-//            std::cout << npvVec.size() << std::endl;
         }
 
     }
-
 }

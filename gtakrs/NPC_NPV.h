@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-
+#include <SFML/Graphics.hpp>
 #include "Movement.h"
 #include "Game.h"
 #include "Map.h"
@@ -13,6 +13,7 @@
 namespace GTA{
     class NPC_NPV : public Movement{
     public:
+
         int NextPosX = 0,NextPosY= 0;
         int CurrentPosX= 0, CurrentPosY= 0;
         double movementSpeed= 0;
@@ -26,8 +27,10 @@ namespace GTA{
         int randomPosX= 0, randomPosY= 0, RandNpcTile= 0;
         int health= 0;
         bool crashCurb = true, CheckWalkable = false, dead = false;
+
         int Number = 0;
         int CrashCounter = 0;
+
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
         int Npv_Can_SpawnHere[9]={7, 8, 14, 15, 16};

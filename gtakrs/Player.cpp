@@ -76,6 +76,15 @@ namespace GTA {
             bulletBarRect.setPosition(playerSprite.getPosition().x - 775, playerSprite.getPosition().y - 663);
             renderWindow.draw(bulletBarRect);
 
+//            ammotext.setString(std::to_string(ammo));
+//            ammotext.setScale(2, 2);
+//            ammotext.setFillColor(sf::Color::White);
+//            ammotext.setFont(font);
+//            ammotext.setOutlineThickness(1);
+//            ammotext.setCharacterSize(12);
+//            ammotext.setPosition(playerSprite.getPosition().x - 770, playerSprite.getPosition().y - 663);
+//            renderWindow.draw(ammotext);
+
             //////Coins
             text.setString(std::to_string(coin));
             text.setScale(2, 2);

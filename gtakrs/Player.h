@@ -45,6 +45,7 @@ private:
     sf::RectangleShape bulletBarRect;
     sf::Font font;
     sf::Text text;
+    sf::Text ammotext;
     int coin = 10;
     int bullet = 0;
     int healthSize = 227;

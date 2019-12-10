@@ -22,6 +22,7 @@ namespace GTA {
     class WorldState : public State {
     public:
 
+        Npv npv;
         Map map;
         Movement movement;
         NpcController npcController;
@@ -98,11 +99,6 @@ namespace GTA {
         sf::Vector2f viewCenter;
 
         sf::Texture M3_White;
-
-        sf::Texture M3_Black;
-        sf::Texture M3_blue;
-        sf::Texture M3_red;
-
 
         sf::Texture player1;
         sf::Sprite _car;
