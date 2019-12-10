@@ -21,7 +21,8 @@ namespace GTA{
         virtual ~missionPlacement();
 
         void hackMissionSettings();
-        void missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos);
+        void missionStart(GameDataRef data_inn, Player &player,
+                int &missionNumber, sf::Sprite &playerPos);
         void infoBox(sf::Sprite &player, int &missionNumber);
         void InfoBoxText(sf::Sprite &player, int &missionNumber);
 

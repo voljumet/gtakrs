@@ -23,7 +23,8 @@ namespace GTA{
         }
     }
 
-    void missionPlacement::missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos) {
+    void missionPlacement::missionStart(GameDataRef data_inn, Player &player,
+            int &missionNumber, sf::Sprite &playerPos) {
         _data = std::move(data_inn);
         std::cout << "mission " << std::endl;
 
@@ -107,68 +108,86 @@ namespace GTA{
 
         switch(missionNumber){
             case 1:
-                rectangleShape.setSize(sf::Vector2f(800, 320));
+                rectangleShape.setSize(sf::Vector2f(700, 260));
                 text.setString(" \n"
-                        "  The world is running out of Juice\n\n"
-                               "  * Please save the Juice.\n\n"
-                               "  * Press space to activate mission.\n\n"
-                               "  * Steal a car and drive south.\n\n"
-                               "  * Find Tony Montana!\n\n");
+                               "  Mission: \n\n"
+                               "  * Find Tony Montana!\n"
+                               "  * Steal a car and drive south.\n"
+                               "  * Cross bridge, and continue South-West\n"
+                               "  * Press space to activate mission.\n\n");
                 break;
             case 2:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(820, 360));
                 text.setString(" \n"
-                               "  * Press 'space 'to activate mission. \n\n"
-//                               "  * Nice, You found the Tony! \n\n"
-                               "  * Get the location of next mission.\n\n"
-                               "  * Tony says: Cross the bridge north \n\n"
-                               "  * Drive 'East', find a pc and steal.\n\n");
+                               "  Tony 'Hello Trevor1!' \n\n"
+                               "  'The world is running out of Juice', \n"
+                                 " 'We need to save it, ' \n"
+                                 " 'before Abradolf drinks it empty'\n"
+                               "  Your objective should you choose to accept, is to: \n"
+                               "  * Hack Abradolf Lincler's password, \n"
+                               "  * to find his location. \n"
+                               "  * But first you need to find a Pc\n"
+                               "  * Cross the bridge north \n"
+                               "  * Drive 'North-East'\n\n");
                 break;
             case 3:
-                rectangleShape.setSize(sf::Vector2f(21, 111));
+                rectangleShape.setSize(sf::Vector2f(800, 150));
                 text.setString(" \n"
-                               "  * Cross the bridge. \n\n"
-                               "  * You seem to be hungry, find a burger \n\n"
-                               "  * Eat \n\n");
+                               "   \n"
+                               "  * Find a pc \n"
+                               "  * You can find one around the dock"
+                               "  * Cross the bridge again \n"
+                               "  * Next mission should be around South-East\n");
                 break;
             case 4:
-                rectangleShape.setSize(sf::Vector2f(800, 70));
+                rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
 
-                               "  * Find hacking mission. \n\n");
+                               "  * Your health seems to be low!"
+                               "  * Find a burger to eat. "
+                               "  * Should be some burgers to eat around here. \n"
+                               "  * Locate hack location afterwards\n");
                 break;
             case 5:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
-                               "  * Locate his hotel.\n\n"
-                               "  * Hack Abradolf Lincler's hotel room door password.\n\n");
+                               "  Hack Abradolf's \n"
+                               "  * Cell phone.\n"
+                               "  * Find his location\n\n"
+                               "  * Meet Tony two block north!");
                 break;
             case 6:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
-                               "  * Great! \n\n"
-                               "  * Meet Tony again. \n\n"
-                               "  * He know's where to find a sniper. \n\n");
+                               "  * You're a Genius! \n"
+                               "  * We 're close to get him \n"
+                               "  * Find next mission around north-west"
+                               "  * Find a sniper before you go\n"
+                               "  * A sniper can be found around here!");
                 break;
             case 7:
-                rectangleShape.setSize(sf::Vector2f(800, 80));
+                rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
-                               "  * Find next mission \n\n");
+                               "  * Locate his hotel \n"
+                               "  * Wait for him to show up!\n"
+                               "  * Snipe him\n"
+                               "  * Meet Tony afterwards\n"
+                               "  * Tony can be found by crossing the bridge"
+                               "  * and continuing south-west");
                     break;
             case 8:
                 rectangleShape.setSize(sf::Vector2f(800, 400));
                 text.setString(" \n"
-                               "  * Locate Abradolf's hotel \n\n"
-                               "  * Be patience, and wait for him \n\n"
-                               "  * Kill that bitch silently! \n\n"
-                               "  * Flee the scene \n\n"
-                               "  * Meet Tony again");
+                               "  * Tony's got the boat keys\n"
+                               "  * Hurry to the docks \n"
+                               "  * Locate the boat\n"
+                               "  * Flee to the island\n");
                 break;
             case 9:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
-                               "  * Tony will get you out of the city \n\n"
-                               "  * Congratulations 'you saved the Juice' \n\n");
+                               "  * Congratulations 'you saved the Juice' \n"
+                               "  * Thanks's for playing!");
                 break;
             default:
                 break;
