@@ -9,7 +9,7 @@ namespace GTA {
     void Shooting::CreateBullet(sf::Sprite &Player)
     {
         Bullet* bullet = new Bullet;
-        bullet->bulletspeed = 2000.f;
+        bullet->bulletspeed = 4000.f;
         sf::Transform t;
         t.rotate(Player.getRotation());
         bullet->bulletVec = t.transformPoint(movement.forwardVec());
@@ -19,7 +19,42 @@ namespace GTA {
         bullet->bullet.rotate(270);
         bullet->bullet.setScale(0.03, 0.03);
         bulletlist.push_back(bullet);
+
     }
+    void Shooting::CreateShotgunBullet(sf::Sprite &Player){
+        for(int i = 0; i < 5; i++){
+            Bullet* bullet = new Bullet;
+            sf::Transform t;
+            t.rotate(Player.getRotation());
+            if(i == 0){
+            bullet->bulletVec = t.transformPoint(movement.forwardVec().x -0.2, movement.forwardVec().y);
+                bullet->bulletspeed = 3000.f;
+            }
+            if(i == 1){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec().x -0.1, movement.forwardVec().y);
+                bullet->bulletspeed = 3500.f;
+            }
+            if(i == 2){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec());
+                bullet->bulletspeed = 4000.f;
+            }
+            if(i == 3){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec().x +0.1, movement.forwardVec().y);
+                bullet->bulletspeed = 3500.f;
+            }
+            if(i == 4){
+                bullet->bulletVec = t.transformPoint(movement.forwardVec().x +0.2, movement.forwardVec().y);
+                bullet->bulletspeed = 3000.f;
+            }
+            bullet->bullet.setRotation(Player.getRotation());
+            bullet->bullet.setPosition(Player.getPosition().x, Player.getPosition().y);
+            bullet->bullet.setTexture(this->_data->assets.GetTexture("Bullet"));
+            bullet->bullet.rotate(270);
+            bullet->bullet.setScale(0.03, 0.03);
+            bulletlist.push_back(bullet);
+        }
+    }
+
     void Shooting::MoveBullet(){
         for(auto &b: bulletlist){
             b->bullet.move(b->bulletVec*b->bulletspeed*movement.dt);

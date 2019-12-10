@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-
+#include <SFML/Graphics.hpp>
 #include "Movement.h"
 #include "Game.h"
 #include "Map.h"
@@ -27,6 +27,7 @@ namespace GTA{
         int health;
         bool crashCurb, CheckWalkable = false, dead = false;
         int Number = 0;
+        int crashcounter = 0;
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
         int Npv_Can_SpawnHere[9]={7, 8, 14, 15, 16};
@@ -36,7 +37,7 @@ namespace GTA{
 
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
 
-        direction RandomDir;
+        direction RandomDir = UP;
         Collision_Detection collisionDetaction;
 
         std::clock_t Timer;

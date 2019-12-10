@@ -22,6 +22,7 @@ namespace GTA {
     class WorldState : public State {
     public:
 
+        Npv npv;
         Map map;
         Movement movement;
         NpcController npcController;

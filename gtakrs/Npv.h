@@ -16,26 +16,33 @@ namespace GTA {
 
         void CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]); // loading the texture instead *1
         void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> &npcVec);
-
         sf::Sprite &getNpvBot();
 
     private:
+        int random;
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npvBot;
+
+
 
         sf::Texture M3_Black;
         sf::Texture M3_Blue;
         sf::Texture M3_Red;
         sf::Texture M3_Silver;
+        sf::Texture M3_White;
     };
 
     class CarController: public NPC_NPV{
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
+        sf::Color color;
+        int random;
+
         void NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
+        sf::Color Loader();
         void NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &carcrashdone);
         std::vector<Npv*> npvVec;
 
