@@ -7,7 +7,6 @@
 
 
 
-
 namespace GTA {
     class Weapon {
 
@@ -16,20 +15,12 @@ namespace GTA {
         sf::Sprite gun;
         sf::Texture gunTexture;
 
-
-
-
         bool hasweapon;
 
         float gun_posX = SCREEN_WIDTH / 2;
         float gun_posY = SCREEN_HEIGHT / 2;
 
-
         void Gun_init();
-
-        void Gun_randompos();
-
-
     };
 
 }

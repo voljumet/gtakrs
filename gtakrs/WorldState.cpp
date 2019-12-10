@@ -50,7 +50,6 @@ namespace GTA {
 
         /// calls initcoin function from missionPlacement
         missionPlacement.hackMissionSettings();
-//        missionPlacement.getText();
 
 
         this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
@@ -83,6 +82,10 @@ namespace GTA {
         weapon.gun_posY = TILE_SIZE * 23;
         weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
 
+        pc.spawnPc();
+        pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
+
+
         ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Player Texture / Settings
@@ -103,12 +106,7 @@ namespace GTA {
 
 
         carController.NpvSpawn(M3_White, map._Block);
-//        carController.NpvSpawn(M3_Black, map._Block);
-//        carController.NpvSpawn(M3_red, map._Block);
-//        carController.NpvSpawn(M3_blue, map._Block);
 
-
-//        carController.NpvSpawn(M3_White, M3_Black, M3_Silver, M3_Blue, M3_Red, map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(player1, map._Block);
@@ -264,9 +262,14 @@ namespace GTA {
 
 
 
-
-
         }
+        if(PixelPerfectTest(_player.playerGetSprite(), pc.getPc())){
+            pc.hasPc = true;
+            std::cout << "pc is now ready to be picked up" << std::endl;
+            pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
+            std::cout << "Pos X = " << pc.getPcPox() << ", Pos Y = " << pc.getPcPoy() << std::endl;
+        }
+
     }
 
     void WorldState::Draw(float dt) {
@@ -314,6 +317,7 @@ namespace GTA {
 
 
         this->_data->window.draw(weapon.gun);
+        this->_data->window.draw(pc.getPc());
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 

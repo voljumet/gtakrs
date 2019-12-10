@@ -39,7 +39,7 @@ namespace GTA{
             case 2:
                 std::cout << "2" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 114.f, TILE_SIZE * 117.f);
+                this->missionCircle.setPosition(TILE_SIZE * 111.f, TILE_SIZE * 21.f);
 
                 break;
             case 3:
@@ -89,18 +89,6 @@ namespace GTA{
                 break;
         }
     }
-
-    sf::Sprite missionPlacement::getMissionCircle(){
-        return missionCircle;
-    }
-    sf::RectangleShape missionPlacement::getBox() {
-        return rectangleShape;
-    }
-
-    sf::Text missionPlacement::getText() {
-        return text;
-    }
-
 
 
     void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber) {
@@ -192,6 +180,18 @@ namespace GTA{
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
     }
 
+
+
+    sf::Sprite missionPlacement::getMissionCircle(){
+        return missionCircle;
+    }
+    sf::RectangleShape missionPlacement::getBox() {
+        return rectangleShape;
+    }
+
+    sf::Text missionPlacement::getText() {
+        return text;
+    }
 
 
 }

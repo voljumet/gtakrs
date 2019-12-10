@@ -26,7 +26,6 @@ namespace GTA{
         void InfoBoxText(sf::Sprite &player, int &missionNumber);
 
 
-
     private:
         GameDataRef _data;
         sf::Sprite missionCircle;

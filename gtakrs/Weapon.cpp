@@ -9,13 +9,4 @@ void GTA::Weapon::Gun_init() {
     gun.setScale(0.07, 0.07);
 
     hasweapon = false;
-
-
-
-}
-
-void GTA::Weapon::Gun_randompos() {
-
-
-
 }
