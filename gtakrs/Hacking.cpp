@@ -104,8 +104,14 @@ namespace GTA{
                                    "$ P O T U S phone password: 11111111");
                 }
 
-               else if((playerinput.compare("enter password"))==0){ /// CD ENTER PASSWORD
-                    text.setString("$ please enter gate password: \n");
+                else if((playerinput.compare("cd locations"))==0){ /// CD PASSWORDS
+                    layer = 130;
+                    text.setString("cd locations");
+                }
+
+
+               else if((playerinput.compare("enter password"))==0){ /// ENTER PASSWORD
+                    text.setString("please enter gate password: \n");
                 }
 
                else if((playerinput.compare("epstein251"))==0){ /// IF THE USER ENTERS THE CORRECT PASSWORD
@@ -114,6 +120,95 @@ namespace GTA{
                     correctpassword = true;
                     ///Exit the minigame after this perhaps?
                 }
+
+
+                //------------------------------------------------------------------------------------
+
+                if (event.type == sf::Event::Closed
+                    || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape &&
+                        event.type == sf::Event::KeyReleased)) {
+
+                    this->_data->window.close();
+                }
+
+                //------------------------------------------------------------------------------------
+                if((playerinput.compare("ls"))==0) { /// list kommando
+
+                    if(layer==1) { ///FILES
+                        text.setString("$ confidential files\n"
+                                       "$ illuminati client list\n"
+                                       "$ security");
+                    }
+
+                    if(layer==11) { ///CONFIDENTIAL FILES
+                        text.setString("$ area 51 alien list [LOCKED]\n"
+                                       "$ the integer between 1 and 2 [LOCKED]\n"
+                                       "$ obamas real name [LOCKED]");
+                    }
+
+                    if(layer==12) { ///ILLUMINATI LIST
+                        text.setString("$ bill gates [locked]\n"
+                                       "$ beyonce [locked]\n"
+                                       "$ aron h haugen [locked]");
+                    }
+
+                    if(layer==13) { ///SECURITY
+                        text.setString("$ passwords\n"
+                                       "$ camera recordings\n"
+                                       "$ locations");
+                    }
+
+                    if(layer==132) { ///CAMERA RECORDINGS
+                        text.setString("$ epic_fortnite-noscope.mp4[locked]\n"
+                                       "$ 20-11-2019.mp4[locked]");
+                    }
+
+                    if(layer==131) { ///PASSWORDS
+                        text.setString("$ gun depot password: gunny123\n"
+                                       "$ gate password: epstein251\n"
+                                       "$ P O T U S phone password: 11111111");
+                    }
+
+
+                }
+
+                //------------------------------------------------------------------------------------
+
+                if((playerinput.compare("cd .."))==0) { /// CD .. aka gå tilbake et steg
+
+                    if(layer==1) {
+                        layer = 1;
+                        text.setString("files");
+                    }
+
+                    if(layer==11) {
+                        layer = 1;
+                        text.setString("files");}
+
+
+                    if(layer==12) {
+                        layer = 1;
+                        text.setString("files");
+                    }
+
+                    if(layer==13) {
+                        layer = 1;
+                        text.setString("files");
+                    }
+
+                    if(layer==132) {
+                        layer = 13;
+                        text.setString("security");
+                    }
+
+                    if(layer==131) {
+                        layer = 13;
+                        text.setString("security");
+                    }
+
+                }
+
+                //------------------------------------------------------------------------------------
 
                 playerinput.clear();
             }

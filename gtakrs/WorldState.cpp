@@ -253,11 +253,15 @@ namespace GTA {
             weapon.hasweapon=true;
             std::cout << "weapon is now ready" << std::endl;
 
-            weapon.gun_posX = TILE_SIZE * 60;
-            weapon.gun_posY = TILE_SIZE * 23;
+            weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
+            weapon.gun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;
             std::cout << "posy is " << weapon.gun_posY << std::endl;
+
+
+
+
 
         }
     }
