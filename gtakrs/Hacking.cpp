@@ -77,9 +77,11 @@ namespace GTA{
 
 
 
-                else if((playerinput.compare("cd confidential files"))==0){ /// CONFIDENTIAL FILES
+                else if((playerinput.compare("cat confidential_files.txt"))==0){ /// CONFIDENTIAL FILES
                     layer = 11;
-                    text.setString("cd confidential files");
+                    text.setString("$ area 51 alien list [LOCKED]\n"
+                                   "$ the integer between 1 and 2 [LOCKED]\n"
+                                   "$ obamas real name [LOCKED]");
                 }
 
 
@@ -102,9 +104,11 @@ namespace GTA{
                 }
 
 
-                else if((playerinput.compare("cd passwords"))==0){ /// CD PASSWORDS
+                else if((playerinput.compare("cat passwords.txt"))==0){ /// CD PASSWORDS
                     layer = 131;
-                    text.setString("cd passwords");
+                    text.setString("$ gun depot password: gunny123\n"
+                                   "$ gate password: epstein251\n"
+                                   "$ P O T U S phone password: 11111111");
                 }
 
                 else if((playerinput.compare("cd locations"))==0){ /// CD PASSWORDS
@@ -139,7 +143,7 @@ namespace GTA{
                 if((playerinput.compare("ls"))==0) { /// list kommando
 
                     if(layer==1) { ///FILES
-                        text.setString("$ confidential files\n"
+                        text.setString("$ confidential_files.txt\n"
                                        "$ illuminati client list\n"
                                        "$ security");
                     }
