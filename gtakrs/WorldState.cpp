@@ -15,8 +15,6 @@ namespace GTA {
 
     void WorldState::Init() {
 
-
-
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
         this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
 
@@ -35,7 +33,6 @@ namespace GTA {
 
         /// Loads audio
         sound.loadall();
-
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
 
@@ -63,18 +60,10 @@ namespace GTA {
 
         this->_data->assets.LoadTexture("boat", BOAT);
 
-        this->_data->assets.LoadTexture("M3_BLUE", M3_BLUE);
-        this->_data->assets.LoadTexture("M3_RED", M3_RED);
-        this->_data->assets.LoadTexture("M3_BLACK", M3_BLACK);
-        this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
         this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
-
 
         player1 = this->_data->assets.GetTexture("Player");
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
-        M3_Black = this->_data->assets.GetTexture("M3_BLACK");
-        M3_blue = this->_data->assets.GetTexture("M3_BLUE");
-        M3_red = this->_data->assets.GetTexture("M3_RED");
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -105,7 +94,7 @@ namespace GTA {
         this->_car.setRotation(180);
 
         /// Create NPCars
-        carController.NpvSpawn(M3_White, map._Block);
+        npvController.NpvSpawn(M3_White, map._Block);
 
 
         /// Create NPCaracters
@@ -120,8 +109,6 @@ namespace GTA {
         if(drawtimerNPC == 5){
             npcController.NpcMoveAndSpawn(player1, map._Block);
             drawtimerNPC = 0;
-
-
         }
         NPCMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
@@ -142,7 +129,7 @@ namespace GTA {
         Timer = std::clock();
         drawtimerNPV +=1;
         if(drawtimerNPV == 2){
-            carController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car"), map._Block);
+            npvController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car"), map._Block);
             drawtimerNPV = 0;
         }
         NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
@@ -240,10 +227,10 @@ namespace GTA {
         playerCrashTEMP();
         PlayDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-        collisionDetaction.Check_Collision(_car,_car2,true);
-        collisionDetaction.Check_Collision(_car,_car3,true);
-        collisionDetaction.Check_Collision(_player.playerGetSprite(),_car2,false);
-        shooting.Collision(_data, npcController.npcVec, carController.npvVec ,shooting.bulletlist);
+        collisionDetection.Check_Collision(_car, _car2, true);
+        collisionDetection.Check_Collision(_car, _car3, true);
+        collisionDetection.Check_Collision(_player.playerGetSprite(), _car2, false);
+        shooting.Collision(_data, npcController.npcVec, npvController.npvVec , shooting.bulletlist);
         shooting.MoveBullet();
 
         if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){                             ///Dersom player plukker opp pistolen
@@ -286,7 +273,7 @@ namespace GTA {
 
         /// Draw NPVehicles
         Timer = std::clock();
-        carController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
+        npvController.NpvDraw(_data, Driving, movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
 
 
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
@@ -384,12 +371,22 @@ namespace GTA {
             for(int Y = fromY; Y < toY; Y++) {
                 for (int X = fromX; X < toX; X++) {
                     NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
+                    if(NoDrivWalkInt == 11 || NoDrivWalkInt == 12){
+                        for (int j = 0; j < npcController.npcVec.size(); ++j) {
+                            collisionDetection.Check_Collision( npcController.npcVec[j]->getNpcBot(),map._Block[Y][X].tileSprite, false);
+
+                            if(j < npvController.npvVec.size() ){
+                                collisionDetection.Check_Collision( npvController.npvVec[j]->getNpvBot(),map._Block[Y][X].tileSprite, false);
+                            }
+                        }
+                    }
+
                     NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray), NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
                     if(NoDrivingOrWalkingBool){
                         if(Driving){
-                            collisionDetaction.Check_Collision(_car,map._Block[Y][X].tileSprite,false);
+                            collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
                         } else {
-                            collisionDetaction.Check_Collision(_player.playerGetSprite(), map._Block[Y][X].tileSprite, false);
+                            collisionDetection.Check_Collision(_player.playerGetSprite(), map._Block[Y][X].tileSprite, false);
                         }
                     }
                 }

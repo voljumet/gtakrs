@@ -26,7 +26,7 @@ namespace GTA {
 
     };
 
-    class CarController: public NPC_NPV{
+    class NpvController: public NPC_NPV{
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 

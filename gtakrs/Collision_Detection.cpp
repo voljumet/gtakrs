@@ -13,10 +13,10 @@ namespace GTA {
             float car2posy = sprite2.getPosition().y;
             if (move) {
 
-                sprite1.setPosition(carposx + dx / 100.0, carposy + dy / 100.0);
-                sprite2.setPosition(car2posx - dx / 100.0, car2posy - dy / 100.0);
+                sprite1.setPosition(carposx + dx / 1000.0, carposy + dy / 1000.0);
+                sprite2.setPosition(car2posx - dx / 1000.0, car2posy - dy / 1000.0);
             } else {
-                sprite1.setPosition(carposx + dx / 100.0, carposy + dy / 100.0);
+                sprite1.setPosition(carposx + dx / 1000.0, carposy + dy / 1000.0);
 
             }
             dx = carposx - car2posx;

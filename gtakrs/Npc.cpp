@@ -29,7 +29,6 @@ namespace GTA {
         }
 
         this->npcBot.setPosition(randomPosX * TILE_SIZE, randomPosY * TILE_SIZE);
-//        this->npcBot.setPosition(28 * TILE_SIZE, 19 * TILE_SIZE);
         this->npcBot.setTextureRect(sf::IntRect(0, 0,100, 100));
         this->npcBot.setScale(sf::Vector2f(1.0f, 1.0f));
         this->npcBot.setOrigin(50.f, 67.f);

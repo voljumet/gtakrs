@@ -102,28 +102,17 @@ namespace GTA {
                 dir = RandomDir;
             }
         }
-
-//        for(int i = 0; i < npvVec.size(); ++i) {
-//            if(PixelPerfectTest(npvVec[i]->getNpvBot(), getNpvBot()) && npvVec[i]->Number != Number){
-//                dir = RandomDir;
-//            }
-//            if (npvVec[i]->NextPosX == NextPosX && npvVec[i]->NextPosY == NextPosY && npvVec[i]->Number != Number) {
-//                dir = RandomDir;
-//            }
-//        }
+        /// change dir if colliding with other npv
+        for(int i = 0; i < npvVec.size(); ++i) {
+            if(PixelPerfectTest(npvVec[i]->getNpvBot(), getNpvBot()) && npvVec[i]->Number != Number){
+                dir = RandomDir;
+                collisionDetaction.Check_Collision(npvVec[i]->getNpvBot(), getNpvBot(), true);
+            }
+        }
 
         /// if "!crashCurb_xxxx" keep moving
-        if (crashCurb) {
-            if (crashCurb_RIGHT && crashCurb_LEFT && crashCurb_DOWN && crashCurb_UP){
-                movementSpeed = 0;
-            } else {
-                dir = RandomDir;
-
-            }
-        } else  {
-            npvBot.setPosition(UpdatedPosX, UpdatedPosY);
-            StepCounter++;
-        }
+        if (crashCurb) { if (crashCurb_RIGHT && crashCurb_LEFT && crashCurb_DOWN && crashCurb_UP){ movementSpeed = 0; } else { dir = RandomDir; } }
+        else  { npvBot.setPosition(UpdatedPosX, UpdatedPosY); StepCounter++; }
 
         if (StepCounter == 100){ dir = RandomDir; StepCounter = 0; }
 
@@ -151,7 +140,7 @@ namespace GTA {
         npvBot.move(vector2F);
     }
 
-    void CarController::NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void NpvController::NpvSpawn(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (int k = 0; k < 50; ++k) {
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
@@ -159,7 +148,7 @@ namespace GTA {
         }
     }
 
-    void CarController::NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+    void NpvController::NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for(auto nop : npvVec) {
             if(!nop->dead){
             nop->moveCar(_Block,npvVec);
@@ -175,9 +164,7 @@ namespace GTA {
         }
     }
 
-//            nop->moveCar(_Block, npvVec);
-
-    void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,sf::Sprite &_player, sf::Sound &carcrashdone) {
+    void NpvController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &carcrashdone) {
         _data = inn_data;
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
@@ -191,6 +178,8 @@ namespace GTA {
             if(Driving){
 //                if(movement.currentSpeed <= 800){
                 collisionDetaction.Check_Collision(_car, i->getNpvBot(), true);
+
+
                 //this->_data->assets.PlaySound(carcrashdone);
                 /// denne lyden må spilles når en bil "dør", ellers så spilles lyden hver gang spilleren dytter bilen
 //                } else {
