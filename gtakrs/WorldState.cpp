@@ -169,7 +169,7 @@ if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.
     boatbool = true;
 }
 else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
-    _player.playerGetSprite().setPosition(_car.getPosition());
+    _player.playerGetSprite().setPosition(182*TILE_SIZE,64*TILE_SIZE);
     _player.playerGetSprite().setRotation(_car.getRotation());
     _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
     _car.setTextureRect(sf::IntRect(0,0,91, 208));
@@ -429,6 +429,10 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
 
             for(int Y = fromY; Y < toY; Y++) {
                 for (int X = fromX; X < toX; X++) {
+//                    if(PixelPerfectTest(Boat,map._Block[Y][X].tileSprite))
+//                    {
+//
+//                    }
                     NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
                     if(NoDrivWalkInt == 11 || NoDrivWalkInt == 12){
                         for (int j = 0; j < npcController.getNpcVec().size(); ++j) {
