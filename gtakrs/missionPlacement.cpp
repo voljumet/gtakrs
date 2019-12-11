@@ -47,13 +47,13 @@ namespace GTA{
             case 3:
                 std::cout << "3" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 147.f, TILE_SIZE * 366.f);
+                this->missionCircle.setPosition(TILE_SIZE * 148.f, TILE_SIZE * 366.f);
 
                 break;
             case 4:
                 std::cout << "4" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 121.f, TILE_SIZE * 285.f);
+                this->missionCircle.setPosition(TILE_SIZE * 121.f, TILE_SIZE * 286.f);
 
                 break;
             case 5:
@@ -66,27 +66,39 @@ namespace GTA{
             case 6:
                 std::cout << "6" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 49.f, TILE_SIZE * 65.f);
+                this->missionCircle.setPosition(TILE_SIZE * 49.30f, TILE_SIZE * 66.30f);
                 break;
             case 7:
                 std::cout << "7" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
+//                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
+                this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
+                this->_data->machine.GetActiveState()->Pause();
+                this->_data->machine.AddState(StateRef(new Mission(_data)),false);
                 break;
             case 8:
                 std::cout << "8" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
-                this->_data->machine.GetActiveState()->Pause();
-                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+//                this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
+                this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
+
                 break;
 
             case 9:
                 std::cout << "9" << std::endl;
                 missionNumber++;
-                this->missionCircle.setPosition(TILE_SIZE * 115.f, TILE_SIZE * 17.f);
+                this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
                 break;
-
+            case 10:
+                std::cout << "10" << std::endl;
+                missionNumber++;
+                this->missionCircle.setPosition(TILE_SIZE * 172.f, TILE_SIZE * 42.f);
+                break;
+            case 11:
+                std::cout << "11" << std::endl;
+                missionNumber++;
+//                this->missionCircle.setPosition(0, 0);
+                break;
             default:
                 break;
         }
@@ -120,7 +132,7 @@ namespace GTA{
 
                 break;
             case 2:
-                rectangleShape.setSize(sf::Vector2f(820, 400));
+                rectangleShape.setSize(sf::Vector2f(820, 380));
                 text.setString(" \n"
                                "  Tony 'Hello Trevor!' \n\n"
                                "    The world is running out of Juice. \n"
@@ -158,38 +170,47 @@ namespace GTA{
                                "  * Meet Tony west of the city\n");
                 break;
             case 6:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(800, 280));
                 text.setString(" \n"
                                "  * You're a Genius! \n"
                                "  * We 're close to get him \n"
-                               "  * Find next mission around north-west\n"
-                               "  * Find a sniper before you go\n"
-                               "  * A sniper can be found around here!\n");
+                               "  * Locate Abradolf's hotel \n"
+                               "  * Hotel might be around north-west\n"
+                               "  * Grab a sniper before you go\n"
+                               "  * A sniper can be found around here!\n\n");
                 break;
 
             case 7:
-                rectangleShape.setSize(sf::Vector2f(800, 200));
+                rectangleShape.setSize(sf::Vector2f(800, 260));
                 text.setString(" \n"
-                               "  * Locate his hotel \n"
                                "  * Wait for him to show up!\n"
                                "  * Snipe him\n"
                                "  * Meet Tony afterwards\n"
-                               "  * Tony can be found by crossing the bridge\n"
-                               "  * and continuing south-west\n\n");
+                               "  * He's at south-side of the first block\n"
+                               "    after crossing the bridge.\n\n");
                     break;
             case 8:
-                rectangleShape.setSize(sf::Vector2f(800, 400));
+                rectangleShape.setSize(sf::Vector2f(800, 220));
                 text.setString(" \n"
-                               "  * Tony's got the boat keys\n"
+                               "  * Grab the boat key from Tony\n"
                                "  * Hurry to the docks \n"
-                               "  * Locate the boat\n"
-                               "  * Flee to the island\n");
+                               "  * Cross the bridge north\n"
+                               "  * Locate the docks around east");
                 break;
             case 9:
-                rectangleShape.setSize(sf::Vector2f(800, 250));
+                rectangleShape.setSize(sf::Vector2f(800, 120));
+                text.setString(" \n"
+                               "  * Take the boat \n"
+                               "  * Flee to the island' \n\n");
+                break;
+
+            case 10:
+                rectangleShape.setSize(sf::Vector2f(800, 60));
                 text.setString(" \n"
                                "  * Congratulations 'you saved the Juice' \n"
-                               "  * Thanks's for playing!");
+                               "  * Thanks's for playing! \n\n");
+                break;
+            case 11:
                 break;
             default:
                 break;
