@@ -49,6 +49,7 @@
 #define CAR_WHITE "Resources/res/carWhite.png"
 #define BULLET_SPRITE "Resources/res/BulletSprite.png"
 #define GLOCK "Resources/res/8bitglock.png"
+#define SHOTGUN "Resources/res/SHOTGUN.png"
 #define BOAT "Resources/res/Boat.png"
 
 #define M3_BLUE "Resources/res/Vehicles/model3-01.png"
@@ -107,6 +108,8 @@
 #define BUTTONPRESS "Resources/res/Sound/buttonpress.ogg"
 #define CARCRASH "Resources/res/Sound/carcrashdone.ogg"
 #define CARDEATH "Resources/res/Sound/cardeath.ogg"
+#define EMPTY "Resources/res/Sound/GUNCLICKDONE.ogg"
+#define SPAS12 "Resources/res/Sound/SPAS12.ogg"
 #define SONG "Resources/res/Music/DragonForce - Through The Fire And Flames.ogg"
 //////////////////////////////////////////////////////////////////////////////////////////
 

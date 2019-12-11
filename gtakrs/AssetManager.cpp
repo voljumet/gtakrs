@@ -91,6 +91,20 @@ namespace GTA {
 
     }
 
+    sf::Sound AssetManager::loadempty() {
+        bufferempty.loadFromFile(EMPTY);
+        empty.setBuffer(bufferempty);
+        empty.setVolume(100);
+        return empty;
+    }
+
+    sf::Sound AssetManager::loadspas() {
+        bufferspas.loadFromFile(SPAS12);
+        spas.setBuffer(bufferspas);
+        return spas;
+
+    }
+
     void AssetManager::loadall() {
         loadhorn();
         loadgunshot();
@@ -99,6 +113,8 @@ namespace GTA {
         loadbuttonpress();
         loadcarcrash();
         loadcardeath();
+        loadempty();
+        loadspas();
 
         loadsong();
         loadcomputer();

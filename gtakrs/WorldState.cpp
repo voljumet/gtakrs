@@ -70,6 +70,11 @@ namespace GTA {
         weapon.gun_posX = TILE_SIZE * 51;
         weapon.gun_posY = TILE_SIZE * 23;
         weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
+
+        weapon.shotgun_posX = TILE_SIZE * 53;
+        weapon.shotgun_posY = TILE_SIZE * 23;
+        weapon.shotgun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
+
         ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Player Texture / Settings
@@ -104,12 +109,38 @@ namespace GTA {
                 this->_data->window.close();
             }
         }
+////////////////////////////////////
+    if (event.key.code == sf::Keyboard::E && !Driving) {
+        if(weapon.hasweapon){
+            _player.loseBullet();
+            if(weapon.gunammo>0) {
+                shooting.CreateBullet(_player.playerGetSprite());
+                sound.PlaySound(sound.gunshot);
+                weapon.gunammo-=1;
+            }
 
-        /// Shooting
-        if (event.key.code == sf::Keyboard::E && !Driving) {
-            if(!shooting.shotgun){shooting.CreateBullet(_player.playerGetSprite()); }
-            if(shooting.shotgun){shooting.CreateShotgunBullet(_player.playerGetSprite());}
+            else{
+                std::cout << "No bullets left" << std::endl;
+                sound.PlaySound(sound.empty);
+            }
+
+
         }
+        if(weapon.hasshotgun){
+            _player.loseBullet();
+            if(weapon.shotammo>0) {
+                shooting.CreateShotgunBullet(_player.playerGetSprite());
+                sound.PlaySound(sound.spas);
+                weapon.shotammo-=1;
+            }
+
+            else{
+                std::cout << "No bullets left" << std::endl;
+                sound.PlaySound(sound.empty);
+            }
+        }
+    }
+////////////////////////////////////
 
         /// Change between person and car
 /*        switch (event.type) {
@@ -210,14 +241,26 @@ namespace GTA {
         /// Player picks up weapon
         if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){
             weapon.hasweapon=true;
-            std::cout << "weapon is now ready" << std::endl;
+            weapon.hasshotgun=false;
+            std::cout << "gun is now ready" << std::endl;
+            _player.setBullet();
+            weapon.gunammo = 30;
 
             weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             weapon.gun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;
             std::cout << "posy is " << weapon.gun_posY << std::endl;
+
+
+
+
+
         }
+
+
+
+
     }
 
     void WorldState::Draw(float dt) {
@@ -259,6 +302,7 @@ namespace GTA {
 
         /// Draw weapons
         this->_data->window.draw(weapon.gun);
+        this->_data->window.draw(weapon.shotgun);
 
         /// if mission equals true and player intesects circle, the rectangle box appears
         if(mission) { this->_data->window.draw(missionPlacement.getBox());

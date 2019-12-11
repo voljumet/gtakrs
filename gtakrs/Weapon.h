@@ -16,14 +16,21 @@ namespace GTA {
         sf::Sprite gun;
         sf::Texture gunTexture;
 
+        sf::Sprite shotgun;
+        sf::Texture shotgunTexture;
 
+        float shotgun_posX = SCREEN_WIDTH / 2;
+        float shotgun_posY = SCREEN_HEIGHT / 2;
 
-
-        bool hasweapon;
 
         float gun_posX = SCREEN_WIDTH / 2;
         float gun_posY = SCREEN_HEIGHT / 2;
 
+        bool hasweapon;
+        bool hasshotgun;
+
+        int shotammo = 0;
+        int gunammo = 0;
 
         void Gun_init();
 

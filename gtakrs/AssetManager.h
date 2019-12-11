@@ -11,9 +11,9 @@ namespace GTA{
     class AssetManager{
     public:
         std::list<sf::Sound> sounds;
-        sf::SoundBuffer bufferhorn, buffergunshot, bufferfootstep, buffercardoor, bufferbutton, buffercrash, buffercardeath;
+        sf::SoundBuffer bufferhorn, buffergunshot, bufferfootstep, buffercardoor, bufferbutton, buffercrash, buffercardeath, bufferempty, bufferspas;
 
-        sf::Sound soundhorn, gunshot, footstep, cardoor, button, carcrash, cardeath;
+        sf::Sound soundhorn, gunshot, footstep, cardoor, button, carcrash, cardeath, empty, spas;
 
         sf::Music song;
         sf::Music computersounds;
@@ -30,6 +30,8 @@ namespace GTA{
         sf::Sound loadbuttonpress();
         sf::Sound loadcarcrash();
         sf::Sound loadcardeath();
+        sf::Sound loadempty();
+        sf::Sound loadspas();
 
         void loadall();
 
