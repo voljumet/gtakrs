@@ -108,5 +108,11 @@ namespace GTA {
             }
         }
     }
+
+     std::vector<Bullet *> &Shooting::getBulletlist()  {
+        return bulletlist;
+    }
+
+
 }
 

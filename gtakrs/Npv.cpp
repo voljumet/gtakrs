@@ -110,7 +110,6 @@ namespace GTA {
                 movementSpeed = 0;
                 /// else change dir
             } else { dir = RandomDir;
-                std::cout << dir << std::endl;
 
             }
             /// If the tile in front of npc is ok, move

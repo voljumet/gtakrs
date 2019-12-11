@@ -22,7 +22,6 @@ namespace GTA{
     private:
         std::stack<StateRef> _states;
         StateRef _newState;
-
         bool _isRemoving{};
         bool _isAdding{};
         bool _isReplacing{};

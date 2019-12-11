@@ -20,7 +20,6 @@ namespace GTA{
     private:
         GameDataRef _data;
         sf::View view;
-
         sf::Clock _clock;
         sf::Sprite _background;
     };

@@ -33,7 +33,11 @@ namespace GTA {
         void NpcDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &cardeath);
 
 
+    private:
         std::vector<Npc*> npcVec;
+    public:
+         std::vector<Npc *> &getNpcVec() ;
+
     private:
         GameDataRef _data;
         Collision_Detection collisionDetaction;

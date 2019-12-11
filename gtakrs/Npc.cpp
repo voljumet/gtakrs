@@ -187,4 +187,8 @@ namespace GTA {
             }
         }
     }
+
+     std::vector<Npc *> &NpcController::getNpcVec()  {
+        return npcVec;
+    }
 }

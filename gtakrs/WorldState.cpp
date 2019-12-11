@@ -69,13 +69,13 @@ namespace GTA {
 
         ///TESTING//////////////////////////////////////////////////////////////////////////////////////////////////
         weapon.Gun_init();
-        weapon.gun_posX = TILE_SIZE * 51;
-        weapon.gun_posY = TILE_SIZE * 23;
-        weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
+        weapon.setGunPosX(TILE_SIZE * 51) ;
+        weapon.setGunPosY(TILE_SIZE * 23);
+        weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
 
-        weapon.shotgun_posX = TILE_SIZE * 53;
-        weapon.shotgun_posY = TILE_SIZE * 23;
-        weapon.shotgun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
+        weapon.setShotgunPosX(TILE_SIZE * 53) ;
+        weapon.setShotgunPosY(TILE_SIZE * 23) ;
+        weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
 
         ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,27 +118,26 @@ namespace GTA {
         }
 ////////////////////////////////////
     if (event.key.code == sf::Keyboard::E && !Driving) {
-        if(weapon.hasweapon){
+        if(weapon.isHasweapon()){
             _player.loseBullet();
-            if(weapon.gunammo>0) {
+            if(weapon.getGunammo()>0) {
                 shooting.CreateBullet(_player.playerGetSprite());
                 sound.PlaySound(sound.gunshot);
-                weapon.gunammo-=1;
+                weapon.setGunammo(weapon.getGunammo()-1);
+                std::cout<<weapon.getGunammo()<<std::endl;
             }
-
             else{
-                std::cout << "No bullets left" << std::endl;
                 sound.PlaySound(sound.empty);
             }
 
 
         }
-        if(weapon.hasshotgun){
+        if(weapon.isHasshotgun()){
             _player.loseBullet();
-            if(weapon.shotammo>0) {
+            if(weapon.getShotammo()>0) {
                 shooting.CreateShotgunBullet(_player.playerGetSprite());
                 sound.PlaySound(sound.spas);
-                weapon.shotammo-=1;
+                weapon.setShotammo(weapon.getShotammo()-1);
             }
 
             else{
@@ -274,36 +273,34 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         PlayDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Shooting
-        shooting.Collision(_data, npcController.npcVec, npvController.npvVec , shooting.bulletlist);
+        shooting.Collision(_data, npcController.getNpcVec(), npvController.npvVec , shooting.getBulletlist());
         shooting.MoveBullet();
 
         /// Player picks up weapon
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.gun)){
-            weapon.hasweapon=true;
-            weapon.hasshotgun=false;
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.getGun())){
+            weapon.setHasweapon(1);
+            weapon.setHasshotgun(0);
             std::cout << "gun is now ready" << std::endl;
             _player.setBullet();
-            weapon.gunammo = 30;
+            weapon.setGunammo(30);
 
-            weapon.gun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
-            weapon.gun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
-            weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
-            std::cout << "posx is " << weapon.gun_posX << std::endl;
-            std::cout << "posy is " << weapon.gun_posY << std::endl;
+            weapon.setGunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH)) ;
+            weapon.setGunPosX((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT)) ;
+            weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
+
         }
 
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.shotgun)){
-            weapon.hasweapon=false;
-            weapon.hasshotgun=true;
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.getShotgun())){
+            weapon.setHasweapon(0);
+            weapon.setHasshotgun(1);
             std::cout << "shotgun is now ready" << std::endl;
             _player.setBullet();
-            weapon.shotammo = 30;
+            weapon.setShotammo(30);
 
-            weapon.shotgun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
-            weapon.shotgun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
-            weapon.shotgun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
-            std::cout << "posx is " << weapon.shotgun_posX << std::endl;
-            std::cout << "posy is " << weapon.shotgun_posY << std::endl;
+            weapon.setShotgunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
+            weapon.setShotgunPosY( (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
+            weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
+
         }
     }
 
@@ -347,8 +344,8 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
                           this->_data->assets.GetTexture("HB1"),_car.getPosition(),Driving);
 
         /// Draw weapons
-        this->_data->window.draw(weapon.gun);
-        this->_data->window.draw(weapon.shotgun);
+        this->_data->window.draw(weapon.getGun());
+        this->_data->window.draw(weapon.getShotgun());
 
         /// if mission equals true and player intesects circle, the rectangle box appears
         if(mission) { this->_data->window.draw(missionPlacement.getBox());
@@ -431,8 +428,8 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
                 for (int X = fromX; X < toX; X++) {
                     NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
                     if(NoDrivWalkInt == 11 || NoDrivWalkInt == 12){
-                        for (int j = 0; j < npcController.npcVec.size(); ++j) {
-                            collisionDetection.Check_Collision( npcController.npcVec[j]->getNpcBot(),map._Block[Y][X].tileSprite, false);
+                        for (int j = 0; j < npcController.getNpcVec().size(); ++j) {
+                            collisionDetection.Check_Collision( npcController.getNpcVec()[j]->getNpcBot(),map._Block[Y][X].tileSprite, false);
 
                             if(j < npvController.npvVec.size() ){
                                 collisionDetection.Check_Collision( npvController.npvVec[j]->getNpvBot(),map._Block[Y][X].tileSprite, false);
@@ -495,6 +492,8 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
             timer = 0;
         }
     }
+
+
 }
 
 
