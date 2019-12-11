@@ -17,7 +17,7 @@ public:
     ~Player();
 
     void playerInit(sf::Texture &texture); // loading texture
-    void playerMoves(Movement& movement);
+    void playerMoves(Movement& movement, sf::Sound &footstep);
     sf::Vector2f setplayerViewCenter(sf::Vector2f);
     void Draw(sf::RenderWindow & renderWindow);
     sf::Vector2f player_Getposition();
@@ -55,6 +55,7 @@ private:
         int counter = 0;
 
     Collision_Detection collisionDetection;
+    GameDataRef  _data;
 
 };
 }

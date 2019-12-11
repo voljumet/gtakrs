@@ -1,8 +1,10 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Transform.hpp>
+#include <iostream>
 
 #include "Movement.h"
+#include "Game.h"
 
 namespace GTA{
     Movement::Movement(){}
@@ -11,7 +13,7 @@ namespace GTA{
         return sf::Vector2f(0.f, -WalkSpeed);
     }
 
-    void Movement::Drive(sf::Sprite& driver) {
+    void Movement::Drive(sf::Sprite& driver, sf::Sound &tesla) {
         if (up) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { driver.rotate(-rotateAmount * dt); }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) { driver.rotate(rotateAmount * dt); }
@@ -27,9 +29,12 @@ namespace GTA{
             movementVec = t.transformPoint( Movement::forwardVec());
 
 
+
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             up = true;
             currentSpeed += acceleration;
+
+
             if (currentSpeed >= maxSpeed) {
                 currentSpeed = maxSpeed;
             }
@@ -50,7 +55,8 @@ namespace GTA{
 
     }
 
-    void Movement::Walk(sf::Sprite& walker) {
+    void Movement::Walk(GameDataRef &inn_data , sf::Sprite& walker, sf::Sound &footstep) {
+        _data = inn_data;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             walker.rotate(-rotateAmount * dt);
 
@@ -75,6 +81,7 @@ namespace GTA{
             sf::Transform t;
             t.rotate(walker.getRotation());
             movementVec = t.transformPoint(Movement::forwardVec());
+
         }
 
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
@@ -93,9 +100,20 @@ namespace GTA{
         if (SpriteSpeed == 8) {
             walkAnimation++;
             SpriteSpeed = 0;
+
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)  ) {
+                soundCounter++;
+
+                if(soundCounter==5){
+
+                    sound.PlaySound(footstep);
+                    soundCounter = 0;
+                }
+            }
         }
 
-        if (walkAnimation == 5)
+        if (walkAnimation == 5){
             walkAnimation = 1;
+        }
     }
 }

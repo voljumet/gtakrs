@@ -32,6 +32,7 @@ namespace GTA {
 
         /// Loads audio
         sound.loadall();
+        sound.song.play();
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
         // calls initcoin function from missionPlacement
@@ -199,6 +200,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            sound.song.stop();
             this->_data->machine.GetActiveState()->Pause();
             this->_data->machine.AddState(StateRef(new MainMenuState(_data)), false);
         }
@@ -244,7 +246,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         NullDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Update player movement
-        UpdateMovement(_player.playerGetSprite(), this->_car);
+        UpdateMovement(_data, _player.playerGetSprite(), this->_car);
         _player.playerVec(movement);
 
         /// Player collision
@@ -326,7 +328,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         /// Draw NPVehicles
         Timer = std::clock();
 
-        npvController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block, _player, boatbool);
+        npvController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block, _player, boatbool,sound.tesla  );
 
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
@@ -396,12 +398,12 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
 
     }
 
-    void WorldState::UpdateMovement(sf::Sprite &walker, sf::Sprite &driver) {
+    void WorldState::UpdateMovement(GameDataRef &inn_data, sf::Sprite &walker, sf::Sprite &driver) {
         if (Driving) {
             driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
-            movement.Drive(this->_car);
+            movement.Drive(this->_car, sound.tesla);
         } else {
-           _player.playerMoves(movement);
+           _player.playerMoves(movement, sound.footstep);
         }
     }
 

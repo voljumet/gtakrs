@@ -49,6 +49,8 @@ namespace GTA {
 
 
 
+
+
     sf::Sound AssetManager::loadhorn() {
         bufferhorn.loadFromFile(AIRHORN_FILEPATH);
         soundhorn.setBuffer(bufferhorn);
@@ -62,7 +64,7 @@ namespace GTA {
     }
 
     sf::Sound AssetManager::loadfootstep() {
-        bufferfootstep.loadFromFile(GUNHSOT_FILEPATH);
+        bufferfootstep.loadFromFile(FOOTSTEP_FILEPATH);
         footstep.setBuffer(bufferfootstep);
         return footstep;
     }
@@ -102,7 +104,12 @@ namespace GTA {
         bufferspas.loadFromFile(SPAS12);
         spas.setBuffer(bufferspas);
         return spas;
+    }
 
+    sf::Sound AssetManager::loadtesla() {
+        buffertesla.loadFromFile(TESLA);
+        tesla.setBuffer(buffertesla);
+        return tesla;
     }
 
     void AssetManager::loadall() {
@@ -115,6 +122,7 @@ namespace GTA {
         loadcardeath();
         loadempty();
         loadspas();
+        loadtesla();
 
         loadsong();
         loadcomputer();
