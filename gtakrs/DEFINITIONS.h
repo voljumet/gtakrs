@@ -52,7 +52,7 @@
 #define GLOCK "Resources/res/8bitglock.png"
 #define SHOTGUN "Resources/res/SHOTGUN.png"
 #define BOAT "Resources/res/Boat.png"
-#define SNIPER "Resources/res/snipe.png"
+#define SNIPER "Resources/res/sniper.png"
 #define BURGER "Resources/res/burger-512.png"
 
 #define M3_BLUE "Resources/res/Vehicles/model3-01.png"
@@ -74,9 +74,7 @@
 
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
-
 #define WASTED_FILEPATH "Resources/res/Menus/Wasted-01.png"
-
 #define CONTROLS_FILEPATH "Resources/res/Menus/Controls-01.png"
 
 

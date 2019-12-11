@@ -39,9 +39,11 @@ float objectSpawn::getSniperPoy() {return sniperPoy;}
 float objectSpawn::getPcPox() {return pcPox;}
 float objectSpawn::getPcPoy() {return pcPoy;}
 
-bool objectSpawn::isHasPc() const {return hasPc;}
-bool objectSpawn::isHasBurger() const {return hasBurger;}
-bool objectSpawn::isHasSniper() const {return hasSniper;}
+
+void objectSpawn::setHasPc(bool hasPc) {objectSpawn::hasPc = hasPc;}
+
+void objectSpawn::setHasBurger(bool hasBurger) {objectSpawn::hasBurger = hasBurger;}
+void objectSpawn::setHasSniper(bool hasSniper) {objectSpawn::hasSniper = hasSniper;}
 
 
 

@@ -28,7 +28,7 @@ namespace GTA {
         NpvController npvController;
         Shooting shooting;
         Weapon weapon;
-        objectSpawn pc;
+        objectSpawn objectSpawn;
         AssetManager sound;
 
 
@@ -77,6 +77,7 @@ namespace GTA {
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
         void playerCrashTEMP();
         void PrintTimer();
+        void loadAllTexture();
 
         friend class Map;
 
