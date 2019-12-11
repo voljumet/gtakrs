@@ -27,6 +27,7 @@
 #define HEALTH_BAR_1 "Resources/res/HB1.png"
 
 #define MAP_FILE "Resources/res/MAP2.map"
+#define MAP_FILE2 "Resources/res/MAP.map"
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,15 +82,25 @@
 
 ///MISSION 1
 //////////////////////////////////////////////////////////////////////////////////////////
-#define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
-#define MISSION_1_SPRITE "Resources/res/Mission_1_alive.png"
 #define MISSION_1_DEADSPRITE "Resources/res/Mission_1_dead.png"
 
 #define MISSION_1_BACKGROUND "Resources/res/city_layers/city_1.png"
-#define MISSION_1_CLOUDS "Resources/res/city_layers/city_2.png"
 #define MISSION_1_SKYSCRAPERS "Resources/res/city_layers/city_3.png"
 #define MISSION_1_HOUSES "Resources/res/city_layers/city_4.png"
+#define MISSION_1_CLOUDS "Resources/res/city_layers/city_2.png"
 #define MISSION_1_TREES "Resources/res/city_layers/city_5.png"
+#define MISSION_1_FRAME "Resources/res/city_layers/city_7.png"
+
+#define MISSION_1_BACKGROUND_HQ "Resources/res/city_layers/city_HQ_1-01.png"
+#define MISSION_1_SKYSCRAPERS_HQ "Resources/res/city_layers/city_HQ_3-01.png"
+#define MISSION_1_HOUSES_HQ "Resources/res/city_layers/city_HQ_4-01.png"
+#define MISSION_1_CLOUDS_HQ "Resources/res/city_layers/city_HQ_2-01.png"
+#define MISSION_1_TREES_HQ "Resources/res/city_layers/city_HQ_5-01.png"
+#define MISSION_1_Frame_HQ "Resources/res/city_layers/city_HQ_7-01.png"
+
+#define MISSION_1_SPRITE "Resources/res/Mission_1_alive.png"
+#define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
+
 #define MISSION_CIRCLE_SPRITE "Resources/res/mission_tile-01.png"
 //////////////////////////////////////////////////////////////////////////////////////////
 

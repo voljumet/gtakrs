@@ -224,7 +224,7 @@ namespace GTA{
     }
 
     void Hacking::Update(float dt) {
-        if(correctpassword){
+        if(correctpassword || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             this->_data->machine.RemoveState();
             this->_data->machine.GetActiveState()->Resume();
             correctpassword = false;

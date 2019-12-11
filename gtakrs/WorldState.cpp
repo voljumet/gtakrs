@@ -311,7 +311,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
 
         this->UpdateView(dt);
         this->_data->window.setView(this->view);
-        this->_data->window.clear(sf::Color::Black);        /// Clear window with a color
+        this->_data->window.clear(sf::Color(62,137,201));        /// Clear window with a color
 
         /// Draw map as tiles
         Timer = std::clock();
