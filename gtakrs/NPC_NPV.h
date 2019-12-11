@@ -40,7 +40,7 @@ namespace GTA{
 
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
 
-        direction RandomDir = UP;
+        direction RandomDir;
         Collision_Detection collisionDetaction;
     };
 }

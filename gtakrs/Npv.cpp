@@ -9,6 +9,7 @@ namespace GTA {
     Npv::~Npv() = default;
 
     void Npv::CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
+//        RandomDir = static_cast<direction >(rand() % 4);
 
         dir = RandomDir;
         movementSpeed = 8;
@@ -91,8 +92,8 @@ namespace GTA {
         NextTile_UP = _Block[(moveUp - 31) / TILE_SIZE][CurrentPosX / TILE_SIZE].tileTextureNumber;
         NextTile_DOWN = _Block[(moveUp + 31) / TILE_SIZE][CurrentPosX / TILE_SIZE].tileTextureNumber;
 
-        /// If out of reach
-        if (dir < 0 || dir < 3) { dir = UP; }
+        /// If out of reach !!!!!!!!!!!!!!!!!!!
+        if (dir < 0 || dir > 3) { dir = UP; }
 
         /// check if  "NextNpcPos" crashes with any of the variables in "curb"
         crashCurb_RIGHT = std::find(std::begin(NpvCan_Not_MoveHere), std::end(NpvCan_Not_MoveHere),NextTile_RIGHT) != std::end(NpvCan_Not_MoveHere);
@@ -108,7 +109,10 @@ namespace GTA {
             if (crashCurb_RIGHT && crashCurb_LEFT && crashCurb_DOWN && crashCurb_UP){
                 movementSpeed = 0;
                 /// else change dir
-            } else { dir = RandomDir; }
+            } else { dir = RandomDir;
+                std::cout << dir << std::endl;
+
+            }
             /// If the tile in front of npc is ok, move
         } else  {
             npvBot.setPosition(UpdatedPosX, UpdatedPosY);
