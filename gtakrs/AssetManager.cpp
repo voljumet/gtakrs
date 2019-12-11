@@ -130,6 +130,7 @@ namespace GTA {
 
     void AssetManager::loadsong() {
         song.openFromFile(SONG);
+        song.setLoop(true);
     }
 
     void AssetManager::playsong() {
