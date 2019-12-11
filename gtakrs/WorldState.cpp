@@ -156,28 +156,51 @@ namespace GTA {
 //            }
 //        }
 
-//        switch (event.type) {
-//            case sf::Event::KeyReleased: {
-//                switch (event.key.code) {
-//                    case sf::Keyboard::Space: {
-//                        if (!Driving && !boatbool) {
-//
-//                            this->_car.setPosition(_player.player_Getposition());
-//                            this->_car.setRotation(this->_player.getRotaion());
-//                            Driving = true;
-//                            sound.PlaySound(sound.cardoor);
-//
-//                        } else if (!Driving && boatbool) {
-//
-//                            _player.player_SetPosition(this->_car.getPosition());
-//                            this->_player.setRotaion(this->_car.getRotation());
-//                            Driving = false;
-//                            sound.PlaySound(sound.cardoor);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        switch (event.type) {
+            case sf::Event::KeyReleased: {
+                switch (event.key.code) {
+                    case sf::Keyboard::Space: {
+
+                        if (!Driving && !boatbool) {
+                            for(auto i : npvController.npvVec){
+                                if (GTA::PixelPerfectTest(_player.playerGetSprite(), i->getNpvBot())){
+//                                    if(i->getNpvBot().getTexture()==this->_data->assets.GetTexture("boat"))
+                                    _car.setPosition(i->getNpvBot().getPosition());
+                                    _car.setRotation(i->getNpvBot().getRotation());
+                                    _car.setColor(i->getNpvBot().getColor());
+                                    delete(i);
+                                    Driving = true;
+                                    npvController.npvVec.erase(std::remove(npvController.npvVec.begin(), npvController.npvVec.end(), i), npvController.npvVec.end());
+                                    std::cout << " jøøses" << std::endl;
+                                }
+                            }
+
+
+                        } else if (Driving && !boatbool) {
+
+                            for (int k = npvController.numberOfNpv-2; k < npvController.numberOfNpv-1; ++k) {
+                                npvController.npvVec.push_back(new Npv);
+                                npvController.npvVec[k]->Number = k;
+                                npvController.npvVec[k]->CarInit(M3_White, map._Block);
+                                npvController.npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
+                                npvController.npvVec[k]->getNpvBot().setColor(_car.getColor());
+                                npvController.npvVec[k]->getNpvBot().setPosition(_car.getPosition());
+                                npvController.npvVec[k]->getNpvBot().setRotation(_car.getRotation());
+                                npvController.npvVec[k]->movementSpeed = 0;
+                            }
+
+                            _player.player_SetPosition(sf::Vector2f(_car.getPosition().x + 50,_car.getPosition().y + 50));
+                            _player.setRotaion(_car.getRotation());
+
+                            Driving = false;
+
+                        } else if (!Driving && boatbool){
+
+                        }
+                    }
+                }
+            }
+        }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
             _car.setPosition(Boat.getPosition());

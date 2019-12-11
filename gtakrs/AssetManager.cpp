@@ -44,13 +44,6 @@ namespace GTA {
         sounds.back().play();
     }
 
-
-
-
-
-
-
-
     sf::Sound AssetManager::loadhorn() {
         bufferhorn.loadFromFile(AIRHORN_FILEPATH);
         soundhorn.setBuffer(bufferhorn);
