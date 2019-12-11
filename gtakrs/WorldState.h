@@ -30,7 +30,7 @@ namespace GTA {
         CarController carController;
         Shooting shooting;
         Weapon weapon;
-        objectSpawn pc;
+        objectSpawn objectSpawn;
         AssetManager sound;
 
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER
@@ -73,6 +73,7 @@ namespace GTA {
         void UpdateMovement(sf::Sprite &, sf::Sprite &);
         void playerCrashTEMP();
         void PrintTimer();
+        void loadAllTexture();
 
 
 

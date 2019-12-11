@@ -22,11 +22,10 @@ namespace GTA {
         this->minimap.setViewport(sf::FloatRect(0.79f,
                 0.01f, 0.2f, 0.2f));
 
+        loadAllTexture();
         this->getRektMap.setSize(sf::Vector2f(380, 340));
         this->getRektMap.setFillColor(sf::Color(0, 0, 0, 200));
 
-        this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
-        this->_data->assets.LoadFont("Arial", FONT_ARIAL);
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
 
 
@@ -35,35 +34,8 @@ namespace GTA {
 
 
         /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-
-        ///Load Textures
-        this->_data->assets.LoadTexture("Player", PLAYER);
-        this->_data->assets.LoadTexture("Player2", PLAYER2);
-        this->_data->assets.LoadTexture("Player3", PLAYER3);
-        this->_data->assets.LoadTexture("Player4", PLAYER4);
-        this->_data->assets.LoadTexture("Player5", PLAYER5);
-
-        this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
-        this->_data->assets.LoadTexture("car1", CAR_WHITE);
-        this->_data->assets.LoadTexture("car", CAR_BLUE);
-        this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
-
-        /// calls initcoin function from missionPlacement
+        // calls initcoin function from missionPlacement
         missionPlacement.hackMissionSettings();
-
-
-        this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
-
-        this->_data->assets.LoadTexture("HB", HEALTH_BAR);
-        this->_data->assets.LoadTexture("HB1", HEALTH_BAR_1);
-
-        this->_data->assets.LoadTexture("boat", BOAT);
-
-        this->_data->assets.LoadTexture("M3_BLUE", M3_BLUE);
-        this->_data->assets.LoadTexture("M3_RED", M3_RED);
-        this->_data->assets.LoadTexture("M3_BLACK", M3_BLACK);
-        this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
-        this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
 
 
         player1 = this->_data->assets.GetTexture("Player");
@@ -82,8 +54,13 @@ namespace GTA {
         weapon.gun_posY = TILE_SIZE * 23;
         weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
 
-        pc.spawnPc();
-        pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
+        objectSpawn.spawnPc();
+        objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
+        objectSpawn.spawnBurger();
+        objectSpawn.getPc().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
+        objectSpawn.spawnSniper();
+        objectSpawn.getPc().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
+
 
 
         ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,7 +166,6 @@ namespace GTA {
         }
 
 
-
         /// Activate DEBUG-MODE
         switch (event.type) {
             case sf::Event::KeyReleased: {
@@ -259,13 +235,26 @@ namespace GTA {
             std::cout << "posy is " << weapon.gun_posY << std::endl;
 
         }
-        if(PixelPerfectTest(_player.playerGetSprite(), pc.getPc())){
-            pc.isHasPc() = true;
+        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getPc())){
+            objectSpawn.setHasPc(1);
             std::cout << "pc is now ready to be picked up" << std::endl;
-            pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
-            std::cout << "Pos X = " << pc.getPcPox() << ", Pos Y = " << pc.getPcPoy() << std::endl;
+            objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
+            std::cout << "\nPos X = " << objectSpawn.getPcPox() << ", Pos Y = " << objectSpawn.getPcPoy() << std::endl;
         }
 
+        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getBurger())){
+            objectSpawn.setHasBurger(1);
+            std::cout << "Burger to be picked up" << std::endl;
+            objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
+            std::cout << "\nPos X = " << objectSpawn.getBurgerPox() << ", Pos Y = " << objectSpawn.getBurgerPoy() << std::endl;
+        }
+
+        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getSniper())){
+            objectSpawn.setHasSniper(1);
+            std::cout << "Sniper to be picked up" << std::endl;
+            objectSpawn.getSniper().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
+            std::cout << "\nPos X = " << objectSpawn.getSniperPox() << ", Pos Y = " << objectSpawn.getSniperPoy() << std::endl;
+        }
     }
 
     void WorldState::Draw(float dt) {
@@ -315,7 +304,9 @@ namespace GTA {
 
 
         this->_data->window.draw(weapon.gun);
-        this->_data->window.draw(pc.getPc());
+        this->_data->window.draw(objectSpawn.getPc());
+        this->_data->window.draw(objectSpawn.getBurger());
+        this->_data->window.draw(objectSpawn.getSniper());
         /////DRAW EVERY SPRITE IN THE LIST
         for (auto &i : spriteListy) { this->_data->window.draw(*i); }
 
@@ -434,6 +425,40 @@ namespace GTA {
 
             timer = 0;
         }
+    }
+
+    void WorldState::loadAllTexture() {
+
+        ///Load Textures
+        this->_data->assets.LoadTexture("Player", PLAYER);
+        this->_data->assets.LoadTexture("Player2", PLAYER2);
+        this->_data->assets.LoadTexture("Player3", PLAYER3);
+        this->_data->assets.LoadTexture("Player4", PLAYER4);
+        this->_data->assets.LoadTexture("Player5", PLAYER5);
+
+        this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
+        this->_data->assets.LoadTexture("car1", CAR_WHITE);
+        this->_data->assets.LoadTexture("car", CAR_BLUE);
+        this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
+
+
+        this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
+
+        this->_data->assets.LoadTexture("HB", HEALTH_BAR);
+        this->_data->assets.LoadTexture("HB1", HEALTH_BAR_1);
+
+        this->_data->assets.LoadTexture("boat", BOAT);
+
+        this->_data->assets.LoadTexture("M3_BLUE", M3_BLUE);
+        this->_data->assets.LoadTexture("M3_RED", M3_RED);
+        this->_data->assets.LoadTexture("M3_BLACK", M3_BLACK);
+        this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
+        this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
+
+        this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
+        this->_data->assets.LoadFont("Arial", FONT_ARIAL);
+
+
     }
 
 }
