@@ -231,8 +231,10 @@ namespace GTA {
             } else {
 //
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
+                    if(i->movementSpeed != 0){
                     player1.setDamage();
-                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+                    }
+                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
                 }
             }
 
@@ -242,6 +244,7 @@ namespace GTA {
                     npvVec[k]->Number = k;
                     npvVec[k]->CarInit(cartex, _Block);
                     npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
+                    npvVec[k]->getNpvBot().setColor(_car.getColor());
                     npvVec[k]->getNpvBot().setPosition(_car.getPosition());
                     npvVec[k]->getNpvBot().setRotation(_car.getRotation());
                     npvVec[k]->movementSpeed = 0;
