@@ -84,13 +84,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MISSION_1_DEADSPRITE "Resources/res/Mission_1_dead.png"
 
-#define MISSION_1_BACKGROUND "Resources/res/city_layers/city_1.png"
-#define MISSION_1_SKYSCRAPERS "Resources/res/city_layers/city_3.png"
-#define MISSION_1_HOUSES "Resources/res/city_layers/city_4.png"
-#define MISSION_1_CLOUDS "Resources/res/city_layers/city_2.png"
-#define MISSION_1_TREES "Resources/res/city_layers/city_5.png"
-#define MISSION_1_FRAME "Resources/res/city_layers/city_7.png"
-
 #define MISSION_1_BACKGROUND_HQ "Resources/res/city_layers/city_HQ_1-01.png"
 #define MISSION_1_SKYSCRAPERS_HQ "Resources/res/city_layers/city_HQ_3-01.png"
 #define MISSION_1_HOUSES_HQ "Resources/res/city_layers/city_HQ_4-01.png"

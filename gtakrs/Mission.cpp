@@ -110,10 +110,6 @@ namespace GTA{
         /// These are used to detect intersection between scope and target
         auto shape = new sf::CircleShape(2.f);
         shape->setPosition(this->view.getCenter());
-        std::cout << shape->getPosition().x << std::endl;
-        std::cout << shape->getPosition().y << std::endl;
-
-
 
         ///if statement for shooting.
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
