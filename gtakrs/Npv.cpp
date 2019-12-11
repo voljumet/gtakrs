@@ -223,10 +223,11 @@ namespace GTA {
 //                    i->setNvcBot(this->_data->assets.GetTexture("Dead"));
 //                }
             } else {
+
 //
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
-                    player1.setDamage();
-                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+                    if (i->movementSpeed != 0){ player1.setDamage();}
+                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
 
                 }
 
