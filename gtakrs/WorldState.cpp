@@ -338,6 +338,9 @@ namespace GTA {
         }
         MmapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
+        this->_data->window.draw(missionPlacement.getMissionCircleMini());
+
+
         /// Draw Player or Car
         if (!Driving) { _player.Draw(this->_data->window); }
         else { this->_data->window.draw(this->_car); }
@@ -435,6 +438,5 @@ namespace GTA {
             timer = 0;
         }
     }
-
 }
 

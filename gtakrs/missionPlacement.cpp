@@ -17,6 +17,14 @@ namespace GTA{
         this->missionCircle.setTextureRect(sf::IntRect(0,0,100, 100));
         this->missionCircle.setScale(2.f, 2.f);
         this->missionCircle.setOrigin(50.f, 67.f);
+
+        this->textureMini.loadFromFile( MISSION_CIRCLE_SPRITE2);
+        this->missionCircleMini.setTexture(textureMini);
+        this->missionCircleMini.setPosition(TILE_SIZE * 20, TILE_SIZE * 21);
+        this->missionCircleMini.setTextureRect(sf::IntRect(0,0,100, 100));
+        this->missionCircleMini.setScale(2.f, 2.f);
+        this->missionCircleMini.setOrigin(50.f, 67.f);
+
         if (!font.loadFromFile(RETRO)){
             std::cout << "Cant load font from resources!" << std::endl;
         }
@@ -33,7 +41,6 @@ namespace GTA{
                 std::cout << "1" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 24.f, TILE_SIZE * 376.f);
-
                 break;
 
             case 2:
@@ -99,6 +106,8 @@ namespace GTA{
             default:
                 break;
         }
+        this->missionCircleMini.setPosition(missionCircle.getPosition());
+
     }
 
 
@@ -222,7 +231,13 @@ namespace GTA{
 
     sf::Sprite missionPlacement::getMissionCircle(){
         return missionCircle;
+
     }
+
+    sf::Sprite missionPlacement::getMissionCircleMini() {
+        return missionCircleMini;
+    }
+
     sf::RectangleShape missionPlacement::getBox() {
         return rectangleShape;
     }

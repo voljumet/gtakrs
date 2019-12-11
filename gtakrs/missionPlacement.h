@@ -21,8 +21,7 @@ namespace GTA{
         virtual ~missionPlacement();
 
         void hackMissionSettings();
-        void missionStart(GameDataRef data_inn, Player &player,
-                int &missionNumber, sf::Sprite &playerPos);
+        void missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos);
         void infoBox(sf::Sprite &player, int &missionNumber);
         void InfoBoxText(sf::Sprite &player, int &missionNumber);
 
@@ -30,14 +29,19 @@ namespace GTA{
     private:
         GameDataRef _data;
         sf::Sprite missionCircle;
+        sf::Sprite missionCircleMini;
+
         sf::Texture texture;
+        sf::Texture textureMini;
+
         sf::RectangleShape rectangleShape;
         sf::Text text;
         sf::Font font;
 
     public:
        sf::Sprite getMissionCircle();
-       sf::RectangleShape getBox();
+        sf::Sprite getMissionCircleMini();
+        sf::RectangleShape getBox();
        sf::Text getText();
     };
 }
