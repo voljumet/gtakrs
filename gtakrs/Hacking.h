@@ -9,30 +9,24 @@ namespace GTA{
     class Hacking : public State {
     public:
         explicit Hacking(GameDataRef data);
+        void Init();
+        void HandleInput();
+        void Update(float dt);
+        void Draw(float dt);
+
+    private:
+
+        GameDataRef _data;
+        sf::Sprite _background;
+        sf::Text text, playertext;
+        std::string playerinput;
+        sf::Font font;
 
         AssetManager hackaudio;
 
         float posX, posY, size;
         bool correctpassword;
         int layer;
-
-
-        void Init();
-        void HandleInput();
-        void Update(float dt);
-        void Draw(float dt);
-
-
-
-
-    private:
-
-        GameDataRef _data;
-
-        sf::Sprite _background;
-        sf::Text text, playertext;
-        std::string playerinput;
-        sf::Font font;
     };
 }
 

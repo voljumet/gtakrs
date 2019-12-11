@@ -9,15 +9,15 @@ namespace GTA {
     void Shooting::CreateBullet(sf::Sprite &Player)
     {
         Bullet* bullet = new Bullet;
-        bullet->bulletspeed = 4000.f;
+        bullet->setBulletspeed(4000.f);
         sf::Transform t;
         t.rotate(Player.getRotation());
-        bullet->bulletVec = t.transformPoint(movement.forwardVec());
-        bullet->bullet.setRotation(Player.getRotation());
-        bullet->bullet.setPosition(Player.getPosition().x, Player.getPosition().y);
-        bullet->bullet.setTexture(this->_data->assets.GetTexture("Bullet"));
-        bullet->bullet.rotate(270);
-        bullet->bullet.setScale(0.03, 0.03);
+        bullet->setBulletVec(t.transformPoint(movement.forwardVec()));
+        bullet->getBullet().setRotation(Player.getRotation());
+        bullet->getBullet().setPosition(Player.getPosition().x, Player.getPosition().y);
+        bullet->getBullet().setTexture(this->_data->assets.GetTexture("Bullet"));
+        bullet->getBullet().rotate(270);
+        bullet->getBullet().setScale(0.03, 0.03);
         bulletlist.push_back(bullet);
 
     }
@@ -27,40 +27,40 @@ namespace GTA {
             sf::Transform t;
             t.rotate(Player.getRotation());
             if(i == 0){
-            bullet->bulletVec = t.transformPoint(movement.forwardVec().x -0.2, movement.forwardVec().y);
-                bullet->bulletspeed = 3000.f;
+            bullet->setBulletVec( t.transformPoint(movement.forwardVec().x -0.2, movement.forwardVec().y));
+                bullet->setBulletspeed(3000.f) ;
             }
             if(i == 1){
-                bullet->bulletVec = t.transformPoint(movement.forwardVec().x -0.1, movement.forwardVec().y);
-                bullet->bulletspeed = 3500.f;
+                bullet->setBulletVec( t.transformPoint(movement.forwardVec().x -0.1, movement.forwardVec().y));
+                bullet->setBulletspeed(3500.f) ;
             }
             if(i == 2){
-                bullet->bulletVec = t.transformPoint(movement.forwardVec());
-                bullet->bulletspeed = 4000.f;
+                bullet->setBulletVec(t.transformPoint(movement.forwardVec()))  ;
+                bullet->setBulletspeed(4000.f);
             }
             if(i == 3){
-                bullet->bulletVec = t.transformPoint(movement.forwardVec().x +0.1, movement.forwardVec().y);
-                bullet->bulletspeed = 3500.f;
+                bullet->setBulletVec(t.transformPoint(movement.forwardVec().x +0.1, movement.forwardVec().y)) ;
+                bullet->setBulletspeed(3500.f) ;
             }
             if(i == 4){
-                bullet->bulletVec = t.transformPoint(movement.forwardVec().x +0.2, movement.forwardVec().y);
-                bullet->bulletspeed = 3000.f;
+                bullet->setBulletVec(t.transformPoint(movement.forwardVec().x +0.2, movement.forwardVec().y));
+                bullet->setBulletspeed(3000.f) ;
             }
-            bullet->bullet.setRotation(Player.getRotation());
-            bullet->bullet.setPosition(Player.getPosition().x, Player.getPosition().y);
-            bullet->bullet.setTexture(this->_data->assets.GetTexture("Bullet"));
-            bullet->bullet.rotate(270);
-            bullet->bullet.setScale(0.03, 0.03);
+            bullet->getBullet().setRotation(Player.getRotation());
+            bullet->getBullet().setPosition(Player.getPosition().x, Player.getPosition().y);
+            bullet->getBullet().setTexture(this->_data->assets.GetTexture("Bullet"));
+            bullet->getBullet().rotate(270);
+            bullet->getBullet().setScale(0.03, 0.03);
             bulletlist.push_back(bullet);
         }
     }
 
     void Shooting::MoveBullet(){
         for(auto &b: bulletlist){
-            b->bullet.move(b->bulletVec*b->bulletspeed*movement.dt);
-            if(b->bullet.getPosition().x >= WORLD_WIDTH*70 || b->bullet.getPosition().y >= WORLD_HEIGHT*70){
+            b->getBullet().move(b->getBulletVec()*b->getBulletspeed()*movement.dt);
+            if(b->getBullet().getPosition().x >= WORLD_WIDTH*70 || b->getBullet().getPosition().y >= WORLD_HEIGHT*70){
                 bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), b), bulletlist.end());
-            }else if(b->bullet.getPosition().x <= 0 || b->bullet.getPosition().y <= 0){
+            }else if(b->getBullet().getPosition().x <= 0 || b->getBullet().getPosition().y <= 0){
                 bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), b), bulletlist.end());
             }
         }
@@ -68,7 +68,7 @@ namespace GTA {
     void Shooting::DrawBullet(GameDataRef &inn_data) {
         _data = inn_data;
         for(auto b: bulletlist){
-            this->_data->window.draw(b->bullet);
+            this->_data->window.draw(b->getBullet());
         }
     }
     void Shooting::Collision(GameDataRef &inn_data, std::vector<Npc *> &npclist, std::vector<Npv*> &npvlist, std::vector<Bullet *> &bulletlist) {
@@ -76,7 +76,7 @@ namespace GTA {
         for(auto &npc: npclist){
             if(!npc->dead){
                 for(auto &bullet : bulletlist){
-                   if(bullet->bullet.getGlobalBounds().intersects(npc->getNpcBot().getGlobalBounds())) {
+                   if(bullet->getBullet().getGlobalBounds().intersects(npc->getNpcBot().getGlobalBounds())) {
                        bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
                        npc->health -= 10;
                        npc->movementSpeed = 16;
@@ -94,7 +94,7 @@ namespace GTA {
 
         for(auto &npv : npvlist){
             for(auto &bullet: bulletlist){
-                if(bullet->bullet.getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){
+                if(bullet->getBullet().getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){
                     bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
                     npv->health -= 2;
                     npv->movementSpeed = 16;

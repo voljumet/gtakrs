@@ -18,7 +18,7 @@ add_executable(GTAKRS
         colliderTest.cpp colliderTest.h
         Movement.cpp Movement.h
         Map.cpp Map.h
-        SpriteFactory.h Factory.h
+        SpriteFactory.h
         Hacking.h Hacking.cpp
         npc.h npc.cpp
         Collision_Detection.cpp Collision_Detection.h
