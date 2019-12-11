@@ -50,6 +50,8 @@
 #define BULLET_SPRITE "Resources/res/BulletSprite.png"
 #define GLOCK "Resources/res/8bitglock.png"
 #define BOAT "Resources/res/Boat.png"
+#define SNIPER "Resources/res/snipe.png"
+#define BURGER "Resources/res/burger-512.png"
 
 #define M3_BLUE "Resources/res/Vehicles/model3-01.png"
 #define M3_RED "Resources/res/Vehicles/model3-02.png"

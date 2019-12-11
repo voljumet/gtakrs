@@ -16,7 +16,7 @@
 #include "Shooting.h"
 #include "Weapon.h"
 #include "AssetManager.h"
-#include "Pc.h"
+#include "objectSpawn.h"
 
 
 namespace GTA {
@@ -30,7 +30,7 @@ namespace GTA {
         CarController carController;
         Shooting shooting;
         Weapon weapon;
-        Pc pc;
+        objectSpawn pc;
         AssetManager sound;
 
        ///TODO: PUT IN AUDIO FROM ASSETMANAGER

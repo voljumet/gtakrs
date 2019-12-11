@@ -30,6 +30,7 @@ public:
     void setRotaion(float rotation);
 
     void setDamage();
+    void Damage(int damage);
     int setHealth();
     int setCoin();
     int setBullet();

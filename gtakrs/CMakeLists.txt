@@ -31,7 +31,7 @@ add_executable(GTAKRS
         Weapon.h Weapon.cpp
         WastedState.h WastedState.cpp
         ControlsState.h ControlsState.cpp
-        Pc.cpp Pc.h
+        objectSpawn.cpp objectSpawn.h
 
 
         )

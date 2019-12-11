@@ -179,5 +179,11 @@ namespace GTA {
 
     }
 
+    void Player::Damage(int damage) {
+        healthSize -= damage;
+
+
+    }
+
 
 }

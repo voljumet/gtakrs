@@ -260,7 +260,7 @@ namespace GTA {
 
         }
         if(PixelPerfectTest(_player.playerGetSprite(), pc.getPc())){
-            pc.hasPc = true;
+            pc.isHasPc() = true;
             std::cout << "pc is now ready to be picked up" << std::endl;
             pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
             std::cout << "Pos X = " << pc.getPcPox() << ", Pos Y = " << pc.getPcPoy() << std::endl;

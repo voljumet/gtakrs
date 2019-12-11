@@ -6,7 +6,6 @@
 
 namespace GTA{
 
-
     missionPlacement::missionPlacement() = default;
     missionPlacement::~missionPlacement() = default;
 
@@ -33,7 +32,6 @@ namespace GTA{
             case 1:
                 std::cout << "1" << std::endl;
                 missionNumber++;
-//                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 24.f, TILE_SIZE * 376.f);
 
                 break;
@@ -42,19 +40,17 @@ namespace GTA{
                 std::cout << "2" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 111.f, TILE_SIZE * 21.f);
-
                 break;
             case 3:
                 std::cout << "3" << std::endl;
+                player.Damage(100);
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 148.f, TILE_SIZE * 366.f);
-
                 break;
             case 4:
                 std::cout << "4" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 121.f, TILE_SIZE * 286.f);
-
                 break;
             case 5:
                 std::cout << "5" << std::endl;
@@ -74,7 +70,8 @@ namespace GTA{
 //                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
                 this->_data->machine.GetActiveState()->Pause();
-                this->_data->machine.AddState(StateRef(new Mission(_data)),false);
+                this->_data->machine.AddState(StateRef(new Mission(_data)),
+                        false);
                 break;
             case 8:
                 std::cout << "8" << std::endl;
@@ -141,7 +138,7 @@ namespace GTA{
                                "  * Your objective is to: \n\n"
                                "  * Hack Abradolf Lincler's password, \n"
                                "  * to find his location. \n"
-                               "  * But first you need to find a Pc\n"
+                               "  * But first you need to find a objectSpawn\n"
                                "  * Cross the bridge north \n"
                                "  * Drive 'North-East'\n\n");
                 break;
@@ -221,7 +218,6 @@ namespace GTA{
         text.setFillColor(sf::Color::Black);
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
     }
-
 
 
     sf::Sprite missionPlacement::getMissionCircle(){

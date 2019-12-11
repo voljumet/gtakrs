@@ -115,8 +115,7 @@ namespace GTA{
 
                 else if((playerinput.compare("cd locations"))==0){ /// CD PASSWORDS
                     layer = 130;
-                    text.setString("Around 1st block north of the city \n"
-                                   );
+                    text.setString("Around 1st block north of the city \n");
                 }
 
 
