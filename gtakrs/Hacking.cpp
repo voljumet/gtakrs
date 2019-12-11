@@ -8,6 +8,8 @@
 namespace GTA{
     Hacking::Hacking(GTA::GameDataRef data): _data(std::move(data)) { }
     void Hacking::Init() {
+        this->view.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this->view.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
 
         hackaudio.loadall();
         hackaudio.playcomputer();
@@ -161,7 +163,7 @@ namespace GTA{
                     }
 
                     if(layer==13) { ///SECURITY
-                        text.setString("$ passwords\n"
+                        text.setString("$ passwords.txt\n"
                                        "$ camera recordings\n"
                                        "$ locations");
                     }
@@ -223,23 +225,31 @@ namespace GTA{
         }
     }
 
-
-
-
-
-
     void Hacking::Update(float dt) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+        if(correctpassword){
+            this->_data->machine.RemoveState();
+            this->_data->machine.GetActiveState()->Resume();
+            correctpassword = false;
+            std::cout << "correct password " << std::endl;
             hackaudio.computersounds.stop();
         }
     }
 
     void Hacking::Draw(float dt) {
+        this->UpdateView(dt);
+        this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::Black);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(text);
         this->_data->window.draw(playertext);
         this->_data->window.display();
+    }
+
+    void Hacking::UpdateView(const float &dt){
+
+//        this->view.setCenter(X,Y);
+//        this->minimap.setCenter(X,Y);
+//        this->getRektMap.setPosition(X+=512,Y-=794);
+
     }
 }

@@ -167,7 +167,6 @@ namespace GTA {
     }
 ////////////////////////////////////
 
-/*
         /// Change between person and car
         switch (event.type) {
             case sf::Event::KeyReleased: {
@@ -188,7 +187,6 @@ namespace GTA {
                 }
             }
         }
-*/
 
 
 
@@ -259,8 +257,6 @@ namespace GTA {
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;
             std::cout << "posy is " << weapon.gun_posY << std::endl;
-
-
 
         }
         if(PixelPerfectTest(_player.playerGetSprite(), pc.getPc())){

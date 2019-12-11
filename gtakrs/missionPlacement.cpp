@@ -35,6 +35,8 @@ namespace GTA{
                 missionNumber++;
 //                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 24.f, TILE_SIZE * 376.f);
+                this->_data->machine.GetActiveState()->Pause();
+                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
                 break;
 
             case 2:
@@ -59,8 +61,8 @@ namespace GTA{
                 std::cout << "5" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 20.f, TILE_SIZE * 248.f);
-                this->_data->machine.GetActiveState()->Pause();
-                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+//                this->_data->machine.GetActiveState()->Pause();
+//                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
                 break;
             case 6:
                 std::cout << "6" << std::endl;
@@ -113,8 +115,10 @@ namespace GTA{
                                "  Mission: \n\n"
                                "  * Find Tony Montana!\n"
                                "  * Steal a car and drive south.\n"
-                               "  * Cross bridge, and continue South-West\n"
+                               "  * Cross bridge, and continue South-West\n\n"
                                "  * Press space to activate mission.\n\n");
+
+
                 break;
             case 2:
                 rectangleShape.setSize(sf::Vector2f(820, 360));
@@ -131,37 +135,35 @@ namespace GTA{
                                "  * Drive 'North-East'\n\n");
                 break;
             case 3:
-                rectangleShape.setSize(sf::Vector2f(800, 150));
+                rectangleShape.setSize(sf::Vector2f(800, 180));
                 text.setString(" \n"
-                               "   \n"
                                "  * Find a pc \n"
-                               "  * You can find one around the dock"
+                               "  * You can find one around the dock\n"
                                "  * Cross the bridge again \n"
                                "  * Next mission should be around South-East\n");
                 break;
             case 4:
                 rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
-
-                               "  * Your health seems to be low!"
-                               "  * Find a burger to eat. "
+                               "  * Your health seems to be low!\n"
+                               "  * Find a burger to eat. \n"
                                "  * Should be some burgers to eat around here. \n"
-                               "  * Locate hack location afterwards\n");
+                               "  * Locate hack location afterwards\n"
+                               "  * Meet Tony two block north!");
                 break;
             case 5:
                 rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
                                "  Hack Abradolf's \n"
                                "  * Cell phone.\n"
-                               "  * Find his location\n\n"
-                               "  * Meet Tony two block north!");
+                               "  * Find his location\n\n");
                 break;
             case 6:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
                 text.setString(" \n"
                                "  * You're a Genius! \n"
                                "  * We 're close to get him \n"
-                               "  * Find next mission around north-west"
+                               "  * Find next mission around north-west\n"
                                "  * Find a sniper before you go\n"
                                "  * A sniper can be found around here!");
                 break;
