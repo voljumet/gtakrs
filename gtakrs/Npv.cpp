@@ -190,7 +190,6 @@ namespace GTA {
     void CarController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
                                 sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex,
                                 Block _Block[WORLD_HEIGHT][WORLD_WIDTH], bool &boat ) {
-        boat = false;
         _data = inn_data;
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
@@ -229,6 +228,7 @@ namespace GTA {
 
         }
         if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+            boat = false;
             for (int k = 99; k < 100; ++k) {
                 npvVec.push_back(new Npv);
                 npvVec[k]->Number = k;

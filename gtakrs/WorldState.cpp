@@ -188,13 +188,17 @@ if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.
     boatbool = true;
 //    std::cout<< "WHAT THE FUUUUUUCK" << std::endl;
 }
-else if(sf::Keyboard::isKeyPressed(sf::Keyboard::C) && boatbool){
+else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
     _player.playerGetSprite().setPosition(_car.getPosition());
     _player.playerGetSprite().setRotation(_car.getRotation());
-
+    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+    _car.setTextureRect(sf::IntRect(0,0,91, 208));
+    _car.setOrigin(35.f, 50.f);
     Boat.setPosition(_car.getPosition());
     Boat.setTexture(this->_data->assets.GetTexture("Boat"));
-    Boat.setScale(1.2f,1.2f);
+    Boat.setRotation(_car.getRotation());
+    Boat.setColor(sf::Color::White);
+//    Boat.setScale(1.2f,1.2f);
     Driving = false;
     boatbool = false;
     std::cout<< "WHAT THE FUUUUUUCK" << std::endl;
