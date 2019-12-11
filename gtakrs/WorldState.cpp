@@ -160,7 +160,7 @@ namespace GTA {
 if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
     _car.setPosition(Boat.getPosition());
     _car.setRotation(Boat.getRotation());
-    _car.setTexture(this->_data->assets.GetTexture("Boat"));
+    _car.setTexture(this->_data->assets.GetTexture("boat"));
     _car.setColor(sf::Color::White);
     _car.setTextureRect(sf::IntRect(0,0,400,430));
     _car.setOrigin(150, 100);
@@ -175,7 +175,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
     _car.setTextureRect(sf::IntRect(0,0,91, 208));
     _car.setOrigin(35.f, 50.f);
     Boat.setPosition(_car.getPosition());
-    Boat.setTexture(this->_data->assets.GetTexture("Boat"));
+    Boat.setTexture(this->_data->assets.GetTexture("boat"));
     Boat.setRotation(_car.getRotation());
     Boat.setColor(sf::Color::White);
     Driving = false;
