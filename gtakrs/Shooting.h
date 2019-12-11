@@ -9,10 +9,13 @@
 
 namespace GTA {
     class Shooting {
-    public:
         Movement movement;
         bool shotgun = true;
         std::vector<Bullet*> bulletlist;
+
+
+    public:
+         std::vector<Bullet *> &getBulletlist() ;
         void CreateBullet(sf::Sprite &Player);
         void CreateShotgunBullet(sf::Sprite &Player);
         void MoveBullet();

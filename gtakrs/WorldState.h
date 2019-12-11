@@ -82,8 +82,6 @@ namespace GTA {
         friend class Map;
 
     private:
-        /// Create a new sprite
-
         std::clock_t Timer;
         int timer=0;
         double NPCMoveDura;

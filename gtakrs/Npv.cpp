@@ -9,7 +9,6 @@ namespace GTA {
     Npv::~Npv() = default;
 
     void Npv::CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-//        RandomDir = static_cast<direction >(rand() % 4);
 
         dir = RandomDir;
         movementSpeed = 8;
@@ -110,6 +109,7 @@ namespace GTA {
                 movementSpeed = 0;
                 /// else change dir
             } else { dir = RandomDir; }
+
             /// If the tile in front of npc is ok, move
         } else  {
             npvBot.setPosition(UpdatedPosX, UpdatedPosY);
@@ -142,7 +142,7 @@ namespace GTA {
     void NpvController::NpvSpawn(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
         /// MUST BE 101 CARS FOR THE CODE TO WORK!!!
-        for (int k = 0; k < 101; ++k) {
+        for (int k = 0; k < 51; ++k) {
 
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
@@ -211,47 +211,37 @@ namespace GTA {
             }
 
             if (i->dead) {
-//                i->setNvcBot(this->_data->assets.GetTexture("Dead"));
                 i->movementSpeed = 0;
             }
 
             /// Npc collision with car
             if (Driving) {
-//                if(movement.currentSpeed <= 800){
                 collisionDetaction.Check_Collision(_car, i->getNpvBot(), true);
-
-                //this->_data->assets.PlaySound(carcrashdone);
-                /// denne lyden må spilles når en bil "dør", ellers så spilles lyden hver gang spilleren dytter bilen
-//                } else {
-//                    i->dead = true;
-//                    i->setNvcBot(this->_data->assets.GetTexture("Dead"));
-//                }
             } else {
-//
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
+                    if(i->movementSpeed != 0){
                     player1.setDamage();
-                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+                    }
+                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
                 }
             }
 
             if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-                for (int k = 99; k < 100; ++k) {
+                for (int k = 49; k < 50; ++k) {
                     npvVec.push_back(new Npv);
                     npvVec[k]->Number = k;
                     npvVec[k]->CarInit(cartex, _Block);
                     npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
+                    npvVec[k]->getNpvBot().setColor(_car.getColor());
                     npvVec[k]->getNpvBot().setPosition(_car.getPosition());
                     npvVec[k]->getNpvBot().setRotation(_car.getRotation());
                     npvVec[k]->movementSpeed = 0;
-//                npvVec[k]
-//                npvVec[k]->dir = UP;
                 }
 
                 _player.setPosition(_car.getPosition().x + 50, _car.getPosition().y + 50);
                 _player.setRotation(_car.getRotation());
 
                 Driving = false;
-//            std::cout << npvVec.size() << std::endl;
             }
         }
     }
