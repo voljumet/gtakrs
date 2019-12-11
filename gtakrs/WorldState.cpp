@@ -188,7 +188,7 @@ if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.
     boatbool = true;
 //    std::cout<< "WHAT THE FUUUUUUCK" << std::endl;
 }
-else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
     _player.playerGetSprite().setPosition(_car.getPosition());
     _player.playerGetSprite().setRotation(_car.getRotation());
     _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
