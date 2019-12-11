@@ -35,8 +35,7 @@ namespace GTA{
                 missionNumber++;
 //                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 24.f, TILE_SIZE * 376.f);
-                this->_data->machine.GetActiveState()->Pause();
-                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+
                 break;
 
             case 2:
@@ -61,8 +60,8 @@ namespace GTA{
                 std::cout << "5" << std::endl;
                 missionNumber++;
                 this->missionCircle.setPosition(TILE_SIZE * 20.f, TILE_SIZE * 248.f);
-//                this->_data->machine.GetActiveState()->Pause();
-//                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
+                this->_data->machine.GetActiveState()->Pause();
+                this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
                 break;
             case 6:
                 std::cout << "6" << std::endl;
@@ -121,13 +120,13 @@ namespace GTA{
 
                 break;
             case 2:
-                rectangleShape.setSize(sf::Vector2f(820, 360));
+                rectangleShape.setSize(sf::Vector2f(820, 400));
                 text.setString(" \n"
-                               "  Tony 'Hello Trevor1!' \n\n"
-                               "  'The world is running out of Juice', \n"
-                                 " 'We need to save it, ' \n"
-                                 " 'before Abradolf drinks it empty'\n"
-                               "  Your objective should you choose to accept, is to: \n"
+                               "  Tony 'Hello Trevor!' \n\n"
+                               "    The world is running out of Juice. \n"
+                               "    We need to save it,  \n"
+                               "    before Abradolf drinks it empty.\n"
+                               "  * Your objective is to: \n\n"
                                "  * Hack Abradolf Lincler's password, \n"
                                "  * to find his location. \n"
                                "  * But first you need to find a Pc\n"
@@ -148,15 +147,15 @@ namespace GTA{
                                "  * Your health seems to be low!\n"
                                "  * Find a burger to eat. \n"
                                "  * Should be some burgers to eat around here. \n"
-                               "  * Locate hack location afterwards\n"
-                               "  * Meet Tony two block north!");
+                               "  * Next objective is two blocks north!\n");
                 break;
             case 5:
                 rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
                                "  Hack Abradolf's \n"
                                "  * Cell phone.\n"
-                               "  * Find his location\n\n");
+                               "  * Find his location\n"
+                               "  * Meet Tony west of the city\n");
                 break;
             case 6:
                 rectangleShape.setSize(sf::Vector2f(800, 250));
@@ -165,8 +164,9 @@ namespace GTA{
                                "  * We 're close to get him \n"
                                "  * Find next mission around north-west\n"
                                "  * Find a sniper before you go\n"
-                               "  * A sniper can be found around here!");
+                               "  * A sniper can be found around here!\n");
                 break;
+
             case 7:
                 rectangleShape.setSize(sf::Vector2f(800, 200));
                 text.setString(" \n"
@@ -174,8 +174,8 @@ namespace GTA{
                                "  * Wait for him to show up!\n"
                                "  * Snipe him\n"
                                "  * Meet Tony afterwards\n"
-                               "  * Tony can be found by crossing the bridge"
-                               "  * and continuing south-west");
+                               "  * Tony can be found by crossing the bridge\n"
+                               "  * and continuing south-west\n\n");
                     break;
             case 8:
                 rectangleShape.setSize(sf::Vector2f(800, 400));

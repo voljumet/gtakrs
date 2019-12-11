@@ -278,7 +278,8 @@ namespace GTA {
         Timer = std::clock();
         map.Render(Driving, Minimap, Debug, _car.getPosition().x,
                    _car.getPosition().y, _player.playerGetSprite().getPosition().x,
-                   _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
+                   _player.playerGetSprite().getPosition().y, _data,
+                   NoDrivingOrWalkingBool);
 
         MapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
@@ -288,7 +289,8 @@ namespace GTA {
 
         /// Draw NPCharacters
         Timer = std::clock();
-        npcController.NpcDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
+        npcController.NpcDraw(_data, Driving,movement.currentSpeed, _car,
+                _player.playerGetSprite(), sound.cardeath);
 
         NPCDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
