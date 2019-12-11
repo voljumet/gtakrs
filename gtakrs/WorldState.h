@@ -31,7 +31,6 @@ namespace GTA {
         Weapon weapon;
         AssetManager sound;
 
-       ///TODO: PUT IN AUDIO FROM ASSETMANAGER
 
         Player _player;
         missionPlacement msp;

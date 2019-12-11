@@ -182,13 +182,11 @@ namespace GTA {
 
 
         }
-
-
         if(weapon.hasshotgun){
             _player.loseBullet();
             if(weapon.shotammo>0) {
                 shooting.CreateShotgunBullet(_player.playerGetSprite());
-                sound.PlaySound(sound.spas); 
+                sound.PlaySound(sound.spas);
                 weapon.shotammo-=1;
             }
 
@@ -196,9 +194,7 @@ namespace GTA {
                 std::cout << "No bullets left" << std::endl;
                 sound.PlaySound(sound.empty);
             }
-
         }
-
     }
 ////////////////////////////////////
 
