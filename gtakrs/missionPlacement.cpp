@@ -73,7 +73,6 @@ namespace GTA{
             case 7:
                 std::cout << "7" << std::endl;
                 missionNumber++;
-//                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
                 this->_data->machine.GetActiveState()->Pause();
                 this->_data->machine.AddState(StateRef(new Mission(_data)),
@@ -82,9 +81,7 @@ namespace GTA{
             case 8:
                 std::cout << "8" << std::endl;
                 missionNumber++;
-//                this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
-
                 break;
 
             case 9:
@@ -100,7 +97,7 @@ namespace GTA{
             case 11:
                 std::cout << "11" << std::endl;
                 missionNumber++;
-//                this->missionCircle.setPosition(0, 0);
+                this->missionCircle.setPosition(0, 0);
                 break;
             default:
                 break;
@@ -129,7 +126,6 @@ namespace GTA{
                                "  * Steal a car and drive south.\n"
                                "  * Cross bridge, and continue South-West\n\n"
                                "  * Press space to activate mission.\n\n");
-
                 break;
             case 2:
                 rectangleShape.setSize(sf::Vector2f(820, 380));
@@ -203,7 +199,6 @@ namespace GTA{
                                "  * Take the boat \n"
                                "  * Flee to the island' \n\n");
                 break;
-
             case 10:
                 rectangleShape.setSize(sf::Vector2f(800, 60));
                 text.setString(" \n"
@@ -221,20 +216,11 @@ namespace GTA{
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
     }
 
-    sf::Sprite missionPlacement::getMissionCircle(){
-        return missionCircle;
+    sf::Sprite missionPlacement::getMissionCircle(){return missionCircle;}
 
-    }
+    sf::Sprite missionPlacement::getMissionCircleMini() {return missionCircleMini;}
 
-    sf::Sprite missionPlacement::getMissionCircleMini() {
-        return missionCircleMini;
-    }
+    sf::RectangleShape missionPlacement::getBox() {return rectangleShape;}
 
-    sf::RectangleShape missionPlacement::getBox() {
-        return rectangleShape;
-    }
-
-    sf::Text missionPlacement::getText() {
-        return text;
-    }
+    sf::Text missionPlacement::getText() {return text;}
 }

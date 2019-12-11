@@ -50,13 +50,9 @@ namespace GTA {
 
         ///TESTING//////////////////////////////////////////////////////////////////////////////////////////////////
         weapon.Gun_init();
-        weapon.setGunPosX(TILE_SIZE * 51) ;
-        weapon.setGunPosY(TILE_SIZE * 23);
-        weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
-
-        weapon.setShotgunPosX(TILE_SIZE * 53) ;
-        weapon.setShotgunPosY(TILE_SIZE * 23) ;
-        weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
+        
+        ///  holds all object settings
+        objectPixelPerfect();
 
         objectSpawn.spawnPc();
         objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
@@ -69,23 +65,25 @@ namespace GTA {
         /// Player Texture / Settings
         _player.playerInit(this->_data->assets.GetTexture("Player"));
 
-        /// Player car Texture / Settings
-        this->_car.setTexture(M3_White);      /// Set Texture
-        this->_data->assets.GetTexture("M3_WHITE").setSmooth(true);
-
-        this->_car.setPosition(playerStartPosX, playerStartPosY);
-        this->_car.setTextureRect(sf::IntRect(0, 0, 91, 208));
-        this->_car.setScale(sf::Vector2f(1.2f, 1.2f)); /// absolute scale factor
-        this->_car.setOrigin(35.f, 50.f);
-        this->_car.setRotation(180);
-///BOAT !!!!!!!!
-        this->Boat.setTexture(this->_data->assets.GetTexture("boat"));
-        this->Boat.setPosition(127*TILE_SIZE, 118*TILE_SIZE);
-        this->Boat.setScale(1.2, 1.2);
-        this->Boat.setRotation(90);
-
-        /// Create NPVehicles
-        npvController.NpvSpawn(M3_White, map._Block);
+        /// holds all vehicle settings
+        vehicleSettings();
+//        /// Player car Texture / Settings
+//        this->_car.setTexture(M3_White);      /// Set Texture
+//        this->_data->assets.GetTexture("M3_WHITE").setSmooth(true);
+//
+//        this->_car.setPosition(playerStartPosX, playerStartPosY);
+//        this->_car.setTextureRect(sf::IntRect(0, 0, 91, 208));
+//        this->_car.setScale(sf::Vector2f(1.2f, 1.2f)); /// absolute scale factor
+//        this->_car.setOrigin(35.f, 50.f);
+//        this->_car.setRotation(180);
+/////BOAT !!!!!!!!
+//        this->Boat.setTexture(this->_data->assets.GetTexture("boat"));
+//        this->Boat.setPosition(127*TILE_SIZE, 118*TILE_SIZE);
+//        this->Boat.setScale(1.2, 1.2);
+//        this->Boat.setRotation(90);
+//
+//        /// Create NPVehicles
+//        npvController.NpvSpawn(M3_White, map._Block);
 
         /// Create NPCaracters
         npcController.NpcSpawn(player1, map._Block);
@@ -258,46 +256,6 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         shooting.Collision(_data, npcController.getNpcVec(), npvController.npvVec , shooting.getBulletlist());
         shooting.MoveBullet();
 
-        /// Player picks up weapon
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.getGun())){
-            weapon.setHasweapon(1);
-            weapon.setHasshotgun(0);
-            _player.setBullet();
-            weapon.setGunammo(30);
-
-            weapon.setGunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH)) ;
-            weapon.setGunPosX((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT)) ;
-            weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
-
-        }
-
-        if(PixelPerfectTest(_player.playerGetSprite(), weapon.getShotgun())){
-            weapon.setHasweapon(0);
-            weapon.setHasshotgun(1);
-            _player.setBullet();
-            weapon.setShotammo(30);
-
-            weapon.setShotgunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
-            weapon.setShotgunPosY( (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
-            weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
-
-        }
-
-        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getPc())){
-            objectSpawn.setHasPc(1);
-
-            objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
-        }
-
-        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getBurger())){
-            objectSpawn.setHasBurger(1);
-            objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
-        }
-
-        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getSniper())){
-            objectSpawn.setHasSniper(1);
-            objectSpawn.getSniper().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
-        }
     }
 
     void WorldState::Draw(float dt) {
@@ -529,6 +487,77 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
 
 
+    }
+
+    void WorldState::objectPixelPerfect() {
+/// Player picks up weapon
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.getGun())){
+            weapon.setHasweapon(1);
+            weapon.setHasshotgun(0);
+            _player.setBullet();
+            weapon.setGunammo(30);
+
+            weapon.setGunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH)) ;
+            weapon.setGunPosX((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT)) ;
+            weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
+
+        }
+
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.getShotgun())){
+            weapon.setHasweapon(0);
+            weapon.setHasshotgun(1);
+            _player.setBullet();
+            weapon.setShotammo(30);
+
+            weapon.setShotgunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
+            weapon.setShotgunPosY( (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
+            weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
+
+        }
+
+        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getPc())){
+            objectSpawn.setHasPc(1);
+
+            objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
+        }
+
+        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getBurger())){
+            objectSpawn.setHasBurger(1);
+            objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
+        }
+
+        if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getSniper())){
+            objectSpawn.setHasSniper(1);
+            objectSpawn.getSniper().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
+        }
+    }
+
+    void WorldState::vehicleSettings() {
+        /// Player car Texture / Settings
+        this->_car.setTexture(M3_White);      /// Set Texture
+        this->_data->assets.GetTexture("M3_WHITE").setSmooth(true);
+
+        this->_car.setPosition(playerStartPosX, playerStartPosY);
+        this->_car.setTextureRect(sf::IntRect(0, 0, 91, 208));
+        this->_car.setScale(sf::Vector2f(1.2f, 1.2f)); /// absolute scale factor
+        this->_car.setOrigin(35.f, 50.f);
+        this->_car.setRotation(180);
+///BOAT !!!!!!!!
+        this->Boat.setTexture(this->_data->assets.GetTexture("boat"));
+        this->Boat.setPosition(127*TILE_SIZE, 118*TILE_SIZE);
+        this->Boat.setScale(1.2, 1.2);
+        this->Boat.setRotation(90);
+
+        /// Create NPVehicles
+        npvController.NpvSpawn(M3_White, map._Block);
+
+        weapon.setGunPosX(TILE_SIZE * 51) ;
+        weapon.setGunPosY(TILE_SIZE * 23);
+        weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
+
+        weapon.setShotgunPosX(TILE_SIZE * 53) ;
+        weapon.setShotgunPosY(TILE_SIZE * 23) ;
+        weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
     }
 
 }
