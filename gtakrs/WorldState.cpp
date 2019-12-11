@@ -251,11 +251,20 @@ namespace GTA {
             weapon.gun.setPosition(weapon.gun_posX, weapon.gun_posY);
             std::cout << "posx is " << weapon.gun_posX << std::endl;
             std::cout << "posy is " << weapon.gun_posY << std::endl;
+        }
 
+        if(PixelPerfectTest(_player.playerGetSprite(), weapon.shotgun)){
+            weapon.hasweapon=false;
+            weapon.hasshotgun=true;
+            std::cout << "shotgun is now ready" << std::endl;
+            _player.setBullet();
+            weapon.shotammo = 30;
 
-
-
-
+            weapon.shotgun_posX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
+            weapon.shotgun_posY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
+            weapon.shotgun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
+            std::cout << "posx is " << weapon.shotgun_posX << std::endl;
+            std::cout << "posy is " << weapon.shotgun_posY << std::endl;
         }
 
 
