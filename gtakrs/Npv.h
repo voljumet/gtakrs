@@ -28,7 +28,7 @@ namespace GTA {
 
         void NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
-        void NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &carcrashdone,sf::Texture &_cartex, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player,bool &boat);
+        void NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &carcrashdone,sf::Texture &_cartex, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player,bool &boat, sf::Sound &tesla);
         int random;
         sf::Color color;
         sf::Color Loader();
@@ -36,5 +36,6 @@ namespace GTA {
 
     private:
         GameDataRef _data;
+        AssetManager sound;
     };
 }

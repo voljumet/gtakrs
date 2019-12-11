@@ -72,7 +72,7 @@ namespace GTA {
         void Update(float dt) override;
         void Draw(float dt) override;
         void UpdateView(const float &dt);
-        void UpdateMovement(sf::Sprite &, sf::Sprite &);
+        void UpdateMovement(GameDataRef  &inn_data, sf::Sprite &, sf::Sprite &);
         void playerCrashTEMP();
         void PrintTimer();
 

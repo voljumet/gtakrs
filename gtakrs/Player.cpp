@@ -24,9 +24,9 @@ namespace GTA {
 
     }
 
-    void Player::playerMoves(Movement &movement) {
+    void Player::playerMoves(Movement &movement, sf::Sound &footstep) {
         playerSprite.move(movement.movementVec * movement.currentSpeed * movement.dt);
-        movement.Walk(playerSprite);
+        movement.Walk(_data, playerSprite, footstep  );
     }
 
     sf::Vector2f Player::setplayerViewCenter(sf::Vector2f vector2F) {
