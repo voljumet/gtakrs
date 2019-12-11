@@ -201,15 +201,7 @@ namespace GTA {
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
             ///Trykke W for å gå inn i bil
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W )&& !boat) {
-                if (!Driving && GTA::PixelPerfectTest(_player, i->getNpvBot())) {
-                    _car.setPosition(i->getNpvBot().getPosition());
-                    _car.setRotation(i->getNpvBot().getRotation());
-                    _car.setColor(i->getNpvBot().getColor());
-                    npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
-                    Driving = true;
-                }
-            }
+
 
             if (i->dead) {
                 i->movementSpeed = 0;
@@ -222,6 +214,16 @@ namespace GTA {
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     if(i->movementSpeed != 0){
                     player1.setDamage();
+                    }
+                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W )&& !boat) {
+                        if (!Driving) {
+                            _car.setPosition(i->getNpvBot().getPosition());
+                            _car.setRotation(i->getNpvBot().getRotation());
+                            _car.setColor(i->getNpvBot().getColor());
+                            delete(i);
+                            Driving = true;
+                            npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
+                        }
                     }
                     collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
                 }
