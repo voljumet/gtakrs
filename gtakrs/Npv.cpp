@@ -131,7 +131,7 @@ namespace GTA {
             npvBot.setPosition(UpdatedPosX, UpdatedPosY);
             StepCounter += 1;
         } else {
-                        dir = RandomDir;
+            dir = RandomDir;
 
         }
         if (StepCounter == 500) {
@@ -224,34 +224,35 @@ namespace GTA {
 //                }
             } else {
 //
-                if(GTA::PixelPerfectTest(_player,i->getNpvBot())){
+                if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     player1.setDamage();
-                collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+                    collisionDetaction.Check_Collision(_player, i->getNpvBot(), true);
+
+                }
+
 
             }
-
-
-        }
-        if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-            for (int k = 99; k < 100; ++k) {
-                npvVec.push_back(new Npv);
-                npvVec[k]->Number = k;
-                npvVec[k]->CarInit(cartex, _Block);
-                npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
-                npvVec[k]->getNpvBot().setPosition(_car.getPosition());
-                npvVec[k]->getNpvBot().setRotation(_car.getRotation());
-                npvVec[k]->movementSpeed = 0;
+            if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+                for (int k = 99; k < 100; ++k) {
+                    npvVec.push_back(new Npv);
+                    npvVec[k]->Number = k;
+                    npvVec[k]->CarInit(cartex, _Block);
+                    npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
+                    npvVec[k]->getNpvBot().setPosition(_car.getPosition());
+                    npvVec[k]->getNpvBot().setRotation(_car.getRotation());
+                    npvVec[k]->movementSpeed = 0;
 //                npvVec[k]
 //                npvVec[k]->dir = UP;
+                }
+
+                _player.setPosition(_car.getPosition().x + 50, _car.getPosition().y + 50);
+                _player.setRotation(_car.getRotation());
+
+                Driving = false;
+//            std::cout << npvVec.size() << std::endl;
             }
 
-            _player.setPosition(_car.getPosition().x + 50, _car.getPosition().y + 50);
-            _player.setRotation(_car.getRotation());
-
-            Driving = false;
-//            std::cout << npvVec.size() << std::endl;
         }
 
     }
-
 }
