@@ -52,6 +52,8 @@
 #define GLOCK "Resources/res/8bitglock.png"
 #define SHOTGUN "Resources/res/SHOTGUN.png"
 #define BOAT "Resources/res/Boat.png"
+#define SNIPER "Resources/res/snipe.png"
+#define BURGER "Resources/res/burger-512.png"
 
 #define M3_BLUE "Resources/res/Vehicles/model3-01.png"
 #define M3_RED "Resources/res/Vehicles/model3-02.png"
@@ -95,6 +97,8 @@
 #define MISSION_1_SCOPE "Resources/res/mission_1/Mission_1_Scope.png"
 
 #define MISSION_CIRCLE_SPRITE "Resources/res/mission_tile-01.png"
+#define MISSION_CIRCLE_SPRITE2 "Resources/res/mission_tile-02.png"
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 

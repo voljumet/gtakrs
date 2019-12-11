@@ -19,9 +19,3 @@ void GTA::Weapon::Gun_init() {
     hasshotgun = false;
 
 }
-
-void GTA::Weapon::Gun_randompos() {
-
-
-
-}

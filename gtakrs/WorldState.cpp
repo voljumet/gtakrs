@@ -77,6 +77,10 @@ namespace GTA {
         weapon.shotgun_posY = TILE_SIZE * 23;
         weapon.shotgun.setPosition(weapon.shotgun_posX, weapon.shotgun_posY);
 
+        pc.spawnPc();
+        pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
+
+
         ///TESTING////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Player Texture / Settings
@@ -149,7 +153,6 @@ namespace GTA {
     }
 ////////////////////////////////////
 
-
         /// Change between person and car
 /*        switch (event.type) {
             case sf::Event::KeyReleased: {
@@ -171,7 +174,6 @@ namespace GTA {
             }
         }
 */
-
 
 if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
     _car.setPosition(Boat.getPosition());
@@ -241,7 +243,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
 
         /// mission trigger
         if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
-//            mission = true;
+            mission = true;
             missionPlacement.infoBox(_player.playerGetSprite(), missionNumber);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
@@ -305,6 +307,14 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
             std::cout << "posx is " << weapon.shotgun_posX << std::endl;
             std::cout << "posy is " << weapon.shotgun_posY << std::endl;
         }
+
+        if(PixelPerfectTest(_player.playerGetSprite(), pc.getPc())){
+//            pc.isHasPc() = true;
+            std::cout << "pc is now ready to be picked up" << std::endl;
+            pc.getPc().setPosition(pc.getPcPox(), pc.getPcPoy());
+            std::cout << "Pos X = " << pc.getPcPox() << ", Pos Y = " << pc.getPcPoy() << std::endl;
+        }
+
     }
 
     void WorldState::Draw(float dt) {
@@ -318,6 +328,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         map.Render(Driving, Minimap, Debug, _car.getPosition().x,
                    _car.getPosition().y, _player.playerGetSprite().getPosition().x,
                    _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
+
         MapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw mission circle
@@ -350,6 +361,9 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         this->_data->window.draw(weapon.gun);
         this->_data->window.draw(weapon.shotgun);
 
+        /// Draw stuff
+        this->_data->window.draw(pc.getPc());
+
         /// if mission equals true and player intesects circle, the rectangle box appears
         if(mission) { this->_data->window.draw(missionPlacement.getBox());
             this->_data->window.draw(missionPlacement.getText()); }
@@ -370,7 +384,7 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
         MmapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw mission circle
-        this->_data->window.draw(missionPlacement.getMissionCircle());
+        this->_data->window.draw(missionPlacement.getMissionCircleMini());
 
         /// Draw Player or Car
         if (!Driving) { _player.Draw(this->_data->window); }

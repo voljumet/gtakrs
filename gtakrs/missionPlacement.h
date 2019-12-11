@@ -26,18 +26,22 @@ namespace GTA{
         void InfoBoxText(sf::Sprite &player, int &missionNumber);
 
 
-
     private:
         GameDataRef _data;
         sf::Sprite missionCircle;
+        sf::Sprite missionCircleMini;
+
         sf::Texture texture;
+        sf::Texture textureMini;
+
         sf::RectangleShape rectangleShape;
         sf::Text text;
         sf::Font font;
 
     public:
        sf::Sprite getMissionCircle();
-       sf::RectangleShape getBox();
+        sf::Sprite getMissionCircleMini();
+        sf::RectangleShape getBox();
        sf::Text getText();
     };
 }

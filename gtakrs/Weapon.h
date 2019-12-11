@@ -7,7 +7,6 @@
 
 
 
-
 namespace GTA {
     class Weapon {
 
@@ -22,7 +21,6 @@ namespace GTA {
         float shotgun_posX = SCREEN_WIDTH / 2;
         float shotgun_posY = SCREEN_HEIGHT / 2;
 
-
         float gun_posX = SCREEN_WIDTH / 2;
         float gun_posY = SCREEN_HEIGHT / 2;
 
@@ -33,10 +31,6 @@ namespace GTA {
         int gunammo = 0;
 
         void Gun_init();
-
-        void Gun_randompos();
-
-
     };
 
 }
