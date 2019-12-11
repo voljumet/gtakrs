@@ -133,55 +133,76 @@ namespace GTA {
             }
         }
     }
-////////////////////////////////////
-        /// Change between person and car
-/*
-        switch (event.type) {
-            case sf::Event::KeyReleased: {
-                switch (event.key.code) {
-                    case sf::Keyboard::Space: {
-                        if (!Driving) {
-                            this->_car.setPosition(_player.player_Getposition());
-                            this->_car.setRotation(this->_player.getRotaion());
-                            Driving = true;
-                           sound.PlaySound(sound.cardoor);
-                        } else {
-                            _player.player_SetPosition(this->_car.getPosition());
-                            this->_player.setRotaion(this->_car.getRotation());
-                            Driving = false;
-                            sound.PlaySound(sound.cardoor);
-                        }
-                    }
-                }
-            }
+    /// Change between person and car
+//        if(Debug){
+//            switch (event.type) {
+//                case sf::Event::KeyReleased: {
+//                    switch (event.key.code) {
+//                        case sf::Keyboard::Space: {
+//                            if (!Driving) {
+//                                this->_car.setPosition(_player.player_Getposition());
+//                                this->_car.setRotation(this->_player.getRotaion());
+//                                Driving = true;
+//                                sound.PlaySound(sound.cardoor);
+//                            } else {
+//                                _player.player_SetPosition(this->_car.getPosition());
+//                                this->_player.setRotaion(this->_car.getRotation());
+//                                Driving = false;
+//                                sound.PlaySound(sound.cardoor);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+//        switch (event.type) {
+//            case sf::Event::KeyReleased: {
+//                switch (event.key.code) {
+//                    case sf::Keyboard::Space: {
+//                        if (!Driving && !boatbool) {
+//
+//                            this->_car.setPosition(_player.player_Getposition());
+//                            this->_car.setRotation(this->_player.getRotaion());
+//                            Driving = true;
+//                            sound.PlaySound(sound.cardoor);
+//
+//                        } else if (!Driving && boatbool) {
+//
+//                            _player.player_SetPosition(this->_car.getPosition());
+//                            this->_player.setRotaion(this->_car.getRotation());
+//                            Driving = false;
+//                            sound.PlaySound(sound.cardoor);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
+            _car.setPosition(Boat.getPosition());
+            _car.setRotation(Boat.getRotation());
+            _car.setTexture(this->_data->assets.GetTexture("boat"));
+            _car.setColor(sf::Color::White);
+            _car.setTextureRect(sf::IntRect(0,0,400,430));
+            _car.setOrigin(150, 100);
+            Boat.setColor(sf::Color::Transparent);
+            Driving = true;
+            boatbool = true;
         }
-*/
-
-if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
-    _car.setPosition(Boat.getPosition());
-    _car.setRotation(Boat.getRotation());
-    _car.setTexture(this->_data->assets.GetTexture("boat"));
-    _car.setColor(sf::Color::White);
-    _car.setTextureRect(sf::IntRect(0,0,400,430));
-    _car.setOrigin(150, 100);
-    Boat.setColor(sf::Color::Transparent);
-    Driving = true;
-    boatbool = true;
-}
-else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
-    _player.playerGetSprite().setPosition(182*TILE_SIZE,64*TILE_SIZE);
-    _player.playerGetSprite().setRotation(_car.getRotation());
-    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-    _car.setTextureRect(sf::IntRect(0,0,91, 208));
-    _car.setOrigin(35.f, 50.f);
-    Boat.setPosition(_car.getPosition());
-    Boat.setTexture(this->_data->assets.GetTexture("boat"));
-    Boat.setRotation(_car.getRotation());
-    Boat.setColor(sf::Color::White);
-    Driving = false;
-    boatbool = false;
-}
-
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
+            _player.playerGetSprite().setPosition(182*TILE_SIZE,64*TILE_SIZE);
+            _player.playerGetSprite().setRotation(_car.getRotation());
+            _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+            _car.setTextureRect(sf::IntRect(0,0,91, 208));
+            _car.setOrigin(35.f, 50.f);
+            Boat.setPosition(_car.getPosition());
+            Boat.setTexture(this->_data->assets.GetTexture("boat"));
+            Boat.setRotation(_car.getRotation());
+            Boat.setColor(sf::Color::White);
+            Driving = false;
+            boatbool = false;
+        }
 
         /// Activate DEBUG-MODE
         switch (event.type) {
