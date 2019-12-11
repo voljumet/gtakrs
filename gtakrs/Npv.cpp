@@ -194,12 +194,12 @@ namespace GTA {
 
     void NpvController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
                                 sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex,
-                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1) {
+                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1, bool &boat) {
 
         _data = inn_data;
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W )&& !boat) {
                 if (!Driving && GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     _car.setPosition(i->getNpvBot().getPosition());
                     _car.setRotation(i->getNpvBot().getRotation());

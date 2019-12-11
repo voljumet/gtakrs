@@ -100,6 +100,8 @@
 #define COMPUTERSOUNDS "Resources/res/Music/computer_sounds.ogg"
 
 
+#define BOAT "Resources/res/Boat.png"
+
 /////AUDIO SAMPLES/////////
 #define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
 #define CARDOOR_FILEPATH "Resources/res/Sound/cardoor.ogg"

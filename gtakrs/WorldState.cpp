@@ -43,6 +43,8 @@ namespace GTA {
         this->_data->assets.LoadTexture("Player4", PLAYER4);
         this->_data->assets.LoadTexture("Player5", PLAYER5);
 
+        this->_data->assets.LoadTexture("Boat", BOAT);
+
         this->_data->assets.LoadTexture("Dead", DEAD_PLAYER);
         this->_data->assets.LoadTexture("car1", CAR_WHITE);
         this->_data->assets.LoadTexture("car", CAR_BLUE);
@@ -89,6 +91,11 @@ namespace GTA {
         this->_car.setScale(sf::Vector2f(1.2f, 1.2f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setRotation(180);
+///BOAT !!!!!!!!
+        this->Boat.setTexture(this->_data->assets.GetTexture("boat"));
+        this->Boat.setPosition(127*TILE_SIZE, 118*TILE_SIZE);
+        this->Boat.setScale(1.2, 1.2);
+        this->Boat.setRotation(90);
 
         /// Create NPVehicles
         npvController.NpvSpawn(M3_White, map._Block);
@@ -142,6 +149,7 @@ namespace GTA {
     }
 ////////////////////////////////////
 
+
         /// Change between person and car
 /*        switch (event.type) {
             case sf::Event::KeyReleased: {
@@ -163,6 +171,37 @@ namespace GTA {
             }
         }
 */
+
+
+if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
+    _car.setPosition(Boat.getPosition());
+    _car.setRotation(Boat.getRotation());
+    _car.setTexture(this->_data->assets.GetTexture("Boat"));
+    _car.setColor(sf::Color::White);
+    _car.setTextureRect(sf::IntRect(0,0,400,430));
+    _car.setOrigin(150, 100);
+    Boat.setColor(sf::Color::Transparent);
+    Driving = true;
+    boatbool = true;
+//    std::cout<< "WHAT THE FUUUUUUCK" << std::endl;
+}
+else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
+    _player.playerGetSprite().setPosition(_car.getPosition());
+    _player.playerGetSprite().setRotation(_car.getRotation());
+    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+    _car.setTextureRect(sf::IntRect(0,0,91, 208));
+    _car.setOrigin(35.f, 50.f);
+    Boat.setPosition(_car.getPosition());
+    Boat.setTexture(this->_data->assets.GetTexture("Boat"));
+    Boat.setRotation(_car.getRotation());
+    Boat.setColor(sf::Color::White);
+//    Boat.setScale(1.2f,1.2f);
+    Driving = false;
+    boatbool = false;
+    std::cout<< "WHAT THE FUUUUUUCK" << std::endl;
+}
+
+
 
         /// Activate DEBUG-MODE
         switch (event.type) {
@@ -266,10 +305,6 @@ namespace GTA {
             std::cout << "posx is " << weapon.shotgun_posX << std::endl;
             std::cout << "posy is " << weapon.shotgun_posY << std::endl;
         }
-
-
-
-
     }
 
     void WorldState::Draw(float dt) {
@@ -298,7 +333,9 @@ namespace GTA {
 
         /// Draw NPVehicles
         Timer = std::clock();
-        npvController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block,_player);
+
+        npvController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block, _player, boatbool);
+
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw Player or Vehicle
@@ -316,6 +353,9 @@ namespace GTA {
         /// if mission equals true and player intesects circle, the rectangle box appears
         if(mission) { this->_data->window.draw(missionPlacement.getBox());
             this->_data->window.draw(missionPlacement.getText()); }
+
+        ///Draw Boat.
+        this->_data->window.draw(Boat);
 
         /////////Draw Minimap
         Timer = std::clock();
@@ -400,12 +440,29 @@ namespace GTA {
                         }
                     }
 
-                    NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray), NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
-                    if(NoDrivingOrWalkingBool){
-                        if(Driving){
-                            collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
-                        } else {
-                            collisionDetection.Check_Collision(_player.playerGetSprite(), map._Block[Y][X].tileSprite, false);
+
+                    if(boatbool) {
+                        nocruising = std::find(std::begin(BOATCan_Not_MoveHere), std::end(BOATCan_Not_MoveHere),
+                                               NoDrivWalkInt) != std::end(BOATCan_Not_MoveHere);
+                        if (nocruising) {
+                            if (Driving) {
+                                collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
+                            } else {
+                                collisionDetection.Check_Collision(_player.playerGetSprite(),
+                                                                   map._Block[Y][X].tileSprite, false);
+                            }
+                        }
+                    }else {
+                        NoDrivingOrWalkingBool =
+                                std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray),
+                                          NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
+                        if (NoDrivingOrWalkingBool) {
+                            if (Driving) {
+                                collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
+                            } else {
+                                collisionDetection.Check_Collision(_player.playerGetSprite(),
+                                                                   map._Block[Y][X].tileSprite, false);
+                            }
                         }
                     }
                 }
@@ -439,4 +496,5 @@ namespace GTA {
         }
     }
 }
+
 
