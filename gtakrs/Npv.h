@@ -15,11 +15,15 @@ namespace GTA {
         void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> &npcVec);
 
         sf::Sprite &getNpvBot();
+        bool carInteract = false;
+        bool boatInteract = false;
+
 
     private:
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npvBot;
+
     };
 
     class NpvController: public NPC_NPV{

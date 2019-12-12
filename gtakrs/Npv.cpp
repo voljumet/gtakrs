@@ -199,56 +199,42 @@ namespace GTA {
                                 Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1, bool &boat, sf::Sound &tesla) {
 
         _data = inn_data;
+
         for (auto i : npvVec) {
             this->_data->window.draw(i->getNpvBot());
-            ///Trykke W for å gå inn i bil
+            if (i->dead) { i->movementSpeed = 0; }
 
+            /// If car has been standing still for some time time, it respawns
+            if (i->movementSpeed == 0){
+                if(i->respawnCounter == i->coolDown){
+                    i->respawnCounter = 0;
+                    int tempNum = i->Number;
+                    delete(i);
+                    npvVec.push_back(new Npv);
+                    i->Number = tempNum;
+                    i->CarInit(cartex, _Block);
+                    i->getNpvBot().setColor(NpvController::Loader());
 
-            if (i->dead) {
-                i->movementSpeed = 0;
+                }
+                i->respawnCounter++;
             }
+
 
             /// Npv collision with car
             if (Driving) {
                 collisionDetaction.Check_Collision(_car, i->getNpvBot(), true);
             } else {
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
-                    if(i->movementSpeed != 0){
-                    player1.setDamage();
-                    }
-
-//                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W )&& !boat) {
-//                        if (!Driving) {
-//                            _car.setPosition(i->getNpvBot().getPosition());
-//                            _car.setRotation(i->getNpvBot().getRotation());
-//                            _car.setColor(i->getNpvBot().getColor());
-//                            delete(i);
-//                            Driving = true;
-//                            npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
-//                        }
-//                    }
-
+                    if(i->movementSpeed != 0){ player1.setDamage(); }
+                    i->carInteract = true;
                     collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
+                } else {
+                    newCounter++;
+                    if (newCounter > 10){
+                        i->carInteract = false;
+                    }
                 }
             }
-
-//            if (Driving && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-//                for (int k = 49; k < 50; ++k) {
-//                    npvVec.push_back(new Npv);
-//                    npvVec[k]->Number = k;
-//                    npvVec[k]->CarInit(cartex, _Block);
-//                    npvVec[k]->getNpvBot().setOrigin(_car.getOrigin());
-//                    npvVec[k]->getNpvBot().setColor(_car.getColor());
-//                    npvVec[k]->getNpvBot().setPosition(_car.getPosition());
-//                    npvVec[k]->getNpvBot().setRotation(_car.getRotation());
-//                    npvVec[k]->movementSpeed = 0;
-//                }
-//
-//                _player.setPosition(_car.getPosition().x + 50, _car.getPosition().y + 50);
-//                _player.setRotation(_car.getRotation());
-//
-//                Driving = false;
-//            }
         }
     }
 }

@@ -27,7 +27,10 @@ namespace GTA{
         int health = 0;
         bool crashCurb_RIGHT = false, crashCurb_LEFT = false, crashCurb_UP = false, crashCurb_DOWN = false, crashCurb = true;
         bool CheckWalkable = false, dead = false;
+        int respawnCounter = 0;
+        int coolDown = 6000;
         int Number = 0;
+        int newCounter = 0;
 
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
