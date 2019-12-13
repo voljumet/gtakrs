@@ -8,8 +8,10 @@ class objectSpawn {
 
     sf::Sprite pc;
     sf::Texture pcTexture;
+
     sf::Sprite burger;
     sf::Texture burgerTexture;
+
     sf::Sprite sniper;
     sf::Texture sniperTexture;
 
@@ -17,11 +19,26 @@ class objectSpawn {
     bool hasBurger = false;
     bool hasSniper = false;
 
-    float burgerPox = TILE_SIZE * 125.f;
-    float burgerPoy = TILE_SIZE * 285.f;
 
-    float sniperPox = TILE_SIZE * 46.30f;
-    float sniperPoy = TILE_SIZE * 65.30f;
+    float sniperPox = TILE_SIZE * 159.30f;
+public:
+    void setSniperPox(float sniperPox);
+
+    void setSniperPoy(float sniperPoy);
+
+    void setBurgerPox(float burgerPox);
+
+    void setBurgerPoy(float burgerPoy);
+
+    void setPcPoy(float pcPoy);
+
+    void setPcPox(float pcPox);
+
+private:
+    float sniperPoy = TILE_SIZE * 365.30f;
+
+    float burgerPox = TILE_SIZE * 18.30f;
+    float burgerPoy = TILE_SIZE * 154.30f;
 
     float pcPoy = TILE_SIZE * 117.f;
     float pcPox = TILE_SIZE * 114.f;

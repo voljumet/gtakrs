@@ -60,10 +60,12 @@ namespace GTA {
 
         objectSpawn.spawnPc();
         objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
+
         objectSpawn.spawnBurger();
-        objectSpawn.getPc().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
+        objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
+
         objectSpawn.spawnSniper();
-        objectSpawn.getPc().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
+        objectSpawn.getSniper().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
 
 
         /// Player Texture / Settings
@@ -285,17 +287,22 @@ else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
 
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getPc())){
             objectSpawn.setHasPc(1);
-
+            objectSpawn.setPcPox((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
+            objectSpawn.setPcPoy((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
             objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
         }
 
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getBurger())){
             objectSpawn.setHasBurger(1);
+            objectSpawn.setBurgerPox((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
+            objectSpawn.setBurgerPoy((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
             objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
         }
 
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getSniper())){
             objectSpawn.setHasSniper(1);
+            objectSpawn.setSniperPox((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
+            objectSpawn.setSniperPoy((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
             objectSpawn.getSniper().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
         }
     }

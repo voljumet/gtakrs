@@ -45,5 +45,17 @@ void objectSpawn::setHasPc(bool hasPc) {objectSpawn::hasPc = hasPc;}
 void objectSpawn::setHasBurger(bool hasBurger) {objectSpawn::hasBurger = hasBurger;}
 void objectSpawn::setHasSniper(bool hasSniper) {objectSpawn::hasSniper = hasSniper;}
 
+void objectSpawn::setSniperPox(float sniperPox) {objectSpawn::sniperPox = sniperPox;}
+
+void objectSpawn::setSniperPoy(float sniperPoy) {objectSpawn::sniperPoy = sniperPoy;}
+
+void objectSpawn::setBurgerPox(float burgerPox) {objectSpawn::burgerPox = burgerPox;}
+
+void objectSpawn::setBurgerPoy(float burgerPoy) {objectSpawn::burgerPoy = burgerPoy;}
+
+void objectSpawn::setPcPoy(float pcPoy) {objectSpawn::pcPoy = pcPoy;}
+
+void objectSpawn::setPcPox(float pcPox) {objectSpawn::pcPox = pcPox;}
+
 
 
