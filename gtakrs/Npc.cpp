@@ -149,6 +149,8 @@ namespace GTA {
         RandomDir = static_cast<direction >(rand() % 4);
 
         for(auto n : npcVec) {
+
+///---------------------------------------------------------------------------
             /// If npc has been standing still for some time time, it respawns
             if (n->movementSpeed == 0){
                 if(n->respawnCounter == n->coolDown){
@@ -163,6 +165,7 @@ namespace GTA {
                 }
                 n->respawnCounter++;
             }
+///---------------------------------------------------------------------------
             if(!n->dead){
                 n->move(_Block, npcVec);
             } else {
