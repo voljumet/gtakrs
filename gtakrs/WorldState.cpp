@@ -134,32 +134,33 @@ namespace GTA {
         }
     }
     /// Change between person and car
-//        if(Debug){
-//            switch (event.type) {
-//                case sf::Event::KeyReleased: {
-//                    switch (event.key.code) {
-//                        case sf::Keyboard::Space: {
-//                            if (!Driving) {
-//                                this->_car.setPosition(_player.player_Getposition());
-//                                this->_car.setRotation(this->_player.getRotaion());
-//                                Driving = true;
-//                                sound.PlaySound(sound.cardoor);
-//                            } else {
-//                                _player.player_SetPosition(this->_car.getPosition());
-//                                this->_player.setRotaion(this->_car.getRotation());
-//                                Driving = false;
-//                                sound.PlaySound(sound.cardoor);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        if(Debug){
+            switch (event.type) {
+                case sf::Event::KeyReleased: {
+                    switch (event.key.code) {
+                        case sf::Keyboard::Space: {
+                            if (!Driving) {
+                                this->_car.setPosition(_player.player_Getposition());
+                                this->_car.setRotation(this->_player.getRotaion());
+                                Driving = true;
+                                sound.PlaySound(sound.cardoor);
+                            } else {
+                                _player.player_SetPosition(this->_car.getPosition());
+                                this->_player.setRotaion(this->_car.getRotation());
+                                Driving = false;
+                                sound.PlaySound(sound.cardoor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         switch (event.type) {
             case sf::Event::KeyReleased: {
                 switch (event.key.code) {
                     case sf::Keyboard::Space: {
+
 
                          if (!Driving && !boatbool) {
 
@@ -176,8 +177,9 @@ namespace GTA {
                                  boatbool = true;
                              }
                              /// Enter car
+
                             for(auto i : npvController.npvVec){
-                                if (i->carInteract ){
+                                if (i->carInteract){
                                     i->carInteract = false;
                                     _car.setPosition(i->getNpvBot().getPosition());
                                     _car.setRotation(i->getNpvBot().getRotation());
@@ -272,10 +274,10 @@ namespace GTA {
         /// mission trigger
         if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
             mission = true;
-            missionPlacement.infoBox(_player.playerGetSprite(), missionNumber);
+            missionPlacement.infoBox(_player.playerGetSprite(), missionNumber, boatbool);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-                missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite());
+                missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite(), boatbool);
             }
         }else {
             mission = false;

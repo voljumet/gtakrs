@@ -48,7 +48,7 @@ namespace GTA {
         bool nocruising = false;
 
         bool boatbool = false;
-
+        bool space = false;
         int missionNumber = 1;
 
 

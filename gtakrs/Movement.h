@@ -13,7 +13,9 @@ namespace GTA{
 
         /// Speed / Movement Controller
         float WalkSpeed = 1.f;
-        float rotateAmount = 150.f;
+        float rotateAmountWalk = 200.f;
+        float rotateAmountCar = 120.f;
+
         float currentSpeed = 0.f;
         int walkAnimation = 0, SpriteSpeed = 0;
 
@@ -30,8 +32,6 @@ namespace GTA{
 
         void Walk(GameDataRef &inn_data, sf::Sprite&, sf::Sound &footstep);
         void Drive(sf::Sprite&, sf::Sound &teslasound);
-
-
 
     private:
         GameDataRef _data;

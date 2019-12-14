@@ -201,6 +201,7 @@ namespace GTA {
         _data = inn_data;
 
         for (auto i : npvVec) {
+
             this->_data->window.draw(i->getNpvBot());
             if (i->dead) { i->movementSpeed = 0; }
 
@@ -210,6 +211,8 @@ namespace GTA {
                     i->respawnCounter = 0;
                     int tempNum = i->Number;
                     delete(i);
+                    npvVec.erase(std::remove(npvVec.begin(), npvVec.end(), i), npvVec.end());
+
                     npvVec.push_back(new Npv);
                     i->Number = tempNum;
                     i->CarInit(cartex, _Block);
@@ -229,9 +232,10 @@ namespace GTA {
                     i->carInteract = true;
                     collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
                 } else {
-                    newCounter++;
-                    if (newCounter > 10){
+                    i->newCounter++;
+                    if (i->newCounter > 120){
                         i->carInteract = false;
+                        i->newCounter = 0;
                     }
                 }
             }

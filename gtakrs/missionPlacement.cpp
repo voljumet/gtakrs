@@ -25,13 +25,26 @@ namespace GTA{
         this->missionCircleMini.setScale(2.f, 2.f);
         this->missionCircleMini.setOrigin(50.f, 67.f);
 
+
+        this->boatCircleIsland.setTexture(texture);
+        this->boatCircleIsland.setPosition(TILE_SIZE * 20, TILE_SIZE * 21);
+        this->boatCircleIsland.setTextureRect(sf::IntRect(0,0,100, 100));
+        this->boatCircleIsland.setScale(2.f, 2.f);
+        this->boatCircleIsland.setOrigin(50.f, 67.f);
+
+        this->boatCircle.setTexture(texture);
+        this->boatCircle.setPosition(TILE_SIZE * 20, TILE_SIZE * 21);
+        this->boatCircle.setTextureRect(sf::IntRect(0,0,100, 100));
+        this->boatCircle.setScale(2.f, 2.f);
+        this->boatCircle.setOrigin(50.f, 67.f);
+
         if (!font.loadFromFile(RETRO)){
             std::cout << "Cant load font from resources!" << std::endl;
         }
     }
 
     void missionPlacement::missionStart(GameDataRef data_inn, Player &player,
-            int &missionNumber, sf::Sprite &playerPos) {
+            int &missionNumber, sf::Sprite &playerPos, bool boat) {
         _data = std::move(data_inn);
 
         switch (missionNumber){
@@ -73,20 +86,15 @@ namespace GTA{
             case 7:
                 std::cout << "7" << std::endl;
                 missionNumber++;
-//                this->missionCircle.setPosition(TILE_SIZE * 33.30f, TILE_SIZE * 43.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
                 this->_data->machine.GetActiveState()->Pause();
-                this->_data->machine.AddState(StateRef(new Mission(_data)),
-                        false);
+                this->_data->machine.AddState(StateRef(new Mission(_data)),false);
                 break;
             case 8:
                 std::cout << "8" << std::endl;
                 missionNumber++;
-//                this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
                 this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
-
                 break;
-
             case 9:
                 std::cout << "9" << std::endl;
                 missionNumber++;
@@ -105,19 +113,25 @@ namespace GTA{
             default:
                 break;
         }
+        if (boat){
+            this->boatCircle.setPosition(TILE_SIZE * 172.f, TILE_SIZE * 42.f);
+            this->boatCircleIsland.setPosition(TILE_SIZE * 172.f, TILE_SIZE * 42.f);
+        } else {
+
+        }
         this->missionCircleMini.setPosition(missionCircle.getPosition());
 
     }
 
-    void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber) {
+    void missionPlacement::infoBox(sf::Sprite &player, int &missionNumber, bool boat) {
         rectangleShape.setSize(sf::Vector2f(800, 250));
         rectangleShape.setOutlineColor(sf::Color::Red);
         rectangleShape.setOutlineThickness(5);
         rectangleShape.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
-        InfoBoxText(player, missionNumber);
+        InfoBoxText(player, missionNumber, boat);
     }
 
-    void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber) {
+    void missionPlacement::InfoBoxText(sf::Sprite &player, int &missionNumber, bool &boat) {
 
         text.setFont(font);
         switch(missionNumber){
@@ -215,7 +229,7 @@ namespace GTA{
             default:
                 break;
         }
-
+        Boat(boat);
         text.setCharacterSize(22);
         text.setFillColor(sf::Color::Black);
         text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
@@ -236,5 +250,16 @@ namespace GTA{
 
     sf::Text missionPlacement::getText() {
         return text;
+    }
+
+    void missionPlacement::Boat(bool boat) {
+        if(boat){
+
+            rectangleShape.setSize(sf::Vector2f(800, 60));
+            text.setString("\n  Press space to enter boat \n");
+        } else {
+            rectangleShape.setSize(sf::Vector2f(800, 60));
+            text.setString("\n  Press space to enter boat \n");
+        }
     }
 }
