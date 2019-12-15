@@ -11,7 +11,7 @@ namespace GTA {
     void Npv::CarInit(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
 
         dir = RandomDir;
-        movementSpeed = 8;
+        movementSpeed = 6;
         spriteHeight = 208;
         spriteWidth = 91;
 

@@ -34,15 +34,11 @@ namespace GTA {
         sound.loadall();
         sound.song.play();
 
-        /// loads all the ogg files for the sound effects into soundbuffers that can be used when something happens
-        // calls initcoin function from missionPlacement
-        missionPlacement.hackMissionSettings();
-
         player1 = this->_data->assets.GetTexture("Player");
         M3_White = this->_data->assets.GetTexture("M3_WHITE");
 
         /// calls initcoin function from missionPlacement
-        missionPlacement.hackMissionSettings();
+        missionPlacement;
 
         /// SET STARTING POSITION
         playerStartPosX = TILE_SIZE * 49;
@@ -161,23 +157,22 @@ namespace GTA {
                 switch (event.key.code) {
                     case sf::Keyboard::Space: {
 
-
                          if (!Driving && !boatbool) {
 
-                             /// Enter boat
-                             if(GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
-                                 _car.setPosition(Boat.getPosition());
-                                 _car.setRotation(Boat.getRotation());
-                                 _car.setTexture(this->_data->assets.GetTexture("boat"));
-                                 _car.setColor(sf::Color::White);
-                                 _car.setTextureRect(sf::IntRect(0,0,400,430));
-                                 _car.setOrigin(150, 100);
-                                 Boat.setColor(sf::Color::Transparent);
-                                 Driving = true;
-                                 boatbool = true;
-                             }
-                             /// Enter car
+//                             /// Enter boat
+//                             if(GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
+//                                 _car.setPosition(Boat.getPosition());
+//                                 _car.setRotation(Boat.getRotation());
+//                                 _car.setTexture(this->_data->assets.GetTexture("boat"));
+//                                 _car.setColor(sf::Color::White);
+//                                 _car.setTextureRect(sf::IntRect(0,0,400,430));
+//                                 _car.setOrigin(150, 100);
+//                                 Boat.setColor(sf::Color::Transparent);
+//                                 Driving = true;
+//                                 boatbool = true;
+//                             }
 
+                             /// Enter car
                             for(auto i : npvController.npvVec){
                                 if (i->carInteract){
                                     i->carInteract = false;
@@ -187,11 +182,8 @@ namespace GTA {
                                     delete(i);
                                     Driving = true;
                                     npvController.npvVec.erase(std::remove(npvController.npvVec.begin(), npvController.npvVec.end(), i), npvController.npvVec.end());
-                                } else if (i->boatInteract){
-
                                 }
                             }
-
 
                         } else if (Driving && !boatbool) {
 
@@ -212,19 +204,20 @@ namespace GTA {
                             Driving = false;
 
                             /// Exit boat
-                        } else if (Driving && boatbool){
-                             _player.playerGetSprite().setPosition(182*TILE_SIZE,64*TILE_SIZE);
-                             _player.playerGetSprite().setRotation(_car.getRotation());
-                             _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-                             _car.setTextureRect(sf::IntRect(0,0,91, 208));
-                             _car.setOrigin(35.f, 50.f);
-                             Boat.setPosition(_car.getPosition());
-                             Boat.setTexture(this->_data->assets.GetTexture("boat"));
-                             Boat.setRotation(_car.getRotation());
-                             Boat.setColor(sf::Color::White);
-                             Driving = false;
-                             boatbool = false;
                         }
+//                        else if (Driving && boatbool){
+//                             _player.playerGetSprite().setPosition(182*TILE_SIZE,64*TILE_SIZE);
+//                             _player.playerGetSprite().setRotation(_car.getRotation());
+//                             _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+//                             _car.setTextureRect(sf::IntRect(0,0,91, 208));
+//                             _car.setOrigin(35.f, 50.f);
+//                             Boat.setPosition(_car.getPosition());
+//                             Boat.setTexture(this->_data->assets.GetTexture("boat"));
+//                             Boat.setRotation(_car.getRotation());
+//                             Boat.setColor(sf::Color::White);
+//                             Driving = false;
+//                             boatbool = false;
+//                        }
                     }
                 }
             }
@@ -274,21 +267,74 @@ namespace GTA {
         /// mission trigger
         if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
             mission = true;
-            missionPlacement.infoBox(_player.playerGetSprite(), missionNumber, boatbool);
+            missionPlacement.InfoBox(_player.playerGetSprite(), Boat.getPosition(), missionNumber, boatbool);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
                 missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite(), boatbool);
             }
-        }else {
-            mission = false;
-        }
+        } else { mission = false; }
 
+        if(!boatbool){
+            if(PixelPerfectTest(missionPlacement.getBoatCircle(), _player.playerGetSprite()) ||
+            PixelPerfectTest(missionPlacement.getBoatCircleIsland(), _player.playerGetSprite())){
+                boatBox = true; /// Player står i ringen og får playerPos mens man er båt
+                missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+                    /// ENTER BOAT
+                    _car.setPosition(Boat.getPosition());
+                    _car.setRotation(Boat.getRotation());
+                    _car.setTexture(this->_data->assets.GetTexture("boat"));
+                    _car.setColor(sf::Color::White);
+                    _car.setTextureRect(sf::IntRect(0,0,400,430));
+                    _car.setOrigin(150, 100);
+                    Boat.setColor(sf::Color::Transparent);
+                    Driving = true;
+                    boatbool = true;
+                    missionPlacement.BoatCircle(boatbool);
+                }
+            } else { boatBox = false; }
+        } else {
+            if (PixelPerfectTest(missionPlacement.getBoatCircle(), _car) ) {
+                boatBox = true;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+                    _player.playerGetSprite().setPosition(120*TILE_SIZE,117*TILE_SIZE);
+                    _player.playerGetSprite().setRotation(_car.getRotation());
+                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
+                    _car.setOrigin(35.f, 50.f);
+                    Boat.setPosition(_car.getPosition());
+                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
+                    Boat.setRotation(_car.getRotation());
+                    Boat.setColor(sf::Color::White);
+                    Driving = false;
+                    boatbool = false;
+                    missionPlacement.BoatCircle(boatbool);
+                }
+            } else if (PixelPerfectTest(missionPlacement.getBoatCircleIsland(), _car) ) {
+                boatBox = true;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+                    _player.playerGetSprite().setPosition(182*TILE_SIZE,65*TILE_SIZE);
+                    _player.playerGetSprite().setRotation(_car.getRotation());
+                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
+                    _car.setOrigin(35.f, 50.f);
+                    Boat.setPosition(_car.getPosition());
+                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
+                    Boat.setRotation(_car.getRotation());
+                    Boat.setColor(sf::Color::White);
+                    Driving = false;
+                    boatbool = false;
+                    missionPlacement.BoatCircle(boatbool);
+                }
+            } else { boatBox = false; }
+        }
+        
         /// Car Respawn and Move
         Timer = std::clock();
         drawtimerNPV +=1;
-        if(drawtimerNPV == 2){ npvController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car"), map._Block);
-            drawtimerNPV = 0;
-        }
+        if(drawtimerNPV == 2){ drawtimerNPV = 0; }
+            npvController.NpvMoveAndSpawn(this->_data->assets.GetTexture("car"), map._Block);
         NPVMoveDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Timer control samle (stores a time that should be close to 0, if high, all numbers are off!)
@@ -362,11 +408,21 @@ namespace GTA {
         map.Render(Driving, Minimap, Debug, _car.getPosition().x,
                    _car.getPosition().y, _player.playerGetSprite().getPosition().x,
                    _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
-
         MapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
+
+        /// Draw weapons
+        this->_data->window.draw(weapon.getGun());
+        this->_data->window.draw(weapon.getShotgun());
+
+        /// Draw stuff
+        this->_data->window.draw(objectSpawn.getPc());
+        this->_data->window.draw(objectSpawn.getBurger());
+        this->_data->window.draw(objectSpawn.getSniper());
 
         /// Draw mission circle
         this->_data->window.draw(missionPlacement.getMissionCircle());
+        this->_data->window.draw(missionPlacement.getBoatCircle());
+        this->_data->window.draw(missionPlacement.getBoatCircleIsland());
 
         /// Draw Bullets
         shooting.DrawBullet(_data);
@@ -376,11 +432,12 @@ namespace GTA {
         npcController.NpcDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath);
         NPCDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
+        ///Draw Boat.
+        this->_data->window.draw(Boat);
+
         /// Draw NPVehicles
         Timer = std::clock();
-
         npvController.NpvDraw(_data, Driving,movement.currentSpeed, _car, _player.playerGetSprite(), sound.cardeath,M3_White, map._Block, _player, boatbool,sound.tesla  );
-
         NPVDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
         /// Draw Player or Vehicle
@@ -391,24 +448,15 @@ namespace GTA {
         _player.HealthBar( this->_data->window,this->_data->assets.GetTexture("HB"),
                           this->_data->assets.GetTexture("HB1"),_car.getPosition(),Driving);
 
-        /// Draw weapons
-        this->_data->window.draw(weapon.getGun());
-        this->_data->window.draw(weapon.getShotgun());
-
-        /// Draw stuff
-
-        this->_data->window.draw(objectSpawn.getPc());
-        this->_data->window.draw(objectSpawn.getBurger());
-        this->_data->window.draw(objectSpawn.getSniper());
-
         /// if mission equals true and player intesects circle, the rectangle box appears
         if(mission) { this->_data->window.draw(missionPlacement.getBox());
             this->_data->window.draw(missionPlacement.getText()); }
 
-        ///Draw Boat.
-        this->_data->window.draw(Boat);
+        if(boatBox) { this->_data->window.draw(missionPlacement.getBox());
+            this->_data->window.draw(missionPlacement.getText()); }
 
-        /////////Draw Minimap
+        /////////Draw Minimap ///////////////////////////////////////////////////////////
+        /// Everyything under this line will be drawn on minimap ////////////////////////
         Timer = std::clock();
         if(!Debug){
             this->_data->window.draw(this->getRektMap);
@@ -420,7 +468,7 @@ namespace GTA {
         }
         MmapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
-        /// Draw mission circle
+        /// Draw mission circle on minimap
         this->_data->window.draw(missionPlacement.getMissionCircleMini());
 
         /// Draw Player or Car

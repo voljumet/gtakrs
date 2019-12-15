@@ -40,6 +40,7 @@ namespace GTA {
         bool Debug = false;
         bool Minimap = false;
         bool mission = false;
+        bool boatBox = false;
 
         /// IKKE SLETT !!!! ------------
         bool NULLER = false;
