@@ -159,19 +159,6 @@ namespace GTA {
 
                          if (!Driving && !boatbool) {
 
-//                             /// Enter boat
-//                             if(GTA::PixelPerfectTest(_player.playerGetSprite(), Boat)){
-//                                 _car.setPosition(Boat.getPosition());
-//                                 _car.setRotation(Boat.getRotation());
-//                                 _car.setTexture(this->_data->assets.GetTexture("boat"));
-//                                 _car.setColor(sf::Color::White);
-//                                 _car.setTextureRect(sf::IntRect(0,0,400,430));
-//                                 _car.setOrigin(150, 100);
-//                                 Boat.setColor(sf::Color::Transparent);
-//                                 Driving = true;
-//                                 boatbool = true;
-//                             }
-
                              /// Enter car
                             for(auto i : npvController.npvVec){
                                 if (i->carInteract){
@@ -197,6 +184,7 @@ namespace GTA {
                              npvController.npvVec[k]->getNpvBot().setPosition(_car.getPosition());
                              npvController.npvVec[k]->getNpvBot().setRotation( _car.getRotation());
                              npvController.npvVec[k]->movementSpeed = 0;
+                             /// Position til car blir rar når man går ut av bilen
 
                             _player.player_SetPosition(sf::Vector2f(_car.getPosition().x + 50,_car.getPosition().y + 50));
                             _player.setRotaion(_car.getRotation());
@@ -205,27 +193,56 @@ namespace GTA {
 
                             /// Exit boat
                         }
-//                        else if (Driving && boatbool){
-//                             _player.playerGetSprite().setPosition(182*TILE_SIZE,64*TILE_SIZE);
-//                             _player.playerGetSprite().setRotation(_car.getRotation());
-//                             _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-//                             _car.setTextureRect(sf::IntRect(0,0,91, 208));
-//                             _car.setOrigin(35.f, 50.f);
-//                             Boat.setPosition(_car.getPosition());
-//                             Boat.setTexture(this->_data->assets.GetTexture("boat"));
-//                             Boat.setRotation(_car.getRotation());
-//                             Boat.setColor(sf::Color::White);
-//                             Driving = false;
-//                             boatbool = false;
-//                        }
+
+                        if(enterBoat){
+                            _car.setPosition(Boat.getPosition());
+                            _car.setRotation(Boat.getRotation());
+                            _car.setTexture(this->_data->assets.GetTexture("boat"));
+                            _car.setColor(sf::Color::White);
+                            _car.setTextureRect(sf::IntRect(0,0,400,430));
+                            _car.setOrigin(150, 100);
+                            Boat.setColor(sf::Color::Transparent);
+                            Driving = true;
+                            boatbool = true;
+                            enterBoat = false;
+                            missionPlacement.BoatCircle(boatbool);
+                        }
+
+                        if(exitBoat){
+                            _player.playerGetSprite().setPosition(120*TILE_SIZE,117*TILE_SIZE);
+                            _player.playerGetSprite().setRotation(_car.getRotation());
+                            _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+                            _car.setTextureRect(sf::IntRect(0,0,91, 208));
+                            _car.setOrigin(35.f, 50.f);
+                            Boat.setPosition(_car.getPosition());
+                            Boat.setTexture(this->_data->assets.GetTexture("boat"));
+                            Boat.setRotation(_car.getRotation());
+                            Boat.setColor(sf::Color::White);
+                            Driving = false;
+                            boatbool = false;
+                            exitBoat = false;
+                            missionPlacement.BoatCircle(boatbool);
+                        }
+
+                        if(exitBoatIsland){
+                            _player.playerGetSprite().setPosition(182*TILE_SIZE,65*TILE_SIZE);
+                            _player.playerGetSprite().setRotation(_car.getRotation());
+                            _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+                            _car.setTextureRect(sf::IntRect(0,0,91, 208));
+                            _car.setOrigin(35.f, 50.f);
+                            Boat.setPosition(_car.getPosition());
+                            Boat.setTexture(this->_data->assets.GetTexture("boat"));
+                            Boat.setRotation(_car.getRotation());
+                            Boat.setColor(sf::Color::White);
+                            Driving = false;
+                            boatbool = false;
+                            exitBoatIsland = false;
+                            missionPlacement.BoatCircle(boatbool);
+                        }
                     }
                 }
             }
         }
-
-//        if(sf::Keyboard::isKeyPressed(sf::Keyboard::R) && boatbool){
-//
-//        }
 
         /// Activate DEBUG-MODE
         switch (event.type) {
@@ -279,57 +296,66 @@ namespace GTA {
             PixelPerfectTest(missionPlacement.getBoatCircleIsland(), _player.playerGetSprite())){
                 boatBox = true; /// Player står i ringen og får playerPos mens man er båt
                 missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
-
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-                    /// ENTER BOAT
-                    _car.setPosition(Boat.getPosition());
-                    _car.setRotation(Boat.getRotation());
-                    _car.setTexture(this->_data->assets.GetTexture("boat"));
-                    _car.setColor(sf::Color::White);
-                    _car.setTextureRect(sf::IntRect(0,0,400,430));
-                    _car.setOrigin(150, 100);
-                    Boat.setColor(sf::Color::Transparent);
-                    Driving = true;
-                    boatbool = true;
-                    missionPlacement.BoatCircle(boatbool);
-                }
-            } else { boatBox = false; }
+                std::cout << "enter boat" << std::endl;
+                enterBoat = true;
+//                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+//                    /// ENTER BOAT
+//                    _car.setPosition(Boat.getPosition());
+//                    _car.setRotation(Boat.getRotation());
+//                    _car.setTexture(this->_data->assets.GetTexture("boat"));
+//                    _car.setColor(sf::Color::White);
+//                    _car.setTextureRect(sf::IntRect(0,0,400,430));
+//                    _car.setOrigin(150, 100);
+//                    Boat.setColor(sf::Color::Transparent);
+//                    Driving = true;
+//                    boatbool = true;
+//                    missionPlacement.BoatCircle(boatbool);
+//                }
+            } else { boatBox = false;
+                enterBoat = false;
+            }
         } else {
             if (PixelPerfectTest(missionPlacement.getBoatCircle(), _car) ) {
                 boatBox = true;
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-                    _player.playerGetSprite().setPosition(120*TILE_SIZE,117*TILE_SIZE);
-                    _player.playerGetSprite().setRotation(_car.getRotation());
-                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
-                    _car.setOrigin(35.f, 50.f);
-                    Boat.setPosition(_car.getPosition());
-                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
-                    Boat.setRotation(_car.getRotation());
-                    Boat.setColor(sf::Color::White);
-                    Driving = false;
-                    boatbool = false;
-                    missionPlacement.BoatCircle(boatbool);
-                }
+                missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
+                std::cout << "exit boat" << std::endl;
+                exitBoat = true;
+//                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+//                    _player.playerGetSprite().setPosition(120*TILE_SIZE,117*TILE_SIZE);
+//                    _player.playerGetSprite().setRotation(_car.getRotation());
+//                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+//                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
+//                    _car.setOrigin(35.f, 50.f);
+//                    Boat.setPosition(_car.getPosition());
+//                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
+//                    Boat.setRotation(_car.getRotation());
+//                    Boat.setColor(sf::Color::White);
+//                    Driving = false;
+//                    boatbool = false;
+//                    missionPlacement.BoatCircle(boatbool);
+//                }
             } else if (PixelPerfectTest(missionPlacement.getBoatCircleIsland(), _car) ) {
                 boatBox = true;
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-                    _player.playerGetSprite().setPosition(182*TILE_SIZE,65*TILE_SIZE);
-                    _player.playerGetSprite().setRotation(_car.getRotation());
-                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
-                    _car.setOrigin(35.f, 50.f);
-                    Boat.setPosition(_car.getPosition());
-                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
-                    Boat.setRotation(_car.getRotation());
-                    Boat.setColor(sf::Color::White);
-                    Driving = false;
-                    boatbool = false;
-                    missionPlacement.BoatCircle(boatbool);
-                }
-            } else { boatBox = false; }
+                missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
+                std::cout << "exit boat island" << std::endl;
+                exitBoatIsland = true;
+//                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
+//                    _player.playerGetSprite().setPosition(182*TILE_SIZE,65*TILE_SIZE);
+//                    _player.playerGetSprite().setRotation(_car.getRotation());
+//                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
+//                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
+//                    _car.setOrigin(35.f, 50.f);
+//                    Boat.setPosition(_car.getPosition());
+//                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
+//                    Boat.setRotation(_car.getRotation());
+//                    Boat.setColor(sf::Color::White);
+//                    Driving = false;
+//                    boatbool = false;
+//                    missionPlacement.BoatCircle(boatbool);
+//                }
+            } else { boatBox = false; exitBoat = false; exitBoatIsland = false; }
         }
-        
+
         /// Car Respawn and Move
         Timer = std::clock();
         drawtimerNPV +=1;

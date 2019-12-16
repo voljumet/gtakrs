@@ -220,14 +220,13 @@ namespace GTA{
                     break;
                 default:
                     break;
-
         }
     }
 
+    sf::Text missionPlacement::getText() { return text; }
+    sf::RectangleShape missionPlacement::getBox() { return rectangleShape; }
     sf::Sprite missionPlacement::getMissionCircle(){ return missionCircle; }
     sf::Sprite missionPlacement::getMissionCircleMini() { return missionCircleMini; }
-    sf::RectangleShape missionPlacement::getBox() { return rectangleShape; }
-    sf::Text missionPlacement::getText() { return text; }
     sf::Sprite missionPlacement::getBoatCircle() { return boatCircle; }
     sf::Sprite missionPlacement::getBoatCircleIsland() { return boatCircleIsland; }
 

@@ -41,6 +41,9 @@ namespace GTA {
         bool Minimap = false;
         bool mission = false;
         bool boatBox = false;
+        bool enterBoat = false;
+        bool exitBoat = false;
+        bool exitBoatIsland = false;
 
         /// IKKE SLETT !!!! ------------
         bool NULLER = false;
