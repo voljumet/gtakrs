@@ -285,10 +285,8 @@ namespace GTA {
         if(PixelPerfectTest(missionPlacement.getMissionCircle(), _player.playerGetSprite())){
             mission = true;
             missionPlacement.InfoBox(_player.playerGetSprite(), Boat.getPosition(), missionNumber, boatbool);
-
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-                missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite(), boatbool);
-            }
+                missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite(), boatbool); }
         } else { mission = false; }
 
         if(!boatbool){
@@ -296,63 +294,17 @@ namespace GTA {
             PixelPerfectTest(missionPlacement.getBoatCircleIsland(), _player.playerGetSprite())){
                 boatBox = true; /// Player står i ringen og får playerPos mens man er båt
                 missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
-                std::cout << "enter boat" << std::endl;
                 enterBoat = true;
-//                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-//                    /// ENTER BOAT
-//                    _car.setPosition(Boat.getPosition());
-//                    _car.setRotation(Boat.getRotation());
-//                    _car.setTexture(this->_data->assets.GetTexture("boat"));
-//                    _car.setColor(sf::Color::White);
-//                    _car.setTextureRect(sf::IntRect(0,0,400,430));
-//                    _car.setOrigin(150, 100);
-//                    Boat.setColor(sf::Color::Transparent);
-//                    Driving = true;
-//                    boatbool = true;
-//                    missionPlacement.BoatCircle(boatbool);
-//                }
-            } else { boatBox = false;
-                enterBoat = false;
-            }
+            } else { boatBox = false; enterBoat = false; }
         } else {
             if (PixelPerfectTest(missionPlacement.getBoatCircle(), _car) ) {
                 boatBox = true;
                 missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
-                std::cout << "exit boat" << std::endl;
                 exitBoat = true;
-//                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-//                    _player.playerGetSprite().setPosition(120*TILE_SIZE,117*TILE_SIZE);
-//                    _player.playerGetSprite().setRotation(_car.getRotation());
-//                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-//                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
-//                    _car.setOrigin(35.f, 50.f);
-//                    Boat.setPosition(_car.getPosition());
-//                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
-//                    Boat.setRotation(_car.getRotation());
-//                    Boat.setColor(sf::Color::White);
-//                    Driving = false;
-//                    boatbool = false;
-//                    missionPlacement.BoatCircle(boatbool);
-//                }
             } else if (PixelPerfectTest(missionPlacement.getBoatCircleIsland(), _car) ) {
                 boatBox = true;
                 missionPlacement.infoBoxBoat(_player.playerGetSprite(), boatbool, _car.getPosition());
-                std::cout << "exit boat island" << std::endl;
                 exitBoatIsland = true;
-//                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space )) {
-//                    _player.playerGetSprite().setPosition(182*TILE_SIZE,65*TILE_SIZE);
-//                    _player.playerGetSprite().setRotation(_car.getRotation());
-//                    _car.setTexture(this->_data->assets.GetTexture("M3_WHITE"));
-//                    _car.setTextureRect(sf::IntRect(0,0,91, 208));
-//                    _car.setOrigin(35.f, 50.f);
-//                    Boat.setPosition(_car.getPosition());
-//                    Boat.setTexture(this->_data->assets.GetTexture("boat"));
-//                    Boat.setRotation(_car.getRotation());
-//                    Boat.setColor(sf::Color::White);
-//                    Driving = false;
-//                    boatbool = false;
-//                    missionPlacement.BoatCircle(boatbool);
-//                }
             } else { boatBox = false; exitBoat = false; exitBoatIsland = false; }
         }
 
@@ -408,7 +360,6 @@ namespace GTA {
 
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getPc())){
             objectSpawn.setHasPc(1);
-
             objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
         }
 
@@ -554,10 +505,6 @@ namespace GTA {
 
             for(int Y = fromY; Y < toY; Y++) {
                 for (int X = fromX; X < toX; X++) {
-//                    if(PixelPerfectTest(Boat,map._Block[Y][X].tileSprite))
-//                    {
-//
-//                    }
                     NoDrivWalkInt = map._Block[Y][X].tileTextureNumber;
                     if(NoDrivWalkInt == 11 || NoDrivWalkInt == 12){
                         for (int j = 0; j < npcController.getNpcVec().size(); ++j) {
@@ -568,7 +515,6 @@ namespace GTA {
                             }
                         }
                     }
-
 
                     if(boatbool) {
                         nocruising = std::find(std::begin(BOATCan_Not_MoveHere), std::end(BOATCan_Not_MoveHere),
@@ -640,7 +586,6 @@ namespace GTA {
         this->_data->assets.LoadTexture("car", CAR_BLUE);
         this->_data->assets.LoadTexture("mission Circle", MISSION_CIRCLE_SPRITE);
 
-
         this->_data->assets.LoadTexture("Bullet", BULLET_SPRITE);
 
         this->_data->assets.LoadTexture("HB", HEALTH_BAR);
@@ -654,12 +599,10 @@ namespace GTA {
         this->_data->assets.LoadTexture("M3_SILVER", M3_SILVER);
         this->_data->assets.LoadTexture("M3_WHITE", M3_WHITE);
 
-        this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);    // dependency injected directly *3
+        this->_data->assets.LoadTexture("Tiles", TILEMAP_PNG_FILEPATH);
         this->_data->assets.LoadFont("Arial", FONT_ARIAL);
 
-
     }
-
 }
 
 
