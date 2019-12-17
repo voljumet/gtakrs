@@ -99,6 +99,16 @@ namespace GTA {
             switch (event.type) {
                 case sf::Event::KeyReleased: {
                     switch (event.key.code) {
+                        case sf::Keyboard::K: {
+                            missionPlacement.missionStart(_data, _player, missionNumber, _player.playerGetSprite(), boatbool);
+                            std::cout << "next mission" << std::endl;
+                        }
+                    }
+                }
+            }
+            switch (event.type) {
+                case sf::Event::KeyReleased: {
+                    switch (event.key.code) {
                         case sf::Keyboard::Space: {
                             if (!Driving) {
                                 this->_car.setPosition(_player.player_Getposition());
@@ -221,6 +231,7 @@ namespace GTA {
                 }
             }
         }
+
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             sound.song.stop();
@@ -396,6 +407,7 @@ namespace GTA {
         }
         this->view.setCenter(X,Y);
         this->minimap.setCenter(X,Y);
+        this->getRektMap.setPosition(X+=512,Y-=794);
     }
 
     /// Update movement
@@ -527,7 +539,6 @@ namespace GTA {
             weapon.setGunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH)) ;
             weapon.setGunPosX((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT)) ;
             weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
-
         }
 
         /// Player picks up Shotgun
@@ -539,7 +550,6 @@ namespace GTA {
             weapon.setShotgunPosX((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
             weapon.setShotgunPosY( (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
             weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
-
         }
 
         /// Player picks up Pc

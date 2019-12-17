@@ -91,7 +91,7 @@ namespace GTA{
             case 9:
                 missionNumber++;
                 player.setCoin();
-                this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
+                this->missionCircle.setPosition(TILE_SIZE * 172.f, TILE_SIZE * 42.f);
                 break;
             case 10:
                 missionNumber++;
@@ -203,14 +203,11 @@ namespace GTA{
                                "  - Take the boat and get to the island  \n"
                                "    north-west of here! \n\n");
                 break;
-
             case 10:
-                rectangleShape.setSize(sf::Vector2f(800, 60));
+                rectangleShape.setSize(sf::Vector2f(800, 120));
                 text.setString(" \n"
                                "  - Time for vacation after saving the city! \n"
                                "    And thanks's for playing! \n\n");
-                break;
-            case 11:
                 break;
             default:
                 break;
