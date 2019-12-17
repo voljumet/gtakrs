@@ -6,6 +6,13 @@
 
 namespace GTA{
     class MainMenuState : public State{
+        GameDataRef _data;
+        sf::View view;
+        sf::Sprite _playButton;
+        sf::Sprite _resumeButton;
+        sf::Sprite _controlsButton;
+        sf::Sprite _exitButton;
+        sf::Sprite _logo;
 
     public:
         explicit MainMenuState(GameDataRef data);
@@ -15,13 +22,5 @@ namespace GTA{
         void Draw(float dt) override;
         void UpdateView(const float &dt);
 
-    private:
-        GameDataRef _data;
-        sf::View view;
-        sf::Sprite _playButton;
-        sf::Sprite _resumeButton;
-        sf::Sprite _controlsButton;
-        sf::Sprite _exitButton;
-        sf::Sprite _logo;
     };
 }

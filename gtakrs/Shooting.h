@@ -12,7 +12,7 @@ namespace GTA {
         Movement movement;
         bool shotgun = true;
         std::vector<Bullet*> bulletlist;
-
+        GameDataRef _data;
 
     public:
          std::vector<Bullet *> &getBulletlist() ;
@@ -21,9 +21,5 @@ namespace GTA {
         void MoveBullet();
         void DrawBullet(GameDataRef &inn_data);
         void Collision(GameDataRef &inn_data, std::vector<Npc*> &npclist,std::vector<Npv*> &npvlist, std::vector<Bullet*> &bulletlist);
-
-    private:
-        GameDataRef _data;
     };
 }
-

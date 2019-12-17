@@ -1,101 +1,46 @@
 #include "Weapon.h"
 
-void GTA::Weapon::Gun_init() {
+namespace GTA{
+    void Weapon::Gun_init() {
 
-    gunTexture.loadFromFile(GLOCK);
-    gun.setTexture(gunTexture);
+        gunTexture.loadFromFile(GLOCK);
+        gun.setTexture(gunTexture);
 
-    gun.setPosition(gun_posX, gun_posY);
-    gun.setScale(0.07, 0.07);
+        gun.setPosition(gun_posX, gun_posY);
+        gun.setScale(0.07, 0.07);
 
-    shotgunTexture.loadFromFile(SHOTGUN);
-    shotgun.setTexture(shotgunTexture);
+        shotgunTexture.loadFromFile(SHOTGUN);
+        shotgun.setTexture(shotgunTexture);
 
-    shotgun.setPosition(shotgun_posX, shotgun_posY);
-    shotgun.setScale(0.25, 0.25);
+        shotgun.setPosition(shotgun_posX, shotgun_posY);
+        shotgun.setScale(0.25, 0.25);
 
-    hasweapon = false;
-    hasshotgun = false;
+        hasweapon = false;
+        hasshotgun = false;
+    }
 
-}
+    void Weapon::setGunPosX(float gunPosX) { gun_posX = gunPosX; }
+    void Weapon::setGunPosY(float gunPosY) { gun_posY = gunPosY; }
+    void Weapon::setGun(const sf::Sprite &gun) { Weapon::gun = gun; }
+    void Weapon::setShotgunPosX(float shotgunPosX) { shotgun_posX = shotgunPosX; }
+    void Weapon::setShotgunPosY(float shotgunPosY) { shotgun_posY = shotgunPosY; }
+    void Weapon::setShotgun(const sf::Sprite &shotgun) { Weapon::shotgun = shotgun; }
+    void Weapon::setHasweapon(bool hasweapon) { Weapon::hasweapon = hasweapon; }
+    void Weapon::setShotammo(int shotammo) { Weapon::shotammo = shotammo; }
+    void Weapon::setHasshotgun(bool hasshotgun) { Weapon::hasshotgun = hasshotgun; }
+    void Weapon::setGunammo(int gunammo) { Weapon::gunammo = gunammo ; }
 
-float GTA::Weapon::getGunPosX() const {
-    return gun_posX;
-}
+    sf::Sprite &Weapon::getGun()  { return gun; }
+    sf::Sprite &Weapon::getShotgun()  { return shotgun; }
 
-void GTA::Weapon::setGunPosX(float gunPosX) {
-    gun_posX = gunPosX;
-}
+    float Weapon::getGunPosX() const { return gun_posX; }
+    float Weapon::getGunPosY() const { return gun_posY; }
+    float Weapon::getShotgunPosX() const { return shotgun_posX; }
+    float Weapon::getShotgunPosY() const { return shotgun_posY; }
 
-float GTA::Weapon::getGunPosY() const {
-    return gun_posY;
-}
+    int Weapon::getShotammo() const { return shotammo; }
+    int Weapon::getGunammo() const { return gunammo; }
 
-void GTA::Weapon::setGunPosY(float gunPosY) {
-    gun_posY = gunPosY;
-}
-
- sf::Sprite &GTA::Weapon::getGun()  {
-    return gun;
-}
-
-void GTA::Weapon::setGun(const sf::Sprite &gun) {
-    Weapon::gun = gun;
-}
-
-float GTA::Weapon::getShotgunPosX() const {
-    return shotgun_posX;
-}
-
-void GTA::Weapon::setShotgunPosX(float shotgunPosX) {
-    shotgun_posX = shotgunPosX;
-}
-
-float GTA::Weapon::getShotgunPosY() const {
-    return shotgun_posY;
-}
-
-void GTA::Weapon::setShotgunPosY(float shotgunPosY) {
-    shotgun_posY = shotgunPosY;
-}
-
- sf::Sprite &GTA::Weapon::getShotgun()  {
-    return shotgun;
-}
-
-void GTA::Weapon::setShotgun(const sf::Sprite &shotgun) {
-    Weapon::shotgun = shotgun;
-}
-
-bool GTA::Weapon::isHasweapon() const {
-    return hasweapon;
-}
-
-void GTA::Weapon::setHasweapon(bool hasweapon) {
-    Weapon::hasweapon = hasweapon;
-}
-
-int GTA::Weapon::getShotammo() const {
-    return shotammo;
-}
-
-void GTA::Weapon::setShotammo(int shotammo) {
-    Weapon::shotammo = shotammo;
-}
-
-int GTA::Weapon::getGunammo() const {
-    return gunammo;
-}
-
-void GTA::Weapon::setGunammo(int gunammo) {
-    Weapon::gunammo = gunammo ;
-}
-
-
-bool GTA::Weapon::isHasshotgun() const {
-    return hasshotgun;
-}
-
-void GTA::Weapon::setHasshotgun(bool hasshotgun) {
-    Weapon::hasshotgun = hasshotgun;
+    bool Weapon::isHasweapon() const { return hasweapon; }
+    bool Weapon::isHasshotgun() const { return hasshotgun; }
 }

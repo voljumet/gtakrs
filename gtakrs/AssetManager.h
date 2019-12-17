@@ -15,13 +15,10 @@ namespace GTA{
         bufferbutton, buffercrash, buffercardeath, bufferempty, bufferspas, buffertesla;
 
         sf::Sound soundhorn, gunshot, footstep, cardoor, button, carcrash, cardeath, empty, spas, tesla;
-
         sf::Music song;
         sf::Music computersounds;
-        sf::Music CITY;
 
         void loadsong();
-        void playsong();
         void loadcomputer();
         void playcomputer();
 
@@ -42,21 +39,14 @@ namespace GTA{
         ~AssetManager()= default;
 
         void LoadTexture( const std::string& name, const std::string& fileName);
-        sf::Texture &GetTexture(const std::string& name);
-
-
         void LoadFont( const std::string& name, const std::string& fileName);
-        sf::Font &GetFont(const std::string& name);
-
-        void LoadSound( const std::string& name, const sf::Sound& soundobject);
-        sf::Sound &GetSound(const std::string& name);
-
         void PlaySound(sf::Sound);
 
+        sf::Texture &GetTexture(const std::string& name);
+        sf::Font &GetFont(const std::string& name);
 
     private:
         std::map<std::string, sf::Texture> _textures;
         std::map<std::string, sf::Font> _fonts;
-        std::map<std::string, sf::Sound> _sounds;
     };
 }

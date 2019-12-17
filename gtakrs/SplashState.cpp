@@ -4,7 +4,7 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 
-/// Denne klassen er bare for splashscreen i starten av spillet
+/// This is the splashscreen in the game
 namespace GTA{
     SplashState::SplashState(GTA::GameDataRef data ): _data(std::move( data )) { }
 

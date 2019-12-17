@@ -1,43 +1,38 @@
 #pragma once
 
-/// Denne klassen er bare for å definere forskjelliger verdier eller filer og kan hentes til alle klasser,
-/// greit for å vite hvor man skal legge til nye objekter eller verdier som er globale
+/// This class defines global variables
 
-///Størrelser
+///Sizes
 //////////////////////////////////////////////////////////////////////////////////////////
 #define SCREEN_WIDTH 1800
 #define SCREEN_HEIGHT 1600
 
-///IMPORTANT TO KNOW HOW MANY COLUMNS THERE ARE IN THE MAP FILE!!!!!!
-#define WORLD_WIDTH 200
-#define WORLD_HEIGHT 400
+
+#define WORLD_WIDTH 200 ///IMPORTANT TO KNOW HOW MANY COLUMNS THERE ARE IN THE MAP FILE!!!!!!
+#define WORLD_HEIGHT 400    ///IMPORTANT TO KNOW HOW MANY COLUMNS THERE ARE IN THE MAP FILE!!!!!!
 
 #define TILE_SIZE 70
 
+/// Timers
+//////////////////////////////////////////////////////////////////////////////////////////
 #define SPLASH_STATE_SHOW_TIME 1
 #define WASTED_STATE_SHOW_TIME 5
 
-//////////////////////////////////////////////////////////////////////////////////////////
-
-///Map
+/// Map
 //////////////////////////////////////////////////////////////////////////////////////////
 #define TILEMAP_PNG_FILEPATH "Resources/res/Tileset_Tileset.png"
-#define MAP_FILE "Resources/res/MAP.map"
+#define MAP_FILE "Resources/res/MAP2.map"
+
+/// Healthbar
+//////////////////////////////////////////////////////////////////////////////////////////
 #define HEALTH_BAR "Resources/res/HB.png"
 #define HEALTH_BAR_1 "Resources/res/HB1.png"
 
-#define MAP_FILE "Resources/res/MAP2.map"
-#define MAP_FILE2 "Resources/res/MAP.map"
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-///Fonts
+/// Fonts
 //////////////////////////////////////////////////////////////////////////////////////////
 #define FONT_ARIAL "Resources/fonts/Arial.ttf"
-#define FONT_MARKER_FELT "Resources/fonts/Marker Felt.ttf"
-//////////////////////////////////////////////////////////////////////////////////////////
 
-///Sprites
+/// Sprites
 //////////////////////////////////////////////////////////////////////////////////////////
 #define PLAYER "Resources/res/Walk_1.png"
 #define PLAYER2 "Resources/res/Walk_2.png"
@@ -61,9 +56,10 @@
 #define M3_WHITE "Resources/res/Vehicles/model3-04.png"
 #define M3_BLACK "Resources/res/Vehicles/model3-05.png"
 
-//////////////////////////////////////////////////////////////////////////////////////////
+#define BOAT "Resources/res/Boat.png"
 
-///Main menu
+
+/// Menus
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MAIN_MENU_LOGO_PATH "Resources/res/Menus/Game Title.png"
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Menus/Buttons-01.png"
@@ -72,15 +68,11 @@
 #define MAIN_MENU_CONTROLS_BUTTON "Resources/res/Menus/Buttons-04.png"
 #define MAIN_MENU_BACK_BUTTON "Resources/res/Menus/Buttons-05.png"
 
-
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Menus/Splash Background.png"
 #define WASTED_FILEPATH "Resources/res/Menus/Wasted-01.png"
 #define CONTROLS_FILEPATH "Resources/res/Menus/Controls-01.png"
 
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-///MISSION 1
+///MISSIONS
 //////////////////////////////////////////////////////////////////////////////////////////
 #define MISSION_1_DEADSPRITE "Resources/res/Mission_1_dead.png"
 
@@ -97,16 +89,10 @@
 #define MISSION_CIRCLE_SPRITE "Resources/res/mission_tile-01.png"
 #define MISSION_CIRCLE_SPRITE2 "Resources/res/mission_tile-02.png"
 
-//////////////////////////////////////////////////////////////////////////////////////////
-
-
 ///HACKING TEXTURE
 #define CRT_SCREEN "Resources/res/mission_2/crtScreen.png"
 #define RETRO "Resources/fonts/retro.ttf"
 #define COMPUTERSOUNDS "Resources/res/Music/computer_sounds.ogg"
-
-
-#define BOAT "Resources/res/Boat.png"
 
 /////AUDIO SAMPLES/////////
 #define AIRHORN_FILEPATH "Resources/res/Sound/airhorn.ogg"
@@ -120,5 +106,3 @@
 #define SPAS12 "Resources/res/Sound/SPAS12.ogg"
 #define TESLA "Resources/res/Sound/TESLA_GOOD.ogg"
 #define SONG "Resources/res/Music/CITY.ogg"
-//////////////////////////////////////////////////////////////////////////////////////////
-

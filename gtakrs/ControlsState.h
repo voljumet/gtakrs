@@ -6,6 +6,12 @@
 
 namespace GTA{
     class ControlsState : public State{
+        GameDataRef _data;
+        sf::View view;
+
+        sf::Sprite _backButton;
+        sf::Sprite _background;
+        sf::Sprite _logo;
 
     public:
         explicit ControlsState(GameDataRef data);
@@ -17,12 +23,5 @@ namespace GTA{
         void Draw(float dt) override;
         void UpdateView(const float &dt);
 
-    private:
-        GameDataRef _data;
-        sf::View view;
-
-        sf::Sprite _backButton;
-        sf::Sprite _background;
-        sf::Sprite _logo;
     };
 }

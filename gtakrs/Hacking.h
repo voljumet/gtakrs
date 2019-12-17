@@ -4,21 +4,18 @@
 #include "Game.h"
 #include "DEFINITIONS.h"
 
-
 namespace GTA{
     class Hacking : public State {
 
         GameDataRef _data;
         sf::View view;
-
         sf::Sprite _background;
         sf::Text text, playertext;
         std::string playerinput;
         sf::Font font;
-
         AssetManager hackaudio;
 
-        float posX, posY, size;
+        float posX, posY;
         bool correctpassword;
         int layer;
 
@@ -28,7 +25,6 @@ namespace GTA{
         void HandleInput();
         void Update(float dt);
         void Draw(float dt);
-        void UpdateView(const float &dt);
     };
 }
 

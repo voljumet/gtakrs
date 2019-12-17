@@ -42,66 +42,65 @@ namespace GTA{
         _data = std::move(data_inn);
 
         switch (missionNumber){
-
             case 1:
-                std::cout << "1" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 24.f, TILE_SIZE * 376.f);
                 break;
 
             case 2:
-                std::cout << "2" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 111.f, TILE_SIZE * 21.f);
                 break;
             case 3:
-                std::cout << "3" << std::endl;
                 player.Damage(100);
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 148.f, TILE_SIZE * 366.f);
                 break;
             case 4:
-                std::cout << "4" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 121.f, TILE_SIZE * 286.f);
                 break;
             case 5:
-                std::cout << "5" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 20.f, TILE_SIZE * 248.f);
                 this->_data->machine.GetActiveState()->Pause();
                 this->_data->machine.AddState(StateRef(new Hacking(_data)),false);
                 break;
             case 6:
-                std::cout << "6" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 49.30f, TILE_SIZE * 66.30f);
                 break;
             case 7:
-                std::cout << "7" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 88.30f, TILE_SIZE * 216.30f);
                 this->_data->machine.GetActiveState()->Pause();
                 this->_data->machine.AddState(StateRef(new Mission(_data)),false);
                 break;
             case 8:
-                std::cout << "8" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
                 break;
             case 9:
-                std::cout << "9" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 116.f, TILE_SIZE * 117.f);
                 break;
             case 10:
-                std::cout << "10" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 this->missionCircle.setPosition(TILE_SIZE * 172.f, TILE_SIZE * 42.f);
                 break;
             case 11:
-                std::cout << "11" << std::endl;
                 missionNumber++;
+                player.setCoin();
                 break;
             default:
                 break;
@@ -115,111 +114,106 @@ namespace GTA{
         rectangleShape.setOutlineThickness(5);
         text.setCharacterSize(22);
         text.setFillColor(sf::Color::Black);
+        text.setFont(font);
 
-        if(boat){
-            text.setPosition(boatPos.x - 400, boatPos.y + 400);
+        if(boat){ text.setPosition(boatPos.x - 400, boatPos.y + 400);
             rectangleShape.setPosition(boatPos.x - 400, boatPos.y + 400);
-        } else {
-            text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
+        } else { text.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
             rectangleShape.setPosition(player.getPosition().x - 400, player.getPosition().y + 400);
         }
 
-        text.setFont(font);
+        switch (missionNumber) {
+            case 1:
+                rectangleShape.setSize(sf::Vector2f(700, 260));
+                text.setString(" \n"
+                               "  - This is your first mission,\n"
+                               "    you will be able to accept and complete \n"
+                               "    missions in the red cicles!\n\n"
 
-            switch (missionNumber) {
-                case 1:
-                    rectangleShape.setSize(sf::Vector2f(700, 260));
-                    text.setString(" \n"
-                                   "  This is your first mission,\n"
-                                   "  you will be able to accept and complete \n"
-                                   "  missions the next in the red cicle  \n"
-                                   "  to find Mony Banana, you will be\n"
-                                   "  steal a car and drive south-west\n"
-                                   "  Press space to activate mission.\n\n");
+                               "  - Steal a car and drive south-west over\n"
+                               "    the bridge to find Mony Banana.\n\n"
 
-                    break;
-                case 2:
-                    rectangleShape.setSize(sf::Vector2f(820, 380));
-                    text.setString(" \n"
-                                   "  Tony: 'Hello Trevor!' \n\n"
-                                   "    Abradolf Linkler is trying to blast\n"
-                                   "    our city, we need to save it,  \n"
-                                   "  Your objective is to: \n\n"
-                                   "  * Hack Abradolf Lincler's password, \n"
-                                   "  * to find his location. \n"
-                                   "  * But first you need to find a objectSpawn\n"
-                                   "  * Cross the bridge north \n"
-                                   "  * Drive 'North-East'\n\n");
-                    break;
-                case 3:
-                    rectangleShape.setSize(sf::Vector2f(800, 180));
-                    text.setString(" \n"
-                                   "  * Find a pc \n"
-                                   "  * You can find one around the dock\n"
-                                   "  * Cross the bridge again \n"
-                                   "  * Next mission should be around South-East\n");
-                    break;
-                case 4:
-                    rectangleShape.setSize(sf::Vector2f(800, 200));
-                    text.setString(" \n"
-                                   "  * Your health seems to be low!\n"
-                                   "  * Find a burger to eat. \n"
-                                   "  * Should be some burgers to eat around here. \n"
-                                   "  * Next objective is two blocks north!\n");
-                    break;
-                case 5:
-                    rectangleShape.setSize(sf::Vector2f(800, 200));
-                    text.setString(" \n"
-                                   "  Hack Abradolf's \n"
-                                   "  * Cell phone.\n"
-                                   "  * Find his location\n"
-                                   "  * Meet Tony west of the city\n");
-                    break;
-                case 6:
-                    rectangleShape.setSize(sf::Vector2f(800, 280));
-                    text.setString(" \n"
-                                   "  * You're a Genius! \n"
-                                   "  * We 're close to get him \n"
-                                   "  * Locate Abradolf's hotel \n"
-                                   "  * Hotel might be around north-west\n"
-                                   "  * Grab a sniper before you go\n"
-                                   "  * A sniper can be found around here!\n\n");
-                    break;
+                               "  -Press 'space' to accept and start missions-\n");
 
-                case 7:
-                    rectangleShape.setSize(sf::Vector2f(800, 260));
-                    text.setString(" \n"
-                                   "  * Wait for him to show up!\n"
-                                   "  * Snipe him\n"
-                                   "  * Meet Tony afterwards\n"
-                                   "  * He's at south-side of the first block\n"
-                                   "    after crossing the bridge.\n\n");
-                    break;
-                case 8:
-                    rectangleShape.setSize(sf::Vector2f(800, 220));
-                    text.setString(" \n"
-                                   "  * Grab the boat key from Tony\n"
-                                   "  * Hurry to the docks \n"
-                                   "  * Cross the bridge north\n"
-                                   "  * Locate the docks around east");
-                    break;
-                case 9:
-                    rectangleShape.setSize(sf::Vector2f(800, 120));
-                    text.setString(" \n"
-                                   "  * Take the boat \n"
-                                   "  * Flee to the island' \n\n");
-                    break;
+                break;
+            case 2:
+                rectangleShape.setSize(sf::Vector2f(820, 380));
+                text.setString(" \n"
+                               "  - Abradolf Linkler is trying to bomb\n"
+                               "    our city, we need to take him down\n"
+                               "    before he manages to do so! \n\n"
 
-                case 10:
-                    rectangleShape.setSize(sf::Vector2f(800, 60));
-                    text.setString(" \n"
-                                   "  * Congratulations 'you saved the Juice' \n"
-                                   "  * Thanks's for playing! \n\n");
-                    break;
-                case 11:
-                    break;
-                default:
-                    break;
+                               "  - Hack and retrive his password, \n"
+                               "    then find his location. \n"
+                               "  - But first you need to find a pc,\n"
+                               "    drive north-east over the bridge to find it \n");
+                break;
+            case 3:
+                rectangleShape.setSize(sf::Vector2f(800, 180));
+                text.setString(" \n"
+                               "  - Find a pc in the city\n"
+                               "    then cross the bridge again and drive \n"
+                               "    south-east to find the right place to use it.\n");
+                break;
+            case 4:
+                rectangleShape.setSize(sf::Vector2f(800, 200));
+                text.setString(" \n"
+                               "  - Missions are exhausting, and your health \n"
+                               "    seems to be low, find a burger to eat. \n"
+                               "  - Next objective is two blocks north from here\n");
+                break;
+            case 5:
+                rectangleShape.setSize(sf::Vector2f(800, 200));
+                text.setString(" \n"
+                               "  - Hack Abradolf's computer\n"
+                               "    and find his location\n"
+                               "    Meet Mony west of the city after.\n");
+                break;
+            case 6:
+                rectangleShape.setSize(sf::Vector2f(800, 280));
+                text.setString(" \n"
+                               "  - You're a Genius! \n"
+                               "    and we're close to getting him now.\n"
+                               "  - Find a tall building so you \n"
+                               "    can take him down with a sniper,\n"
+                               "    look north-west after a good place, \n"
+                               "    remember to grab a sniper on the way.\n"
+                               "  - It can be found around here!\n\n");
+                break;
+            case 7:
+                rectangleShape.setSize(sf::Vector2f(800, 260));
+                text.setString(" \n"
+                               "  - Find him in one of the buildings\n"
+                               "    and take him down!\n"
+                               "  - Meet Tony afterwards\n"
+                               "    he's at south-side of the first block\n"
+                               "    after crossing the bridge.\n\n");
+                break;
+            case 8:
+                rectangleShape.setSize(sf::Vector2f(800, 220));
+                text.setString(" \n"
+                               "  - Grab the boat key from Tony\n"
+                               "    and hurry to the dock, \n"
+                               "    cross the bridge to the north\n"
+                               "    and find the boat around east");
+                break;
+            case 9:
+                rectangleShape.setSize(sf::Vector2f(800, 120));
+                text.setString(" \n"
+                               "  - Take the boat and get to the island  \n"
+                               "    north-west of here! \n\n");
+                break;
+
+            case 10:
+                rectangleShape.setSize(sf::Vector2f(800, 60));
+                text.setString(" \n"
+                               "  - Time for vacation after saving the city! \n"
+                               "    And thanks's for playing! \n\n");
+                break;
+            case 11:
+                break;
+            default:
+                break;
         }
     }
 

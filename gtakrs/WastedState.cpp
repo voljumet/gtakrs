@@ -4,7 +4,7 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 
-/// Denne klassen er bare for splashscreen i starten av spillet
+/// This class is only to show the WASTED screen if the player dies, and return to MainMenu
 namespace GTA{
     WastedState::WastedState(GTA::GameDataRef data ): _data(std::move( data )) { }
 
@@ -22,7 +22,6 @@ namespace GTA{
 
         while(this->_data->window.pollEvent(event)){
             if (sf::Event::Closed == event.type){ this->_data->window.close(); }      /// Handle if window is exited
-
         }
     }
 

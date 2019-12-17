@@ -1,21 +1,23 @@
-#include <iostream>
 #include "StateMachine.h"
 
-/// Statemachine Settings!!
-
+/// Statemachine Settings
 namespace GTA{
-    void StateMachine::AddState(GTA::StateRef newState, bool isReplacing) {     /// Config for AddState when creating a new state
+
+    /// Config for AddState when creating a new state
+    void StateMachine::AddState(GTA::StateRef newState, bool isReplacing) {
         this->_isAdding = true;
         this->_isReplacing = isReplacing;
 
         this->_newState = std::move(newState);
     }
 
-    void StateMachine::RemoveState() {      /// Config for RemoveState when creating a new stateClass
+    /// Config for RemoveState when creating a new stateClass
+    void StateMachine::RemoveState() {
         this->_isRemoving = true;
     }
 
-    void StateMachine::ProcessStateChanges() {          /// Config for statechange
+    /// Config for statechange
+    void StateMachine::ProcessStateChanges() {
         if(this->_isRemoving && !this->_states.empty()){
             this->_states.pop();
 
@@ -34,7 +36,8 @@ namespace GTA{
         }
     }
 
-    StateRef &StateMachine::GetActiveState() {         /// Config for Getting last active state
+    /// Config for Getting last active state
+    StateRef &StateMachine::GetActiveState() {
         return this->_states.top();
     }
 }

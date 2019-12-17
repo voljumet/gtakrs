@@ -1,7 +1,6 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Transform.hpp>
-#include <iostream>
 
 #include "Movement.h"
 #include "Game.h"
@@ -9,10 +8,9 @@
 namespace GTA{
     Movement::Movement(){}
 
-    sf::Vector2f Movement::forwardVec() {
-        return sf::Vector2f(0.f, -WalkSpeed);
-    }
+    sf::Vector2f Movement::forwardVec() { return sf::Vector2f(0.f, -WalkSpeed); }
 
+    /// Car movement
     void Movement::Drive(sf::Sprite& driver, sf::Sound &tesla) {
         if (up) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { driver.rotate(-rotateAmountCar * dt); }
@@ -53,15 +51,15 @@ namespace GTA{
         }
     }
 
+    /// Player movement
     void Movement::Walk(GameDataRef &inn_data , sf::Sprite& walker, sf::Sound &footstep) {
         _data = inn_data;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
             walker.rotate(-rotateAmountWalk * dt);
-
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
             walker.rotate(rotateAmountWalk * dt);
-
         }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             walker.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
@@ -99,8 +97,6 @@ namespace GTA{
             }
         }
 
-        if (walkAnimation == 5){
-            walkAnimation = 1;
-        }
+        if (walkAnimation == 5){ walkAnimation = 1; }
     }
 }

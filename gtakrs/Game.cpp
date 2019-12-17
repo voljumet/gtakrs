@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "SplashState.h"
 
-/// Klassen hvor GameLoop kjøres, FPS stilles også inn her for å ikke droppe frames.
+/// Class where gameloop runs, FPS can be set here to not drop frames
 
 namespace GTA{
     Game::Game(int width, int height, const std::string& title) {

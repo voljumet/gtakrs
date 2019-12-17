@@ -1,4 +1,4 @@
-# pragma once
+#pragma once
 
 #include "NPC_NPV.h"
 #include "Player.h"
@@ -6,6 +6,9 @@
 namespace GTA {
 
     class Npv : public NPC_NPV{
+        GameDataRef _data;
+        sf::Sprite npvBot;
+
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
@@ -16,17 +19,12 @@ namespace GTA {
 
         sf::Sprite &getNpvBot();
         bool carInteract = false;
-        bool boatInteract = false;
-
-
-    private:
-        /// Player Speed
-        GameDataRef _data;
-        sf::Sprite npvBot;
-
     };
 
     class NpvController: public NPC_NPV{
+        GameDataRef _data;
+        AssetManager sound;
+
     public:
         typedef std::shared_ptr<GTA::GameData> GameDataRef;
 
@@ -38,9 +36,5 @@ namespace GTA {
         sf::Color color;
         sf::Color Loader();
         std::vector<Npv*> npvVec;
-
-    private:
-        GameDataRef _data;
-        AssetManager sound;
     };
 }

@@ -3,7 +3,6 @@
 #include "WorldState.h"
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
-#include "Movement.h"
 #include "colliderTest.h"
 #include "WastedState.h"
 
@@ -20,15 +19,13 @@ namespace GTA {
 
         this->minimap.setSize(sf::Vector2f(SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2));
         this->minimap.setCenter(sf::Vector2f(SCREEN_WIDTH / 2.f, SCREEN_HEIGHT / 2.f));
-        this->minimap.setViewport(sf::FloatRect(0.79f,
-                0.01f, 0.2f, 0.2f));
+        this->minimap.setViewport(sf::FloatRect(0.79f,0.01f, 0.2f, 0.2f));
 
         loadAllTexture();
         this->getRektMap.setSize(sf::Vector2f(380, 340));
         this->getRektMap.setFillColor(sf::Color(0, 0, 0, 200));
 
         map.Array(this->_data->assets.GetTexture("Tiles"), this->_data->assets.GetFont("Arial"));
-
 
         /// Loads audio
         sound.loadall();
@@ -44,19 +41,14 @@ namespace GTA {
         playerStartPosX = TILE_SIZE * 49;
         playerStartPosY = TILE_SIZE * 22;
 
-        ///TESTING//////////////////////////////////////////////////////////////////////////////////////////////////
+        /// Spawn objects
         weapon.Gun_init();
-        
-
         objectSpawn.spawnPc();
         objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
-
         objectSpawn.spawnBurger();
         objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
-
         objectSpawn.spawnSniper();
         objectSpawn.getSniper().setPosition(objectSpawn.getSniperPox(), objectSpawn.getSniperPoy());
-
 
         /// Player Texture / Settings
         _player.playerInit(this->_data->assets.GetTexture("Player"));
@@ -64,11 +56,10 @@ namespace GTA {
         /// holds all vehicle settings
         vehicleSettings();
 
-
         /// Create NPCaracters
         npcController.NpcSpawn(player1, map._Block);
-
     }
+
     void WorldState::HandleInput() {
         sf::Event event{};
 
@@ -81,36 +72,28 @@ namespace GTA {
                 this->_data->window.close();
             }
         }
-////////////////////////////////////
-    if (event.key.code == sf::Keyboard::E && !Driving) {
-        if(weapon.isHasweapon()){
-            _player.loseBullet();
-            if(weapon.getGunammo()>0) {
-                shooting.CreateBullet(_player.playerGetSprite());
-                sound.PlaySound(sound.gunshot);
-                weapon.setGunammo(weapon.getGunammo()-1);
-                std::cout<<weapon.getGunammo()<<std::endl;
-            }
-            else{
-                sound.PlaySound(sound.empty);
-            }
 
-
-        }
-        if(weapon.isHasshotgun()){
-            _player.loseBullet();
-            if(weapon.getShotammo()>0) {
-                shooting.CreateShotgunBullet(_player.playerGetSprite());
-                sound.PlaySound(sound.spas);
-                weapon.setShotammo(weapon.getShotammo()-1);
+        /// Shooting
+        if (event.key.code == sf::Keyboard::E && !Driving) {
+            if(weapon.isHasweapon()){
+                _player.loseBullet();
+                if(weapon.getGunammo()>0) {
+                    shooting.CreateBullet(_player.playerGetSprite());
+                    sound.PlaySound(sound.gunshot);
+                    weapon.setGunammo(weapon.getGunammo()-1);
+                    std::cout<<weapon.getGunammo()<<std::endl;
+                } else { sound.PlaySound(sound.empty); }
             }
-
-            else{
-                std::cout << "No bullets left" << std::endl;
-                sound.PlaySound(sound.empty);
+            if(weapon.isHasshotgun()){
+                _player.loseBullet();
+                if(weapon.getShotammo()>0) {
+                    shooting.CreateShotgunBullet(_player.playerGetSprite());
+                    sound.PlaySound(sound.spas);
+                    weapon.setShotammo(weapon.getShotammo()-1);
+                } else{ sound.PlaySound(sound.empty); }
             }
         }
-    }
+
     /// Change between person and car
         if(Debug){
             switch (event.type) {
@@ -139,9 +122,8 @@ namespace GTA {
                 switch (event.key.code) {
                     case sf::Keyboard::Space: {
 
+                        /// Enter car
                          if (!Driving && !boatbool) {
-
-                             /// Enter car
                             for(auto i : npvController.npvVec){
                                 if (i->carInteract){
                                     i->carInteract = false;
@@ -154,9 +136,8 @@ namespace GTA {
                                 }
                             }
 
+                        /// Exit car
                         } else if (Driving && !boatbool) {
-
-                             /// Exit car
                              int k = npvController.numberOfNpv-2;
                              npvController.npvVec.push_back(new Npv);
                              npvController.npvVec[k]->Number = k;
@@ -166,16 +147,13 @@ namespace GTA {
                              npvController.npvVec[k]->getNpvBot().setPosition(_car.getPosition());
                              npvController.npvVec[k]->getNpvBot().setRotation( _car.getRotation());
                              npvController.npvVec[k]->movementSpeed = 0;
-                             /// Position til car blir rar når man går ut av bilen
-
+                             /// Bug here, position and rotation is a bit off here
                             _player.player_SetPosition(sf::Vector2f(_car.getPosition().x + 50,_car.getPosition().y + 50));
                             _player.setRotaion(_car.getRotation());
-
                             Driving = false;
-
-                            /// Exit boat
                         }
 
+                        /// if boat intersects with circle on land
                         if(enterBoat){
                             _car.setPosition(Boat.getPosition());
                             _car.setRotation(Boat.getRotation());
@@ -190,6 +168,7 @@ namespace GTA {
                             missionPlacement.BoatCircle(boatbool);
                         }
 
+                        /// if boat intersects with circle outside city dock
                         if(exitBoat){
                             _player.playerGetSprite().setPosition(120*TILE_SIZE,117*TILE_SIZE);
                             _player.playerGetSprite().setRotation(_car.getRotation());
@@ -206,6 +185,7 @@ namespace GTA {
                             missionPlacement.BoatCircle(boatbool);
                         }
 
+                        /// if boat intersects with circle outside island
                         if(exitBoatIsland){
                             _player.playerGetSprite().setPosition(182*TILE_SIZE,65*TILE_SIZE);
                             _player.playerGetSprite().setRotation(_car.getRotation());
@@ -315,11 +295,11 @@ namespace GTA {
         shooting.Collision(_data, npcController.getNpcVec(), npvController.npvVec , shooting.getBulletlist());
         shooting.MoveBullet();
 
-
+        /// Check intersect with objects around the map
         objectPixelPerfect();
-
     }
 
+    /// Draw function
     void WorldState::Draw(float dt) {
 
         this->UpdateView(dt);
@@ -337,7 +317,7 @@ namespace GTA {
         this->_data->window.draw(weapon.getGun());
         this->_data->window.draw(weapon.getShotgun());
 
-        /// Draw stuff
+        /// Draw other ojects around the map
         this->_data->window.draw(objectSpawn.getPc());
         this->_data->window.draw(objectSpawn.getBurger());
         this->_data->window.draw(objectSpawn.getSniper());
@@ -371,23 +351,23 @@ namespace GTA {
         _player.HealthBar( this->_data->window,this->_data->assets.GetTexture("HB"),
                           this->_data->assets.GetTexture("HB1"),_car.getPosition(),Driving);
 
-        /// if mission equals true and player intesects circle, the rectangle box appears
+        /// if inside mission circle, print box and text
         if(mission) { this->_data->window.draw(missionPlacement.getBox());
             this->_data->window.draw(missionPlacement.getText()); }
 
+        /// if inside boat circle, print box and text
         if(boatBox) { this->_data->window.draw(missionPlacement.getBox());
             this->_data->window.draw(missionPlacement.getText()); }
 
-        /////////Draw Minimap ///////////////////////////////////////////////////////////
-        /// Everyything under this line will be drawn on minimap ////////////////////////
+        ///////////////////////////////Draw Minimap /////////////////////////////////////
+        /////////// Everyything under this line will be drawn on minimap ////////////////
+        /////////////////////////////////////////////////////////////////////////////////
         Timer = std::clock();
         if(!Debug){
             this->_data->window.draw(this->getRektMap);
             this->_data->window.setView(this->minimap);
             Minimap = true;
-            map.Render(Driving, Minimap, Debug, _car.getPosition().x,
-                       _car.getPosition().y, _player.playerGetSprite().getPosition().x,
-                       _player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
+            map.Render(Driving, Minimap, Debug, _car.getPosition().x,_car.getPosition().y, _player.playerGetSprite().getPosition().x,_player.playerGetSprite().getPosition().y, _data, NoDrivingOrWalkingBool);
         }
         MmapDura += (std::clock() - Timer ) / (double) CLOCKS_PER_SEC;
 
@@ -405,7 +385,7 @@ namespace GTA {
 
     }
 
-    /// husk å bruke view
+    /// Update view
     void WorldState::UpdateView(const float &dt){
         if(Driving){
             X = this->_car.getPosition().x;
@@ -416,19 +396,16 @@ namespace GTA {
         }
         this->view.setCenter(X,Y);
         this->minimap.setCenter(X,Y);
-//        this->getRektMap.setPosition(X+=512,Y-=794);
-
     }
 
+    /// Update movement
     void WorldState::UpdateMovement(GameDataRef &inn_data, sf::Sprite &walker, sf::Sprite &driver) {
-        if (Driving) {
-            driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
+        if (Driving) { driver.move(movement.movementVec * movement.currentSpeed * movement.dt);
             movement.Drive(this->_car, sound.tesla);
-        } else {
-           _player.playerMoves(movement, sound.footstep);
-        }
+        } else { _player.playerMoves(movement, sound.footstep); }
     }
 
+    /// Player collision
     void WorldState::playerCrashTEMP() {
         if(!Debug){
             if(Driving){
@@ -463,27 +440,14 @@ namespace GTA {
                     }
 
                     if(boatbool) {
-                        nocruising = std::find(std::begin(BOATCan_Not_MoveHere), std::end(BOATCan_Not_MoveHere),
-                                               NoDrivWalkInt) != std::end(BOATCan_Not_MoveHere);
+                        nocruising = std::find(std::begin(BOATCan_Not_MoveHere), std::end(BOATCan_Not_MoveHere),NoDrivWalkInt) != std::end(BOATCan_Not_MoveHere);
                         if (nocruising) {
-                            if (Driving) {
-                                collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
-                            } else {
-                                collisionDetection.Check_Collision(_player.playerGetSprite(),
-                                                                   map._Block[Y][X].tileSprite, false);
-                            }
-                        }
-                    }else {
-                        NoDrivingOrWalkingBool =
-                                std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray),
-                                          NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
+                            if (Driving) { collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
+                            } else { collisionDetection.Check_Collision(_player.playerGetSprite(),map._Block[Y][X].tileSprite, false); } }
+                    }else { NoDrivingOrWalkingBool = std::find(std::begin(NoDrivingOrWalkingArray), std::end(NoDrivingOrWalkingArray),NoDrivWalkInt) != std::end(NoDrivingOrWalkingArray);
                         if (NoDrivingOrWalkingBool) {
-                            if (Driving) {
-                                collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
-                            } else {
-                                collisionDetection.Check_Collision(_player.playerGetSprite(),
-                                                                   map._Block[Y][X].tileSprite, false);
-                            }
+                            if (Driving) { collisionDetection.Check_Collision(_car, map._Block[Y][X].tileSprite, false);
+                            } else { collisionDetection.Check_Collision(_player.playerGetSprite(),map._Block[Y][X].tileSprite, false); }
                         }
                     }
                 }
@@ -491,6 +455,7 @@ namespace GTA {
         }
     }
 
+    /// Timer for debugging
     void WorldState::PrintTimer() {
         timer +=1;
         if (timer == 60){
@@ -552,7 +517,7 @@ namespace GTA {
 
 
     void WorldState::objectPixelPerfect() {
-/// Player picks up weapon
+        /// Player picks up Gun
         if(PixelPerfectTest(_player.playerGetSprite(), weapon.getGun())){
             weapon.setHasweapon(1);
             weapon.setHasshotgun(0);
@@ -565,6 +530,7 @@ namespace GTA {
 
         }
 
+        /// Player picks up Shotgun
         if(PixelPerfectTest(_player.playerGetSprite(), weapon.getShotgun())){
             weapon.setHasweapon(0);
             weapon.setHasshotgun(1);
@@ -576,6 +542,7 @@ namespace GTA {
 
         }
 
+        /// Player picks up Pc
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getPc())){
             objectSpawn.setHasPc(1);
             objectSpawn.setPcPox((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
@@ -583,13 +550,16 @@ namespace GTA {
             objectSpawn.getPc().setPosition(objectSpawn.getPcPox(), objectSpawn.getPcPoy());
         }
 
+        /// Player picks up Burger
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getBurger())){
             objectSpawn.setHasBurger(1);
+            _player.setHealth();
             objectSpawn.setBurgerPox((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
             objectSpawn.setBurgerPoy((rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT));
             objectSpawn.getBurger().setPosition(objectSpawn.getBurgerPox(), objectSpawn.getBurgerPoy());
         }
 
+        /// Player picks up Sniper
         if(PixelPerfectTest(_player.playerGetSprite(), objectSpawn.getSniper())){
             objectSpawn.setHasSniper(1);
             objectSpawn.setSniperPox((rand() % WORLD_WIDTH, rand() % WORLD_WIDTH));
@@ -600,7 +570,7 @@ namespace GTA {
 
     void WorldState::vehicleSettings() {
         /// Player car Texture / Settings
-        this->_car.setTexture(M3_White);      /// Set Texture
+        this->_car.setTexture(M3_White);
         this->_data->assets.GetTexture("M3_WHITE").setSmooth(true);
 
         this->_car.setPosition(playerStartPosX, playerStartPosY);
@@ -608,7 +578,8 @@ namespace GTA {
         this->_car.setScale(sf::Vector2f(1.2f, 1.2f)); /// absolute scale factor
         this->_car.setOrigin(35.f, 50.f);
         this->_car.setRotation(180);
-///BOAT !!!!!!!!
+
+        /// Set Boat
         this->Boat.setTexture(this->_data->assets.GetTexture("boat"));
         this->Boat.setPosition(127*TILE_SIZE, 118*TILE_SIZE);
         this->Boat.setScale(1.2, 1.2);
@@ -617,16 +588,14 @@ namespace GTA {
         /// Create NPVehicles
         npvController.NpvSpawn(M3_White, map._Block);
 
+        /// WeaponSpawn
         weapon.setGunPosX(TILE_SIZE * 51) ;
         weapon.setGunPosY(TILE_SIZE * 23);
         weapon.getGun().setPosition(weapon.getGunPosX(), weapon.getGunPosY());
-
         weapon.setShotgunPosX(TILE_SIZE * 53) ;
         weapon.setShotgunPosY(TILE_SIZE * 23) ;
         weapon.getShotgun().setPosition(weapon.getShotgunPosX(), weapon.getShotgunPosY());
     }
-
-
 }
 
 

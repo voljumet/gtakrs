@@ -7,55 +7,47 @@
 #include <sstream>
 #include "Collision_Detection.h"
 
-
 namespace GTA{
+    class Player : Movement{
+    public:
+        friend class missionPlacement;
+        Player();
+        ~Player();
 
-class Player : Movement{
-public:
-    friend class missionPlacement;
-    Player();
-    ~Player();
+        void playerInit(sf::Texture &texture);
+        void playerMoves(Movement& movement, sf::Sound &footstep);
+        void Draw(sf::RenderWindow & renderWindow);
+        void player_SetPosition(sf::Vector2f);
+        void HealthBar(sf::RenderWindow &renderWindow,sf::Texture &healthbar, sf::Texture &healthbar1,sf::Vector2f pos, bool Driving);
+        void setRotaion(float rotation);
+        void setDamage();
+        void Damage(int damage);
 
-    void playerInit(sf::Texture &texture); // loading texture
-    void playerMoves(Movement& movement, sf::Sound &footstep);
-    sf::Vector2f setplayerViewCenter(sf::Vector2f);
-    void Draw(sf::RenderWindow & renderWindow);
-    sf::Vector2f player_Getposition();
-    void player_SetPosition(sf::Vector2f);
-    sf::Sprite &playerGetSprite();
-    float playerVec( Movement &movement);
-    void HealthBar(sf::RenderWindow &renderWindow,sf::Texture &healthbar,
-            sf::Texture &healthbar1,sf::Vector2f pos, bool Deiving);
-    float getRotaion();
-    void setRotaion(float rotation);
+        sf::Sprite &playerGetSprite();
+        sf::Vector2f player_Getposition();
 
-    void setDamage();
-    void Damage(int damage);
-    int setHealth();
-    int setCoin();
-    int setBullet();
-    int loseBullet();
-//    void checkCollision(bool Debug, bool Driving, );
+        float playerVec( Movement &movement);
+        float getRotaion();
 
-    int intHealth = 100;
+        int setHealth();
+        int setCoin();
+        int setBullet();
+        int loseBullet();
+
         bool playerIsDead = false;
-private:
-    friend class missionPlacement;
-    sf::Sprite playerSprite;
-    sf::RectangleShape healthBarRect;
-    sf::RectangleShape bulletBarRect;
-    sf::Font font;
-    sf::Text text;
-    sf::Text ammotext;
-    int coin = 10;
-    int bullet = 0;
-    int healthSize = 227;
-
-    sf::Sprite healthbarSprite, healthbarSprite1;
+    private:
+        friend class missionPlacement;
+        sf::Sprite playerSprite;
+        sf::RectangleShape healthBarRect;
+        sf::RectangleShape bulletBarRect;
+        sf::Sprite healthbarSprite, healthbarSprite1;
+        sf::Font font;
+        sf::Text text;
+        int coin = 0;
+        int bullet = 0;
+        int healthSize = 227;
         int counter = 0;
 
-    Collision_Detection collisionDetection;
-    GameDataRef  _data;
-
-};
+        GameDataRef  _data;
+    };
 }

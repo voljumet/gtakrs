@@ -1,4 +1,4 @@
-
+#pragma once
 
 #include <iostream>
 #include "Shooting.h"
@@ -29,26 +29,16 @@ namespace GTA {
             Bullet* bullet = new Bullet;
             sf::Transform t;
             t.rotate(Player.getRotation());
-            if(i == 0){
-            bullet->setBulletVec( t.transformPoint(movement.forwardVec().x -0.2, movement.forwardVec().y));
-                bullet->setBulletspeed(3000.f) ;
-            }
-            if(i == 1){
-                bullet->setBulletVec( t.transformPoint(movement.forwardVec().x -0.1, movement.forwardVec().y));
-                bullet->setBulletspeed(3500.f) ;
-            }
-            if(i == 2){
-                bullet->setBulletVec(t.transformPoint(movement.forwardVec()))  ;
-                bullet->setBulletspeed(4000.f);
-            }
-            if(i == 3){
-                bullet->setBulletVec(t.transformPoint(movement.forwardVec().x +0.1, movement.forwardVec().y)) ;
-                bullet->setBulletspeed(3500.f) ;
-            }
-            if(i == 4){
-                bullet->setBulletVec(t.transformPoint(movement.forwardVec().x +0.2, movement.forwardVec().y));
-                bullet->setBulletspeed(3000.f) ;
-            }
+            if(i == 0){ bullet->setBulletspeed(3000.f);
+                bullet->setBulletVec( t.transformPoint(movement.forwardVec().x -0.2, movement.forwardVec().y));}
+            if(i == 1){ bullet->setBulletspeed(3500.f);
+                bullet->setBulletVec( t.transformPoint(movement.forwardVec().x -0.1, movement.forwardVec().y));}
+            if(i == 2){ bullet->setBulletspeed(4000.f);
+                bullet->setBulletVec(t.transformPoint(movement.forwardVec())); }
+            if(i == 3){ bullet->setBulletspeed(3500.f);
+                bullet->setBulletVec(t.transformPoint(movement.forwardVec().x +0.1, movement.forwardVec().y)); }
+            if(i == 4){ bullet->setBulletspeed(3000.f);
+                bullet->setBulletVec(t.transformPoint(movement.forwardVec().x +0.2, movement.forwardVec().y));}
             bullet->getBullet().setRotation(Player.getRotation());
             bullet->getBullet().setPosition(Player.getPosition().x, Player.getPosition().y);
             bullet->getBullet().setTexture(this->_data->assets.GetTexture("Bullet"));
@@ -78,39 +68,40 @@ namespace GTA {
 
     void Shooting::Collision(GameDataRef &inn_data, std::vector<Npc *> &npclist, std::vector<Npv*> &npvlist, std::vector<Bullet *> &bulletlist) {
         _data = inn_data;
-        for(auto &npc: npclist){
-            if(!npc->dead){
+
+        /// Check bullet against NPC and NPV
+        for (int i = 0; i < npclist.size(); ++i) {
+            if(!npclist[i]->dead){
                 for(auto &bullet : bulletlist){
-                   if(bullet->getBullet().getGlobalBounds().intersects(npc->getNpcBot().getGlobalBounds())) {
-                       bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
-                       npc->health -= 10;
-                       npc->movementSpeed = 16;
-                       if(npc->health == 0) {
-                           npc->dead = true;
-                           npc->movementSpeed = 4;
-                           npc->health = 50;
-                           npc->setNpcBot(this->_data->assets.GetTexture("Dead"));
-                       }
-                   }
+                    if(bullet->getBullet().getGlobalBounds().intersects(npclist[i]->getNpcBot().getGlobalBounds())) {
+                        bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
+                        npclist[i]->health -= 10;
+                        npclist[i]->movementSpeed = 16;
+                        if(npclist[i]->health == 0) {
+                            npclist[i]->dead = true;
+                            npclist[i]->movementSpeed = 4;
+                            npclist[i]->health = 50;
+                            npclist[i]->setNpcBot(this->_data->assets.GetTexture("Dead"));
+                        }
+                    }
                 }
             }
-        }
 
-        for(auto &npv : npvlist){
-            for(auto &bullet: bulletlist){
-                if(bullet->getBullet().getGlobalBounds().intersects(npv->getNpvBot().getGlobalBounds())){
-                    bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
-                    npv->health -= 2;
-                    npv->movementSpeed = 16;
-                    if(npv->health == 0){
-                        npv->getNpvBot().setColor(sf::Color::Black);
-                        npv->dead = true;
-                        npv->health = 300;
-                        npv->movementSpeed = 8;
+            if(i < npvlist.size()){
+                for(auto &bullet: bulletlist){
+                    if(bullet->getBullet().getGlobalBounds().intersects(npvlist[i]->getNpvBot().getGlobalBounds())){
+                        bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), bullet), bulletlist.end());
+                        npvlist[i]->health -= 2;
+                        npvlist[i]->movementSpeed = 16;
+                        if(npvlist[i]->health == 0){
+                            npvlist[i]->getNpvBot().setColor(sf::Color::Black);
+                            npvlist[i]->dead = true;
+                            npvlist[i]->health = 300;
+                            npvlist[i]->movementSpeed = 8;
+                        }
                     }
                 }
             }
         }
     }
 }
-

@@ -2,10 +2,10 @@
 #include "Map.h"
 
 namespace GTA{
+    /// Create the Matrix with numbers and sprites for tile-map
     void Map::Array(sf::Texture & texture, sf::Font & font){
 
         file.open(MAP_FILE);
-
         for(int Y = 0; Y < WORLD_HEIGHT; Y++) {
             for (int X = 0; X < WORLD_WIDTH; X++) {
                 file >> _Block[Y][X].tileTextureNumber;
@@ -35,8 +35,8 @@ namespace GTA{
         }
         file.close();
     }
-
-void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
+    /// Draw map ONLY inside the view
+    void Map::Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
         int playerPosY, GameDataRef inn_data, bool NoDrivingOrWalkingBool) {
         if(Driving){
             mPosX = carPosX / TILE_SIZE;

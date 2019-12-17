@@ -3,7 +3,7 @@
 #include "DEFINITIONS.h"
 #include "MainMenuState.h"
 
-/// Denne klassen er MainMenu
+/// This class shows how to controll the player
 namespace GTA{
     ControlsState::ControlsState(GameDataRef data) : _data(std::move(data)){ }
 
@@ -43,7 +43,6 @@ namespace GTA{
             this->_data->machine.GetActiveState()->Resume();
             this->_data->machine.RemoveState();
         }
-
     }
 
     void ControlsState::Draw(float dt) {
@@ -58,9 +57,7 @@ namespace GTA{
         this->_data->window.display();      /// Display all
     }
 
-    void ControlsState::UpdateView(const float &dt) {
-        this->view.setCenter( (SCREEN_WIDTH/2) , (SCREEN_HEIGHT/2) );
-    }
+    void ControlsState::UpdateView(const float &dt) { this->view.setCenter( (SCREEN_WIDTH/2) , (SCREEN_HEIGHT/2) ); }
 }
 
 

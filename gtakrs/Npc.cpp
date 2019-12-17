@@ -4,8 +4,14 @@
 
 namespace GTA {
     Npc::Npc() = default;
-
     Npc::~Npc() = default;
+
+    sf::Sprite &Npc::getNpcBot() { return npcBot; }
+
+    void Npc::setNpcBot(sf::Texture &textura) {
+        this->npcBot.setTexture(textura);
+        npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
+    }
 
     void Npc::npcInit(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         dir = RandomDir;
@@ -16,7 +22,6 @@ namespace GTA {
         while(!CheckWalkable){
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
-
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
@@ -31,8 +36,7 @@ namespace GTA {
         health = 50;
     }
 
-    sf::Sprite &Npc::getNpcBot() { return npcBot; }
-
+    /// Move npc
     void Npc::move(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npc*> &npcVec) {
         CurrentPosX = npcBot.getPosition().x;
         CurrentPosY = npcBot.getPosition().y;
@@ -127,17 +131,11 @@ namespace GTA {
 
         /// NPC movement Animation
         npcBot.setTextureRect(sf::IntRect(0, walkAnimation * 110,100, 110));
-
     }
 
-    void Npc::setNpcBot(sf::Texture &textura) {
-        this->npcBot.setTexture(textura);
-        npcBot.setTextureRect(sf::IntRect(0, 0, 100, 110));
-
-    }
+    std::vector<Npc *> &NpcController::getNpcVec(){ return npcVec; }
 
     void NpcController::NpcSpawn(sf::Texture &texture, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-
         for (int i = 0; i < 200; ++i) {
             npcVec.push_back(new Npc);
             npcVec[i]->Number=i;
@@ -149,23 +147,6 @@ namespace GTA {
         RandomDir = static_cast<direction >(rand() % 4);
 
         for(auto n : npcVec) {
-
-///---------------------------------------------------------------------------
-//            /// If npc has been standing still for some time time, it respawns
-//            if (n->movementSpeed == 0){
-//                if(n->respawnCounter == n->coolDown){
-//                    n->respawnCounter = 0;
-//                    int tempNum = n->Number;
-//                    delete(n);
-//                    npcVec.push_back(new Npc);
-//                    n->Number = tempNum;
-//                    n->npcInit(texture, _Block);
-////                    i->getNpvBot().setColor(NpvController::Loader());
-//
-//                }
-//                n->respawnCounter++;
-//            }
-///---------------------------------------------------------------------------
             if(!n->dead){
                 n->move(_Block, npcVec);
             } else {
@@ -179,13 +160,10 @@ namespace GTA {
         }
     }
 
-    void NpcController::NpcDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed,
-            sf::Sprite &_car, sf::Sprite &_player, sf::Sound &cardeath) {
+    void NpcController::NpcDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &cardeath) {
         _data = inn_data;
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
-
-
 
             /// Npc collision with player in car
             if(!i->dead){
@@ -205,9 +183,5 @@ namespace GTA {
                 }
             }
         }
-    }
-
-     std::vector<Npc *> &NpcController::getNpcVec()  {
-        return npcVec;
     }
 }

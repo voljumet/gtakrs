@@ -18,21 +18,17 @@ namespace GTA{
     typedef std::shared_ptr<GameData> GameDataRef;
 
     class Game{
+        const float dt = 1.0f / 60.0f;      ///<----------- FPS
+
+        GameDataRef _data = std::make_shared<GameData>();
+
+        void Run();
+
     public:
         Game(int width, int height, const std::string& title);
 
         sf::Clock _clock;
         friend class WorldState;
-
-        /// NØDVENDIG ? ???? ?
         friend class Map;
-        /// _______________________
-
-    private:
-        const float dt = 1.0f / 80.0f;      ///<----------- FPS
-
-        GameDataRef _data = std::make_shared<GameData>();
-
-        void Run();
     };
 }

@@ -10,13 +10,13 @@ namespace GTA {
 
     class Block : public sf::RectangleShape{
     public:
-//        sf::RectangleShape getRekt;
         sf::Sprite tileSprite;
         sf::Text text;
         int tileTextureNumber;
     };
 
     class Map{
+        GameDataRef _data;
 
     public:
         std::string tileNumer;
@@ -36,14 +36,7 @@ namespace GTA {
         friend class Npc;
 
         void Array(sf::Texture & texture, sf::Font & font);
-        void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX,
-                int playerPosY, GameDataRef _data, bool NoDrivingOrWalkingBool);
-
-
-    private:
-        GameDataRef _data;
+        void Render(bool Driving, bool Minimap, bool Debug, int carPosX, int carPosY, int playerPosX, int playerPosY, GameDataRef _data, bool NoDrivingOrWalkingBool);
     };
-
-
 }
 

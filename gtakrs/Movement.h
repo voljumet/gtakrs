@@ -7,14 +7,17 @@
 
 namespace GTA{
     class Movement {
+        GameDataRef _data;
+        AssetManager sound;
+
     public:
         Movement();
         float dt = 0.01f;
 
         /// Speed / Movement Controller
         float WalkSpeed = 1.f;
-        float rotateAmountWalk = 200.f;
-        float rotateAmountCar = 120.f;
+        float rotateAmountWalk = 250.f;
+        float rotateAmountCar = 150.f;
 
         float currentSpeed = 0.f;
         int walkAnimation = 0, SpriteSpeed = 0;
@@ -28,14 +31,9 @@ namespace GTA{
         int soundCounter = 0;
 
         sf::Vector2f movementVec; ///normal vector based on current direction
-        sf::Vector2f forwardVec(); //normal vec pointing forward
+        sf::Vector2f forwardVec(); ///normal vec pointing forward
 
         void Walk(GameDataRef &inn_data, sf::Sprite&, sf::Sound &footstep);
         void Drive(sf::Sprite&, sf::Sound &teslasound);
-
-    private:
-        GameDataRef _data;
-        AssetManager sound;
-
     };
 }

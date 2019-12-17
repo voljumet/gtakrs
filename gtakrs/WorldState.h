@@ -18,9 +18,31 @@
 #include "AssetManager.h"
 #include "objectSpawn.h"
 
-
 namespace GTA {
     class WorldState : public State {
+        std::clock_t Timer;
+        int timer=0;
+        double NPCMoveDura;
+        double NPVMoveDura;
+        double PlayDura;
+        double MapDura;
+        double MmapDura;
+        double NPCDura;
+        double NPVDura;
+        double NullDura;
+
+        Collision_Detection collisionDetection;
+        GameDataRef _data;
+        sf::View view;
+        sf::View minimap;
+        sf::RectangleShape getRektMap;
+
+        sf::Texture M3_White;
+
+        sf::Texture player1;
+        sf::Sprite Boat;
+        sf::Sprite _car;
+
     public:
         Map map;
         Movement movement;
@@ -30,7 +52,6 @@ namespace GTA {
         Weapon weapon;
         objectSpawn objectSpawn;
         AssetManager sound;
-
 
         Player _player;
         missionPlacement missionPlacement;
@@ -55,9 +76,7 @@ namespace GTA {
         bool space = false;
         int missionNumber = 1;
 
-
         int BOATCan_Not_MoveHere[24]={0, 1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24};
-
         int NoDrivingOrWalkingArray[4]={0, 9, 11, 12};
 
         int NoDrivWalkInt;
@@ -70,7 +89,7 @@ namespace GTA {
 
         int playerStartPosX;
         int playerStartPosY;
-        int  X, Y;
+        int X, Y;
 
         explicit WorldState(GTA::GameDataRef data);
         void Init() override;
@@ -86,29 +105,5 @@ namespace GTA {
         void vehicleSettings();
 
         friend class Map;
-
-    private:
-        std::clock_t Timer;
-        int timer=0;
-        double NPCMoveDura;
-        double NPVMoveDura;
-        double PlayDura;
-        double MapDura;
-        double MmapDura;
-        double NPCDura;
-        double NPVDura;
-        double NullDura;
-
-        Collision_Detection collisionDetection;
-        GameDataRef _data;
-        sf::View view;
-        sf::View minimap;
-        sf::RectangleShape getRektMap;
-
-        sf::Texture M3_White;
-
-        sf::Texture player1;
-        sf::Sprite Boat;
-        sf::Sprite _car;
     };
 }

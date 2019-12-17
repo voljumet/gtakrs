@@ -6,6 +6,10 @@
 
 namespace GTA{
     class SplashState : public  State{
+        GameDataRef _data;
+        sf::Clock _clock;
+        sf::Sprite _background;
+
     public:
         explicit SplashState(GameDataRef data);
 
@@ -14,10 +18,5 @@ namespace GTA{
         void HandleInput() override;
         void Update(float dt) override;
         void Draw( float dt) override;
-
-    private:
-        GameDataRef _data;
-        sf::Clock _clock;
-        sf::Sprite _background;
     };
 }

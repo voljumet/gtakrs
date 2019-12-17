@@ -3,14 +3,12 @@
 #include "MainMenuState.h"
 #include "Mission.h"
 #include <vector>
-#include "WorldState.h"
 
 namespace GTA{
     Mission::Mission(GTA::GameDataRef data): _data(std::move(data)) { }
 
     void Mission::Init() {
         this->view.setSize(sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT));
-
 
         this->movementspeed = 15.f;        ///Determins the movement speed of the scope
         this->spriteposX = 3600;
@@ -19,20 +17,18 @@ namespace GTA{
         this->steps = 0;
         dir = Right;                        ///Dir is an enum for direction, used for moving the sprite.
 
-        ///Load texture for background.
+        ///Load textures and set position for all layers
         this->_data->assets.LoadTexture("Ground", MISSION_1_BACKGROUND_HQ);
         _background.setTexture(this->_data->assets.GetTexture("Ground"));
         this->_background.setPosition(SCREEN_HEIGHT/2.f, SCREEN_WIDTH/2.f);
         _background.setScale(scaleFactor, scaleFactor);
         _background.setOrigin(0,0);
 
-        ///Load texture for sprite.
         this->_data->assets.LoadTexture("Sprite", MISSION_1_SPRITE);
         _sprite.setTexture(this->_data->assets.GetTexture("Sprite"));
         _sprite.setScale(0.2, 0.2);
         this->_sprite.setPosition(spriteposX, spriteposY);
 
-        ///Load texture for scope.
         this->_data->assets.LoadTexture("Scope", MISSION_1_SCOPE);
         _scope.setTexture(this->_data->assets.GetTexture("Scope"));
         _scope.setPosition(SCREEN_WIDTH/3.f,SCREEN_HEIGHT/3.f);
@@ -67,11 +63,9 @@ namespace GTA{
         trees.setScale(scaleFactor,scaleFactor);
         trees.setPosition(800, 900);
 
-
         ///Set position for scope and framerate limit for state.
         this->_data->window.setFramerateLimit(60);
         this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/3, this->view.getCenter().y - SCREEN_HEIGHT/3);
-
     }
 
     ///Function to handle all input from player during state.
@@ -98,11 +92,9 @@ namespace GTA{
                 posY += movementspeed;
             }
 
-
         _sprite.setPosition(spriteposX, spriteposY);
         clouds.setPosition(clouds1X, 400);
         clouds2.setPosition(clouds2X, 200);
-
 
         this->_scope.setPosition(this->view.getCenter().x - SCREEN_WIDTH/2, this->view.getCenter().y - SCREEN_HEIGHT/2);
 
@@ -113,7 +105,6 @@ namespace GTA{
 
         ///if statement for shooting.
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-
 
             ///If statement checks if the target is in the corsairs.
             if(shape->getGlobalBounds().intersects(this->_sprite.getGlobalBounds())) {
@@ -126,8 +117,7 @@ namespace GTA{
             }
         }
 
-
-/// Handles movement of sprite
+        /// Handles movement of sprite
         if (!spriteisdead) {
             if (counter >= 3) {
                 if (steps == 0) {
@@ -153,13 +143,8 @@ namespace GTA{
 
             clouds1X+=1;
             clouds2X+=3;
-
-            if(clouds1X > 8000){
-                clouds1X = -5000;
-            }
-            if(clouds2X > 8000){
-                clouds2X = -5000;
-            }
+            if(clouds1X > 8000){ clouds1X = -5000; }
+            if(clouds2X > 8000){ clouds2X = -5000; }
         }
     }
 
@@ -190,12 +175,10 @@ namespace GTA{
         this->_data->window.draw(this->_scope);
         this->_data->window.draw(this->frame);
 
-
         this->_data->window.display();
     }
 
     void Mission::UpdateView(const float &dt) {
-
-       this->view.setCenter( posX , posY );
+        this->view.setCenter( posX , posY );
     }
 }

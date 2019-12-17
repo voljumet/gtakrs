@@ -3,7 +3,6 @@
 #include "Npv.h"
 #include "Player.h"
 
-
 namespace GTA {
     Npv::Npv() = default;
     Npv::~Npv() = default;
@@ -19,7 +18,6 @@ namespace GTA {
         while (!CheckWalkable) {
             randomPosX = (rand() % WORLD_WIDTH, rand() % WORLD_WIDTH);
             randomPosY = (rand() % WORLD_HEIGHT, rand() % WORLD_HEIGHT);
-
             RandNpcTile = _Block[randomPosY][randomPosX].tileTextureNumber;
 
             /// IF True, break loop (true means that the tile is ok to spawn in)
@@ -38,6 +36,7 @@ namespace GTA {
 
     sf::Sprite &Npv::getNpvBot() { return npvBot; }
 
+    /// NPV movement
     void Npv::moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv *> &npvVec) {
 
         CurrentPosX = npvBot.getPosition().x;
@@ -136,15 +135,11 @@ namespace GTA {
         else if (dir == LEFT) { npvBot.setRotation(270); }
         else if (dir == UP) { npvBot.setRotation(0); }
         else if (dir == DOWN) { npvBot.setRotation(180); }
-
     }
 
+    /// Spawn NPV
     void NpvController::NpvSpawn(sf::Texture &M3W, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
-
-        /// MUST BE 101 CARS FOR THE CODE TO WORK!!!
-
         for (int k = 0; k < numberOfNpv; ++k) {
-
             npvVec.push_back(new Npv);
             npvVec[k]->Number = k;
             npvVec[k]->CarInit(M3W, _Block);
@@ -152,6 +147,7 @@ namespace GTA {
         }
     }
 
+    /// Move NPV, respawn timer and respawn NPV
     void NpvController::NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]) {
         for (auto nop : npvVec) {
             if (!nop->dead) {
@@ -169,6 +165,7 @@ namespace GTA {
         }
     }
 
+    /// Random color for npv
     sf::Color NpvController::Loader() {
         random = rand() % 6 + 1;
         switch (random) {
@@ -194,14 +191,11 @@ namespace GTA {
         return color;
     }
 
-    void NpvController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car,
-                                sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex,
-                                Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1, bool &boat, sf::Sound &tesla) {
-
+    /// Draw NPV
+    void NpvController::NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &carcrashdone, sf::Texture &cartex, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player1, bool &boat, sf::Sound &tesla){
         _data = inn_data;
 
         for (auto i : npvVec) {
-
             this->_data->window.draw(i->getNpvBot());
             if (i->dead) { i->movementSpeed = 0; }
 
@@ -221,7 +215,6 @@ namespace GTA {
                 }
                 i->respawnCounter++;
             }
-
 
             /// Npv collision with car
             if (Driving) {

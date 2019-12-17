@@ -215,11 +215,7 @@ namespace GTA{
                         layer = 13;
                         text.setString("security");
                     }
-
                 }
-
-                //------------------------------------------------------------------------------------
-
                 playerinput.clear();
             }
         }
@@ -236,20 +232,11 @@ namespace GTA{
     }
 
     void Hacking::Draw(float dt) {
-        this->UpdateView(dt);
         this->_data->window.setView(this->view);
         this->_data->window.clear(sf::Color::Black);
         this->_data->window.draw(this->_background);
         this->_data->window.draw(text);
         this->_data->window.draw(playertext);
         this->_data->window.display();
-    }
-
-    void Hacking::UpdateView(const float &dt){
-
-//        this->view.setCenter(X,Y);
-//        this->minimap.setCenter(X,Y);
-//        this->getRektMap.setPosition(X+=512,Y-=794);
-
     }
 }

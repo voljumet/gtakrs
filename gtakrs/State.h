@@ -1,7 +1,6 @@
 #pragma once
 
-/// Definisjon på hva en state er, denne loades inn i alle andre states
-
+/// This defines a state, is loaded into the other states
 namespace GTA{
     class State {
     public:

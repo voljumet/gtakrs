@@ -6,6 +6,11 @@
 
 namespace GTA{
     class WastedState : public  State{
+        GameDataRef _data;
+        sf::View view;
+        sf::Clock _clock;
+        sf::Sprite _background;
+
     public:
         explicit WastedState(GameDataRef data);
 
@@ -15,12 +20,5 @@ namespace GTA{
         void Update(float dt) override;
         void Draw( float dt) override;
         void UpdateView(const float &dt);
-
-
-    private:
-        GameDataRef _data;
-        sf::View view;
-        sf::Clock _clock;
-        sf::Sprite _background;
     };
 }

@@ -1,8 +1,8 @@
 #include "InputManager.h"
 
-/// Denne klassen blir brukt til inputs,
-/// hvis man klikker med musen i menyen,
-/// her bør også piltaster plasseres for å kontrollere karakteren
+/// This class is used for inputs,
+/// if mouse clicked in the menu,
+/// controlls for player can be placed here too
 
 namespace GTA{
     bool InputManager::IsSpriteClicked(const sf::Sprite& object, sf::Mouse::Button button, sf::RenderWindow &window){       /// Mouse clicked ....
@@ -19,6 +19,4 @@ namespace GTA{
     sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window){      /// Get mouse position
         return sf::Mouse::getPosition(window);
     }
-
-
 }
