@@ -82,6 +82,8 @@ namespace GTA {
         void playerCrashTEMP();
         void PrintTimer();
         void loadAllTexture();
+        void objectPixelPerfect();
+        void vehicleSettings();
 
         friend class Map;
 

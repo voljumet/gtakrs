@@ -125,6 +125,7 @@ namespace GTA{
         }
 
         text.setFont(font);
+
             switch (missionNumber) {
                 case 1:
                     rectangleShape.setSize(sf::Vector2f(700, 260));
@@ -222,6 +223,7 @@ namespace GTA{
         }
     }
 
+
     sf::Text missionPlacement::getText() { return text; }
     sf::RectangleShape missionPlacement::getBox() { return rectangleShape; }
     sf::Sprite missionPlacement::getMissionCircle(){ return missionCircle; }
@@ -259,4 +261,5 @@ namespace GTA{
             this->boatCircleIsland.setPosition(TILE_SIZE * 182, TILE_SIZE * 65);
         }
     }
+
 }
