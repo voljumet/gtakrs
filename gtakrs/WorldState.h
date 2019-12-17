@@ -40,6 +40,10 @@ namespace GTA {
         bool Debug = false;
         bool Minimap = false;
         bool mission = false;
+        bool boatBox = false;
+        bool enterBoat = false;
+        bool exitBoat = false;
+        bool exitBoatIsland = false;
 
         /// IKKE SLETT !!!! ------------
         bool NULLER = false;
@@ -48,7 +52,7 @@ namespace GTA {
         bool nocruising = false;
 
         bool boatbool = false;
-
+        bool space = false;
         int missionNumber = 1;
 
 

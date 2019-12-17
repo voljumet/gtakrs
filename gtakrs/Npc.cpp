@@ -149,6 +149,23 @@ namespace GTA {
         RandomDir = static_cast<direction >(rand() % 4);
 
         for(auto n : npcVec) {
+
+///---------------------------------------------------------------------------
+//            /// If npc has been standing still for some time time, it respawns
+//            if (n->movementSpeed == 0){
+//                if(n->respawnCounter == n->coolDown){
+//                    n->respawnCounter = 0;
+//                    int tempNum = n->Number;
+//                    delete(n);
+//                    npcVec.push_back(new Npc);
+//                    n->Number = tempNum;
+//                    n->npcInit(texture, _Block);
+////                    i->getNpvBot().setColor(NpvController::Loader());
+//
+//                }
+//                n->respawnCounter++;
+//            }
+///---------------------------------------------------------------------------
             if(!n->dead){
                 n->move(_Block, npcVec);
             } else {
@@ -167,6 +184,8 @@ namespace GTA {
         _data = inn_data;
         for (auto &i : npcVec) {
             this->_data->window.draw(i->getNpcBot());
+
+
 
             /// Npc collision with player in car
             if(!i->dead){

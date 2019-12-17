@@ -15,11 +15,11 @@ namespace GTA{
 
     void Movement::Drive(sf::Sprite& driver, sf::Sound &tesla) {
         if (up) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { driver.rotate(-rotateAmount * dt); }
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) { driver.rotate(rotateAmount * dt); }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { driver.rotate(-rotateAmountCar * dt); }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { driver.rotate(rotateAmountCar * dt); }
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             up = true;
             currentSpeed -= deceleration * 2;
             if (currentSpeed < maxSpeed / 10)
@@ -30,10 +30,9 @@ namespace GTA{
 
 
 
-        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
             up = true;
             currentSpeed += acceleration;
-
 
             if (currentSpeed >= maxSpeed) {
                 currentSpeed = maxSpeed;
@@ -52,19 +51,18 @@ namespace GTA{
 
             }
         }
-
     }
 
     void Movement::Walk(GameDataRef &inn_data , sf::Sprite& walker, sf::Sound &footstep) {
         _data = inn_data;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            walker.rotate(-rotateAmount * dt);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            walker.rotate(-rotateAmountWalk * dt);
 
-        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            walker.rotate(rotateAmount * dt);
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            walker.rotate(rotateAmountWalk * dt);
 
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             walker.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
                 currentSpeed = 100;
@@ -72,7 +70,7 @@ namespace GTA{
             sf::Transform t;
             t.rotate(walker.getRotation());
             movementVec = t.transformPoint(-Movement::forwardVec());
-        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 
             walker.setTextureRect(sf::IntRect(0, walkAnimation * 110, 100, 110));
             if (currentSpeed < maxSpeed) {
@@ -82,30 +80,19 @@ namespace GTA{
             t.rotate(walker.getRotation());
             movementVec = t.transformPoint(Movement::forwardVec());
 
-        }
-
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-            walker.setTextureRect(sf::IntRect(0, walkAnimation * 150, 100, 110));
-            if(currentSpeed == maxSpeed){
-                currentSpeed = 600;
-            }
-            sf::Transform t;
-            t.rotate(walker.getRotation());
-            movementVec = t.transformPoint(Movement::forwardVec());
         } else {
             currentSpeed = 0.f;
             walker.setTextureRect(sf::IntRect(0, 0, 100, 110));
         }
+
         SpriteSpeed++;
         if (SpriteSpeed == 8) {
             walkAnimation++;
             SpriteSpeed = 0;
 
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)  ) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)  ) {
                 soundCounter++;
-
                 if(soundCounter==5){
-
                     sound.PlaySound(footstep);
                     soundCounter = 0;
                 }

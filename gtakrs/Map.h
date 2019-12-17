@@ -10,7 +10,7 @@ namespace GTA {
 
     class Block : public sf::RectangleShape{
     public:
-        sf::RectangleShape getRekt;
+//        sf::RectangleShape getRekt;
         sf::Sprite tileSprite;
         sf::Text text;
         int tileTextureNumber;

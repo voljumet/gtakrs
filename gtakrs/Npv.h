@@ -15,11 +15,15 @@ namespace GTA {
         void moveCar(Block _Block[WORLD_HEIGHT][WORLD_WIDTH], std::vector<Npv*> &npcVec);
 
         sf::Sprite &getNpvBot();
+        bool carInteract = false;
+        bool boatInteract = false;
+
 
     private:
         /// Player Speed
         GameDataRef _data;
         sf::Sprite npvBot;
+
     };
 
     class NpvController: public NPC_NPV{
@@ -29,7 +33,8 @@ namespace GTA {
         void NpvSpawn(sf::Texture &M3W,  Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvMoveAndSpawn(sf::Texture &_car, Block _Block[WORLD_HEIGHT][WORLD_WIDTH]);
         void NpvDraw(GameDataRef &inn_data, bool &Driving, float &MovementSpeed, sf::Sprite &_car, sf::Sprite &_player, sf::Sound &carcrashdone,sf::Texture &_cartex, Block _Block[WORLD_HEIGHT][WORLD_WIDTH], Player &player,bool &boat, sf::Sound &tesla);
-        int random;
+        int random = 0;
+        int numberOfNpv = 51;
         sf::Color color;
         sf::Color Loader();
         std::vector<Npv*> npvVec;

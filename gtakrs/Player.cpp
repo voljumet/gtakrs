@@ -20,6 +20,7 @@ namespace GTA {
                                                       110));      /// Player rectangle load pictures from (0,0), size of rectangle (100x110)px
         this->playerSprite.setScale(sf::Vector2f(1.0f, 1.0f));                     /// player scale factor
         this->playerSprite.setOrigin(50.f, 67.f);
+        this->playerSprite.setRotation(180);
         font.loadFromFile(FONT_ARIAL);
 
     }

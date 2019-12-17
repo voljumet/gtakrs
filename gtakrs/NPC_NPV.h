@@ -27,16 +27,16 @@ namespace GTA{
         int health = 0;
         bool crashCurb_RIGHT = false, crashCurb_LEFT = false, crashCurb_UP = false, crashCurb_DOWN = false, crashCurb = true;
         bool CheckWalkable = false, dead = false;
+        int respawnCounter = 0;
+        int coolDown = 6000;
         int Number = 0;
-
+        int newCounter = 0;
 
         int Npc_Can_SpawnHere[10]={15, 16, 17, 18, 19, 20, 21};
         int Npv_Can_SpawnHere[9]={7, 8, 14, 15, 16};
 
         int NpcCan_Not_MoveHere[14]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14};
         int NpvCan_Not_MoveHere[18]={1, 2, 3, 4, 0, 5, 6, 9, 10, 11, 12, 17, 18, 19, 20, 21, 22};
-
-
 
         enum direction{UP, DOWN, LEFT, RIGHT} dir;
 

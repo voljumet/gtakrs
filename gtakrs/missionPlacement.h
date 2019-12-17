@@ -14,22 +14,11 @@
 namespace GTA{
     class missionPlacement{
 
-    public:
-        typedef std::shared_ptr<GTA::GameData> GameDataRef;
-
-        missionPlacement();
-        virtual ~missionPlacement();
-
-        void hackMissionSettings();
-        void missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos);
-        void infoBox(sf::Sprite &player, int &missionNumber);
-        void InfoBoxText(sf::Sprite &player, int &missionNumber);
-
-
-    private:
         GameDataRef _data;
         sf::Sprite missionCircle;
         sf::Sprite missionCircleMini;
+        sf::Sprite boatCircleIsland;
+        sf::Sprite boatCircle;
 
         sf::Texture texture;
         sf::Texture textureMini;
@@ -38,11 +27,23 @@ namespace GTA{
         sf::Text text;
         sf::Font font;
 
+        typedef std::shared_ptr<GTA::GameData> GameDataRef;
     public:
-       sf::Sprite getMissionCircle();
+
+        missionPlacement();
+        virtual ~missionPlacement();
+
+        void missionStart(GameDataRef data_inn, Player &player, int &missionNumber, sf::Sprite &playerPos, bool boat);
+        void InfoBox(sf::Sprite &player, sf::Vector2f boatPos, int &missionNumber, bool &boat);
+        void infoBoxBoat(sf::Sprite &player, bool &boat, sf::Vector2f boatPos);
+        void BoatCircle(bool &boat);
+
+        sf::Sprite getMissionCircle();
+        sf::Sprite getBoatCircle();
+        sf::Sprite getBoatCircleIsland();
         sf::Sprite getMissionCircleMini();
         sf::RectangleShape getBox();
-       sf::Text getText();
+        sf::Text getText();
     };
 }
 
