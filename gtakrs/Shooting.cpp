@@ -6,8 +6,10 @@
 #include "colliderTest.h"
 
 namespace GTA {
-    void Shooting::CreateBullet(sf::Sprite &Player)
-    {
+
+    std::vector<Bullet *> &Shooting::getBulletlist() { return bulletlist; }
+
+    void Shooting::CreateBullet(sf::Sprite &Player){
         Bullet* bullet = new Bullet;
         bullet->setBulletspeed(4000.f);
         sf::Transform t;
@@ -21,6 +23,7 @@ namespace GTA {
         bulletlist.push_back(bullet);
 
     }
+
     void Shooting::CreateShotgunBullet(sf::Sprite &Player){
         for(int i = 0; i < 5; i++){
             Bullet* bullet = new Bullet;
@@ -58,19 +61,21 @@ namespace GTA {
     void Shooting::MoveBullet(){
         for(auto &b: bulletlist){
             b->getBullet().move(b->getBulletVec()*b->getBulletspeed()*movement.dt);
-            if(b->getBullet().getPosition().x >= WORLD_WIDTH*70 || b->getBullet().getPosition().y >= WORLD_HEIGHT*70){
+            if(b->getBullet().getPosition().x >= WORLD_WIDTH*TILE_SIZE || b->getBullet().getPosition().y >= WORLD_HEIGHT*TILE_SIZE){
                 bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), b), bulletlist.end());
             }else if(b->getBullet().getPosition().x <= 0 || b->getBullet().getPosition().y <= 0){
                 bulletlist.erase(std::remove(bulletlist.begin(), bulletlist.end(), b), bulletlist.end());
             }
         }
     }
+
     void Shooting::DrawBullet(GameDataRef &inn_data) {
         _data = inn_data;
         for(auto b: bulletlist){
             this->_data->window.draw(b->getBullet());
         }
     }
+
     void Shooting::Collision(GameDataRef &inn_data, std::vector<Npc *> &npclist, std::vector<Npv*> &npvlist, std::vector<Bullet *> &bulletlist) {
         _data = inn_data;
         for(auto &npc: npclist){
@@ -85,7 +90,6 @@ namespace GTA {
                            npc->movementSpeed = 4;
                            npc->health = 50;
                            npc->setNpcBot(this->_data->assets.GetTexture("Dead"));
-
                        }
                    }
                 }
@@ -108,11 +112,5 @@ namespace GTA {
             }
         }
     }
-
-     std::vector<Bullet *> &Shooting::getBulletlist()  {
-        return bulletlist;
-    }
-
-
 }
 

@@ -229,6 +229,7 @@ namespace GTA {
             } else {
                 if (GTA::PixelPerfectTest(_player, i->getNpvBot())) {
                     if(i->movementSpeed != 0){ player1.setDamage(); }
+                    if(i->movementSpeed > 8) {player1.setDamage(); }
                     i->carInteract = true;
                     collisionDetaction.Check_Collision(_player, i->getNpvBot(), false);
                 } else {
